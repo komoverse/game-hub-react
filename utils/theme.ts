@@ -1,8 +1,8 @@
-import { Roboto } from "@next/font/google";
+import { Work_Sans } from "@next/font/google";
 import { createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 
-export const roboto = Roboto({
+export const workSans = Work_Sans({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
@@ -12,8 +12,9 @@ export const roboto = Roboto({
 // Create a theme instance.
 const theme = createTheme({
   palette: {
+    mode: "dark",
     primary: {
-      main: "#556cd6",
+      main: "#32cd32",
     },
     secondary: {
       main: "#19857b",
@@ -23,7 +24,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: workSans.style.fontFamily,
   },
 });
 
