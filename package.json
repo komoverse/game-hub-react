@@ -14,11 +14,14 @@
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.4",
     "@next/font": "^13.1.1",
+    "keen-slider": "^6.8.5",
     "next": "^13.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tss-react": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "16.11.10",
