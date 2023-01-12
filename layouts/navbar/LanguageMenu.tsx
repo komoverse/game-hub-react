@@ -6,35 +6,38 @@ import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import MenuPopover from "@/components/MenuPopover";
-// import langAction from "store/lang/action";
+import languageAction from "store/language/action";
 import { withRouter } from "next/router";
 import Image from "next/image";
 
+// resource for flag icon
+// https://flagpedia.net/download/api
 const LANGS = [
   {
     value: "en",
     label: "English",
-    icon: "https://res.cloudinary.com/den5rttgg/image/upload/v1665677219/kpi/ic_flag_en_pcvufq.svg",
+    icon: "https://flagcdn.com/gb.svg",
   },
   {
     value: "id",
     label: "Indonesian",
-    icon: "https://res.cloudinary.com/den5rttgg/image/upload/v1665677218/kpi/ic_flag_de_ayggei.svg",
+    icon: "https://flagcdn.com/id.svg",
   },
 ];
 
 const LanguagePopover = () => {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState("id");
 
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => setOpen(false);
 
   const handleChangeLanguage = (lang: string) => {
-    // langAction.changeLanguage(lang);
+    languageAction.changeLanguage(lang);
     setLanguage(lang);
+    handleClose();
   };
 
   return (
@@ -43,7 +46,7 @@ const LanguagePopover = () => {
         ref={anchorRef}
         onClick={handleOpen}
         sx={{
-          padding: 1,
+          my: 1,
           width: 44,
           height: 44,
           ...(open && {
@@ -55,21 +58,12 @@ const LanguagePopover = () => {
           }),
         }}
       >
-        {language === "en" ? (
-          <Image
-            src="https://res.cloudinary.com/den5rttgg/image/upload/v1665677219/kpi/ic_flag_en_pcvufq.svg"
-            alt="Key Performance Index"
-            width={30}
-            height={30}
-          />
-        ) : (
-          <Image
-            src="https://res.cloudinary.com/den5rttgg/image/upload/v1665677218/kpi/ic_flag_de_ayggei.svg"
-            alt="Key Performance Index"
-            width={30}
-            height={30}
-          />
-        )}
+        <Image
+          src={`https://flagcdn.com/${language || "gb"}.svg`}
+          alt="great britain flag icon"
+          width={30}
+          height={30}
+        />
       </IconButton>
 
       <MenuPopover

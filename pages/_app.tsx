@@ -7,6 +7,9 @@ import enTranslations from "locales/en";
 import idTranslations from "locales/id";
 import ThemeProvider from "@/theme/ThemeProvider";
 import createEmotionCache from "@/theme/createEmotionCache";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
+import store from "store/store";
 import "../styles/global.css";
 
 const clientSideEmotionCache = createEmotionCache();
@@ -37,6 +40,8 @@ interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
+const queryClient = new QueryClient();
+
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
@@ -45,11 +50,15 @@ export default function MyApp(props: MyAppProps) {
         <title>Komoverse</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider>
-        <I18nextProvider i18n={i18n}>
-          <Component {...pageProps} />
-        </I18nextProvider>
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider>
+          <I18nextProvider i18n={i18n}>
+            <QueryClientProvider client={queryClient}>
+              <Component {...pageProps} />
+            </QueryClientProvider>
+          </I18nextProvider>
+        </ThemeProvider>
+      </Provider>
     </CacheProvider>
   );
 }
