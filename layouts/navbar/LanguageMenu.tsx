@@ -28,7 +28,7 @@ const LANGS = [
 const LanguagePopover = () => {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const [language, setLanguage] = useState("id");
+  const [language, setLanguage] = useState("en");
 
   const handleOpen = () => setOpen(true);
 
@@ -59,7 +59,7 @@ const LanguagePopover = () => {
         }}
       >
         <Image
-          src={`https://flagcdn.com/${language || "gb"}.svg`}
+          src={`https://flagcdn.com/${language === "en" ? "gb" : language}.svg`}
           alt="great britain flag icon"
           width={30}
           height={30}

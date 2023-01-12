@@ -80,7 +80,7 @@ function Navbar() {
             <LanguageMenu />
             <Button
               variant="outlined"
-              size="large"
+              size="medium"
               startIcon={<AccountBalanceWalletOutlinedIcon />}
             >
               <Box
