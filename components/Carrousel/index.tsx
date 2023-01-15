@@ -3,6 +3,7 @@ import { useKeenSlider } from "keen-slider/react";
 import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
+import { contentType } from "./constant";
 
 const NavigatorStyled = styled("div")(({ theme }) => ({
   display: "flex",
@@ -52,13 +53,24 @@ const SliderActionWrapper = styled("div")(({ theme }) => ({
   },
 }));
 
-const Carrousel = () => {
+type itemsType = {
+  contentType: string;
+  game: string;
+  description: string;
+  target: string;
+};
+
+interface Props {
+  items: itemsType[];
+}
+
+const Carrousel = ({ items }: Props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState<boolean>();
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
     {
       initial: 0,
-      // loop: true,
+      loop: true,
       slideChanged(slider) {
         setCurrentSlide(slider.track.details.rel);
       },
@@ -121,59 +133,34 @@ const Carrousel = () => {
   };
 
   return (
-    <Box sx={{ position: "relative" }}>
-      <Box component="div" ref={sliderRef} className="keen-slider">
-        {[1, 2, 3, 4].map((item) => (
-          <Box key={item} className="keen-slider__slide">
-            <Box
-              sx={{
-                width: "100%",
-                height: "100%",
-                paddingBottom: { md: "43%" },
-                position: "relative",
-              }}
-            >
-              <Box
-                sx={{
-                  height: "100%",
-                  overflow: "hidden",
-                  width: "100%",
-                  position: "absolute",
-                }}
-              >
-                <Box
-                  sx={{
-                    overflow: "hidden",
-                    paddingBottom: { xs: "49%", md: "45%" },
-                    position: "absolute",
-                    width: "100%",
-                    zIndex: "0",
-                  }}
-                >
-                  <VideoStyled
-                    src="https://css-tricks-post-videos.s3.us-east-1.amazonaws.com/708209935.mp4"
-                    autoPlay
-                    loop
-                    playsInline
-                    muted
-                  />
-                  <GradientOverlay />
-                </Box>
-              </Box>
+    <Box sx={{ height: { xs: "30%", md: "50%", lg: "95%" } }}>
+      <Box ref={sliderRef} className="keen-slider" sx={{ height: "100%" }}>
+        {items.map((item, idx) => (
+          <Box key={idx} className="keen-slider__slide">
+            <Box>
+              <VideoStyled
+                src="https://css-tricks-post-videos.s3.us-east-1.amazonaws.com/708209935.mp4"
+                autoPlay
+                loop
+                playsInline
+                muted
+              />
+              <GradientOverlay />
+
               <SliderActionWrapper>
                 <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
                   <Typography variant="h5" color="limegreen" fontWeight={700}>
-                    New Tournament
+                    {contentType[item.contentType].title}
                   </Typography>
                   <Typography variant="h2" fontWeight={700}>
-                    Komo Chess
+                    {item.game}
                   </Typography>
                   <Typography variant="body1" fontWeight={500}>
-                    Fractal Cup II is here, come earn SOL for every kill
+                    {item.description}
                   </Typography>
                   <Box sx={{ my: "16px" }}>
                     <Button variant="contained" size="large">
-                      Play now
+                      {contentType[item.contentType].action}
                     </Button>
                   </Box>
                 </Box>
@@ -186,38 +173,5 @@ const Carrousel = () => {
     </Box>
   );
 };
-
-function CarrouselItemImage({ item }: { item: any }) {
-  return (
-    <Paper
-      className="keen-slider__slide"
-      sx={{
-        position: "relative",
-        borderRadius: "0",
-        color: "#fff",
-        mb: 4,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundImage:
-          "linear-gradient(0deg, #000000 35%, rgba(252,252,252,0) 100%), url(https://source.unsplash.com/random)",
-      }}
-    >
-      <Container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "center",
-          height: "100%",
-          width: "100%",
-        }}
-      >
-        <Typography variant="h3">komoverse {item}</Typography>
-        <Button variant="contained">Play now</Button>
-      </Container>
-    </Paper>
-  );
-}
 
 export default Carrousel;
