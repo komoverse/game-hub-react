@@ -11,14 +11,13 @@ import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
 import SearchField from "./SearchField";
 import LanguageMenu from "./LanguageMenu";
-
-const APPBAR_MOBILE = "64px";
-const APPBAR_DESKTOP = "70px";
+import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
   backgroundColor: theme.palette.primary.dark,
   backgroundImage: "none",
+  zIndex: theme.zIndex.drawer + 1,
 }));
 
 const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
@@ -29,7 +28,11 @@ const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
   },
 }));
 
-function Navbar() {
+interface NavbarProps {
+  toggleDrawer: () => void;
+}
+
+function Navbar({ toggleDrawer }: NavbarProps) {
   const { t } = useTranslation();
 
   return (
@@ -56,6 +59,7 @@ function Navbar() {
               color="inherit"
               aria-label="open drawer"
               sx={{ mr: 1 }}
+              onClick={() => toggleDrawer()}
             >
               <MenuIcon />
             </IconButton>
