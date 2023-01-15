@@ -15,7 +15,7 @@ import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
-  backgroundColor: theme.palette.primary.dark,
+  backgroundColor: "#111111",
   backgroundImage: "none",
   zIndex: theme.zIndex.drawer + 1,
 }));

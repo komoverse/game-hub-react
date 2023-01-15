@@ -46,7 +46,7 @@ const LanguagePopover = () => {
         ref={anchorRef}
         onClick={handleOpen}
         sx={{
-          my: 1,
+          m: 1,
           width: 44,
           height: 44,
           ...(open && {
