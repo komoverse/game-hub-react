@@ -12,6 +12,8 @@ import { useTranslation } from "react-i18next";
 import SearchField from "./SearchField";
 import LanguageMenu from "./LanguageMenu";
 import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
+import { useState } from "react";
+import SearchFieldPopOver from "./SearchFieldPopover";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
@@ -24,7 +26,6 @@ const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
   minHeight: APPBAR_MOBILE,
   [theme.breakpoints.up("lg")]: {
     minHeight: APPBAR_DESKTOP,
-    padding: theme.spacing(0, 5),
   },
 }));
 
@@ -33,6 +34,13 @@ interface NavbarProps {
 }
 
 function Navbar({ toggleDrawer }: NavbarProps) {
+  const [isSearchBarOpen, setSearchBarOpen] = useState(false);
+
+  const toggleSearchBar = () => {
+    console.log('open-searchbar')
+    setSearchBarOpen((prev) => !prev);
+  };
+
   const { t } = useTranslation();
 
   return (
@@ -70,7 +78,11 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               width={126}
             />
           </Box>
-          <SearchField />
+          <SearchField isOpen={isSearchBarOpen} />
+          <SearchFieldPopOver
+            isOpen={isSearchBarOpen}
+            toggleOpen={toggleSearchBar}
+          />
           <Box
             component="div"
             sx={{
@@ -78,7 +90,11 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               alignItems: "center",
             }}
           >
-            <IconButton size="medium" sx={{ display: { sm: "none" } }}>
+            <IconButton
+              size="medium"
+              sx={{ display: { sm: "none" } }}
+              onClick={toggleSearchBar}
+            >
               <SearchIcon />
             </IconButton>
             <LanguageMenu />

@@ -35,7 +35,7 @@ const filmOptions = topFilms.map((option) => {
   };
 });
 
-export default function SearchField() {
+export default function SearchField({ isOpen }: { isOpen: boolean }) {
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState<readonly Film[]>([]);
   const loading = open && options.length === 0;
@@ -70,9 +70,9 @@ export default function SearchField() {
       id="asynchronous-demo"
       size="small"
       sx={{
-        width: 450,
+        width: 350,
         borderRadius: "1rem",
-        display: { xs: "none", sm: "block" },
+        display: { xs: isOpen ? "block" : "none", sm: "block" },
       }}
       open={open}
       onOpen={() => {

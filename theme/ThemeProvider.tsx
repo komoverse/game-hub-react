@@ -7,16 +7,7 @@ import {
 } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Work_Sans } from "@next/font/google";
-
-const pallete = {
-  primary: {
-    main: "#32cd32",
-    dark: "#111111",
-  },
-  error: {
-    main: red.A400,
-  },
-};
+import customTypography from "./Typography";
 
 export const workSans = Work_Sans({
   weight: ["300", "400", "500", "700"],
@@ -25,41 +16,33 @@ export const workSans = Work_Sans({
   fallback: ["Helvetica", "Arial", "sans-serif"],
 });
 
-// Create a theme instance.
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#32cd32",
-      dark: "#111111",
-    },
-    secondary: {
-      main: "#19857b",
-    },
-    error: {
-      main: red.A400,
-    },
+const palette = {
+  mode: "dark",
+  primary: {
+    main: "#32cd32",
   },
-  typography: {
-    fontFamily: workSans.style.fontFamily,
+  error: {
+    main: red.A400,
   },
-});
+};
 
 type ChildrenProps = {
   children?: ReactNode;
 };
 
 const ThemeProvider = ({ children }: ChildrenProps) => {
-  // const themeOptions = useMemo(
-  //   () => ({
-  //     mode: "dark",
-  //     pallete,
-  //     typography,
-  //   }),
-  //   []
-  // );
+  const themeOptions = useMemo(
+    () => ({
+      palette,
+      typography: {
+        fontFamily: workSans.style.fontFamily,
+        ...customTypography,
+      },
+    }),
+    []
+  );
 
-  // const theme = createTheme(themeOptions as any);
+  const theme = createTheme(themeOptions as any);
 
   return (
     <StyledEngineProvider injectFirst>
