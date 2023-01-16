@@ -46,10 +46,14 @@ const SliderActionWrapper = styled("div")(({ theme }) => ({
   bottom: "64px",
   left: "124px",
   [theme.breakpoints.down("md")]: {
-    alignItems: "center",
     bottom: "auto",
     left: "auto",
     position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    height: "100%",
   },
 }));
 
@@ -133,11 +137,11 @@ const Carrousel = ({ items }: Props) => {
   };
 
   return (
-    <Box sx={{ height: { xs: "30%", md: "50%", lg: "95%" } }}>
+    <Box sx={{ height: { xs: "40%", md: "50%", lg: "95%" } }}>
       <Box ref={sliderRef} className="keen-slider" sx={{ height: "100%" }}>
         {items.map((item, idx) => (
           <Box key={idx} className="keen-slider__slide">
-            <Box>
+            <Box sx={{ height: "100%" }}>
               <VideoStyled
                 src="https://css-tricks-post-videos.s3.us-east-1.amazonaws.com/708209935.mp4"
                 autoPlay
