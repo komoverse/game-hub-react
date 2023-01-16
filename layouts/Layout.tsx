@@ -25,7 +25,7 @@ const MainStyled = styled("div")(({ theme }) => ({
 }));
 
 function Layout({ children }: LayoutProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);

@@ -1,69 +1,83 @@
-import { ReactNode, useState } from "react";
 import Box from "@mui/material/Box";
-import {
-  Drawer,
-  Toolbar,
-  List,
-  Divider,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import Image from "next/image";
-
-const drawerWidth = 240;
+import { Drawer } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { APPBAR_DESKTOP, APPBAR_MOBILE, SIDEBAR_WIDTH } from "../constant";
+import SidebarMenuItems from "./SidebarMenuItem";
 
 interface SidebarProps {
   isOpen: boolean;
 }
 
+const sidebarMenuItems = [
+  {
+    header: "Mints",
+    headerIcon: "RocketLaunchOutlinedIcon",
+    list: [
+      {
+        rank: "",
+        title: "Komo Chess",
+        image: "https://ui-avatars.com/api/?background=0D8ABC&color=fff",
+        duration: "2 days",
+      },
+      {
+        rank: "",
+        title: "Komo Chess",
+        image: "https://ui-avatars.com/api/?background=0D8ABC&color=fff",
+        duration: "2 days",
+      },
+    ],
+  },
+  {
+    header: "Tournaments",
+    headerIcon: "EmojiEventsOutlinedIcon",
+    list: [
+      {
+        rank: "",
+        title: "Komo Chess",
+        image: "https://ui-avatars.com/api/?background=0D8ABC&color=fff",
+        duration: "2 days",
+      },
+      {
+        rank: "",
+        title: "Komo Chess",
+        image: "https://ui-avatars.com/api/?background=0D8ABC&color=fff",
+        duration: "2 days",
+      },
+    ],
+  },
+];
+
 export default function Sidebar({ isOpen }: SidebarProps) {
+  const theme = useTheme();
+  const mediaMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Drawer
-      variant="temporary"
+      variant={mediaMobile ? "temporary" : "persistent"}
       sx={{
-        width: drawerWidth,
+        width: isOpen ? SIDEBAR_WIDTH : "0",
         flexShrink: 0,
         [`& .MuiDrawer-paper`]: {
-          width: drawerWidth,
+          width: SIDEBAR_WIDTH,
           boxSizing: "border-box",
           backgroundColor: "#000",
+          backgroundImage: "none",
         },
       }}
       hideBackdrop
       ModalProps={{ disableEnforceFocus: true }}
       open={isOpen}
     >
-      <Toolbar />
-      <Box sx={{ overflow: "auto" }}>
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
+      <Box
+        sx={{
+          mt: { xs: APPBAR_MOBILE, md: APPBAR_DESKTOP },
+          borderRight: "1px solid rgb(45, 45, 45)",
+        }}
+      >
+        {sidebarMenuItems &&
+          sidebarMenuItems.map((items, i) => (
+            <SidebarMenuItems key={i} items={items} />
           ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Box>
     </Drawer>
   );
