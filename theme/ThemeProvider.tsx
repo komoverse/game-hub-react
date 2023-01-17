@@ -1,4 +1,3 @@
-import { red } from "@mui/material/colors";
 import { ReactNode, useMemo } from "react";
 import {
   ThemeProvider as MUIThemeProvider,
@@ -20,9 +19,6 @@ const palette = {
   mode: "dark",
   primary: {
     main: "#32cd32",
-  },
-  error: {
-    main: red.A400,
   },
 };
 

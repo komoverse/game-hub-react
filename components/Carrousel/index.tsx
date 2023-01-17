@@ -37,7 +37,7 @@ const GradientOverlay = styled("div")({
   position: "absolute",
   top: "0",
   background:
-    "linear-gradient(0deg, rgba(0,0,0,1) 30%, rgba(255,255,255,0) 100%)",
+    "linear-gradient(0deg, rgba(0,0,0,1) 8%, rgba(255,255,255,0) 100%)",
 });
 
 const SliderActionWrapper = styled("div")(({ theme }) => ({
