@@ -11,25 +11,36 @@ import Button from "@mui/material/Button";
 import { useTranslation } from "react-i18next";
 import SearchField from "./SearchField";
 import LanguageMenu from "./LanguageMenu";
-
-const APPBAR_MOBILE = "64px";
-const APPBAR_DESKTOP = "70px";
+import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
+import { useState } from "react";
+import SearchFieldPopOver from "./SearchFieldPopover";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
-  backgroundColor: theme.palette.primary.dark,
+  backgroundColor: "#111111",
   backgroundImage: "none",
+  zIndex: theme.zIndex.drawer + 1,
 }));
 
 const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
   minHeight: APPBAR_MOBILE,
   [theme.breakpoints.up("lg")]: {
     minHeight: APPBAR_DESKTOP,
-    padding: theme.spacing(0, 5),
   },
 }));
 
-function Navbar() {
+interface NavbarProps {
+  toggleDrawer: () => void;
+}
+
+function Navbar({ toggleDrawer }: NavbarProps) {
+  const [isSearchBarOpen, setSearchBarOpen] = useState(false);
+
+  const toggleSearchBar = () => {
+    console.log('open-searchbar')
+    setSearchBarOpen((prev) => !prev);
+  };
+
   const { t } = useTranslation();
 
   return (
@@ -56,6 +67,7 @@ function Navbar() {
               color="inherit"
               aria-label="open drawer"
               sx={{ mr: 1 }}
+              onClick={() => toggleDrawer()}
             >
               <MenuIcon />
             </IconButton>
@@ -66,7 +78,11 @@ function Navbar() {
               width={126}
             />
           </Box>
-          <SearchField />
+          <SearchField isOpen={isSearchBarOpen} />
+          <SearchFieldPopOver
+            isOpen={isSearchBarOpen}
+            toggleOpen={toggleSearchBar}
+          />
           <Box
             component="div"
             sx={{
@@ -74,7 +90,11 @@ function Navbar() {
               alignItems: "center",
             }}
           >
-            <IconButton size="medium" sx={{ display: { sm: "none" } }}>
+            <IconButton
+              size="medium"
+              sx={{ display: { sm: "none" } }}
+              onClick={toggleSearchBar}
+            >
               <SearchIcon />
             </IconButton>
             <LanguageMenu />
