@@ -1,14 +1,11 @@
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect, useState } from "react";
+import { TextField, Autocomplete, CircularProgress } from "@mui/material";
+import Iconify from "@/components/Iconify";
 
 interface Film {
   title: string;
   year: number;
+  firstLetter: string;
 }
 
 function sleep(delay = 0) {
@@ -48,6 +45,7 @@ export default function SearchField({ isOpen }: { isOpen: boolean }) {
     }
 
     (async () => {
+      // TDOD: Fetch search data from the API
       await sleep(1000);
 
       if (active) {
@@ -105,7 +103,9 @@ export default function SearchField({ isOpen }: { isOpen: boolean }) {
           placeholder="Search"
           InputProps={{
             ...params.InputProps,
-            startAdornment: <SearchIcon />,
+            startAdornment: (
+              <Iconify icon="ic:outline-search" height={24} width={24} />
+            ),
             endAdornment: (
               <>
                 {loading ? (

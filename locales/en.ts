@@ -1,6 +1,6 @@
 const lang = {
   navbar: {
-    wallet: "connect wallet",
+    login: "Login",
   },
   dashboard: {
     title: "Hi, Welcome back",

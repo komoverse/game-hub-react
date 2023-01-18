@@ -1,5 +1,5 @@
-import { Box, ClickAwayListener, IconButton, Slide } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Box, IconButton, Slide } from "@mui/material";
+import Iconify from "@/components/Iconify";
 import SearchField from "./SearchField";
 import { APPBAR_MOBILE } from "../constant";
 
@@ -28,7 +28,7 @@ const SearchFieldPopOver = ({ isOpen, toggleOpen }: Props) => {
           sx={{ display: { sm: "none" } }}
           onClick={() => toggleOpen()}
         >
-          <CloseIcon />
+          <Iconify icon="ic:baseline-close" height={24} width={24} />
         </IconButton>
       </Box>
     </Slide>
