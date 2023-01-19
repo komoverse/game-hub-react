@@ -21,7 +21,8 @@
       "@/utils/*": ["utils/*"],
       "@/layouts/*": ["layouts/*"],
       "@/theme/*": ["theme/*"],
-      "@/store/*": ["store/*"]
+      "@/store/*": ["store/*"],
+      "@/hooks/*": ["hooks/*"]
     },
     "allowSyntheticDefaultImports": true
   },

@@ -1,14 +1,12 @@
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect, useState } from "react";
+import { TextField, Autocomplete, CircularProgress } from "@mui/material";
+import Iconify from "@/components/Iconify";
+import { useTranslation } from "react-i18next";
 
 interface Film {
   title: string;
   year: number;
+  firstLetter: string;
 }
 
 function sleep(delay = 0) {
@@ -36,6 +34,8 @@ const filmOptions = topFilms.map((option) => {
 });
 
 export default function SearchField({ isOpen }: { isOpen: boolean }) {
+  const { t } = useTranslation();
+
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState<readonly Film[]>([]);
   const loading = open && options.length === 0;
@@ -48,6 +48,7 @@ export default function SearchField({ isOpen }: { isOpen: boolean }) {
     }
 
     (async () => {
+      // TDOD: Fetch search data from the API
       await sleep(1000);
 
       if (active) {
@@ -70,9 +71,9 @@ export default function SearchField({ isOpen }: { isOpen: boolean }) {
       id="asynchronous-demo"
       size="small"
       sx={{
-        width: 350,
+        width: { xs: "320px", md: "553px" },
+        flexGrow: { xs: "1" },
         borderRadius: "1rem",
-        display: { xs: isOpen ? "block" : "none", sm: "block" },
       }}
       open={open}
       onOpen={() => {
@@ -102,10 +103,12 @@ export default function SearchField({ isOpen }: { isOpen: boolean }) {
               borderRadius: "2rem",
             },
           }}
-          placeholder="Search"
+          placeholder={t("navbar.search") || ""}
           InputProps={{
             ...params.InputProps,
-            startAdornment: <SearchIcon />,
+            startAdornment: (
+              <Iconify icon="ic:outline-search" height={24} width={24} />
+            ),
             endAdornment: (
               <>
                 {loading ? (

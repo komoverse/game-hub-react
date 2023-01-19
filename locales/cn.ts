@@ -1,7 +1,7 @@
 const lang = {
   navbar: {
-    login: "masuk",
-    search: "Cari"
+    login: "連接錢包",
+    search: "搜索"
   },
 };
 export default lang;
