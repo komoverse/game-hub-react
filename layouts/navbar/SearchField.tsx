@@ -71,9 +71,9 @@ export default function SearchField({ isOpen }: { isOpen: boolean }) {
       id="asynchronous-demo"
       size="small"
       sx={{
-        width: 350,
+        width: { xs: "320px", md: "553px" },
+        flexGrow: { xs: "1" },
         borderRadius: "1rem",
-        display: { xs: isOpen ? "block" : "none", sm: "block" },
       }}
       open={open}
       onOpen={() => {

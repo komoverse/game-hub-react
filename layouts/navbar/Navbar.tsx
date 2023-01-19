@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { AppBar, Box, IconButton, Toolbar, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,7 @@ import LanguageMenu from "./LanguageMenu";
 import SearchFieldPopOver from "./SearchFieldPopover";
 
 import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
+import useResponsiveMedia from "@/hooks/useResponsiveMedia";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
@@ -29,14 +30,21 @@ interface NavbarProps {
 }
 
 function Navbar({ toggleDrawer }: NavbarProps) {
-  const [isSearchBarOpen, setSearchBarOpen] = useState(false);
+  const { t } = useTranslation();
+  const isMobile = useResponsiveMedia("down", "sm")
+
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
 
   const toggleSearchBar = () => {
-    console.log("open-searchbar");
-    setSearchBarOpen((prev) => !prev);
+    setIsSearchBarOpen((prev) => !prev);
   };
 
-  const { t } = useTranslation();
+  useEffect(() => {
+    if (!isMobile) {
+      setIsSearchBarOpen(false)
+    }
+  }, [isMobile])
+
 
   return (
     <AppbarStyled>
@@ -50,7 +58,6 @@ function Navbar({ toggleDrawer }: NavbarProps) {
           }}
         >
           <Box
-            component="div"
             sx={{
               display: "flex",
               alignItems: "center",
@@ -73,13 +80,14 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               width={84}
             />
           </Box>
-          <SearchField isOpen={isSearchBarOpen} />
+          <Box>
+            {!isMobile && <SearchField isOpen={isSearchBarOpen} />}
+          </Box>
           <SearchFieldPopOver
             isOpen={isSearchBarOpen}
             toggleOpen={toggleSearchBar}
           />
           <Box
-            component="div"
             sx={{
               display: "flex",
               alignItems: "center",
