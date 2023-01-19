@@ -1,18 +1,7 @@
 const lang = {
   navbar: {
     login: "Login",
-  },
-  dashboard: {
-    title: "Hi, Welcome back",
-    technology: "Technology",
-    people: "People",
-    product: "Product",
-    operation: "Operation",
-    growth: "Growth",
-    cx: "Customer Experience",
-    performance: "Performance Employee",
-    socmed: "Social Media",
-    news: "News Update",
+    search: "Search"
   },
 };
 export default lang;

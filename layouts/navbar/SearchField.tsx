@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TextField, Autocomplete, CircularProgress } from "@mui/material";
 import Iconify from "@/components/Iconify";
+import { useTranslation } from "react-i18next";
 
 interface Film {
   title: string;
@@ -33,6 +34,8 @@ const filmOptions = topFilms.map((option) => {
 });
 
 export default function SearchField({ isOpen }: { isOpen: boolean }) {
+  const { t } = useTranslation();
+
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState<readonly Film[]>([]);
   const loading = open && options.length === 0;
@@ -100,7 +103,7 @@ export default function SearchField({ isOpen }: { isOpen: boolean }) {
               borderRadius: "2rem",
             },
           }}
-          placeholder="Search"
+          placeholder={t("navbar.search") || ""}
           InputProps={{
             ...params.InputProps,
             startAdornment: (
