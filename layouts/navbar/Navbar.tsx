@@ -1,19 +1,15 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import Toolbar from "@mui/material/Toolbar";
-import Image from "next/image";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
+import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
+import { AppBar, Box, IconButton, Toolbar, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
+import Iconify from "@/components/Iconify";
 import SearchField from "./SearchField";
 import LanguageMenu from "./LanguageMenu";
-import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
-import { useState } from "react";
 import SearchFieldPopOver from "./SearchFieldPopover";
+
+import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
+import useResponsiveMedia from "@/hooks/useResponsiveMedia";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
@@ -34,14 +30,21 @@ interface NavbarProps {
 }
 
 function Navbar({ toggleDrawer }: NavbarProps) {
-  const [isSearchBarOpen, setSearchBarOpen] = useState(false);
+  const { t } = useTranslation();
+  const isMobile = useResponsiveMedia("down", "sm")
+
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
 
   const toggleSearchBar = () => {
-    console.log('open-searchbar')
-    setSearchBarOpen((prev) => !prev);
+    setIsSearchBarOpen((prev) => !prev);
   };
 
-  const { t } = useTranslation();
+  useEffect(() => {
+    if (!isMobile) {
+      setIsSearchBarOpen(false)
+    }
+  }, [isMobile])
+
 
   return (
     <AppbarStyled>
@@ -55,7 +58,6 @@ function Navbar({ toggleDrawer }: NavbarProps) {
           }}
         >
           <Box
-            component="div"
             sx={{
               display: "flex",
               alignItems: "center",
@@ -69,22 +71,23 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               sx={{ mr: 1 }}
               onClick={() => toggleDrawer()}
             >
-              <MenuIcon />
+              <Iconify icon="ic:baseline-menu" height={24} width={24} />
             </IconButton>
             <Image
               src="/komoverse.webp"
               alt="komoverse-logo"
-              height={54}
-              width={126}
+              height={40}
+              width={84}
             />
           </Box>
-          <SearchField isOpen={isSearchBarOpen} />
+          <Box>
+            {!isMobile && <SearchField isOpen={isSearchBarOpen} />}
+          </Box>
           <SearchFieldPopOver
             isOpen={isSearchBarOpen}
             toggleOpen={toggleSearchBar}
           />
           <Box
-            component="div"
             sx={{
               display: "flex",
               alignItems: "center",
@@ -95,20 +98,19 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               sx={{ display: { sm: "none" } }}
               onClick={toggleSearchBar}
             >
-              <SearchIcon />
+              <Iconify icon="ic:outline-search" height={24} width={24} />
             </IconButton>
             <LanguageMenu />
             <Button
-              variant="outlined"
+              variant="contained"
               size="medium"
-              startIcon={<AccountBalanceWalletOutlinedIcon />}
+              sx={{
+                color: "#fff",
+                background:
+                  "radial-gradient(293.74% 1431.43% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)",
+              }}
             >
-              <Box
-                component="span"
-                sx={{ display: { xs: "none", md: "block" } }}
-              >
-                {t("navbar.wallet")}
-              </Box>
+              {t("navbar.login")}
             </Button>
           </Box>
         </Box>

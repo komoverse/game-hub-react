@@ -1,10 +1,6 @@
 import { useRef, useState } from "react";
 import { alpha } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import MenuItem from "@mui/material/MenuItem";
-import Stack from "@mui/material/Stack";
-import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/material/styles";
+import { Box, MenuItem, Stack, IconButton } from "@mui/material";
 import MenuPopover from "@/components/MenuPopover";
 import languageAction from "store/language/action";
 import { withRouter } from "next/router";
@@ -23,6 +19,16 @@ const LANGS = [
     label: "Indonesian",
     icon: "https://flagcdn.com/id.svg",
   },
+  {
+    value: "cn",
+    label: "China",
+    icon: "https://flagcdn.com/cn.svg",
+  },
+  {
+    value: "in",
+    label: "India",
+    icon: "https://flagcdn.com/in.svg",
+  }
 ];
 
 const LanguagePopover = () => {
