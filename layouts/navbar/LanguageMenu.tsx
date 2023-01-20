@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { alpha } from "@mui/material/styles";
 import { Box, MenuItem, Stack, IconButton } from "@mui/material";
 import MenuPopover from "@/components/MenuPopover";
 import languageAction from "store/language/action";
-import { withRouter } from "next/router";
+import { useRouter, withRouter } from "next/router";
 import Image from "next/image";
 
 // resource for flag icon
@@ -28,23 +28,36 @@ const LANGS = [
     value: "in",
     label: "India",
     icon: "https://flagcdn.com/in.svg",
-  }
+  },
 ];
 
 const LanguagePopover = () => {
+  const router = useRouter();
+  const locale = router.locale;
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState(() => locale);
 
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => setOpen(false);
 
-  const handleChangeLanguage = (lang: string) => {
-    languageAction.changeLanguage(lang);
-    setLanguage(lang);
-    handleClose();
-  };
+  const handleChangeLanguage = useCallback(
+    (lang: string) => {
+      languageAction.changeLanguage(lang);
+      setLanguage(lang);
+      router.push("/", "/", { locale: lang });
+      handleClose();
+    },
+    [router]
+  );
+
+  useEffect(() => {
+    if (locale) {
+      languageAction.changeLanguage(locale);
+      setLanguage(locale);
+    }
+  }, [locale]);
 
   return (
     <>
