@@ -13,8 +13,9 @@ import { ListFeaturedDto } from 'types';
 import ModalVideo from 'react-modal-video'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import useResponsive from 'hooks/useResponsive';
+import { breakpointsFeatured } from '@/utils/breakpoints';
 
-const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
+const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
 const Root = styled('div')(({ theme }) => ({
   backgroundColor: '#000000dd',
@@ -28,7 +29,10 @@ const Root = styled('div')(({ theme }) => ({
 const Card = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  padding: 64
+  padding: '0 64px',
+  [theme.breakpoints.down('sm')]: {
+    padding: '0 15px',
+  },
 }))
 
 const BoxVideo = styled('div')(({ theme }) => ({
@@ -54,9 +58,9 @@ const Featured = () => {
   const [activeVideo, setActiveVideo] = React.useState<string | null>(null);
   const [isOpen, setOpen] = React.useState(false)
   const [vidioId, setVidioId] = React.useState<string>('')
-  const isSmall = useResponsive('sm');
+  const isSmall = useResponsive('up', 'sm');
 
-  const { data, isLoading, isError, isFetching } = useQuery(['listFeatured'], () => getListFeatured(), {
+  const { data } = useQuery(['listFeatured'], () => getListFeatured(), {
     staleTime: 3000,
     refetchInterval: 3000
   })
@@ -79,44 +83,12 @@ const Featured = () => {
             navigation={true}
             modules={[Navigation]}
             lazy={true}
-            breakpoints={{
-              320: {
-                slidesPerView: 1.2,
-              },
-              360: {
-                slidesPerView: 1.2,
-              },
-              411: {
-                slidesPerView: 1.2,
-              },
-              420: {
-                slidesPerView: 1.2,
-              },
-              540: {
-                slidesPerView: 1.2,
-              },
-              640: {
-                slidesPerView: 2.5,
-              },
-              768: {
-                slidesPerView: 2.8,
-              },
-              884: {
-                slidesPerView: 2.9,
-              },
-              1024: {
-                slidesPerView: 1.9,
-              },
-              1087: {
-                slidesPerView: 4.2,
-              },
-            }}
-            className="swiper_container"
+            breakpoints={breakpointsFeatured}
           >
-            <Box sx={{ width: 280, height: 158, position: 'relative', cursor: 'pointer' }}>
+            <Box sx={{ width: 287, height: 158, position: 'relative', cursor: 'pointer' }}>
               {data?.map((video: ListFeaturedDto) => {
                 const idYT = video.youtube_url.split('=')[1]
-                
+
                 return (
                   <SwiperSlide key={video.id}>
                     <Grid container>
