@@ -1,4 +1,3 @@
-import { ReactNode, useState } from "react";
 import {
   List,
   ListItem,
@@ -10,11 +9,7 @@ import {
   ListItemSecondaryAction,
   Avatar,
 } from "@mui/material";
-import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
-import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
-import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
-import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
-import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import Iconify from "@/components/Iconify";
 
 interface SidebarMenuItems {
   items: {
@@ -23,26 +18,28 @@ interface SidebarMenuItems {
     list: {
       rank?: string;
       title: string;
-      image: string;
-      duration: string;
+      image?: string;
+      duration?: string;
+      icon?: string;
     }[];
   };
 }
 
-function getIcon(icon: string) {
+// Match the real category from API
+function getIcon(icon: string): string {
   switch (icon) {
-    case "RocketLaunchOutlinedIcon":
-      return <RocketLaunchOutlinedIcon />;
-    case "EmojiEventsOutlinedIcon":
-      return <EmojiEventsOutlinedIcon />;
-    case "TrendingUpOutlinedIcon":
-      return <TrendingUpOutlinedIcon />;
-    case "SportsEsportsOutlinedIcon":
-      return <SportsEsportsOutlinedIcon />;
-    case "SchoolOutlinedIcon":
-      return <SchoolOutlinedIcon />;
+    case "mints":
+      return "ic:outline-rocket-launch";
+    case "tournaments":
+      return "ic:outline-emoji-events";
+    case "trending":
+      return "ic:baseline-trending-up";
+    case "play-now":
+      return "ic:outline-sports-esports";
+    case "resource":
+      return "ic:outline-school";
     default:
-      break;
+      return "";
   }
 }
 
@@ -57,7 +54,7 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
       <ListSubheader component="div">
         <ListItem key="mints" sx={{ py: 2, px: "0" }}>
           <ListItemIcon sx={{ minWidth: "40px" }}>
-            {getIcon(items.headerIcon)}
+            <Iconify icon={getIcon(items.headerIcon)} height={24} width={24} />
           </ListItemIcon>
           <ListItemText
             primary={items.header}
@@ -71,24 +68,36 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
       </ListSubheader>
       <List>
         {items.list.map((menu, idx) => (
-          <ListItem key={menu.title} disablePadding>
+          <ListItem key={`${menu.title}-${idx}`} disablePadding>
             <ListItemButton sx={{ p: "8px 16px 8px 24px" }}>
-              {menu.rank && (
-                <ListItemIcon sx={{ minWidth: "40px" }}>
+              {(menu.rank || menu.icon) && (
+                <ListItemIcon
+                  sx={{
+                    minWidth: "40px",
+                    color: "rgba(255, 255, 255, 0.7)",
+                    fontWeight: "medium",
+                    fontSize: "small",
+                  }}
+                >
                   {menu.rank}
+                  {menu.icon && (
+                    <Iconify icon={menu.icon} height={24} width={24} />
+                  )}
                 </ListItemIcon>
               )}
-              <ListItemAvatar sx={{ minWidth: "40px" }}>
-                <Avatar
-                  variant="rounded"
-                  alt={`image of ${menu.title}`}
-                  src={menu.image}
-                  sx={{ width: 24, height: 24 }}
-                />
-              </ListItemAvatar>
+              {menu.image && (
+                <ListItemAvatar sx={{ minWidth: "40px" }}>
+                  <Avatar
+                    variant="rounded"
+                    alt={`image of ${menu.title}`}
+                    src={menu.image}
+                    sx={{ width: 24, height: 24 }}
+                  />
+                </ListItemAvatar>
+              )}
               <ListItemText
                 primary={menu.title}
-                sx={{ maxWidth: "140px" }}
+                sx={{ maxWidth: "160px" }}
                 primaryTypographyProps={{
                   color: "rgba(255, 255, 255, 0.7)",
                   fontWeight: "medium",
@@ -107,6 +116,31 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
             </ListItemButton>
           </ListItem>
         ))}
+        {items.headerIcon === "play-now" && (
+          <ListItem disablePadding>
+            <ListItemButton sx={{ p: "8px 16px 8px 24px" }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: "40px",
+                  color: "rgba(255, 255, 255, 0.7)",
+                  fontWeight: "medium",
+                  fontSize: "small",
+                }}
+              >
+                <Iconify icon="mdi:dots-horizontal" />
+              </ListItemIcon>
+              <ListItemText
+                primary="Explore all games"
+                sx={{ maxWidth: "140px" }}
+                primaryTypographyProps={{
+                  color: "rgba(255, 255, 255, 0.7)",
+                  fontWeight: "medium",
+                  fontSize: "small",
+                }}
+              />
+            </ListItemButton>
+          </ListItem>
+        )}
       </List>
     </List>
   );
