@@ -10,6 +10,7 @@ import SearchFieldPopOver from "./SearchFieldPopover";
 
 import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
 import useResponsiveMedia from "@/hooks/useResponsiveMedia";
+import { useRouter } from "next/router";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
@@ -31,7 +32,8 @@ interface NavbarProps {
 
 function Navbar({ toggleDrawer }: NavbarProps) {
   const { t } = useTranslation();
-  const isMobile = useResponsiveMedia("down", "sm")
+  const isMobile = useResponsiveMedia("down", "sm");
+  const router = useRouter();
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
 
@@ -41,10 +43,13 @@ function Navbar({ toggleDrawer }: NavbarProps) {
 
   useEffect(() => {
     if (!isMobile) {
-      setIsSearchBarOpen(false)
+      setIsSearchBarOpen(false);
     }
-  }, [isMobile])
+  }, [isMobile]);
 
+  const changePage = () => {
+    router.push("/komo-chess/items", "/komo-chess/items", { locale: router.locale });
+  };
 
   return (
     <AppbarStyled>
@@ -80,9 +85,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               width={84}
             />
           </Box>
-          <Box>
-            {!isMobile && <SearchField isOpen={isSearchBarOpen} />}
-          </Box>
+          <Box>{!isMobile && <SearchField isOpen={isSearchBarOpen} />}</Box>
           <SearchFieldPopOver
             isOpen={isSearchBarOpen}
             toggleOpen={toggleSearchBar}
@@ -102,12 +105,14 @@ function Navbar({ toggleDrawer }: NavbarProps) {
             </IconButton>
             <LanguageMenu />
             <Button
+              onClick={changePage}
               variant="contained"
               size="medium"
               sx={{
                 color: "#fff",
                 background:
                   "radial-gradient(293.74% 1431.43% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)",
+                borderRadius: 2,
               }}
             >
               {t("navbar.login")}
