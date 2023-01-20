@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import 'react-modal-video/css/modal-video.min.css';
 import { useQuery } from 'react-query';
-import { getListFeatured } from 'services/featured';
+import { getListFeatured } from 'services/homepage';
 import { ListFeaturedDto } from 'types';
 import ModalVideo from 'react-modal-video'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
