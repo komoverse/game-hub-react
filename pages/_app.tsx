@@ -10,7 +10,9 @@ import createEmotionCache from "@/theme/createEmotionCache";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import store from "store/store";
-import "../styles/global.css";
+import "styles/global.scss";
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -54,6 +56,7 @@ export default function MyApp(props: MyAppProps) {
         <ThemeProvider>
           <I18nextProvider i18n={i18n}>
             <QueryClientProvider client={queryClient}>
+              <ReactQueryDevtools initialIsOpen={false} />
               <Component {...pageProps} />
             </QueryClientProvider>
           </I18nextProvider>

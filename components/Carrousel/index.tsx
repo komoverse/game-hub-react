@@ -4,6 +4,7 @@ import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import { contentType } from "./constant";
+import Featured from "features/home/Featured";
 
 const NavigatorStyled = styled("div")(({ theme }) => ({
   display: "flex",
@@ -174,6 +175,7 @@ const Carrousel = ({ items }: Props) => {
         ))}
       </Box>
       {loaded && navigator()}
+      <Featured />
     </Box>
   );
 };
