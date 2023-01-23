@@ -32,6 +32,13 @@ const VideoStyled = styled("video")({
   position: "absolute",
 });
 
+const ImageStyled = styled("img")({
+  objectFit: "cover",
+  height: "100%",
+  width: "100%",
+  position: "absolute",
+});
+
 const GradientOverlay = styled("div")({
   height: "100%",
   width: "100%",
@@ -58,18 +65,31 @@ const SliderActionWrapper = styled("div")(({ theme }) => ({
   },
 }));
 
-type itemsType = {
-  contentType: string;
-  game: string;
-  description: string;
-  target: string;
+type slideshowType = {
+  id: number;
+  text_1: string;
+  text_2: string;
+  text_3: string;
+  cta_url: string;
+  cta_text: string;
+  slide_content_url: string;
+  created_at: string;
 };
 
 interface Props {
-  items: itemsType[];
+  slideshow: slideshowType[];
 }
 
-const Carrousel = ({ items }: Props) => {
+const isContentImg = (url: string) => {
+  const regexImg = /[\/.](gif|jpg|jpeg|tiff|png|webp)$/i;
+
+  const result = url.match(regexImg);
+  const isImg = result !== null;
+
+  return isImg;
+};
+
+const Carrousel = ({ slideshow }: Props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState<boolean>();
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
@@ -116,12 +136,9 @@ const Carrousel = ({ items }: Props) => {
   );
 
   const navigator = () => {
-    const len = new Array(
-      instanceRef?.current?.track.details.slides.length
-    ).keys();
     return (
       <NavigatorStyled>
-        {[...len].map((idx) => (
+        {slideshow.map((_, idx) => (
           <NavigatorItemStyled
             key={idx}
             onClick={() => {
@@ -140,32 +157,46 @@ const Carrousel = ({ items }: Props) => {
   return (
     <Box sx={{ height: { xs: "40%", md: "50%", lg: "95%" } }}>
       <Box ref={sliderRef} className="keen-slider" sx={{ height: "100%" }}>
-        {items.map((item, idx) => (
+        {slideshow.map((slide, idx) => (
           <Box key={idx} className="keen-slider__slide">
             <Box sx={{ height: "100%" }}>
-              <VideoStyled
-                src="https://css-tricks-post-videos.s3.us-east-1.amazonaws.com/708209935.mp4"
-                autoPlay
-                loop
-                playsInline
-                muted
-              />
+              {isContentImg(slide.slide_content_url) ? (
+                <ImageStyled src={slide.slide_content_url} alt="game content" />
+              ) : (
+                <VideoStyled
+                  src={slide.slide_content_url}
+                  autoPlay
+                  loop
+                  playsInline
+                  muted
+                />
+              )}
               <GradientOverlay />
 
               <SliderActionWrapper>
                 <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
                   <Typography variant="h5" color="limegreen" fontWeight={700}>
-                    {contentType[item.contentType].title}
+                    {slide.text_1}
                   </Typography>
                   <Typography variant="h2" fontWeight={700}>
-                    {item.game}
+                    {slide.text_2}
                   </Typography>
                   <Typography variant="body1" fontWeight={500}>
-                    {item.description}
+                    {slide.text_3}
                   </Typography>
                   <Box sx={{ my: "16px" }}>
-                    <Button variant="contained" size="large">
-                      {contentType[item.contentType].action}
+                    <Button
+                      variant="contained"
+                      href={slide.cta_url}
+                      size="large"
+                      sx={{
+                        color: "#fff",
+                        background:
+                          "radial-gradient(293.74% 1431.43% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)",
+                        borderRadius: 2,
+                      }}
+                    >
+                      {slide.cta_text}
                     </Button>
                   </Box>
                 </Box>
