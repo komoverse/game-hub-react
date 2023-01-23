@@ -1,9 +1,9 @@
 export const breakpointsEvents = {
   320: {
-    slidesPerView: 1.5,
+    slidesPerView: 1.9,
   },
   360: {
-    slidesPerView: 1.5,
+    slidesPerView: 1.65,
   },
   411: {
     slidesPerView: 2,
@@ -31,35 +31,44 @@ export const breakpointsEvents = {
   },
 };
 
-export const breakpointsFeatured = {
-  320: {
-    slidesPerView: 1.2,
+export const breakpointsFeatured = [
+  {
+    breakpoint: 1024,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      initialSlide: 1,
+    },
   },
-  360: {
-    slidesPerView: 1.2,
+  {
+    breakpoint: 768,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      initialSlide: 1,
+    },
   },
-  411: {
-    slidesPerView: 1.2,
+  {
+    breakpoint: 750,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      initialSlide: 1,
+    },
   },
-  420: {
-    slidesPerView: 1.2,
+  {
+    breakpoint: 720,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      initialSlide: 1,
+    },
   },
-  540: {
-    slidesPerView: 1.2,
+  {
+    breakpoint: 480,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    },
   },
-  640: {
-    slidesPerView: 2.5,
-  },
-  768: {
-    slidesPerView: 2.8,
-  },
-  884: {
-    slidesPerView: 2.9,
-  },
-  1024: {
-    slidesPerView: 1.9,
-  },
-  1087: {
-    slidesPerView: 4.2,
-  },
-};
+];
