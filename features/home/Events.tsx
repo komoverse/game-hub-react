@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { Box, CardActionArea, CardContent, Grid, Typography } from '@mui/material';
-import {Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import CardArea from '@/components/CardArea';
 import { breakpointsEvents } from '@/utils/breakpoints';
+import { COLOR } from '@/utils/globalVariable';
+import { useTranslation } from 'react-i18next';
 
 const Root = styled('div')(() => ({
   backgroundColor: '#000000dd',
@@ -35,12 +37,13 @@ const Button = styled('div')(() => ({
   marginTop: '12px',
   padding: '6px 8px',
   fontWeight: 700,
-  color: '#0FD236',
+  color: COLOR.baseGreen,
   fontSize: '0.875rem',
   borderRadius: '7px'
 }))
 
 const Events = () => {
+  const { t } = useTranslation()
   const data = [
     {
       id: 1,
@@ -68,7 +71,7 @@ const Events = () => {
   return (
     <Root>
       <Card>
-        <Typography sx={{ marginLeft: '8px', marginBottom: '16px' }} variant='h4'>Events</Typography>
+        <Typography sx={{ marginLeft: '8px', marginBottom: '16px' }} variant='h4'>{t('home.event')}</Typography>
         <Box sx={{ position: 'relative' }}>
           <Swiper
             slidesPerView={1.2}
