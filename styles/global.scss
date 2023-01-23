@@ -1,3 +1,10 @@
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+@import '~swiper/css';
+@import '~swiper/css/pagination';
+@import '~swiper/css/navigation';
+@import 'react-modal-video/css/modal-video.min.css';
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -41,8 +48,17 @@ svg {
   max-width: 100%;
 }
 
-#featureyt > div > iframe {
-  border-radius: 10px;
+.box_content {
+  transform: transform 0.3s ease;
+}
+
+.box_content:hover {
+  transform: translateX(0px) translateX(70px) scale(1.5) translateZ(0px);
+  z-index: 1;
+  .box_title {
+    max-height: 9999px;
+    opacity: 1;
+  }
 }
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
@@ -58,14 +74,12 @@ svg {
   color: white;
   font-weight: 800;
 }
-// .swiper-slide img {
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
-
-// .swiper {
-//   margin-left: auto;
-//   margin-right: auto;
-// }
+.slider_container .slick-list .slick-track .slick-slide {
+  width: 295px !important;
+}
+.slick-prev:before {
+  content: '';
+}
+.slick-next:before {
+  content: '';
+}

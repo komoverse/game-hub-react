@@ -1,22 +1,17 @@
 import React from 'react';
-import { Box, Grid, styled, Typography } from '@mui/material';
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper';
-import dynamic from 'next/dynamic';
-import 'swiper/css'
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import 'react-modal-video/css/modal-video.min.css';
+import { Box, CardContent, Paper, styled, Typography } from '@mui/material';
 import { useQuery } from 'react-query';
-import { getListFeatured } from 'services/featured';
+import { getListFeatured } from 'services/homepage';
 import { ListFeaturedDto } from 'types';
 import ModalVideo from 'react-modal-video'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import useResponsive from 'hooks/useResponsive';
+import Slider from "react-slick";
+import { breakpointsFeatured } from '@/utils/breakpoints';
+import NavigationHome from '@/components/NavigationHome';
+import { useTranslation } from 'react-i18next';
+import NextArrow from '@/components/NextArrow';
+import PrevArrow from '@/components/PrevArrow';
 
-const ReactPlayer = dynamic(() => import('react-player'), { ssr: false });
-
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   backgroundColor: '#000000dd',
   paddingTop: '8px',
   paddingBottom: '8px',
@@ -28,148 +23,141 @@ const Root = styled('div')(({ theme }) => ({
 const Card = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  padding: 64
-}))
-
-const BoxVideo = styled('div')(({ theme }) => ({
-  transition: 'transform .2s',
-  '&:hover': {
-    transform: 'scale(1.5)',
+  padding: '0 64px',
+  [theme.breakpoints.down('sm')]: {
+    padding: '0 15px',
   },
-  zIndex: 100,
 }))
 
-const PopupVidio = ({ videoId, isOpen, setOpen }: any) => {
-  return (
-    <ModalVideo
-      channel='youtube'
-      isOpen={isOpen}
-      videoId={videoId}
-      onClose={() => setOpen(false)}
-    />
-  )
-}
+const Item = styled(Paper)(() => ({
+  backgroundColor: 'rgb(17, 17, 17)',
+  color: 'rgb(255, 255, 255)',
+  transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+  borderRadius: '4px',
+  boxShadow: 'rgb(0 0 0 / 20 %) 0px 2px 1px - 1px, rgb(0 0 0 / 14 %) 0px 1px 1px 0px, rgb(0 0 0 / 12 %) 0px 1px 3px 0px',
+  backgroundImage: 'linearGradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
+  overflow: 'hidden',
+  flexShrink: 0,
+  position: 'relative',
+  width: '280px',
+}))
+
+const BoxContent = styled('div')(() => ({
+  position: 'relative',
+  pointerEvents: 'auto',
+}))
+
+const BoxVideo = styled('div')(() => ({
+  width: 'auto',
+  height: 158,
+  cursor: 'pointer',
+  position: 'relative',
+}))
+
+const PopupVidio = ({ videoId, isOpen, setOpen }: {
+  videoId: string,
+  isOpen: boolean,
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+}) => (
+  <ModalVideo
+    channel='youtube'
+    isOpen={isOpen}
+    videoId={videoId}
+    onClose={() => setOpen(false)}
+  />
+)
+
+const MemoizedPopup = React.memo(PopupVidio)
 
 const Featured = () => {
+  const { t } = useTranslation()
   const [activeVideo, setActiveVideo] = React.useState<string | null>(null);
   const [isOpen, setOpen] = React.useState(false)
   const [vidioId, setVidioId] = React.useState<string>('')
-  const isSmall = useResponsive('sm');
 
-  const { data, isLoading, isError, isFetching } = useQuery(['listFeatured'], () => getListFeatured(), {
+  const { data } = useQuery(['listFeatured', 1], () => getListFeatured(), {
     staleTime: 3000,
-    refetchInterval: 3000
+    // refetchInterval: 3000
   })
+
+  const onMouseLeave = () => setActiveVideo(null)
+  const handleOpen = () => setOpen(!isOpen)
+  const onMouseEnter = ({ url, id }: { url: string, id: string }) => {
+    setActiveVideo(url)
+    setVidioId(id)
+  }
+
+  const settings = {
+    dots: true,
+    speed: 500,
+    slidesToShow: data?.length,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    infinite: true,
+    responsive: breakpointsFeatured,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
 
   return (
     <Root>
       <Card>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-          <Typography sx={{ marginLeft: '8px' }} variant='h4'>Featured</Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant="subtitle2" sx={{ color: '#989898 ', fontWeight: 500 }}>View All</Typography>
-            <ArrowForwardIcon sx={{ color: '#989898', fontSize: 16, marginLeft: 2 }} />
-          </Box>
-        </Box>
-        <Box sx={{ position: 'relative' }}>
-          <Swiper
-            slidesPerView={4.2}
-            spaceBetween={10}
-            preloadImages={false}
-            navigation={true}
-            modules={[Navigation]}
-            lazy={true}
-            breakpoints={{
-              320: {
-                slidesPerView: 1.2,
-              },
-              360: {
-                slidesPerView: 1.2,
-              },
-              411: {
-                slidesPerView: 1.2,
-              },
-              420: {
-                slidesPerView: 1.2,
-              },
-              540: {
-                slidesPerView: 1.2,
-              },
-              640: {
-                slidesPerView: 2.5,
-              },
-              768: {
-                slidesPerView: 2.8,
-              },
-              884: {
-                slidesPerView: 2.9,
-              },
-              1024: {
-                slidesPerView: 1.9,
-              },
-              1087: {
-                slidesPerView: 4.2,
-              },
-            }}
-            className="swiper_container"
-          >
-            <Box sx={{ width: 280, height: 158, position: 'relative', cursor: 'pointer' }}>
-              {data?.map((video: ListFeaturedDto) => {
-                const idYT = video.youtube_url.split('=')[1]
-                
-                return (
-                  <SwiperSlide key={video.id}>
-                    <Grid container>
-                      <Grid item>
-                        <div
-                          onMouseEnter={() => {
-                            setActiveVideo(video.youtube_url)
-                            setVidioId(idYT)
-                            setOpen(true)
-                          }}
-                          onMouseLeave={() => setActiveVideo(null)}
-                        >
-                          <ReactPlayer
-                            id="featureyt"
-                            muted={true}
-                            playing={activeVideo === video.youtube_url}
+        <NavigationHome title={t('home.featured')} navigation={t('home.viewAll')} />
+        <Box sx={{ position: 'relative', height: '158px' }}>
+          <Slider {...settings} className="slider_container">
+            {data?.map((video: ListFeaturedDto) => {
+              const idYT = video.youtube_url.split('=')[1]
+              const autoPlay = activeVideo === video.youtube_url ? 1 : 0
+              const src = `https://www.youtube.co/embed/${idYT}?autoplay=${autoPlay}&amp;mute=1&amp;controls=0&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp`
+
+              return (
+                <BoxContent
+                  key={video.id}
+                  className='box_content'
+                >
+                  <Item
+                    onMouseEnter={() => onMouseEnter({ url: video.youtube_url, id: idYT })}
+                    onMouseLeave={onMouseLeave}
+                    onClick={handleOpen}
+                  >
+                    <BoxVideo>
+                      <Box style={{ pointerEvents: 'none', width: '100%', height: '100%' }}>
+                        <Box style={{ width: '100%', height: '100%' }}>
+                          <iframe
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            title="Bladerite - First Look at an INCREDIBLE Melee Based Battle Royale"
                             width="100%"
                             height="100%"
-                            style={{ backgroundSize: 'cover' }}
-                            url={video.youtube_url}
-                            controls={true}
-                            onPlay={() => !isSmall && setOpen(true)}
-                            config={{
-                              youtube: {
-                                playerVars: {
-                                  showinfo: 1,
-                                  controls: 1,
-                                  modestbranding: 1,
-                                  rel: 0
-                                }
-                              },
-                              file: {
-                                attributes: { controlsList: 'nodownload' }
-                              }
-                            }}
+                            src={src}
                           />
-                        </div>
-                      </Grid>
-                    </Grid>
-                  </SwiperSlide>
-                )
-              })}
-            </Box>
-          </Swiper>
+                        </Box>
+                      </Box>
+                    </BoxVideo>
+                    <Box sx={{ maxHeight: 0, opacity: 1 }} className="box_title">
+                      <CardContent>
+                        <Typography
+                          sx={{ fontWeight: 500 }}
+                          variant='body2'
+                        >
+                          Bladerite - First Look at an INCREDIBLE Melee Based Battle Royale
+                        </Typography>
+                      </CardContent>
+                    </Box>
+                  </Item>
+                </BoxContent>
+              )
+            })}
+          </Slider>
         </Box>
       </Card>
 
-      <PopupVidio
+      <MemoizedPopup
         videoId={vidioId}
         isOpen={isOpen}
         setOpen={setOpen}
       />
-    </Root>
+    </Root >
   )
 }
 
