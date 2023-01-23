@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import { contentType } from "./constant";
 import Featured from "features/home/Featured";
 import Events from "features/home/Events";
+import NewListings from "features/home/NewListings";
 
 const NavigatorStyled = styled("div")(({ theme }) => ({
   display: "flex",
@@ -178,6 +179,7 @@ const Carrousel = ({ items }: Props) => {
       {loaded && navigator()}
       <Featured />
       <Events />
+      <NewListings />
     </Box>
   );
 };
