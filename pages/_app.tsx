@@ -13,8 +13,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import store from "store/store";
 import "styles/global.scss";
-import { ReactQueryDevtools } from 'react-query/devtools';
-
+import { ReactQueryDevtools } from "react-query/devtools";
+import Layout from "@/layouts/Layout";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -61,7 +61,9 @@ export default function MyApp(props: MyAppProps) {
           <I18nextProvider i18n={i18n}>
             <QueryClientProvider client={queryClient}>
               <ReactQueryDevtools initialIsOpen={false} />
-              <Component {...pageProps} />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
             </QueryClientProvider>
           </I18nextProvider>
         </ThemeProvider>
