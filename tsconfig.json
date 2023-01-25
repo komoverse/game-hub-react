@@ -22,7 +22,10 @@
       "@/layouts/*": ["layouts/*"],
       "@/theme/*": ["theme/*"],
       "@/store/*": ["store/*"],
-      "@/hooks/*": ["hooks/*"]
+      "@/hooks/*": ["hooks/*"],
+      "@/helper/*": ["helper/*"],
+      "@/features/*": ["features/*"],
+      "@/services/*": ["services/*"]
     },
     "allowSyntheticDefaultImports": true
   },
