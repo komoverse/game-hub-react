@@ -9,7 +9,7 @@ import LanguageMenu from "./LanguageMenu";
 import SearchFieldPopOver from "./SearchFieldPopover";
 
 import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
-import useResponsiveMedia from "@/hooks/useResponsiveMedia";
+import useResponsive from "@/hooks/useResponsive";
 import { useRouter } from "next/router";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
@@ -32,7 +32,7 @@ interface NavbarProps {
 
 function Navbar({ toggleDrawer }: NavbarProps) {
   const { t } = useTranslation();
-  const isMobile = useResponsiveMedia("down", "sm");
+  const isMobile = useResponsive("down", "sm");
   const router = useRouter();
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
