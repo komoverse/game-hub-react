@@ -102,7 +102,7 @@ const Featured = () => {
   return (
     <Root>
       <Card>
-        <NavigationHome title={t('home.featured')} navigation={t('home.viewAll')} />
+        <NavigationHome title={t('home.featured')} />
         <Box sx={{ position: 'relative', height: '158px' }}>
           <Slider {...settings} className="slider_container">
             {data?.map((video: ListFeaturedDto) => {
