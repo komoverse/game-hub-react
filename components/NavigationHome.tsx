@@ -1,6 +1,10 @@
-import React from 'react'
 import { Box, styled, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+type NavigationHomeProps = {
+  title: string,
+  navigation?: string
+}
 
 const Navigation = styled('div')(() => ({
   display: 'flex',
@@ -9,30 +13,24 @@ const Navigation = styled('div')(() => ({
   marginBottom: '16px'
 }))
 
-const NavigationHome = ({ title, navigation, url }: {
-  title: string,
-  navigation: string
-  url?: string
-}) => {
-  return (
-    <Navigation>
+const NavigationHome = ({ title, navigation }: NavigationHomeProps) => (
+  <Navigation>
+    <Typography
+      sx={{ marginLeft: '8px' }}
+      variant='h4'
+    >
+      {title}
+    </Typography>
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Typography
-        sx={{ marginLeft: '8px' }}
-        variant='h4'
+        variant="subtitle2"
+        sx={{ color: '#989898 ', fontWeight: 500 }}
       >
-        {title}
+        {navigation}
       </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Typography
-          variant="subtitle2"
-          sx={{ color: '#989898 ', fontWeight: 500 }}
-        >
-          {navigation}
-        </Typography>
-        <ArrowForwardIcon sx={{ color: '#989898', fontSize: 16, marginLeft: 2 }} />
-      </Box>
-    </Navigation>
-  )
-}
+      {navigation !== undefined && <ArrowForwardIcon sx={{ color: '#989898', fontSize: 16, marginLeft: 2 }} /> }
+    </Box>
+  </Navigation>
+)
 
 export default NavigationHome
