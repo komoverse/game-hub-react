@@ -13,6 +13,8 @@ export const dataTransformer = (data: any): SidebarMenuItem[] => {
           title: item.game_name,
           image: item.logo_image_url,
           url: item.game_id,
+          startTime: item.start_time || item.mint_start_date,
+          endTime: item.end_time || item.mint_end_date,
           ...item,
         };
       }),

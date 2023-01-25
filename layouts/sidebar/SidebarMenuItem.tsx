@@ -12,8 +12,14 @@ import {
 import Iconify from "@/components/Iconify";
 import { sidebarHeader } from "../constants";
 import { SidebarMenuItem } from "./types";
+import { getDiff, isBefore, isBetween } from "@/helper/date";
 
 const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
+  const currDate = new Date().toISOString();
+
+  const hasSecondaryText = (header: string) => {
+    return ["mint_schedule", "tournament"].includes(header);
+  };
   return (
     <List
       disablePadding
@@ -36,6 +42,7 @@ const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
           />
         </ListItem>
       </ListSubheader>
+
       <List>
         {items.map((menu: any, idx: number) => (
           <ListItem key={`${menu.title}-${idx}`} disablePadding>
@@ -55,6 +62,7 @@ const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
                   )}
                 </ListItemIcon>
               )}
+
               {menu.image && (
                 <ListItemAvatar sx={{ minWidth: "40px" }}>
                   <Avatar
@@ -65,6 +73,7 @@ const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
                   />
                 </ListItemAvatar>
               )}
+
               <ListItemText
                 primary={menu.title}
                 sx={{ maxWidth: "160px" }}
@@ -74,18 +83,26 @@ const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
                   fontSize: "small",
                 }}
               />
-              <ListItemSecondaryAction
-                sx={{
-                  color: (theme) => theme.palette.primary.main,
-                  fontSize: (theme) => theme.typography.caption.fontSize,
-                  fontWeight: (theme) => theme.typography.fontWeightMedium,
-                }}
-              >
-                {menu.duration}
-              </ListItemSecondaryAction>
+
+              {hasSecondaryText(header) && (
+                <ListItemSecondaryAction
+                  sx={{
+                    color: (theme) => theme.palette.primary.main,
+                    fontSize: (theme) => theme.typography.caption.fontSize,
+                    fontWeight: (theme) => theme.typography.fontWeightMedium,
+                  }}
+                >
+                  {isBefore(currDate, menu.startTime)
+                    ? `${Math.abs(getDiff(currDate, menu.startTime))} days`
+                    : isBetween(currDate, menu.startTime, menu.endTime)
+                    ? "live"
+                    : ""}
+                </ListItemSecondaryAction>
+              )}
             </ListItemButton>
           </ListItem>
         ))}
+
         {header === "random_play_now" && (
           <ListItem disablePadding>
             <ListItemButton sx={{ p: "8px 16px 8px 24px" }}>
