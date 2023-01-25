@@ -8,7 +8,7 @@ import SearchField from "./SearchField";
 import LanguageMenu from "./LanguageMenu";
 import SearchFieldPopOver from "./SearchFieldPopover";
 
-import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constant";
+import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constants";
 import useResponsive from "@/hooks/useResponsive";
 import { useRouter } from "next/router";
 

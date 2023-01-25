@@ -10,40 +10,10 @@ import {
   Avatar,
 } from "@mui/material";
 import Iconify from "@/components/Iconify";
+import { sidebarHeader } from "../constants";
+import { SidebarMenuItem } from "./types";
 
-interface SidebarMenuItems {
-  items: {
-    header: string;
-    headerIcon: string;
-    list: {
-      rank?: string;
-      title: string;
-      image?: string;
-      duration?: string;
-      icon?: string;
-    }[];
-  };
-}
-
-// Match the real category from API
-function getIcon(icon: string): string {
-  switch (icon) {
-    case "mints":
-      return "ic:outline-rocket-launch";
-    case "tournaments":
-      return "ic:outline-emoji-events";
-    case "trending":
-      return "ic:baseline-trending-up";
-    case "play-now":
-      return "ic:outline-sports-esports";
-    case "resource":
-      return "ic:outline-school";
-    default:
-      return "";
-  }
-}
-
-const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
+const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
   return (
     <List
       disablePadding
@@ -54,10 +24,10 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
       <ListSubheader component="div">
         <ListItem key="mints" sx={{ py: 2, px: "0" }}>
           <ListItemIcon sx={{ minWidth: "40px" }}>
-            <Iconify icon={getIcon(items.headerIcon)} height={24} width={24} />
+            <Iconify icon={sidebarHeader[header].icon} height={24} width={24} />
           </ListItemIcon>
           <ListItemText
-            primary={items.header}
+            primary={sidebarHeader[header].title}
             primaryTypographyProps={{
               fontWeight: "medium",
               textTransform: "uppercase",
@@ -67,7 +37,7 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
         </ListItem>
       </ListSubheader>
       <List>
-        {items.list.map((menu, idx) => (
+        {items.map((menu: any, idx: number) => (
           <ListItem key={`${menu.title}-${idx}`} disablePadding>
             <ListItemButton sx={{ p: "8px 16px 8px 24px" }}>
               {(menu.rank || menu.icon) && (
@@ -116,7 +86,7 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
             </ListItemButton>
           </ListItem>
         ))}
-        {items.headerIcon === "play-now" && (
+        {header === "random_play_now" && (
           <ListItem disablePadding>
             <ListItemButton sx={{ p: "8px 16px 8px 24px" }}>
               <ListItemIcon
@@ -146,4 +116,4 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
   );
 };
 
-export default SidebarMenuItems;
+export default SidebarMenuItem;
