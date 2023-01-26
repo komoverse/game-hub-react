@@ -39,7 +39,7 @@ export default function SearchField() {
   const onClickOption = (category: string, path: string) => {
     if (category === "game") {
       const nextRoute = `/${path}`;
-      router.push(nextRoute, nextRoute, { locale: router.locale });
+      router.push(nextRoute, nextRoute);
       return;
     }
     const urlObject = {
