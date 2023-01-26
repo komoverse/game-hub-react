@@ -8,12 +8,12 @@ import {
   komoverseSocialMedia,
 } from "../constants";
 import SidebarMenuItem from "./SidebarMenuItem";
-import useResponsiveMedia from "@/hooks/useResponsiveMedia";
+import useResponsive from "@/hooks/useResponsive";
 import { getSidebarMenu } from "services/sidebar";
 import { SidebarProps } from "./types";
 
 export default function Sidebar({ isOpen }: SidebarProps) {
-  const isMobile = useResponsiveMedia("down", "md");
+  const isMobile = useResponsive("down", "md");
 
   const { data: sidebarMenuItems, isSuccess } = useQuery(
     ["sidebarMenu"],
