@@ -1,19 +1,20 @@
+import React from 'react';
 import styled from '@emotion/styled';
-import { Box, CardActionArea, CardContent, Grid, Typography } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react'
-import CardArea from '@/components/CardArea';
+import CardImage from '@/components/CardImage';
 import { breakpointsEvents } from '@/utils/breakpoints';
-import { COLOR } from '@/utils/globalVariable';
 import NavigationHome from '@/components/NavigationHome';
 import { useTranslation } from 'react-i18next';
+import { COLOR } from '@/utils/globalVariable';
+import ModalDetailTransaction from '@/components/ModalDetailTransaction';
 
 const Root = styled('div')(() => ({
-  backgroundColor: '#000000dd',
+  backgroundColor: COLOR.backgroundRoot,
   paddingTop: '8px',
   paddingBottom: '8px',
   width: '100%',
   zIndex: 10,
-  // position: 'relative'
 }));
 
 const Card = styled('div')(({ theme }) => ({
@@ -25,27 +26,11 @@ const Card = styled('div')(({ theme }) => ({
   },
 }))
 
-const BoxCard = styled('div')(() => ({
-  height: 340.5,
-  position: 'absolute',
-  pointerEvents: 'auto',
-  transform: 'none',
-  zIndex: 'auto'
-}))
-
-const Button = styled('div')(() => ({
-  border: '1.3px solid #232323',
-  background: '#181818',
-  marginTop: '12px',
-  padding: '6px 8px',
-  fontWeight: 700,
-  color: COLOR.baseWhite,
-  fontSize: '0.875rem',
-  borderRadius: '7px'
-}))
-
 const NewListings = () => {
   const { t } = useTranslation();
+  const [open, setOpen] = React.useState<boolean>(false)
+
+  const handleOpen = () => setOpen(true)
 
   const data = [
     {
@@ -67,7 +52,7 @@ const NewListings = () => {
   return (
     <Root>
       <Card>
-        <NavigationHome title={t('home.newListing')} navigation={t('home.viewAll')} />
+        <NavigationHome title={t('home.newListing')} />
         <Box sx={{ position: 'relative' }}>
           <Swiper
             slidesPerView={1.2}
@@ -80,26 +65,16 @@ const NewListings = () => {
             }}
             breakpoints={breakpointsEvents}
           >
-            {data.map((e) => (
-              <SwiperSlide key={e.id}>
+            {data.map((list) => (
+              <SwiperSlide key={list.id}>
                 <Grid container>
                   <Grid item>
-                    <Box sx={{ height: 341, position: 'relative' }}>
-                      <BoxCard>
-                        <Box sx={{ width: 208.5 }}>
-                          <CardActionArea sx={{ border: '1.3px solid #1E1E1E', padding: '12px', background: '#111111', borderRadius: '8px' }}>
-                            <CardArea image={e.image} />
-                            <CardContent sx={{ display: 'flex', flexDirection: 'column', borderRadius: 4, textAlign: 'center' }}>
-                              <div>
-                                <Typography variant='h6' sx={{ fontWeight: 400 }}>{e.title}</Typography>
-                                <Typography variant='subtitle2' sx={{ fontWeight: 400, color: COLOR.baseGreen }}>{e.subtitle}</Typography>
-                              </div>
-                              <Button>{e.action}</Button>
-                            </CardContent>
-                          </CardActionArea>
-                        </Box>
-                      </BoxCard>
-                    </Box>
+                    <CardImage
+                      data={list}
+                      fontWeight={400}
+                      color={COLOR.baseGreen}
+                      onClick={handleOpen}
+                    />
                   </Grid>
                 </Grid>
               </SwiperSlide>
@@ -107,6 +82,10 @@ const NewListings = () => {
           </Swiper>
         </Box>
       </Card>
+      <ModalDetailTransaction
+        open={open}
+        setOpen={setOpen}
+      />
     </Root>
   )
 }
