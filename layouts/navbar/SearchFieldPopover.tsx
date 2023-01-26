@@ -24,7 +24,7 @@ const SearchFieldPopOver = ({ isOpen, toggleOpen }: Props) => {
           px: 1
         }}
       >
-        <SearchField isOpen={isOpen} />
+        <SearchField />
         <IconButton
           size="medium"
           onClick={() => toggleOpen()}

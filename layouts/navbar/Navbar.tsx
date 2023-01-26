@@ -48,7 +48,9 @@ function Navbar({ toggleDrawer }: NavbarProps) {
   }, [isMobile]);
 
   const changePage = () => {
-    router.push("/komo-chess/items", "/komo-chess/items", { locale: router.locale });
+    router.push("/komo-chess/items", "/komo-chess/items", {
+      locale: router.locale,
+    });
   };
 
   return (
@@ -85,7 +87,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               width={84}
             />
           </Box>
-          <Box>{!isMobile && <SearchField isOpen={isSearchBarOpen} />}</Box>
+          <Box>{!isMobile && <SearchField />}</Box>
           <SearchFieldPopOver
             isOpen={isSearchBarOpen}
             toggleOpen={toggleSearchBar}

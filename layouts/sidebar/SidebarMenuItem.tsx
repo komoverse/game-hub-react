@@ -35,7 +35,7 @@ const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
     }
 
     const nextRoute = `/${url}/${path}`;
-    router.replace(nextRoute, nextRoute, { locale });
+    router.push(nextRoute, nextRoute, { locale });
   };
   return (
     <List
