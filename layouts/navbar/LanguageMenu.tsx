@@ -10,26 +10,32 @@ import Image from "next/image";
 // https://flagpedia.net/download/api
 const LANGS = [
   {
+    value: "zh",
+    label: "Chinese",
+    icon: "https://flagcdn.com/cn.svg",
+  },
+  {
     value: "en",
     label: "English",
     icon: "https://flagcdn.com/gb.svg",
+  },
+  {
+    value: "hi",
+    label: "Hindi",
+    icon: "https://flagcdn.com/in.svg",
   },
   {
     value: "id",
     label: "Indonesian",
     icon: "https://flagcdn.com/id.svg",
   },
-  {
-    value: "cn",
-    label: "China",
-    icon: "https://flagcdn.com/cn.svg",
-  },
-  {
-    value: "in",
-    label: "India",
-    icon: "https://flagcdn.com/in.svg",
-  },
 ];
+
+const getFlagIcon = (language: string): string => {
+  const currLanguage = LANGS.find((lang) => lang.value === language);
+
+  return currLanguage?.icon as string;
+};
 
 const LanguagePopover = () => {
   const router = useRouter();
@@ -79,8 +85,8 @@ const LanguagePopover = () => {
         }}
       >
         <Image
-          src={`https://flagcdn.com/${language === "en" ? "gb" : language}.svg`}
-          alt="great britain flag icon"
+          src={getFlagIcon(language || "en")}
+          alt={`flag icon of te current language ${language}`}
           width={30}
           height={30}
         />
