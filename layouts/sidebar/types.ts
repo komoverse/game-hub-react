@@ -3,7 +3,7 @@ export interface SidebarProps {
 }
 
 export interface SidebarHeader {
-  [key: string]: { icon: string; title: string };
+  [key: string]: { icon: string; title: string; path: string };
 }
 
 export interface SidebarMenuItem {

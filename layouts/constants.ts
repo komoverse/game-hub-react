@@ -4,7 +4,6 @@ export const APPBAR_MOBILE = "64px";
 export const APPBAR_DESKTOP = "70px";
 export const SIDEBAR_WIDTH = "280px";
 
-
 export const komoverseSocialMedia = [
   {
     header: "resource",
@@ -52,21 +51,26 @@ export const sidebarHeader: SidebarHeader = {
   mint_schedule: {
     icon: "ic:outline-rocket-launch",
     title: "mints",
+    path: "mints",
   },
   tournament: {
     icon: "ic:outline-emoji-events",
     title: "tournaments",
+    path: "tournaments",
   },
   trending: {
     icon: "ic:baseline-trending-up",
-    title: "",
+    title: "trending",
+    path: "trending",
   },
   random_play_now: {
     icon: "ic:outline-sports-esports",
     title: "play now",
+    path: "play-now",
   },
   resource: {
     icon: "ic:outline-school",
     title: "resource",
+    path: "",
   },
 };

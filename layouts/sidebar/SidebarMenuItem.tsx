@@ -13,12 +13,29 @@ import Iconify from "@/components/Iconify";
 import { sidebarHeader } from "../constants";
 import { SidebarMenuItem } from "./types";
 import { getDiff, isBefore, isBetween } from "@/helper/date";
+import { useRouter } from "next/router";
+import { regexUrlValidation } from "@/utils/regex";
 
 const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
   const currDate = new Date().toISOString();
 
   const hasSecondaryText = (header: string) => {
     return ["mint_schedule", "tournament"].includes(header);
+  };
+
+  const router = useRouter();
+
+  const onClickMenu = (url: string, path: string) => {
+    const isExternal = url.match(regexUrlValidation);
+    const locale = router.locale;
+
+    if (isExternal !== null) {
+      window.open(url, "_blank");
+      return;
+    }
+
+    const nextRoute = `/${url}/${path}`;
+    router.replace(nextRoute, nextRoute, { locale });
   };
   return (
     <List
@@ -46,7 +63,10 @@ const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
       <List>
         {items.map((menu: any, idx: number) => (
           <ListItem key={`${menu.title}-${idx}`} disablePadding>
-            <ListItemButton sx={{ p: "8px 16px 8px 24px" }}>
+            <ListItemButton
+              onClick={() => onClickMenu(menu.url, sidebarHeader[header].path)}
+              sx={{ p: "8px 16px 8px 24px" }}
+            >
               {(menu.rank || menu.icon) && (
                 <ListItemIcon
                   sx={{
