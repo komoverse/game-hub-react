@@ -33,7 +33,7 @@ const LANGS = [
 
 const LanguagePopover = () => {
   const router = useRouter();
-  const locale = router.locale;
+  const { locale } = router;
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [language, setLanguage] = useState(() => locale);
@@ -46,7 +46,8 @@ const LanguagePopover = () => {
     (lang: string) => {
       languageAction.changeLanguage(lang);
       setLanguage(lang);
-      router.push("/", "/", { locale: lang });
+      const { pathname, asPath } = router;
+      router.push(pathname, asPath, { locale: lang });
       handleClose();
     },
     [router]
