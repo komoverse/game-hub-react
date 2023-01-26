@@ -1,59 +1,29 @@
+import { useQuery } from "react-query";
 import Box from "@mui/material/Box";
 import { Drawer } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { APPBAR_DESKTOP, APPBAR_MOBILE, SIDEBAR_WIDTH } from "../constant";
-import SidebarMenuItems from "./SidebarMenuItem";
-
-interface SidebarProps {
-  isOpen: boolean;
-}
-
-const sidebarMenuItems = [
-  {
-    header: "Mints",
-    headerIcon: "RocketLaunchOutlinedIcon",
-    list: [
-      {
-        rank: "",
-        title: "Komo Chess",
-        image: "https://ui-avatars.com/api/?background=0D8ABC&color=fff",
-        duration: "2 days",
-      },
-      {
-        rank: "",
-        title: "Komo Chess",
-        image: "https://ui-avatars.com/api/?background=0D8ABC&color=fff",
-        duration: "2 days",
-      },
-    ],
-  },
-  {
-    header: "Tournaments",
-    headerIcon: "EmojiEventsOutlinedIcon",
-    list: [
-      {
-        rank: "",
-        title: "Komo Chess",
-        image: "https://ui-avatars.com/api/?background=0D8ABC&color=fff",
-        duration: "2 days",
-      },
-      {
-        rank: "",
-        title: "Komo Chess",
-        image: "https://ui-avatars.com/api/?background=0D8ABC&color=fff",
-        duration: "2 days",
-      },
-    ],
-  },
-];
+import {
+  APPBAR_DESKTOP,
+  APPBAR_MOBILE,
+  SIDEBAR_WIDTH,
+  komoverseSocialMedia,
+} from "../constants";
+import SidebarMenuItem from "./SidebarMenuItem";
+import useResponsiveMedia from "@/hooks/useResponsiveMedia";
+import { getSidebarMenu } from "services/sidebar";
+import { SidebarProps } from "./types";
 
 export default function Sidebar({ isOpen }: SidebarProps) {
-  const theme = useTheme();
-  const mediaMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useResponsiveMedia("down", "md");
+
+  const { data: sidebarMenuItems, isSuccess } = useQuery(
+    ["sidebarMenu"],
+    () => getSidebarMenu(),
+    {}
+  );
+
   return (
     <Drawer
-      variant={mediaMobile ? "temporary" : "persistent"}
+      variant={isMobile ? "temporary" : "persistent"}
       sx={{
         width: isOpen ? SIDEBAR_WIDTH : "0",
         flexShrink: 0,
@@ -71,13 +41,15 @@ export default function Sidebar({ isOpen }: SidebarProps) {
       <Box
         sx={{
           mt: { xs: APPBAR_MOBILE, md: APPBAR_DESKTOP },
-          borderRight: "1px solid rgb(45, 45, 45)",
         }}
       >
-        {sidebarMenuItems &&
-          sidebarMenuItems.map((items, i) => (
-            <SidebarMenuItems key={i} items={items} />
+        {isSuccess &&
+          sidebarMenuItems.map((item, i) => (
+            <SidebarMenuItem items={item.items} header={item.header} key={i} />
           ))}
+        {komoverseSocialMedia.map((item, i) => (
+          <SidebarMenuItem items={item.list} header={item.header} key={i} />
+        ))}
       </Box>
     </Drawer>
   );

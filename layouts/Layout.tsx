@@ -2,7 +2,7 @@ import { ReactNode, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Navbar from "./navbar/Navbar";
 import Sidebar from "./sidebar/Sidebar";
-import { APPBAR_DESKTOP, APPBAR_MOBILE } from "./constant";
+import { APPBAR_DESKTOP, APPBAR_MOBILE } from "./constants";
 
 interface LayoutProps {
   children: ReactNode;

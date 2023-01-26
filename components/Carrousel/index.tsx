@@ -14,6 +14,7 @@ import {
   GradientOverlay,
   SliderActionWrapper,
 } from "./styles";
+import { regexUrlValidation } from "@/utils/regex";
 
 type slideshowType = {
   id: number;
@@ -96,13 +97,11 @@ const Carrousel = ({ slideshow }: Props) => {
   const router = useRouter();
 
   const onClickAction = (url: string) => {
-    const regexUrlValidation =
-      /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i;
     const isExternal = url.match(regexUrlValidation);
     const locale = router.locale;
 
     if (isExternal !== null) {
-      window.open("http://www.smkproduction.eu5.org", "_blank");
+      window.open(url, "_blank");
       return;
     }
 
