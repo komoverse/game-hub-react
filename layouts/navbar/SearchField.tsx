@@ -1,71 +1,55 @@
-import { useEffect, useState } from "react";
-import { TextField, Autocomplete, CircularProgress } from "@mui/material";
-import Iconify from "@/components/Iconify";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { useTranslation } from "react-i18next";
+import {
+  TextField,
+  Autocomplete,
+  ListItemButton,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+} from "@mui/material";
+import Iconify from "@/components/Iconify";
+import { getSearcContent } from "@/services/search";
+import useDebounce from "@/hooks/useDebounce";
+import { useRouter } from "next/router";
+import { shortenArbitraryText } from "@/utils/shorten";
 
-interface Film {
+interface SearchContent {
+  id: string;
   title: string;
-  year: number;
-  firstLetter: string;
+  description: string;
+  img_url: string;
+  category: string;
 }
 
-function sleep(delay = 0) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
-
-const topFilms = [
-  { title: "The Shawshank Redemption", year: 1994 },
-  { title: "The Godfather", year: 1972 },
-  { title: "The Godfather: Part II", year: 1974 },
-  { title: "The Dark Knight", year: 2008 },
-  { title: "12 Angry Men", year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: "Pulp Fiction", year: 1994 },
-];
-
-const filmOptions = topFilms.map((option) => {
-  const firstLetter = option.title[0].toUpperCase();
-  return {
-    firstLetter: /[0-9]/.test(firstLetter) ? "0-9" : firstLetter,
-    ...option,
-  };
-});
-
-export default function SearchField({ isOpen }: { isOpen: boolean }) {
+export default function SearchField() {
   const { t } = useTranslation();
 
   const [open, setOpen] = useState(false);
-  const [options, setOptions] = useState<readonly Film[]>([]);
-  const loading = open && options.length === 0;
+  const [keyword, setKeyword] = useState("");
+  const debouncedKeyword: string = useDebounce<string>(keyword, 500);
 
-  useEffect(() => {
-    let active = true;
+  const { data, isLoading } = useQuery<readonly SearchContent[] | undefined>(
+    ["searchContent", debouncedKeyword],
+    () => getSearcContent(debouncedKeyword)
+  );
 
-    if (!loading) {
-      return undefined;
+  const router = useRouter();
+  const onClickOption = (category: string, path: string) => {
+    if (category === "game") {
+      const nextRoute = `/${path}`;
+      router.push(nextRoute, nextRoute, { locale: router.locale });
+      return;
     }
-
-    (async () => {
-      // TDOD: Fetch search data from the API
-      await sleep(1000);
-
-      if (active) {
-        setOptions([...filmOptions]);
-      }
-    })();
-
-    return () => {
-      active = false;
+    const urlObject = {
+      pathname: `/${category}/[id]`,
+      query: { id: path },
     };
-  }, [loading]);
 
-  useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
+    router.push(urlObject);
+  };
+
   return (
     <Autocomplete
       id="asynchronous-demo"
@@ -82,11 +66,49 @@ export default function SearchField({ isOpen }: { isOpen: boolean }) {
       onClose={() => {
         setOpen(false);
       }}
-      groupBy={(option) => option.firstLetter}
+      loading={isLoading}
+      onInputChange={(_, newInputValue) => {
+        setKeyword(newInputValue);
+      }}
+      groupBy={(option) => option.category}
       isOptionEqualToValue={(option, value) => option.title === value.title}
-      getOptionLabel={(option) => option.title}
-      options={options}
-      loading={loading}
+      getOptionLabel={(option) => option.title || ""}
+      options={data || []}
+      renderOption={(_, option) => {
+        if (!option.id) return;
+        return (
+          <ListItemButton
+            onClick={() => onClickOption(option.category, option.id)}
+            sx={{ p: "8px 16px 8px 24px" }}
+          >
+            {option.img_url && (
+              <ListItemAvatar sx={{ minWidth: "40px" }}>
+                <Avatar
+                  variant="rounded"
+                  alt={`image of ${option.title}`}
+                  src={option.img_url}
+                  sx={{ width: 24, height: 24 }}
+                />
+              </ListItemAvatar>
+            )}
+            <ListItemText
+              primary={option.title}
+              secondary={
+                option.description
+                  ? shortenArbitraryText(option.description, 70)
+                  : ""
+              }
+              primaryTypographyProps={{
+                fontWeight: "semibold",
+                fontSize: "medium",
+              }}
+              secondaryTypographyProps={{
+                fontSize: "small",
+              }}
+            />
+          </ListItemButton>
+        );
+      }}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -108,14 +130,6 @@ export default function SearchField({ isOpen }: { isOpen: boolean }) {
             ...params.InputProps,
             startAdornment: (
               <Iconify icon="ic:outline-search" height={24} width={24} />
-            ),
-            endAdornment: (
-              <>
-                {loading ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null}
-                {params.InputProps.endAdornment}
-              </>
             ),
           }}
         />
