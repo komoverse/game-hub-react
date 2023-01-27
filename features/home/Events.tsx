@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { styled } from "@mui/material/styles";
 import { Box,Grid, Typography } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import CardImage from '@/components/CardImage';
