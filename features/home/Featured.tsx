@@ -124,7 +124,7 @@ const Featured = () => {
                       <Box style={{ pointerEvents: 'none', width: '100%', height: '100%' }}>
                         <Box style={{ width: '100%', height: '100%' }}>
                           <iframe
-                            frameborder="0"
+                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             title="Bladerite - First Look at an INCREDIBLE Melee Based Battle Royale"
                             width="100%"
