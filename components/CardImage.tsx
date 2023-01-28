@@ -11,41 +11,41 @@ import { RecentDto } from 'types'
 
 dayjs.extend(relativeTime);
 
-const BoxCard = styled('div')(() => ({
+const BoxCard = styled("div")(() => ({
   height: 340.5,
-  position: 'absolute',
-  pointerEvents: 'auto',
-  transform: 'none',
-  zIndex: 'auto',
-  cursor: 'pointer'
-}))
+  position: "absolute",
+  pointerEvents: "auto",
+  transform: "none",
+  zIndex: "auto",
+  cursor: "pointer",
+}));
 
-const CardActionArea = styled('div')(() => ({
+const CardActionArea = styled("div")(() => ({
   border: `1.3px solid ${COLOR.borderSemiBlack}`,
-  padding: '12px',
+  padding: "12px",
   background: COLOR.backgroundCardSemiBlack,
-  borderRadius: '8px'
-}))
+  borderRadius: "8px",
+}));
 
-const BoxContent = styled('div')(() => ({
+const BoxContent = styled("div")(() => ({
   borderRadius: 5,
-  height: '100%',
-  overflow: 'hidden',
-  position: 'relative',
-  width: '100%'
-}))
+  height: "100%",
+  overflow: "hidden",
+  position: "relative",
+  width: "100%",
+}));
 
-const BoxImage = styled('div')(() => ({
-  boxSizing: 'border-box',
-  display: 'block',
-  width: 'initial',
-  height: 'initial',
-  background: 'none',
+const BoxImage = styled("div")(() => ({
+  boxSizing: "border-box",
+  display: "block",
+  width: "initial",
+  height: "initial",
+  background: "none",
   opacity: 1,
   border: 0,
   margin: 0,
-  padding: '100% 0px 0px'
-}))
+  padding: "100% 0px 0px",
+}));
 
 const Button = styled('div')(({ color }: any) => ({
   border: '1.3px solid #232323',
@@ -69,7 +69,7 @@ const CardImage = ({ data, onClick, ...other }: {
   const date = dayjs(created_at).fromNow()
 
   return (
-    <Box sx={{ height: 341, position: 'relative' }}>
+    <Box sx={{ height: 341, position: "relative" }}>
       <BoxCard onClick={onClick}>
         <Box sx={{ width: 208.5 }}>
           <CardActionArea>
@@ -80,26 +80,33 @@ const CardImage = ({ data, onClick, ...other }: {
                 src={image_url}
                 decoding='async'
                 style={{
-                  position: 'absolute',
+                  position: "absolute",
                   inset: 0,
-                  boxSizing: 'border-box',
+                  boxSizing: "border-box",
                   padding: 0,
-                  border: 'none',
-                  margin: 'auto',
-                  display: 'block',
+                  border: "none",
+                  margin: "auto",
+                  display: "block",
                   width: 0,
                   height: 0,
-                  minWidth: '100%',
-                  maxWidth: '100%',
-                  minHeight: '100%',
-                  maxHeight: '100%',
-                  objectFit: 'contain'
+                  minWidth: "100%",
+                  maxWidth: "100%",
+                  minHeight: "100%",
+                  maxHeight: "100%",
+                  objectFit: "contain",
                 }}
                 width={100}
                 height={100}
               />
             </BoxContent>
-            <CardContent sx={{ display: 'flex', flexDirection: 'column', borderRadius: 4, textAlign: 'center' }}>
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                borderRadius: 4,
+                textAlign: "center",
+              }}
+            >
               <div>
                 <Typography variant='h6' sx={{ fontWeight: 400 }}>{shortenTitleGame(name)}</Typography>
                 <Typography variant='subtitle2' sx={{ ...other }}>{date}</Typography>
@@ -113,7 +120,7 @@ const CardImage = ({ data, onClick, ...other }: {
         </Box>
       </BoxCard>
     </Box>
-  )
-}
+  );
+};
 
-export default React.memo(CardImage)
+export default React.memo(CardImage);

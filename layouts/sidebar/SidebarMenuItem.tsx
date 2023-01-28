@@ -1,4 +1,3 @@
-import { ReactNode, useState } from "react";
 import {
   List,
   ListItem,
@@ -10,43 +9,34 @@ import {
   ListItemSecondaryAction,
   Avatar,
 } from "@mui/material";
-import RocketLaunchOutlinedIcon from "@mui/icons-material/RocketLaunchOutlined";
-import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
-import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
-import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
-import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import Iconify from "@/components/Iconify";
+import { sidebarHeader } from "../constants";
+import { SidebarMenuItem } from "./types";
+import { getDiff, isBefore, isBetween } from "@/helper/date";
+import { useRouter } from "next/router";
+import { regexUrlValidation } from "@/utils/regex";
 
-interface SidebarMenuItems {
-  items: {
-    header: string;
-    headerIcon: string;
-    list: {
-      rank?: string;
-      title: string;
-      image: string;
-      duration: string;
-    }[];
+const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
+  const currDate = new Date().toISOString();
+
+  const hasSecondaryText = (header: string) => {
+    return ["mint_schedule", "tournament"].includes(header);
   };
-}
 
-function getIcon(icon: string) {
-  switch (icon) {
-    case "RocketLaunchOutlinedIcon":
-      return <RocketLaunchOutlinedIcon />;
-    case "EmojiEventsOutlinedIcon":
-      return <EmojiEventsOutlinedIcon />;
-    case "TrendingUpOutlinedIcon":
-      return <TrendingUpOutlinedIcon />;
-    case "SportsEsportsOutlinedIcon":
-      return <SportsEsportsOutlinedIcon />;
-    case "SchoolOutlinedIcon":
-      return <SchoolOutlinedIcon />;
-    default:
-      break;
-  }
-}
+  const router = useRouter();
 
-const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
+  const onClickMenu = (url: string, path: string) => {
+    const isExternal = url.match(regexUrlValidation);
+    const locale = router.locale;
+
+    if (isExternal !== null) {
+      window.open(url, "_blank");
+      return;
+    }
+
+    const nextRoute = `/${url}/${path}`;
+    router.push(nextRoute, nextRoute, { locale });
+  };
   return (
     <List
       disablePadding
@@ -57,10 +47,10 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
       <ListSubheader component="div">
         <ListItem key="mints" sx={{ py: 2, px: "0" }}>
           <ListItemIcon sx={{ minWidth: "40px" }}>
-            {getIcon(items.headerIcon)}
+            <Iconify icon={sidebarHeader[header].icon} height={24} width={24} />
           </ListItemIcon>
           <ListItemText
-            primary={items.header}
+            primary={sidebarHeader[header].title}
             primaryTypographyProps={{
               fontWeight: "medium",
               textTransform: "uppercase",
@@ -69,25 +59,85 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
           />
         </ListItem>
       </ListSubheader>
+
       <List>
-        {items.list.map((menu, idx) => (
-          <ListItem key={menu.title} disablePadding>
-            <ListItemButton sx={{ p: "8px 16px 8px 24px" }}>
-              {menu.rank && (
-                <ListItemIcon sx={{ minWidth: "40px" }}>
+        {items.map((menu: any, idx: number) => (
+          <ListItem key={`${menu.title}-${idx}`} disablePadding>
+            <ListItemButton
+              onClick={() => onClickMenu(menu.url, sidebarHeader[header].path)}
+              sx={{ p: "8px 16px 8px 24px" }}
+            >
+              {(menu.rank || menu.icon) && (
+                <ListItemIcon
+                  sx={{
+                    minWidth: "40px",
+                    color: "rgba(255, 255, 255, 0.7)",
+                    fontWeight: "medium",
+                    fontSize: "small",
+                  }}
+                >
                   {menu.rank}
+                  {menu.icon && (
+                    <Iconify icon={menu.icon} height={24} width={24} />
+                  )}
                 </ListItemIcon>
               )}
-              <ListItemAvatar sx={{ minWidth: "40px" }}>
-                <Avatar
-                  variant="rounded"
-                  alt={`image of ${menu.title}`}
-                  src={menu.image}
-                  sx={{ width: 24, height: 24 }}
-                />
-              </ListItemAvatar>
+
+              {menu.image && (
+                <ListItemAvatar sx={{ minWidth: "40px" }}>
+                  <Avatar
+                    variant="rounded"
+                    alt={`image of ${menu.title}`}
+                    src={menu.image}
+                    sx={{ width: 24, height: 24 }}
+                  />
+                </ListItemAvatar>
+              )}
+
               <ListItemText
                 primary={menu.title}
+                sx={{ maxWidth: "160px" }}
+                primaryTypographyProps={{
+                  color: "rgba(255, 255, 255, 0.7)",
+                  fontWeight: "medium",
+                  fontSize: "small",
+                }}
+              />
+
+              {hasSecondaryText(header) && (
+                <ListItemSecondaryAction
+                  sx={{
+                    color: (theme) => theme.palette.primary.main,
+                    fontSize: (theme) => theme.typography.caption.fontSize,
+                    fontWeight: (theme) => theme.typography.fontWeightMedium,
+                  }}
+                >
+                  {isBefore(currDate, menu.startTime)
+                    ? `${Math.abs(getDiff(currDate, menu.startTime))} days`
+                    : isBetween(currDate, menu.startTime, menu.endTime)
+                    ? "live"
+                    : ""}
+                </ListItemSecondaryAction>
+              )}
+            </ListItemButton>
+          </ListItem>
+        ))}
+
+        {header === "random_play_now" && (
+          <ListItem disablePadding>
+            <ListItemButton sx={{ p: "8px 16px 8px 24px" }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: "40px",
+                  color: "rgba(255, 255, 255, 0.7)",
+                  fontWeight: "medium",
+                  fontSize: "small",
+                }}
+              >
+                <Iconify icon="mdi:dots-horizontal" />
+              </ListItemIcon>
+              <ListItemText
+                primary="Explore all games"
                 sx={{ maxWidth: "140px" }}
                 primaryTypographyProps={{
                   color: "rgba(255, 255, 255, 0.7)",
@@ -95,21 +145,12 @@ const SidebarMenuItems = ({ items }: SidebarMenuItems) => {
                   fontSize: "small",
                 }}
               />
-              <ListItemSecondaryAction
-                sx={{
-                  color: (theme) => theme.palette.primary.main,
-                  fontSize: (theme) => theme.typography.caption.fontSize,
-                  fontWeight: (theme) => theme.typography.fontWeightMedium,
-                }}
-              >
-                {menu.duration}
-              </ListItemSecondaryAction>
             </ListItemButton>
           </ListItem>
-        ))}
+        )}
       </List>
     </List>
   );
 };
 
-export default SidebarMenuItems;
+export default SidebarMenuItem;

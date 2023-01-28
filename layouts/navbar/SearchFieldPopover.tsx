@@ -1,7 +1,7 @@
 import { Box, IconButton, Slide } from "@mui/material";
 import Iconify from "@/components/Iconify";
 import SearchField from "./SearchField";
-import { APPBAR_MOBILE } from "../constant";
+import { APPBAR_MOBILE } from "../constants";
 
 interface Props {
   isOpen: boolean;
@@ -24,7 +24,7 @@ const SearchFieldPopOver = ({ isOpen, toggleOpen }: Props) => {
           px: 1
         }}
       >
-        <SearchField isOpen={isOpen} />
+        <SearchField />
         <IconButton
           size="medium"
           onClick={() => toggleOpen()}

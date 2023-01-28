@@ -7,3 +7,10 @@ export const shortenTitleGame = (title: string) => {
   }
   return title;
 };
+
+export const shortenArbitraryText = (text: string, truncate: number) => {
+  if (text.length > truncate) {
+    return `${text.slice(0, truncate)}...`;
+  }
+  return text;
+};

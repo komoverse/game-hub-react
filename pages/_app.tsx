@@ -5,24 +5,24 @@ import i18next from "i18next";
 import { initReactI18next, I18nextProvider } from "react-i18next";
 import enTranslations from "locales/en";
 import idTranslations from "locales/id";
-import cnTranslations from "locales/cn";
-import inTranslations from "locales/in";
+import zhTranslations from "locales/zh";
+import hiTranslations from "locales/hi";
 import ThemeProvider from "@/theme/ThemeProvider";
 import createEmotionCache from "@/theme/createEmotionCache";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import store from "store/store";
 import "styles/global.scss";
-import { ReactQueryDevtools } from 'react-query/devtools';
-
+import { ReactQueryDevtools } from "react-query/devtools";
+import Layout from "@/layouts/Layout";
 
 const clientSideEmotionCache = createEmotionCache();
 
 const resources = {
   en: { messages: enTranslations },
   id: { messages: idTranslations },
-  cn: { messages: cnTranslations },
-  in: { messages: inTranslations },
+  zh: { messages: zhTranslations },
+  hi: { messages: hiTranslations },
 };
 
 const i18n: any = i18next.use(initReactI18next);
@@ -61,7 +61,9 @@ export default function MyApp(props: MyAppProps) {
           <I18nextProvider i18n={i18n}>
             <QueryClientProvider client={queryClient}>
               <ReactQueryDevtools initialIsOpen={false} />
-              <Component {...pageProps} />
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
             </QueryClientProvider>
           </I18nextProvider>
         </ThemeProvider>
