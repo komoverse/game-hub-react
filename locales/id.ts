@@ -8,6 +8,11 @@ const lang = {
     viewAll: 'Lihat Semua',
     event: 'Peristiwa',
     newListing: 'Daftar Baru',
+    verified: 'Terverifikasi',
+    unVerified: 'Tidak Terverifikasi',
+  },
+  button: {
+    buyNow: 'Bayar Sekarang',
   },
 };
 export default lang;
