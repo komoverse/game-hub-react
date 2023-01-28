@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -7,35 +6,22 @@ import CardImage from '@/components/CardImage';
 import { breakpointsEvents } from '@/utils/breakpoints';
 import NavigationHome from '@/components/NavigationHome';
 import { useTranslation } from 'react-i18next';
-import { COLOR } from '@/utils/globalVariable';
+import { COLOR, KomoverseTag } from '@/utils/globalVariable';
 import ModalDetailTransaction from '@/components/ModalDetailTransaction';
 import { useQuery } from 'react-query';
 import { getListRecent } from 'services/homepage';
 import { RecentDto } from 'types';
-
-const Root = styled('div')(() => ({
-  backgroundColor: COLOR.backgroundRoot,
-  paddingTop: '8px',
-  paddingBottom: '8px',
-  width: '100%',
-  zIndex: 10,
-}));
-
-const Card = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '0 64px',
-  [theme.breakpoints.down('sm')]: {
-    padding: '0 15px'
-  },
-}))
+import { Card, Root, Button } from '../event/style';
+import Solana from 'public/solana.svg'
+import Image from 'next/image';
+import { Typography } from '@mui/material';
 
 const NewListings = () => {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState<boolean>(false)
   const [listingId, setListingId] = React.useState<string>('')
 
-  const { data } = useQuery('newListing', () => getListRecent(), {
+  const { data: listNft } = useQuery('newListing', () => getListRecent(), {
     staleTime: 3000,
     refetchOnMount: false
   })
@@ -61,7 +47,7 @@ const NewListings = () => {
             }}
             breakpoints={breakpointsEvents}
           >
-            {data?.map((list: RecentDto) => (
+            {listNft?.map((list: RecentDto) => (
               <SwiperSlide key={list.listing_id}>
                 <Grid container>
                   <Grid item>
@@ -70,7 +56,13 @@ const NewListings = () => {
                       fontWeight={400}
                       color={COLOR.baseGreen}
                       onClick={() => handleOpen(list.listing_id)}
-                    />
+                      image={Solana}
+                    >
+                      <Button>
+                        <Image src={Solana} width={15} height={15} alt={KomoverseTag} />
+                        <Typography variant='subtitle2' sx={{ fontWeight: 700, marginLeft: 1 }}>{list.listing_price} {list.listing_currency}</Typography>
+                      </Button>
+                    </CardImage>
                   </Grid>
                 </Grid>
               </SwiperSlide>
