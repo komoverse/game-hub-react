@@ -1,3 +1,4 @@
+import React from 'react'
 import { SvgIcon } from '@mui/material'
 
 const Unverified = () => {
@@ -13,4 +14,4 @@ const Unverified = () => {
   )
 }
 
-export default Unverified
+export default React.memo(Unverified)
