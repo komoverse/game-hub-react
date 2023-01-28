@@ -8,4 +8,5 @@ export const COLOR = {
   backgroundRoot: '#000000DD',
   borderSemiBlack: '#1E1E1E',
   backgroundSemiBlack: '#191919',
+  baseSemiGray: '#ABABAB',
 };
