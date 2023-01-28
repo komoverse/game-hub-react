@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { Box,Grid, Typography } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -85,4 +86,4 @@ const Events = () => {
   )
 }
 
-export default Events
+export default React.memo(Events)

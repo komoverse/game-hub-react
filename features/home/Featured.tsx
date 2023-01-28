@@ -45,6 +45,7 @@ const Item = styled(Paper)(() => ({
 const BoxContent = styled('div')(() => ({
   position: 'relative',
   pointerEvents: 'auto',
+  transition: 'transform .3s ease'
 }))
 
 const BoxVideo = styled('div')(() => ({
@@ -75,9 +76,9 @@ const Featured = () => {
   const [isOpen, setOpen] = React.useState(false)
   const [vidioId, setVidioId] = React.useState<string>('')
 
-  const { data } = useQuery(['listFeatured', 1], () => getListFeatured(), {
+  const { data } = useQuery(['listFeatured'], () => getListFeatured(), {
     staleTime: 3000,
-    // refetchInterval: 3000
+    refetchOnMount: false
   })
 
   const onMouseLeave = () => setActiveVideo(null)
@@ -161,4 +162,4 @@ const Featured = () => {
   )
 }
 
-export default Featured
+export default React.memo(Featured)
