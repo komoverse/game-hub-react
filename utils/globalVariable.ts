@@ -9,4 +9,8 @@ export const COLOR = {
   borderSemiBlack: '#1E1E1E',
   backgroundSemiBlack: '#191919',
   baseSemiGray: '#ABABAB',
+  backgroundTableStriped1: '#181818',
+  backgroundTableStriped2: '#0E0E0E',
+  backgroundTableHover: '#2F2F2F',
+  baseSky: '#0FD2BE',
 };
