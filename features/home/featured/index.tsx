@@ -32,7 +32,6 @@ const Featured = () => {
   const [activeVideo, setActiveVideo] = React.useState<string | null>(null);
   const [isOpen, setOpen] = React.useState(false)
   const [vidioId, setVidioId] = React.useState<string>('')
-  const [currentSlide, setCurrentSlide] = React.useState(0);
 
   const { data } = useQuery(['listFeatured'], () => getListFeatured(), {
     staleTime: 3000,
@@ -45,9 +44,6 @@ const Featured = () => {
     setActiveVideo(url)
     setVidioId(id)
   }
-  const handleAfterChange = (index: number) => {
-    setCurrentSlide(index);
-  };
 
   const settings = {
     dots: true,
@@ -67,7 +63,7 @@ const Featured = () => {
       <Card>
         <NavigationHome title={t('home.featured')} />
         <Box sx={{ position: 'relative', height: '158px' }}>
-          <Slider {...settings} className="slider_container">
+          <Slider {...settings} className="slider_container" variableWidth={true}>
             {data?.map((video: ListFeaturedDto) => {
               const idYT = video.youtube_url.split('=')[1]
               const autoPlay = activeVideo === video.youtube_url ? 1 : 0
