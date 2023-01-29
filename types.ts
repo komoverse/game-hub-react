@@ -71,3 +71,11 @@ export interface ErrorResponseDto {
     };
   };
 }
+
+export interface StoreState {
+  pagination: {
+    page: number;
+  };
+  detailNft: object;
+  transactionHistory: object;
+}
