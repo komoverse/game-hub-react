@@ -85,6 +85,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               alt="komoverse-logo"
               height={40}
               width={84}
+              priority={true}
             />
           </Box>
           <Box>{!isMobile && <SearchField />}</Box>

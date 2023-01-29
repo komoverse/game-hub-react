@@ -1,0 +1,3 @@
+export const SET_NFT_DETAIL = 'SET_NFT_DETAIL';
+export const CLEAR_NFT_DETAIL = 'CLEAR_NFT_DETAIL';
+export const UPDATE_NFT_DETAIL = 'UPDATE_NFT_DETAIL';
