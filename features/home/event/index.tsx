@@ -49,8 +49,8 @@ const Events = () => {
             }}
             breakpoints={breakpointsEvents}
           >
-            {data.map((event: any) => (
-              <SwiperSlide key={event.id}>
+            {data.map((event: any, idx: number) => (
+              <SwiperSlide key={idx}>
                 <Grid container>
                   <Grid item>
                     <CardImage
