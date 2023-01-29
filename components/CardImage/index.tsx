@@ -1,13 +1,11 @@
 import React from 'react'
 import { Box, CardContent, Typography } from '@mui/material'
 import { shortenTitleGame } from '@/utils/shorten'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime';
 import Image from 'next/image'
 import { RecentDto } from 'types'
 import { BoxCard, BoxContent, BoxImage, CardActionArea } from './style'
+import { dateFromNow } from '@/helper/date'
 
-dayjs.extend(relativeTime);
 
 type CardImageProps = {
   data: RecentDto,
@@ -19,7 +17,6 @@ type CardImageProps = {
 
 const CardImage = ({ data, onClick, fontWeight, color, children }: CardImageProps) => {
   const { image_url, name, created_at } = data
-  const date = dayjs(created_at).fromNow()
 
   return (
     <Box sx={{ height: 341, position: "relative" }}>
@@ -50,6 +47,7 @@ const CardImage = ({ data, onClick, fontWeight, color, children }: CardImageProp
                 }}
                 width={100}
                 height={100}
+                priority={true}
               />
             </BoxContent>
             <CardContent
@@ -61,7 +59,7 @@ const CardImage = ({ data, onClick, fontWeight, color, children }: CardImageProp
               }}
             >
               <Typography variant='h6' sx={{ fontWeight: fontWeight }}>{shortenTitleGame(name)}</Typography>
-              <Typography variant='subtitle2' sx={{ fontWeight: 400, color: color }}>{date}</Typography>
+              <Typography variant='subtitle2' sx={{ fontWeight: 400, color: color }}>{dateFromNow(created_at)}</Typography>
             </CardContent>
             {children}
           </CardActionArea>
