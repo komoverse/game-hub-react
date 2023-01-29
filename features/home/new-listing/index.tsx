@@ -7,23 +7,40 @@ import { breakpointsEvents } from '@/utils/breakpoints';
 import NavigationHome from '@/components/NavigationHome';
 import { useTranslation } from 'react-i18next';
 import { COLOR, KomoverseTag } from '@/utils/globalVariable';
-import ModalDetailTransaction from '@/components/ModalDetailTransaction';
 import { useQuery } from 'react-query';
-import { getListRecent } from 'services/homepage';
-import { RecentDto } from 'types';
+import { getListRecent, getMarket, getMarketItemById } from 'services/homepage';
+import { ErrorResponseDto, RecentDto, StoreState } from 'types';
 import { Card, Root, Button } from '../event/style';
 import Solana from 'public/solana.svg'
 import Image from 'next/image';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import actionNft from '@/store/detailNft/action'
+import actionTransaction from '@/store/historyTransaction/action'
+import Modal from '@/components/Modal';
+import { useSelector } from 'react-redux';
 
 const NewListings = () => {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState<boolean>(false)
   const [listingId, setListingId] = React.useState<string>('')
+  const defaultpage = useSelector((state: StoreState) => state.pagination)
 
   const { data: listNft } = useQuery('newListing', () => getListRecent(), {
     staleTime: 3000,
     refetchOnMount: false
+  })
+
+  const { isFetching } = useQuery(['marketItemById', listingId], () => getMarketItemById(listingId), {
+    staleTime: 3000,
+    cacheTime: 3000,
+    enabled: !!listingId,
+    onError: (error: ErrorResponseDto) => error,
+    onSuccess: (data) => actionNft.setDetailNft(data)
+  })
+
+  useQuery(['getMarket', defaultpage.page], () => getMarket(defaultpage.page), {
+    staleTime: 3000,
+    onSuccess: (data) => actionTransaction.setHistoryTransaction(data)
   })
 
   const handleOpen = (listing_id: string) => {
@@ -56,7 +73,6 @@ const NewListings = () => {
                       fontWeight={400}
                       color={COLOR.baseGreen}
                       onClick={() => handleOpen(list.listing_id)}
-                      image={Solana}
                     >
                       <Button>
                         <Image src={Solana} width={15} height={15} alt={KomoverseTag} />
@@ -70,11 +86,13 @@ const NewListings = () => {
           </Swiper>
         </Box>
       </Card>
-      <ModalDetailTransaction
-        open={open}
-        setOpen={setOpen}
-        listingId={listingId}
-      />
+      
+      {!isFetching && (
+        <Modal
+          open={open}
+          setOpen={setOpen}
+        />
+      )}
     </Root>
   )
 }
