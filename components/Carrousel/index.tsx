@@ -1,4 +1,3 @@
-import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
