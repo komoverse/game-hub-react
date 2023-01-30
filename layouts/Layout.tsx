@@ -8,6 +8,7 @@ import { useQuery } from "react-query";
 import { getSidebarMenu } from "@/services/sidebar";
 import MiniSidebar from "./sidebar/MiniSidebar";
 import useResponsive from "@/hooks/useResponsive";
+import HeroBanner from "@/features/game/HeroBanner/HeroBanner";
 
 interface LayoutProps {
   children: ReactNode;
@@ -48,6 +49,7 @@ function Layout({ children }: LayoutProps) {
       setIsMiniDrawerOpen(!isMiniDrawerOpen);
     } else {
       setIsOpen(!isOpen);
+      isMobile && setIsMiniDrawerOpen(false);
     }
   };
 
@@ -69,6 +71,7 @@ function Layout({ children }: LayoutProps) {
         isSuccess={isSuccess}
       />
       <MainStyled sx={{ position: isGamePage ? "relative" : "static" }}>
+        {isGamePage && <HeroBanner />}
         {children}
       </MainStyled>
     </RootStyled>
