@@ -19,11 +19,11 @@ import GameSocialMedia from "./GameSocialMedia";
 // TODO: Change to data from API
 const tabsEnabled: string[] = [
   "overview",
-  "review",
+  "reviews",
   "insight",
   "items",
-  "mint",
-  "tournament",
+  "mints",
+  "tournaments",
 ];
 
 export const PopupVidio = ({

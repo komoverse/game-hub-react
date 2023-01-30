@@ -51,12 +51,12 @@ export const sidebarHeader: SidebarHeader = {
   mint_schedule: {
     icon: "ic:outline-rocket-launch",
     title: "mints",
-    path: "mint",
+    path: "mints",
   },
   tournament: {
     icon: "ic:outline-emoji-events",
     title: "tournaments",
-    path: "tournament",
+    path: "tournaments",
   },
   trending: {
     icon: "ic:baseline-trending-up",
