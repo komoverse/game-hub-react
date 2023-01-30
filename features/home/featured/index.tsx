@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, CardContent, Paper, styled, Typography } from '@mui/material';
+import { Box, CardContent, Typography } from '@mui/material';
 import { useQuery } from 'react-query';
 import { getListFeatured } from 'services/homepage';
 import { ListFeaturedDto } from 'types';
@@ -10,49 +10,7 @@ import NavigationHome from '@/components/NavigationHome';
 import { useTranslation } from 'react-i18next';
 import NextArrow from '@/components/NextArrow';
 import PrevArrow from '@/components/PrevArrow';
-
-const Root = styled('div')(() => ({
-  backgroundColor: '#000000dd',
-  paddingTop: '8px',
-  paddingBottom: '8px',
-  position: 'relative',
-  width: '100%',
-  zIndex: 10,
-}));
-
-const Card = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '0 64px',
-  [theme.breakpoints.down('sm')]: {
-    padding: '0 15px',
-  },
-}))
-
-const Item = styled(Paper)(() => ({
-  backgroundColor: 'rgb(17, 17, 17)',
-  color: 'rgb(255, 255, 255)',
-  transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-  borderRadius: '4px',
-  boxShadow: 'rgb(0 0 0 / 20 %) 0px 2px 1px - 1px, rgb(0 0 0 / 14 %) 0px 1px 1px 0px, rgb(0 0 0 / 12 %) 0px 1px 3px 0px',
-  backgroundImage: 'linearGradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
-  overflow: 'hidden',
-  flexShrink: 0,
-  position: 'relative',
-  width: '280px',
-}))
-
-const BoxContent = styled('div')(() => ({
-  position: 'relative',
-  pointerEvents: 'auto',
-}))
-
-const BoxVideo = styled('div')(() => ({
-  width: 'auto',
-  height: 158,
-  cursor: 'pointer',
-  position: 'relative',
-}))
+import { BoxContent, BoxVideo, Card, Item, Root } from './style';
 
 const PopupVidio = ({ videoId, isOpen, setOpen }: {
   videoId: string,
@@ -75,9 +33,9 @@ const Featured = () => {
   const [isOpen, setOpen] = React.useState(false)
   const [vidioId, setVidioId] = React.useState<string>('')
 
-  const { data } = useQuery(['listFeatured', 1], () => getListFeatured(), {
+  const { data } = useQuery(['listFeatured'], () => getListFeatured(), {
     staleTime: 3000,
-    // refetchInterval: 3000
+    refetchOnMount: false
   })
 
   const onMouseLeave = () => setActiveVideo(null)
@@ -95,6 +53,7 @@ const Featured = () => {
     initialSlide: 0,
     infinite: true,
     responsive: breakpointsFeatured,
+    draggable: false,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
@@ -104,7 +63,7 @@ const Featured = () => {
       <Card>
         <NavigationHome title={t('home.featured')} />
         <Box sx={{ position: 'relative', height: '158px' }}>
-          <Slider {...settings} className="slider_container">
+          <Slider {...settings} className="slider_container" variableWidth={true}>
             {data?.map((video: ListFeaturedDto) => {
               const idYT = video.youtube_url.split('=')[1]
               const autoPlay = activeVideo === video.youtube_url ? 1 : 0
@@ -140,7 +99,7 @@ const Featured = () => {
                           sx={{ fontWeight: 500 }}
                           variant='body2'
                         >
-                          Bladerite - First Look at an INCREDIBLE Melee Based Battle Royale
+                          {video.video_title}
                         </Typography>
                       </CardContent>
                     </Box>
@@ -161,4 +120,4 @@ const Featured = () => {
   )
 }
 
-export default Featured
+export default React.memo(Featured)

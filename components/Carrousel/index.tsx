@@ -1,9 +1,6 @@
 import { useKeenSlider } from "keen-slider/react";
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
-import Featured from "features/home/Featured";
-import Events from "features/home/Events";
-import NewListings from "features/home/NewListings";
 import { useRouter } from "next/router";
 import {
   NavigatorItemStyled,
@@ -184,9 +181,6 @@ const Carrousel = ({ slideshow }: Props) => {
         ))}
       </Box>
       {loaded && navigator()}
-      <Featured />
-      <Events />
-      <NewListings />
     </Box>
   );
 };

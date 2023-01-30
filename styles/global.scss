@@ -62,7 +62,6 @@ svg {
   z-index: 1;
   .box_title {
     max-height: 9999px;
-    opacity: 1;
   }
 }
 .swiper-button-next:after,
@@ -87,4 +86,7 @@ svg {
 }
 .slick-next:before {
   content: "";
+}
+.swiper-slide {
+  width: 215px !important;
 }

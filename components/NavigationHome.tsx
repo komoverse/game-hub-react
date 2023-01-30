@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, styled, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
@@ -33,4 +34,4 @@ const NavigationHome = ({ title, navigation }: NavigationHomeProps) => (
   </Navigation>
 )
 
-export default NavigationHome
+export default React.memo(NavigationHome)

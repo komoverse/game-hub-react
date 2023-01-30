@@ -8,6 +8,11 @@ const lang = {
     viewAll: 'सभी देखें',
     event: 'घटना',
     newListing: 'नई सूची',
+    verified: 'सत्यापित',
+    unVerified: 'प्रमाणित नहीं है',
+  },
+  button: {
+    buyNow: 'अभी खरीदें',
   },
 };
 export default lang;
