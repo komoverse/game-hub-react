@@ -7,6 +7,8 @@ export const NavigatorStyled = styled("div")({
   padding: "8px",
   gap: "8px",
   backgroundColor: "#000000",
+  position: "relative",
+  zIndex: "12",
 });
 
 export const NavigatorItemStyled = styled("button")({

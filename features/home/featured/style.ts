@@ -2,7 +2,7 @@ import { Paper, styled } from '@mui/material';
 
 export const Root = styled('div')(() => ({
   backgroundColor: '#000000dd',
-  paddingTop: '8px',
+  paddingTop: '48px',
   paddingBottom: '8px',
   position: 'relative',
   width: '100%',
