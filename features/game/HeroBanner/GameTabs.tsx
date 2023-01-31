@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
+  console.log('🚀 ~ GameTabs ~ tabs', tabs);
   const router = useRouter();
   const [currTab, setCurrTab] = useState(() => tabs.length && tabs[0]);
 

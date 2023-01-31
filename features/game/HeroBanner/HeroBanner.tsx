@@ -16,16 +16,6 @@ import {
 import ModalVideo from "react-modal-video";
 import GameSocialMedia from "./GameSocialMedia";
 
-// TODO: Change to data from API
-const tabsEnabled: string[] = [
-  "overview",
-  "reviews",
-  "insight",
-  "items",
-  "mints",
-  "tournaments",
-];
-
 export const PopupVidio = ({
   videoId,
   isOpen,
@@ -144,7 +134,7 @@ const HeroBanner = () => {
                   WATCH TRAILER
                 </Button>
               )}
-              {tabsEnabled.includes("play-now") && (
+              {gameDetails.tabsEnabled.includes("play-now") && (
                 <Button
                   variant="contained"
                   size="small"
@@ -198,7 +188,7 @@ const HeroBanner = () => {
           </Box>
         </SliderActionWrapper>
       </Box>
-      <GameTabs tabs={gameDetails.tabs_enabled} />
+      <GameTabs tabs={gameDetails.tabsEnabled} />
       <MemoizedPopup
         videoId={idYT}
         isOpen={isOpenTrailer}
