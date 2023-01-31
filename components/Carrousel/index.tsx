@@ -105,7 +105,9 @@ const Carrousel = ({ slideshow }: Props) => {
   };
 
   return (
-    <Box sx={{ height: { xs: "40%", md: "50%", lg: "95%" } }}>
+    <Box
+      sx={{ height: { xs: "40%", md: "50%", lg: "95%" } }}
+    >
       <Box ref={sliderRef} className="keen-slider" sx={{ height: "100%" }}>
         {slideshow.map((slide, idx) => (
           <Box key={idx} className="keen-slider__slide">
