@@ -21,7 +21,7 @@ const AppbarStyled = styled(AppBar)(({ theme }) => ({
 
 const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
   minHeight: APPBAR_MOBILE,
-  [theme.breakpoints.up("lg")]: {
+  [theme.breakpoints.up("md")]: {
     minHeight: APPBAR_DESKTOP,
   },
 }));
@@ -85,6 +85,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               alt="komoverse-logo"
               height={40}
               width={84}
+              onClick={() => router.push("/", "/")}
               priority={true}
             />
           </Box>

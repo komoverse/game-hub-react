@@ -1,9 +1,10 @@
-@import '~slick-carousel/slick/slick.css';
-@import '~slick-carousel/slick/slick-theme.css';
-@import '~swiper/css';
-@import '~swiper/css/pagination';
-@import '~swiper/css/navigation';
-@import 'react-modal-video/css/modal-video.min.css';
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@import "~swiper/css";
+@import "~swiper/css/pagination";
+@import "~swiper/css/navigation";
+@import "react-modal-video/css/modal-video.min.css";
+@import "keen-slider/keen-slider.min.css";
 
 /*
   1. Use a more-intuitive box-sizing model.
@@ -19,6 +20,10 @@
 * {
   margin: 0;
   padding: 0;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
 }
 /*
   3. Allow percentage-based heights in the application
@@ -61,14 +66,14 @@ svg {
 }
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
-  content: 'next';
+  content: "next";
   font-size: 12px !important;
   color: white;
   font-weight: 800;
 }
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {
-  content: 'prev';
+  content: "prev";
   font-size: 12px !important;
   color: white;
   font-weight: 800;
@@ -77,10 +82,10 @@ svg {
   width: 295px !important;
 }
 .slick-prev:before {
-  content: '';
+  content: "";
 }
 .slick-next:before {
-  content: '';
+  content: "";
 }
 .swiper-slide {
   width: 215px !important;

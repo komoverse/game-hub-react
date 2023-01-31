@@ -1,6 +1,5 @@
-import { useQuery } from "react-query";
 import Box from "@mui/material/Box";
-import { Drawer } from "@mui/material";
+import Drawer from "@mui/material/Drawer";
 import {
   APPBAR_DESKTOP,
   APPBAR_MOBILE,
@@ -9,21 +8,18 @@ import {
 } from "../constants";
 import SidebarMenuItem from "./SidebarMenuItem";
 import useResponsive from "@/hooks/useResponsive";
-import { getSidebarMenu } from "services/sidebar";
 import { SidebarProps } from "./types";
 
-export default function Sidebar({ isOpen }: SidebarProps) {
+export default function Sidebar({ isOpen, setIsOpen, isGamePage, menuItems, isSuccess }: SidebarProps) {
   const isMobile = useResponsive("down", "md");
 
-  const { data: sidebarMenuItems, isSuccess } = useQuery(
-    ["sidebarMenu"],
-    () => getSidebarMenu(),
-    {}
-  );
+  const toggleClose = () => {
+    if (isGamePage) setIsOpen(false);
+  };
 
   return (
     <Drawer
-      variant={isMobile ? "temporary" : "persistent"}
+      variant={isMobile || isGamePage ? "temporary" : "persistent"}
       sx={{
         width: isOpen ? SIDEBAR_WIDTH : "0",
         flexShrink: 0,
@@ -37,6 +33,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
       hideBackdrop
       ModalProps={{ disableEnforceFocus: true }}
       open={isOpen}
+      onMouseLeave={() => toggleClose()}
     >
       <Box
         sx={{
@@ -44,7 +41,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
         }}
       >
         {isSuccess &&
-          sidebarMenuItems.map((item, i) => (
+          menuItems?.map((item, i) => (
             <SidebarMenuItem items={item.items} header={item.header} key={i} />
           ))}
         {komoverseSocialMedia.map((item, i) => (

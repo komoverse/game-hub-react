@@ -1,5 +1,9 @@
 export interface SidebarProps {
   isOpen: boolean;
+  setIsOpen: (args: boolean) => void;
+  isGamePage?: boolean;
+  isSuccess: boolean;
+  menuItems: SidebarMenuItem[] | undefined;
 }
 
 export interface SidebarHeader {
