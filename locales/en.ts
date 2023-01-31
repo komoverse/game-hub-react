@@ -13,6 +13,10 @@ const lang = {
   },
   button: {
     buyNow: 'Buy Now',
+    live: 'Live',
+  },
+  time: {
+    days: 'days',
   },
 };
 export default lang;

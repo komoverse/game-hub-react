@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, CardContent, Grid, Typography } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import CardImage from '@/components/CardImage';
 import { breakpointsEvents } from '@/utils/breakpoints';
@@ -7,31 +7,54 @@ import { COLOR } from '@/utils/globalVariable';
 import { useTranslation } from 'react-i18next';
 import { Button, Card, Root } from './style';
 import { useRouter } from 'next/router';
+import { useSelector } from "react-redux";
+import { shortenTitleGame } from '@/utils/shorten';
+import { getDiff, isBefore, isBetween } from '@/helper/date';
+import { EventTypes, MintScheduleDto, ScheduleEvents, TournamentScheduleDto } from '@/types/home';
+import { ReduxState } from '@/types/redux';
 
 const Events = () => {
   const { t } = useTranslation()
   const router = useRouter();
+  const data: any = useSelector((state: ReduxState) => state.sidebar?.value)
+  const currDate = new Date().toISOString();
 
-  const data = [
-    {
-      created_at: '2022-09-23T08:11:39.000Z',
-      image_url: 'https://cdn.shyft.to/img/https%253A%252F%252Fnftstorage.link%252Fipfs%252Fbafkreibbc6uhsplohdhxf4kclxrnynw5s5gjatattd7a4ptmidwg2xzzcq',
-      status: 'SOL',
-      listing_id: '8NBLTmfzz1ZPhM5bVWgtgBZapnk3F8XoqZcp2gaFVH1e',
-      listing_price: 10,
-      name: 'Komoverse',
-      seller_address: 'AaYFExyZuMHbJHzjimKyQBAH1yfA9sKTxSzBc6Nr5X4s'
-    },
-    {
-      created_at: '2022-09-23T08:11:39.000Z',
-      image_url: 'https://cdn.shyft.to/img/https%253A%252F%252Fnftstorage.link%252Fipfs%252Fbafkreibbc6uhsplohdhxf4kclxrnynw5s5gjatattd7a4ptmidwg2xzzcq',
-      listing_currency: 'SOL',
-      listing_id: '8NBLTmfzz1ZPhM5bVWgtgBZapnk3F8XoqZcp2gaFVHTF',
-      listing_price: 10,
-      name: 'devnet',
-      seller_address: 'AaYFExyZuMHbJHzjimKyQBAH1yfA9sKTxSzBc6Nr5X4s'
-    },
-  ]
+  const transformMintSchedule = (item: MintScheduleDto) => ({
+    ...item,
+    type: EventTypes.MINTS,
+    image_url: item.logo_image_url,
+    mint_start_date: item.mint_start_date,
+    mint_end_date: item.mint_end_date,
+  });
+
+  const transformTournament = (item: TournamentScheduleDto) => ({
+    ...item,
+    type: EventTypes.TOURNAMENTS,
+    image_url: item.logo_image_url,
+    start_time: item.start_time,
+    end_time: item.end_time,
+  });
+
+  const transformedData: (MintScheduleDto)[] = [
+    ...(Array.isArray(data?.mint_schedule) ? data.mint_schedule.map(transformMintSchedule) : []),
+    ...(Array.isArray(data?.tournament) ? data.tournament.map(transformTournament) : []),
+  ];
+
+  const filteredDataByTime = transformedData.sort((a, b) => {
+    const dateA = a.type === EventTypes.MINTS ? a.mint_start_date : a.start_time;
+    const dateB = b.type === EventTypes.MINTS ? b.mint_start_date : b.start_time;
+    return dateA < dateB ? -1 : dateA > dateB ? 1 : 0;
+  })
+
+  const handleRedirect = (data: ScheduleEvents, event?: React.MouseEventHandler<HTMLDivElement>) => {
+    const { type, game_id } = data
+    if (type === EventTypes.MINTS) {
+      router.push(`/${game_id}/mints`)
+    }
+    if (type === EventTypes.TOURNAMENTS) {
+      router.push(`/${game_id}/tournaments`)
+    }
+  }
 
   return (
     <Root>
@@ -49,24 +72,51 @@ const Events = () => {
             }}
             breakpoints={breakpointsEvents}
           >
-            {data.map((event: any, idx: number) => (
-              <SwiperSlide key={idx}>
-                <Grid container>
-                  <Grid item>
-                    <CardImage
-                      data={event}
-                      fontWeight={700}
-                      color={COLOR.baseSemiGray}
-                      onClick={() => router.push(`/${event.name}/tournaments`)}
-                    >
-                      <Button>
-                        <Typography variant='subtitle2' sx={{ fontWeight: 700, marginLeft: 1, color: COLOR.baseGreen }}>{event.name}</Typography>
-                      </Button>
-                    </CardImage>
+            {filteredDataByTime?.map((event, idx: number) => {
+              const startTime = event.mint_start_date || event.start_time
+              const endTime = event.mint_end_date || event.end_time
+              const eventName = event.phase_name || event.tournament_name
+
+              const time = isBefore(currDate, startTime)
+                ? `${Math.abs(getDiff(currDate, startTime))} ${t('time.days')}`
+                : isBetween(currDate, startTime, endTime)
+                  ? t('button.live')
+                  : "-"
+
+              return (
+                <SwiperSlide key={idx}>
+                  <Grid container>
+                    <Grid item>
+                      <CardImage
+                        image_url={event.logo_image_url}
+                        onClick={() => handleRedirect(event)}
+                      >
+                        <CardContent
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            borderRadius: 4,
+                            textAlign: "center",
+                          }}
+                        >
+                          <Typography variant='h6' sx={{ fontWeight: 700 }}>
+                            {shortenTitleGame(event.game_name)}
+                          </Typography>
+                          <Typography variant='subtitle2' sx={{ fontWeight: 400, color: COLOR.baseSemiGray }}>
+                            {shortenTitleGame(eventName)}
+                          </Typography>
+                        </CardContent>
+                        <Button>
+                          <Typography variant='subtitle2' sx={{ fontWeight: 700, marginLeft: 1, color: COLOR.baseGreen }}>
+                            {time}
+                          </Typography>
+                        </Button>
+                      </CardImage>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              )
+            })}
           </Swiper>
         </Box>
       </Card>

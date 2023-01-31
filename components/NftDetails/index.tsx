@@ -9,13 +9,14 @@ import VerifiedOutlinedIcon from '@mui/icons-material/VerifiedOutlined';
 import Unverified from '@/components/UnverifiedIcon';
 import { shortenWalletAddress } from '@/utils/shorten';
 import { formatPercent } from '@/utils/percentage';
-import { MarketItemDto, StoreState } from 'types';
+import { MarketItemDto } from '@/types/detail';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux'
+import { ReduxState } from '@/types/redux'
 
 const NftDetails = () => {
-  const data = useSelector((state: StoreState) => state.detailNft as MarketItemDto)
+  const data = useSelector((state: ReduxState) => state.detailNft as MarketItemDto)
   const { t } = useTranslation()
   const [copy, setCopy] = React.useState('Copy')
 

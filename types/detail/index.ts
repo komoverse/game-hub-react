@@ -1,21 +1,3 @@
-export interface ListFeaturedDto {
-  id: string;
-  video_title: string;
-  thumbnail_url: string;
-  youtube_url: string;
-  created_at: string;
-}
-
-export interface RecentDto {
-  created_at: string;
-  image_url: string;
-  listing_currency: number;
-  listing_id: string;
-  listing_price: string;
-  name: string;
-  seller_address: string;
-}
-
 export interface NftDetailDto {
   animation_url: string;
   attributes: {
@@ -61,21 +43,4 @@ export interface MarketItemDto {
   receipt: string;
   seller_address: string;
   seller_username: string;
-}
-
-export interface ErrorResponseDto {
-  response: {
-    data: {
-      status: number | string;
-      message: string;
-    };
-  };
-}
-
-export interface StoreState {
-  pagination: {
-    page: number;
-  };
-  detailNft: object;
-  transactionHistory: object;
 }
