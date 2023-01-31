@@ -3,9 +3,9 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const GameTabs = ({ tabs }: { tabs: string[] }) => {
+const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
   const router = useRouter();
-  const [currTab, setCurrTab] = useState(tabs[0]);
+  const [currTab, setCurrTab] = useState(() => tabs.length && tabs[0]);
 
   const handleChangeTab = (event: React.SyntheticEvent, value: string) => {
     setCurrTab(value);

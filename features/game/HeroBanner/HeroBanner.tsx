@@ -198,7 +198,7 @@ const HeroBanner = () => {
           </Box>
         </SliderActionWrapper>
       </Box>
-      <GameTabs tabs={tabsEnabled} />
+      <GameTabs tabs={gameDetails.tabs_enabled} />
       <MemoizedPopup
         videoId={idYT}
         isOpen={isOpenTrailer}
