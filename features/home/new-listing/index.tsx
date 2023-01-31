@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { COLOR, KomoverseTag } from '@/utils/globalVariable';
 import { useQuery } from 'react-query';
 import { getListRecent, getMarket, getMarketItemById } from 'services/homepage';
-import { ErrorResponseDto, RecentDto, StoreState } from 'types';
+import { ListRecentDto} from '@/types/home';
 import { Card, Root, Button } from '../event/style';
 import Solana from 'public/solana.svg'
 import Image from 'next/image';
@@ -18,12 +18,17 @@ import actionNft from '@/store/detailNft/action'
 import actionTransaction from '@/store/historyTransaction/action'
 import Modal from '@/components/Modal';
 import { useSelector } from 'react-redux';
+import { CardContent } from '@mui/material';
+import { shortenTitleGame } from '@/utils/shorten';
+import { dateFromNow } from '@/helper/date';
+import { ReduxState } from '@/types/redux';
+import { ErrorResponseDto } from '@/types/response'
 
 const NewListings = () => {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState<boolean>(false)
   const [listingId, setListingId] = React.useState<string>('')
-  const defaultpage = useSelector((state: StoreState) => state.pagination)
+  const defaultpage = useSelector((state: ReduxState) => state.pagination)
 
   const { data: listNft } = useQuery('newListing', () => getListRecent(), {
     staleTime: 3000,
@@ -64,16 +69,25 @@ const NewListings = () => {
             }}
             breakpoints={breakpointsEvents}
           >
-            {listNft?.map((list: RecentDto) => (
+            {listNft?.map((list: ListRecentDto) => (
               <SwiperSlide key={list.listing_id}>
                 <Grid container>
                   <Grid item>
                     <CardImage
-                      data={list}
-                      fontWeight={400}
-                      color={COLOR.baseGreen}
+                      image_url={list.image_url}
                       onClick={() => handleOpen(list.listing_id)}
                     >
+                      <CardContent
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          borderRadius: 4,
+                          textAlign: "center",
+                        }}
+                      >
+                        <Typography variant='h6' sx={{ fontWeight: 400 }}>{shortenTitleGame(list.name)}</Typography>
+                        <Typography variant='subtitle2' sx={{ fontWeight: 400, color: COLOR.baseGreen }}>{dateFromNow(list.created_at)}</Typography>
+                      </CardContent>
                       <Button>
                         <Image src={Solana} width={15} height={15} alt={KomoverseTag} />
                         <Typography variant='subtitle2' sx={{ fontWeight: 700, marginLeft: 1 }}>{list.listing_price} {list.listing_currency}</Typography>

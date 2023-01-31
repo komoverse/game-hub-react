@@ -3,7 +3,7 @@ import { Breadcrumbs, Dialog, DialogContent, DialogTitle, Typography } from '@mu
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { COLOR } from '@/utils/globalVariable';
 import actionNtt from '@/store/detailNft/action'
-import actionTransaction from '@/store/historyTransaction/action'
+// import actionTransaction from '@/store/historyTransaction/action'
 import NftDetails from '@/components/NftDetails';
 import KomoverseTable from '@/components/Table';
 
