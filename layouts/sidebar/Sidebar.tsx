@@ -44,7 +44,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
         }}
       >
         {isSuccess &&
-          sidebarMenuItems.map((item, i) => (
+          sidebarMenuItems?.map((item, i) => (
             <SidebarMenuItem items={item.items} header={item.header} key={i} />
           ))}
         {komoverseSocialMedia.map((item, i) => (
