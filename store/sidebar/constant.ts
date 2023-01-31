@@ -1,0 +1,3 @@
+export const SET_SIDEBAR = 'SET_SIDEBAR';
+export const CLEAR_SIDEBAR = 'CLEAR_SIDEBAR';
+export const UPDATE_SIDEBAR = 'UPDATE_SIDEBAR';
