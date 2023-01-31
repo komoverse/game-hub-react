@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, CardContent, Typography } from '@mui/material';
 import { useQuery } from 'react-query';
 import { getListFeatured } from 'services/homepage';
-import { ListFeaturedDto } from 'types';
+import { ListFeaturedDto } from '@/types/home';
 import ModalVideo from 'react-modal-video'
 import Slider from "react-slick";
 import { breakpointsFeatured } from '@/utils/breakpoints';
