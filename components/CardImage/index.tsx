@@ -1,22 +1,15 @@
 import React from 'react'
-import { Box, CardContent, Typography } from '@mui/material'
-import { shortenTitleGame } from '@/utils/shorten'
+import { Box } from '@mui/material'
 import Image from 'next/image'
-import { RecentDto } from 'types'
 import { BoxCard, BoxContent, BoxImage, CardActionArea } from './style'
-import { dateFromNow } from '@/helper/date'
-
 
 type CardImageProps = {
-  data: RecentDto,
+  image_url: string,
   onClick?: React.MouseEventHandler<HTMLDivElement>,
   children?: React.ReactNode
-  fontWeight: number,
-  color: string,
 }
 
-const CardImage = ({ data, onClick, fontWeight, color, children }: CardImageProps) => {
-  const { image_url, name, created_at } = data
+const CardImage = ({ image_url, onClick, children }: CardImageProps) => {
 
   return (
     <Box sx={{ height: 341, position: "relative" }}>
@@ -50,17 +43,6 @@ const CardImage = ({ data, onClick, fontWeight, color, children }: CardImageProp
                 priority={true}
               />
             </BoxContent>
-            <CardContent
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                borderRadius: 4,
-                textAlign: "center",
-              }}
-            >
-              <Typography variant='h6' sx={{ fontWeight: fontWeight }}>{shortenTitleGame(name)}</Typography>
-              <Typography variant='subtitle2' sx={{ fontWeight: 400, color: color }}>{dateFromNow(created_at)}</Typography>
-            </CardContent>
             {children}
           </CardActionArea>
         </Box>
