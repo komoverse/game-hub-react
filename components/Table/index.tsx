@@ -6,11 +6,12 @@ import NoteIcon from '@/components/NoteIcon';
 import { CustomTable } from './style';
 import { columns } from './config';
 import { useSelector } from 'react-redux';
-import { StoreState } from 'types';
 import actionPagination from '@/store/pagination/action'
+import { ReduxState } from '@/types/redux';
+import { GridValidRowModel } from '@mui/x-data-grid';
 
 const CustomFooter = () => {
-  const defaultpage = useSelector((state: StoreState) => state.pagination)
+  const defaultpage = useSelector((state: ReduxState) => state.pagination)
 
   const nextPage = () => actionPagination.setPagination({ page: defaultpage.page + 1 })
   const previousPage = () => actionPagination.setPagination({ page: defaultpage.page - 1 })
@@ -42,7 +43,7 @@ const MemoizedCustomFooter = React.memo(CustomFooter)
 
 const KomoverseTable = () => {
   const [expanded, setExpanded] = React.useState<string | false>('historyTransaction');
-  const data = useSelector((state: StoreState) => state.transactionHistory as any)
+  const data = useSelector((state: ReduxState) => state.transactionHistory as GridValidRowModel[])
 
   const handleChange = (panel: string) => (
     event: React.SyntheticEvent, newExpanded: boolean
