@@ -13,6 +13,10 @@ const lang = {
   },
   button: {
     buyNow: '立即购买',
+    live: '居住',
+  },
+  time: {
+    days: '天',
   },
 };
 export default lang;
