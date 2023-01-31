@@ -25,7 +25,8 @@
       "@/hooks/*": ["hooks/*"],
       "@/helper/*": ["helper/*"],
       "@/features/*": ["features/*"],
-      "@/services/*": ["services/*"]
+      "@/services/*": ["services/*"],
+      "@/types/*": ["types/*"]
     },
     "allowSyntheticDefaultImports": true
   },
