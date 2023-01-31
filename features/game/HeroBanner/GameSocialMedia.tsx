@@ -35,11 +35,6 @@ const GameSocialMedia = ({ gameDetails }: any) => {
             socialMediaPlatform[keyItem] !== undefined &&
             gameDetails[keyItem] !== null
           ) {
-            console.log(
-              "🚀",
-              socialMediaPlatform[keyItem],
-              gameDetails[keyItem]
-            );
             return (
               <Link
                 href={gameDetails[keyItem]}

@@ -49,10 +49,10 @@ const Events = () => {
   const handleRedirect = (data: ScheduleEvents, event?: React.MouseEventHandler<HTMLDivElement>) => {
     const { type, game_id } = data
     if (type === EventTypes.MINTS) {
-      router.push(`/${game_id}/mints`)
+      router.push(`/${game_id}/mint`)
     }
     if (type === EventTypes.TOURNAMENTS) {
-      router.push(`/${game_id}/tournaments`)
+      router.push(`/${game_id}/tournament`)
     }
   }
 
