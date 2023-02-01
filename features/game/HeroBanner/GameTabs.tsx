@@ -1,10 +1,9 @@
 import { COLOR } from "@/utils/globalVariable";
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs, AppBar } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
-  console.log('🚀 ~ GameTabs ~ tabs', tabs);
   const router = useRouter();
   const [currTab, setCurrTab] = useState(() => tabs.length && tabs[0]);
 
@@ -27,24 +26,26 @@ const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
   }, [router]);
 
   return (
-    <Box
-      sx={{
-        borderBottom: 1,
-        borderColor: "divider",
-        background: COLOR.backgroundRoot,
-      }}
-    >
-      <Tabs
-        value={currTab}
-        onChange={handleChangeTab}
-        aria-label="basic tabs example"
-        variant="scrollable"
+    <AppBar position="sticky">
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          background: COLOR.backgroundRoot,
+        }}
       >
-        {tabs.map((item, i) => (
-          <Tab key={i} sx={{ minWidth: "172px" }} value={item} label={item} />
-        ))}
-      </Tabs>
-    </Box>
+        <Tabs
+          value={currTab}
+          onChange={handleChangeTab}
+          aria-label="basic tabs example"
+          variant="scrollable"
+        >
+          {tabs.map((item, i) => (
+            <Tab key={i} sx={{ minWidth: "172px" }} value={item} label={item} />
+          ))}
+        </Tabs>
+      </Box>
+    </AppBar>
   );
 };
 
