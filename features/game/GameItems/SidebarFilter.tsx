@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Iconify from "@/components/Iconify";
 import {
@@ -13,22 +13,16 @@ import {
 import { COLOR, KomoverseTag } from "@/utils/globalVariable";
 import Solana from "public/solana.svg";
 import MenuPopover from "@/components/MenuPopover";
-import CustomAccordion from "./styles";
+import SidebarFilterField from "./SidebarFilterField";
 import useResponsive from "@/hooks/useResponsive";
-
-interface CollectionItemProps {
-  image: string;
-  name: string;
-  volume: number;
-  floor: number;
-}
+import { ICollectionItemProps, ISidebarFilterProps } from "./types";
 
 const CollectionItem = ({
   image,
   name,
   volume,
   floor,
-}: CollectionItemProps) => {
+}: ICollectionItemProps) => {
   return (
     <Box display="flex">
       <Avatar
@@ -58,28 +52,21 @@ const CollectionItem = ({
   );
 };
 
-interface MarketSidebarProps {
-  collections: any[];
-  currCollection: string;
-  setCurrCollection: Dispatch<SetStateAction<string>>;
-  filters: {};
-}
-
 const MarketSidebar = ({
   collections = [],
   currCollection,
   setCurrCollection,
   filters,
-}: MarketSidebarProps) => {
+}: ISidebarFilterProps) => {
   const [isExpand, setIsExpand] = useState(true);
+
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
+  const handleClose = () => setOpen(false);
 
   const selectedCollection = collections.find(
     (coll) => coll.collection_address === currCollection
   );
-
-  const handleClose = () => setOpen(false);
   const handleSelectCollection = (val: string) => {
     setCurrCollection(val);
     handleClose();
@@ -89,7 +76,6 @@ const MarketSidebar = ({
 
   return (
     <Box
-      position="sticky"
       sx={{
         maxWidth: isExpand ? sidebarWidth : "50px",
         flexGrow: 1,
@@ -132,11 +118,11 @@ const MarketSidebar = ({
             </AccordionSummary>
           </Accordion>
           {Object.keys(filters).map((key) => (
-            <CustomAccordion
+            <SidebarFilterField
               key={key}
               attributes={key}
               options={filters[key].values}
-              isOpen={filters[key].isOpen}
+              isOpen={filters[key].isOpen as boolean}
               setExpand={() => (filters[key].isOpen = !filters[key].isOpen)}
             />
           ))}

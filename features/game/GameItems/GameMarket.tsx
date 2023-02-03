@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
-import { Box, CardContent, Grid, Typography } from "@mui/material";
-import CardImage from "@/components/CardImage";
-import Image from "next/image";
-import { shortenTitleGame } from "@/utils/shorten";
-import { dateFromNow } from "@/helper/date";
-import { COLOR, KomoverseTag } from "@/utils/globalVariable";
-import Solana from "public/solana.svg";
-import { Button } from "@/features/home/event/style";
-import MarketSidebar from "./MarketSidebar";
+import { Box } from "@mui/material";
+import MarketSidebar from "./SidebarFilter";
 import { getCollectionItems, getMarketCollections } from "@/services/games";
+import { useSelector } from "react-redux";
+import { ReduxState } from "@/types/redux";
+import { IFilterOption } from "./types";
+import GameItem from "./GameItem";
+import _intersection from "lodash.intersection";
 
-function mapFilters(data) {
+function mapFilters(
+  data: Array<{
+    nft: {
+      attributes_array: Array<{ [key: string]: string }>;
+    };
+  }>
+) {
+  if (!data) {
+    return {};
+  }
   const attrs = data.map((item) => item.nft.attributes_array).flat();
-  let finalAttrs = {};
+
+  let finalAttrs: IFilterOption = {};
 
   attrs.forEach((el) => {
     if (finalAttrs[el.trait_type] === undefined) {
@@ -32,6 +40,22 @@ function mapFilters(data) {
   return finalAttrs;
 }
 
+function flattenMarketItems(data: any) {
+  return data.map((item: any) => {
+    const attrs = item.nft.attributes_array.flat();
+    let finalAttrs: string[] = [];
+
+    attrs.forEach((el: any) => {
+      finalAttrs.push(el.value);
+    });
+
+    return {
+      ...item,
+      attributes: finalAttrs,
+    };
+  });
+}
+
 const GameMarket = () => {
   const router = useRouter();
   const { game: gameId } = router.query;
@@ -42,7 +66,7 @@ const GameMarket = () => {
   );
 
   const {
-    data: marketItems,
+    data: _marketItems,
     isError,
     isLoading,
   } = useQuery(["getCollectionItems", currCollection], () =>
@@ -55,11 +79,28 @@ const GameMarket = () => {
     }
   }, [collections]);
 
+  const filters = mapFilters(_marketItems);
+  const selectedFilter = useSelector(
+    (state: ReduxState) =>
+      state.market?.value && Object.values(state.market?.value).flat()
+  );
+
   if (isError || isLoading) {
     return null;
   }
 
-  const filters = mapFilters(marketItems);
+  const marketItems = flattenMarketItems(_marketItems).filter((item: any) => {
+    const intersect = _intersection(selectedFilter, item.attributes);
+
+    if (intersect.length !== 0 && selectedFilter !== undefined) {
+      return item;
+    }
+
+    if (selectedFilter === undefined || selectedFilter.length === 0 ) {
+      return item;
+    }
+  });
+  console.log("🚀 ~ GameMarket ~ marketItems", marketItems);
 
   return (
     <Box
@@ -89,36 +130,15 @@ const GameMarket = () => {
             },
           }}
         >
-          {marketItems.map((item, i) => (
-            <CardImage key={i} image_url={item.nft.cached_image_uri}>
-              <CardContent
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  borderRadius: 4,
-                  textAlign: "center",
-                }}
-              >
-                <Typography variant="h6" sx={{ fontWeight: 400 }}>
-                  {shortenTitleGame(item.nft.name)}
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  sx={{ fontWeight: 400, color: COLOR.baseGreen }}
-                >
-                  {dateFromNow(item.created_at)}
-                </Typography>
-              </CardContent>
-              <Button>
-                <Image src={Solana} width={15} height={15} alt={KomoverseTag} />
-                <Typography
-                  variant="subtitle2"
-                  sx={{ fontWeight: 700, marginLeft: 1 }}
-                >
-                  {item.price}
-                </Typography>
-              </Button>
-            </CardImage>
+          {marketItems.map((item: any, i: number) => (
+            <GameItem
+              key={i}
+              imageUrl={item.nft.cached_image_uri}
+              name={item.nft.name}
+              price={item.price}
+              createdDate={item.created_at}
+              currency={item.currency_symbol}
+            />
           ))}
         </Box>
       </Box>

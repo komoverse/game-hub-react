@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";
 import MuiAccordionSummary, {
@@ -5,7 +6,6 @@ import MuiAccordionSummary, {
 } from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import {
-  Autocomplete,
   Box,
   Chip,
   FormControl,
@@ -14,13 +14,14 @@ import {
   OutlinedInput,
   Select,
   SelectChangeEvent,
-  Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import Iconify from "@/components/Iconify";
 import { COLOR } from "@/utils/globalVariable";
-import { useState } from "react";
+import action from "@/store/market/action";
+import { useSelector } from "react-redux";
+import { ReduxState } from "@/types/redux";
+import { ISidebarFilterField } from "./types";
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -54,30 +55,27 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-const CustomAccordion = ({
+const SidebarFilterField = ({
   isOpen,
   attributes,
   options,
   setExpand,
-}: {
-  isOpen: boolean;
-  attributes: string;
-  options: string[];
-  setExpand: () => void;
-}) => {
+}: ISidebarFilterField) => {
+  const selectedFilter = useSelector(
+    (state: ReduxState) => state.market?.value
+  );
   const [selectedAttributes, setSelectedAttributes] = useState<string[]>([]);
-  console.log('🚀 ~ selectedAttributes', selectedAttributes);
-
-  const handleChange = (event: SelectChangeEvent<typeof selectedAttributes>) => {
+  const handleChange = (
+    event: SelectChangeEvent<typeof selectedAttributes>
+  ) => {
     const {
       target: { value },
     } = event;
 
-    setSelectedAttributes(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setSelectedAttributes(typeof value === "string" ? value.split(",") : value);
+    action.setFilter({ ...selectedFilter, [attributes]: value });
   };
+
   return (
     <Accordion expanded={isOpen} onChange={setExpand}>
       <AccordionSummary>
@@ -93,7 +91,10 @@ const CustomAccordion = ({
             value={selectedAttributes}
             onChange={handleChange}
             input={
-              <OutlinedInput id="select-multiple-chip" label={`Select ${attributes}`} />
+              <OutlinedInput
+                id="select-multiple-chip"
+                label={`Select ${attributes}`}
+              />
             }
             renderValue={(selected) => (
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -119,4 +120,4 @@ const CustomAccordion = ({
   );
 };
 
-export default CustomAccordion;
+export default SidebarFilterField;
