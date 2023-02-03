@@ -9,7 +9,7 @@ import {
   Avatar,
   ListItemText,
 } from "@mui/material";
-import Iconify from "@/components/Iconify";
+import { Iconify } from "@/components/index";
 import { getSearcContent } from "@/services/search";
 import useDebounce from "@/hooks/useDebounce";
 import { useRouter } from "next/router";

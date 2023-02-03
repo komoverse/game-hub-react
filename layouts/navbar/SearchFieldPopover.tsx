@@ -1,5 +1,5 @@
 import { Box, IconButton, Slide } from "@mui/material";
-import Iconify from "@/components/Iconify";
+import { Iconify } from "@/components/index";
 import SearchField from "./SearchField";
 import { APPBAR_MOBILE } from "../constants";
 

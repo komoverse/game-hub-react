@@ -1,3 +1,10 @@
-export default function Overview() {
-  return <div>Game overview</div>;
+import { Items, Reviews } from "@/features/game/overview";
+
+export default function OverviewPages() {
+  return (
+    <>
+      <Items />
+      <Reviews />
+    </>
+  )
 }

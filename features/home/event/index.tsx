@@ -1,17 +1,16 @@
 import React from 'react';
 import { Box, CardContent, Grid, Typography } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react'
-import CardImage from '@/components/CardImage';
-import { breakpointsEvents } from '@/utils/breakpoints';
-import { COLOR } from '@/utils/globalVariable';
+import { CardImage, NavigationHome } from '@/components/index';
+import { ButtonCard, COLOR, SectionWrapper, SectionWrapperCard } from '@/utils/globalVariable';
 import { useTranslation } from 'react-i18next';
-import { Button, Card, Root } from './style';
 import { useRouter } from 'next/router';
 import { useSelector } from "react-redux";
 import { shortenTitleGame } from '@/utils/shorten';
 import { getDiff, isBefore, isBetween } from '@/helper/date';
 import { EventTypes, MintScheduleDto, ScheduleEvents, TournamentScheduleDto } from '@/types/home';
 import { ReduxState } from '@/types/redux';
+import { Navigation } from "swiper";
 
 const Events = () => {
   const { t } = useTranslation()
@@ -57,12 +56,13 @@ const Events = () => {
   }
 
   return (
-    <Root>
-      <Card>
-        <Typography sx={{ marginLeft: '8px', marginBottom: '16px' }} variant='h4'>{t('home.event')}</Typography>
+    <SectionWrapper>
+      <SectionWrapperCard>
+        <NavigationHome title={t('home.event')} />
         <Box sx={{ position: 'relative' }}>
           <Swiper
-            slidesPerView={1.2}
+            slidesPerView="auto"
+            loopedSlides={4}
             spaceBetween={10}
             preloadImages={false}
             lazy={true}
@@ -70,7 +70,10 @@ const Events = () => {
               el: '.swiper-pagination',
               clickable: true,
             }}
-            breakpoints={breakpointsEvents}
+            navigation={true}
+            modules={[Navigation]}
+            allowTouchMove={false}
+            className="events-swipper"
           >
             {filteredDataByTime?.map((event, idx: number) => {
               const startTime = event.mint_start_date || event.start_time
@@ -106,11 +109,11 @@ const Events = () => {
                             {shortenTitleGame(eventName)}
                           </Typography>
                         </CardContent>
-                        <Button>
+                        <ButtonCard>
                           <Typography variant='subtitle2' sx={{ fontWeight: 700, marginLeft: 1, color: COLOR.baseGreen }}>
                             {time}
                           </Typography>
-                        </Button>
+                        </ButtonCard>
                       </CardImage>
                     </Grid>
                   </Grid>
@@ -119,8 +122,8 @@ const Events = () => {
             })}
           </Swiper>
         </Box>
-      </Card>
-    </Root>
+      </SectionWrapperCard>
+    </SectionWrapper>
   )
 }
 

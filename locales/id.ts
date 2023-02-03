@@ -18,5 +18,9 @@ const lang = {
   time: {
     days: 'hari',
   },
+  game: {
+    items: 'Item',
+    reviews: 'Review',
+  },
 };
 export default lang;

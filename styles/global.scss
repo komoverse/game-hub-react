@@ -1,5 +1,3 @@
-@import "~slick-carousel/slick/slick.css";
-@import "~slick-carousel/slick/slick-theme.css";
 @import "~swiper/css";
 @import "~swiper/css/pagination";
 @import "~swiper/css/navigation";
@@ -78,15 +76,15 @@ svg {
   color: white;
   font-weight: 800;
 }
-.slider_container .slick-list .slick-track .slick-slide {
-  width: 295px !important;
+.events-swipper {
+  .swiper-slide {
+    width: 215px !important;
+  }
 }
-.slick-prev:before {
-  content: "";
-}
-.slick-next:before {
-  content: "";
-}
-.swiper-slide {
-  width: 215px !important;
+.featured-swipper  {
+  overflow: unset;
+  .swiper-slide {
+    transform: none;
+    width: 283px !important
+  }
 }

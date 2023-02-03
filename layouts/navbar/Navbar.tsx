@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import { AppBar, Box, IconButton, Toolbar, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
-import Iconify from "@/components/Iconify";
+import { Iconify } from "@/components/index";
 import SearchField from "./SearchField";
 import LanguageMenu from "./LanguageMenu";
 import SearchFieldPopOver from "./SearchFieldPopover";

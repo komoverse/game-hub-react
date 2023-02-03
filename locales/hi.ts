@@ -18,5 +18,8 @@ const lang = {
   time: {
     days: 'दिन',
   },
+  game: {
+    items: 'समीक्षा',
+  },
 };
 export default lang;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
-import Iconify from "@/components/Iconify";
+import { Iconify } from "@/components/index";
 import { getGameDetails } from "@/services/games";
-import { COLOR } from "@/utils/globalVariable";
+import { COLOR, GRADIENT } from "@/utils/globalVariable";
 import { Box, Button, Typography } from "@mui/material";
 import { regexImageFileValidation } from "@/utils/regex";
 import GameTabs from "./GameTabs";
@@ -149,8 +149,7 @@ const HeroBanner = () => {
                     color: "#fff",
                     fontWeight: "500",
                     borderRadius: 2,
-                    background:
-                      "radial-gradient(292.31% 1418.72% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)",
+                    background: GRADIENT.primary
                   }}
                 >
                   PLAY NOW
