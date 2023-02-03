@@ -2,7 +2,7 @@ import { dateFromNow } from "@/helper/date";
 import { COLOR } from "@/utils/globalVariable";
 import { Button, Typography } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid"
-import ViewIcon from '@/components/ViewIcon'
+import { ViewIcon } from '@/components/index'
 
 export const columns: GridColDef[] = [
   {

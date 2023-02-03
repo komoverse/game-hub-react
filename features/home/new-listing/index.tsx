@@ -2,20 +2,17 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Swiper, SwiperSlide } from 'swiper/react'
-import CardImage from '@/components/CardImage';
-import NavigationHome from '@/components/NavigationHome';
+import { CardImage, Modal, NavigationHome } from '@/components/index';
 import { useTranslation } from 'react-i18next';
-import { COLOR, KomoverseTag } from '@/utils/globalVariable';
+import { ButtonCard, COLOR, KomoverseTag, SectionWrapper, SectionWrapperCard } from '@/utils/globalVariable';
 import { useQuery } from 'react-query';
 import { getListRecent, getMarket, getMarketItemById } from 'services/homepage';
 import { ListRecentDto } from '@/types/home';
-import { Card, Root, Button } from '../event/style';
 import Solana from 'public/solana.svg'
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import actionNft from '@/store/detailNft/action'
 import actionTransaction from '@/store/historyTransaction/action'
-import Modal from '@/components/Modal';
 import { useSelector } from 'react-redux';
 import { CardContent } from '@mui/material';
 import { shortenTitleGame } from '@/utils/shorten';
@@ -54,8 +51,8 @@ const NewListings = () => {
   }
 
   return (
-    <Root>
-      <Card>
+    <SectionWrapper>
+      <SectionWrapperCard>
         <NavigationHome title={t('home.newListing')} />
         <Box sx={{ position: 'relative' }}>
           <Swiper
@@ -96,12 +93,12 @@ const NewListings = () => {
                           {dateFromNow(list.created_at)}
                         </Typography>
                       </CardContent>
-                      <Button>
+                      <ButtonCard>
                         <Image src={Solana} width={15} height={15} alt={KomoverseTag} />
                         <Typography variant='subtitle2' sx={{ fontWeight: 700, marginLeft: 1 }}>
                           {list.listing_price} {list.listing_currency}
                         </Typography>
-                      </Button>
+                      </ButtonCard>
                     </CardImage>
                   </Grid>
                 </Grid>
@@ -109,7 +106,7 @@ const NewListings = () => {
             ))}
           </Swiper>
         </Box>
-      </Card>
+      </SectionWrapperCard>
 
       {!isFetching && (
         <Modal
@@ -117,7 +114,7 @@ const NewListings = () => {
           setOpen={setOpen}
         />
       )}
-    </Root>
+    </SectionWrapper>
   )
 }
 

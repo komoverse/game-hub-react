@@ -10,21 +10,20 @@ import {
   Avatar,
   styled,
 } from "@mui/material";
-import Iconify from "@/components/Iconify";
+import { Iconify } from "@/components/index";
 import { sidebarHeader } from "../constants";
 import { SidebarMenuItem } from "./types";
 import { getDiff, isBefore, isBetween } from "@/helper/date";
 import { useRouter } from "next/router";
 import { regexUrlValidation } from "@/utils/regex";
-import { COLOR } from "@/utils/globalVariable";
+import { COLOR, GRADIENT } from "@/utils/globalVariable";
 
 const LiveIndicator = styled("span")({
   padding: "4px 8px",
   textTransform: "uppercase",
   color: COLOR.baseWhite,
   borderRadius: "20px",
-  background:
-    "radial-gradient(292.31% 1418.72% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)",
+  background: GRADIENT.primary
 });
 
 const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {

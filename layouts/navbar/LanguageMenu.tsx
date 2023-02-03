@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { alpha } from "@mui/material/styles";
 import { Box, MenuItem, Stack, IconButton } from "@mui/material";
-import MenuPopover from "@/components/MenuPopover";
+import { MenuPopover } from "@/components/index";
 import languageAction from "store/language/action";
 import { useRouter, withRouter } from "next/router";
 import Image from "next/image";

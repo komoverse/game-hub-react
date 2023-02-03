@@ -2,7 +2,7 @@ import React from 'react'
 import { COLOR } from '@/utils/globalVariable'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Paper, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import NoteIcon from '@/components/NoteIcon';
+import { NoteIcon } from '@/components/index';
 import { CustomTable } from './style';
 import { columns } from './config';
 import { useSelector } from 'react-redux';

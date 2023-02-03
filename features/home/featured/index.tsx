@@ -4,11 +4,12 @@ import { useQuery } from 'react-query';
 import { getListFeatured } from 'services/homepage';
 import { ListFeaturedDto } from '@/types/home';
 import ModalVideo from 'react-modal-video'
-import NavigationHome from '@/components/NavigationHome';
+import { NavigationHome } from '@/components/index';
 import { useTranslation } from 'react-i18next';
-import { BoxContent, BoxVideo, Card, Item, Root } from './style';
+import { BoxContent, BoxVideo, Item, Root } from './style';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from "swiper";
+import { SectionWrapperCard } from '@/utils/globalVariable';
 
 const PopupVidio = ({ videoId, isOpen, setOpen }: {
   videoId: string,
@@ -45,7 +46,7 @@ const Featured = () => {
 
   return (
     <Root>
-      <Card>
+      <SectionWrapperCard>
         <NavigationHome title={t('home.featured')} />
         <Box sx={{ position: 'relative', height: '158px' }}>
           <Swiper
@@ -107,7 +108,7 @@ const Featured = () => {
             })}
           </Swiper>
         </Box>
-      </Card>
+      </SectionWrapperCard>
 
       <MemoizedPopup
         videoId={vidioId}
