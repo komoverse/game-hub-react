@@ -9,15 +9,6 @@ export const Root = styled('div')(() => ({
   zIndex: 10,
 }));
 
-export const Card = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '0 64px',
-  [theme.breakpoints.down('sm')]: {
-    padding: '0 15px',
-  },
-}));
-
 export const Item = styled(Paper)(() => ({
   backgroundColor: 'rgb(17, 17, 17)',
   color: 'rgb(255, 255, 255)',
