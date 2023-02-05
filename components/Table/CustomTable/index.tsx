@@ -1,11 +1,17 @@
 import React from 'react'
-import { Box } from '@mui/material'
-import { columns, data } from './config'
+import { Box, Button } from '@mui/material'
+import { columns } from './config'
 import { CustomTable } from './style'
 import { GridCellParams, GridRowClassNameParams, GridValidRowModel } from '@mui/x-data-grid'
 import { TopPlayersCellClassnames, TopPlayersRowClassnames } from '@/types/response'
+import { useSelector } from 'react-redux'
+import { ReduxState } from '@/types/redux'
+import { COLOR } from '@/utils/globalVariable'
+import actionPagination from '@/store/pagination/action'
 
 const KomoverseTableCustom = () => {
+  const data = useSelector((state: ReduxState) => state.transactionHistory as readonly GridValidRowModel[])
+
   const handleRowClassnames = (idx: number) => {
     if (idx === 0) return TopPlayersRowClassnames.FIRST
     if (idx === 1) return TopPlayersRowClassnames.SECOND
@@ -20,12 +26,12 @@ const KomoverseTableCustom = () => {
   }
 
   return (
-    <Box sx={{ flexGrow: 1, height: '500px' }}>
+    <Box sx={{ flexGrow: 1, height: '750px' }}>
       <CustomTable
         rows={data}
         columns={columns}
-        // pageSize={7}
-        // rowsPerPageOptions={[10]}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
         disableSelectionOnClick
         disableColumnMenu
         disableColumnFilter
@@ -36,10 +42,46 @@ const KomoverseTableCustom = () => {
         getCellClassName={(params: GridCellParams<any, GridValidRowModel, any>) =>
           handleCellClassnames(params.field)!
         }
-        hideFooter
+        components={{
+          Footer() {
+            return <MemoizedCustomFooter />
+          }
+        }}
+        pagination
       />
     </Box>
   )
 }
 
 export default React.memo(KomoverseTableCustom)
+
+const CustomFooter = () => {
+  const defaultpage = useSelector((state: ReduxState) => state.pagination)
+
+  const nextPage = () => actionPagination.setPagination({ page: defaultpage.page + 1 })
+  const previousPage = () => actionPagination.setPagination({ page: defaultpage.page - 1 })
+
+  return (
+    <Box sx={{ m: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Button
+        size='large'
+        variant='contained'
+        disabled={defaultpage.page === 1 ? true : false}
+        sx={{ color: defaultpage.page !== 1 && COLOR.baseWhite, fontWeight: 500 }}
+        onClick={previousPage}
+      >
+        PREVIOUS
+      </Button>
+      <Button
+        size='large'
+        variant='contained'
+        sx={{ color: COLOR.baseWhite, fontWeight: 500 }}
+        onClick={nextPage}
+      >
+        NEXT
+      </Button>
+    </Box >
+  )
+}
+
+const MemoizedCustomFooter = React.memo(CustomFooter)
