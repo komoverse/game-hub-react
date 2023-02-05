@@ -3,7 +3,7 @@ import { COLOR } from '@/utils/globalVariable'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Paper, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { NoteIcon } from '@/components/index';
-import { CustomTable } from './style';
+import { BasicTable } from './style';
 import { columns } from './config';
 import { useSelector } from 'react-redux';
 import actionPagination from '@/store/pagination/action'
@@ -72,7 +72,7 @@ const KomoverseTable = () => {
               <Box sx={{ width: '100%' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                   <Paper sx={{ flexGrow: 1, height: '500px' }}>
-                    <CustomTable
+                    <BasicTable
                       rows={data}
                       columns={columns}
                       pageSize={7}
@@ -99,4 +99,4 @@ const KomoverseTable = () => {
   )
 }
 
-export default KomoverseTable
+export default React.memo(KomoverseTable)
