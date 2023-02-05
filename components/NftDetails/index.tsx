@@ -11,13 +11,12 @@ import { shortenWalletAddress } from '@/utils/shorten';
 import { formatPercent } from '@/utils/percentage';
 import { MarketItemDto } from '@/types/detail';
 import Image from 'next/image';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux'
 import { ReduxState } from '@/types/redux'
+import { t } from 'i18next'
 
 const NftDetails = () => {
   const data = useSelector((state: ReduxState) => state.detailNft as MarketItemDto)
-  const { t } = useTranslation()
   const [copy, setCopy] = React.useState('Copy')
 
   const handleCopy = (address: string) => {
@@ -122,7 +121,7 @@ const NftDetails = () => {
                   sx={{ fontWeight: 500, color: COLOR.baseGray }}
                   variant='subtitle2'
                 >
-                  Mint Address
+                  {t('home.mintAddress')}
                 </Typography>
 
                 <Tooltip title={copy} placement="top" onClick={() => handleCopy(data?.nft?.mint!)}>
@@ -139,7 +138,7 @@ const NftDetails = () => {
                   sx={{ fontWeight: 500, color: COLOR.baseGray }}
                   variant='subtitle2'
                 >
-                  Owner
+                  {t('home.owner')}
                 </Typography>
                 <Tooltip title={copy} placement="top" onClick={() => handleCopy(data?.nft?.owner!)}>
                   <Typography
@@ -155,7 +154,7 @@ const NftDetails = () => {
                   sx={{ fontWeight: 500, color: COLOR.baseGray }}
                   variant='subtitle2'
                 >
-                  Royalties
+                  {t('home.royalties')}
                 </Typography>
                 <Typography
                   sx={{ fontWeight: 500, color: COLOR.baseWhite }}
