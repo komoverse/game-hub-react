@@ -18,7 +18,7 @@ const SectionTitle = ({ title, navigation }: SectionTitleProps) => (
   <Navigation>
     <Typography
       sx={{ marginLeft: '8px' }}
-      variant='h4'
+      variant='h5'
     >
       {title}
     </Typography>
