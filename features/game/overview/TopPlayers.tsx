@@ -1,13 +1,13 @@
 import React from 'react'
 import { SectionWrapper, SectionWrapperCard } from '@/utils/globalVariable'
 import { t } from "i18next";
-import { NavigationHome } from '@/components/index';
+import { SectionTitle } from '@/components/index';
 
 const TopPlayers = () => {
   return (
     <SectionWrapper>
       <SectionWrapperCard>
-        <NavigationHome title={t('game.reviews')} />
+        <SectionTitle title={t('game.reviews')} />
       </SectionWrapperCard>
     </SectionWrapper>
   )

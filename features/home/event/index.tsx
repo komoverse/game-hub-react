@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, CardContent, Grid, Typography } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { CardImage, NavigationHome } from '@/components/index';
+import { CardImage, SectionTitle } from '@/components/index';
 import { ButtonCard, COLOR, SectionWrapper, SectionWrapperCard } from '@/utils/globalVariable';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
@@ -58,7 +58,7 @@ const Events = () => {
   return (
     <SectionWrapper>
       <SectionWrapperCard>
-        <NavigationHome title={t('home.event')} />
+        <SectionTitle title={t('home.event')} />
         <Box sx={{ position: 'relative' }}>
           <Swiper
             slidesPerView="auto"

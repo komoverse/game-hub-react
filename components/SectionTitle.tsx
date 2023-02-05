@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, styled, Typography } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-type NavigationHomeProps = {
+type SectionTitleProps = {
   title: string,
   navigation?: string
 }
@@ -14,7 +14,7 @@ const Navigation = styled('div')(() => ({
   marginBottom: '16px'
 }))
 
-const NavigationHome = ({ title, navigation }: NavigationHomeProps) => (
+const SectionTitle = ({ title, navigation }: SectionTitleProps) => (
   <Navigation>
     <Typography
       sx={{ marginLeft: '8px' }}
@@ -34,4 +34,4 @@ const NavigationHome = ({ title, navigation }: NavigationHomeProps) => (
   </Navigation>
 )
 
-export default React.memo(NavigationHome)
+export default React.memo(SectionTitle)

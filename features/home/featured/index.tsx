@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { getListFeatured } from 'services/homepage';
 import { ListFeaturedDto } from '@/types/home';
 import ModalVideo from 'react-modal-video'
-import { NavigationHome } from '@/components/index';
+import { SectionTitle } from '@/components/index';
 import { useTranslation } from 'react-i18next';
 import { BoxContent, BoxVideo, Item, Root } from './style';
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -47,7 +47,7 @@ const Featured = () => {
   return (
     <Root>
       <SectionWrapperCard>
-        <NavigationHome title={t('home.featured')} />
+        <SectionTitle title={t('home.featured')} />
         <Box sx={{ position: 'relative', height: '158px' }}>
           <Swiper
             slidesPerView="auto"

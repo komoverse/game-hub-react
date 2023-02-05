@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { CardImage, Modal, NavigationHome } from '@/components/index';
+import { CardImage, Modal, SectionTitle } from '@/components/index';
 import { useTranslation } from 'react-i18next';
 import { ButtonCard, COLOR, KomoverseTag, SectionWrapper, SectionWrapperCard } from '@/utils/globalVariable';
 import { useQuery } from 'react-query';
@@ -53,7 +53,7 @@ const NewListings = () => {
   return (
     <SectionWrapper>
       <SectionWrapperCard>
-        <NavigationHome title={t('home.newListing')} />
+        <SectionTitle title={t('home.newListing')} />
         <Box sx={{ position: 'relative' }}>
           <Swiper
             slidesPerView="auto"

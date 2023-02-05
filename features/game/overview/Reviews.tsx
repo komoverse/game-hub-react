@@ -25,7 +25,7 @@ import {
   SectionWrapperCard
 } from '@/utils/globalVariable'
 import StarIcon from '@mui/icons-material/Star';
-import { Iconify, NavigationHome } from '@/components/index'
+import { Iconify, SectionTitle } from '@/components/index'
 import { shortedDescription } from '@/utils/shorten';
 import useResponsive from '@/hooks/useResponsive';
 
@@ -36,7 +36,7 @@ const Reviews = () => {
   return (
     <SectionWrapper>
       <SectionWrapperCard>
-        <NavigationHome title={t('game.reviews')} />
+        <SectionTitle title={t('game.reviews')} />
         <Box>
           <Grid sx={{ width: 'auto' }} container spacing={3}>
             <Grid item lg={3} md={4}>
