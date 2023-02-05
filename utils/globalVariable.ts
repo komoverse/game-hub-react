@@ -19,6 +19,8 @@ export const COLOR = {
   backgroundCardBlack: '#0D0D0D',
   baseTextGray: '#B5B5B5',
   baseBackgroundButtonGray: '#323232',
+  baseColumnBlack: '#161616',
+  baseButtonBlack: '#121212',
 };
 
 export const GRADIENT = {

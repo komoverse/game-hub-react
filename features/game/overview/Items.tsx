@@ -10,7 +10,7 @@ import { dateFromNow } from '@/helper/date';
 import { Navigation } from 'swiper';
 import Image from 'next/image';
 import Solana from 'public/solana.svg'
-import { CardImage, NavigationHome } from "@/components/index";
+import { CardImage, SectionTitle } from "@/components/index";
 
 const Overview = () => {
     const { data: listNft } = useQuery('newListing', () => getListRecent(), {
@@ -21,7 +21,7 @@ const Overview = () => {
     return (
         <SectionWrapper>
             <SectionWrapperCard>
-                <NavigationHome title={t('game.items')} />
+                <SectionTitle title={t('game.items')} />
                 <Box sx={{ position: 'relative' }}>
                     <Swiper
                         slidesPerView="auto"

@@ -4,7 +4,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { COLOR } from '@/utils/globalVariable';
 import actionNtt from '@/store/detailNft/action'
 // import actionTransaction from '@/store/historyTransaction/action'
-import { NftDetails, KomoverseTable } from '@/components/index';
+import { NftDetails, BasicTable } from '@/components/index';
 
 type ModalTProps = {
   open: boolean,
@@ -41,7 +41,7 @@ const Modal = ({ open, setOpen }: ModalTProps) => {
       </DialogTitle>
       <DialogContent sx={{ backgroundColor: COLOR.baseSemiBlack }}>
         <NftDetails />
-        <KomoverseTable />
+        <BasicTable />
       </DialogContent>
     </Dialog>
   )
