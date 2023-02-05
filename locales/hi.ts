@@ -10,6 +10,9 @@ const lang = {
     newListing: 'नई सूची',
     verified: 'सत्यापित',
     unVerified: 'प्रमाणित नहीं है',
+    mintAddress: 'मिन्ट पता',
+    owner: 'मालिक',
+    royalties: 'रॉयाल्टी',
   },
   button: {
     buyNow: 'अभी खरीदें',
@@ -20,6 +23,9 @@ const lang = {
   },
   game: {
     items: 'समीक्षा',
+    reviews: 'Reviews',
+    topPlayers: 'शीर्ष खिलाड़ी',
+    tweets: 'ट्वीट्स',
   },
 };
 export default lang;

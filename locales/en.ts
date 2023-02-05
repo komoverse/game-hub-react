@@ -10,6 +10,9 @@ const lang = {
     newListing: 'New Listing',
     verified: 'Verified',
     unVerified: 'Unverified',
+    mintAddress: 'Mint Address',
+    owner: 'Owner',
+    royalties: 'Royalties',
   },
   button: {
     buyNow: 'Buy Now',
@@ -21,6 +24,8 @@ const lang = {
   game: {
     items: 'Items',
     reviews: 'Reviews',
+    topPlayers: 'Top Players',
+    tweets: 'Tweets',
   },
 };
 export default lang;

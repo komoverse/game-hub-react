@@ -10,6 +10,9 @@ const lang = {
     newListing: '新名单',
     verified: '已验证',
     unVerified: '未经审核的',
+    mintAddress: '造币厂地址',
+    owner: '所有者',
+    royalties: '版税',
   },
   button: {
     buyNow: '立即购买',
@@ -21,6 +24,8 @@ const lang = {
   game: {
     items: '项目',
     reviews: '点评',
+    topPlayers: '顶级球员',
+    tweets: '鸣叫',
   },
 };
 export default lang;

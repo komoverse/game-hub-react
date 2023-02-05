@@ -10,6 +10,9 @@ const lang = {
     newListing: 'Daftar Baru',
     verified: 'Terverifikasi',
     unVerified: 'Tidak Terverifikasi',
+    mintAddress: 'Alamat Mint',
+    owner: 'Pemilik',
+    royalties: 'Royalti',
   },
   button: {
     buyNow: 'Bayar Sekarang',
@@ -21,6 +24,8 @@ const lang = {
   game: {
     items: 'Item',
     reviews: 'Review',
+    topPlayers: 'Pemain Top',
+    tweets: 'Tweet',
   },
 };
 export default lang;
