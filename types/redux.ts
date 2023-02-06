@@ -1,4 +1,5 @@
 export interface ReduxState {
+  market: { [key: string]: Array<string> };
   pagination: {
     page: number;
   };

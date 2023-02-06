@@ -1,3 +1,3 @@
 export default function Mint() {
-  return <div>Minst</div>;
+  return <div style={{ height: "100vw" }}>Minst</div>;
 }
