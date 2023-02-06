@@ -1,11 +1,10 @@
 import CardImage from "@/components/CardImage";
 import Image from "next/image";
 import { dateFromNow } from "@/helper/date";
-import { COLOR, KomoverseTag } from "@/utils/globalVariable";
+import { ButtonCard, COLOR, KomoverseTag } from "@/utils/globalVariable";
 import { shortenTitleGame } from "@/utils/shorten";
 import { CardContent, Typography } from "@mui/material";
 import Solana from "public/solana.svg";
-import { Button } from "@/features/home/event/style";
 
 const GameItem = ({
   imageUrl,
@@ -40,12 +39,12 @@ const GameItem = ({
           {dateFromNow(createdDate)}
         </Typography>
       </CardContent>
-      <Button>
+      <ButtonCard>
         <Image src={Solana} width={15} height={15} alt={KomoverseTag} />
         <Typography variant="subtitle2" sx={{ fontWeight: 700, marginLeft: 1 }}>
           {`${currency} ${price}`}
         </Typography>
-      </Button>
+      </ButtonCard>
     </CardImage>
   );
 };
