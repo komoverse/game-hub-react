@@ -26,5 +26,5 @@ jobs:
       with:
         node-version: 14.x
         cache: 'npm'
-    - run: yarn
-    - run: yarn build
+    - run: npm i
+    - run: npm run build
