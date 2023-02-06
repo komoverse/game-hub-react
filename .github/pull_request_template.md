@@ -3,6 +3,8 @@
 </p>
 <h1 align="center">Komoverse</h1> 
 
-**Changelog**
+## Changelog
 
-- [x] list changelog
+| List Changelog | Status     |
+| :-------- | :------- |
+| `......` | `✅ done or ⛔️ on proggress` |

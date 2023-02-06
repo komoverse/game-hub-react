@@ -11,7 +11,7 @@ import {
 } from "../constants";
 import { SidebarProps } from "./types";
 import { sidebarHeader } from "../constants";
-import Iconify from "@/components/Iconify";
+import { Iconify } from "@/components/index";
 
 export default function MiniSidebar({
   isOpen,

@@ -1,6 +1,6 @@
 import { Box, Link } from "@mui/material";
 import { ImageStyled } from "./styles";
-import Iconify from "@/components/Iconify";
+import { Iconify } from "@/components/index";
 import { socialMediaPlatform } from "./constants";
 
 const GameSocialMedia = ({ gameDetails }: any) => {

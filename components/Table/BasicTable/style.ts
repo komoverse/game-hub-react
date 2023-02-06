@@ -4,7 +4,7 @@ import { DataGrid, gridClasses } from '@mui/x-data-grid';
 
 const ODD_OPACITY = 0.2;
 
-export const CustomTable = styled(DataGrid)(({ theme }) => ({
+export const BasicTable = styled(DataGrid)(({ theme }) => ({
   border: 0,
   WebkitFontSmoothing: 'auto',
   '& .MuiDataGrid-columnHeaders': {

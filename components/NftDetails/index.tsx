@@ -4,20 +4,19 @@ import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
-import { COLOR, KomoverseTag } from '@/utils/globalVariable';
+import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
 import VerifiedOutlinedIcon from '@mui/icons-material/VerifiedOutlined';
-import Unverified from '@/components/UnverifiedIcon';
+import { UnverifiedIcon } from '@/components/index';
 import { shortenWalletAddress } from '@/utils/shorten';
 import { formatPercent } from '@/utils/percentage';
 import { MarketItemDto } from '@/types/detail';
 import Image from 'next/image';
-import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux'
 import { ReduxState } from '@/types/redux'
+import { t } from 'i18next'
 
 const NftDetails = () => {
   const data = useSelector((state: ReduxState) => state.detailNft as MarketItemDto)
-  const { t } = useTranslation()
   const [copy, setCopy] = React.useState('Copy')
 
   const handleCopy = (address: string) => {
@@ -51,7 +50,7 @@ const NftDetails = () => {
               <Typography variant='h5'>{data?.nft?.name}</Typography>
               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', paddingTop: 8, paddingBottom: 8 }}>
                 <Typography sx={{ display: 'flex', flexDirection: 'row', margin: 0, fontWeight: 500 }} variant="body1">
-                  {data?.nft?.collection.verified ? <VerifiedOutlinedIcon sx={{ color: COLOR.baseGray }} /> : <Unverified />}
+                  {data?.nft?.collection.verified ? <VerifiedOutlinedIcon sx={{ color: COLOR.baseGray }} /> : <UnverifiedIcon />}
                 </Typography>
                 <Typography variant='body2' sx={{ marginLeft: 0.5, color: COLOR.baseGray }}>
                   {data?.nft?.collection.verified ? t('home.verified') : t('home.unVerified')}
@@ -78,7 +77,7 @@ const NftDetails = () => {
                 borderRadius: 1,
                 marginTop: 2.5,
                 textAlign: 'center',
-                background: 'radial-gradient(292.31% 1418.72% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)'
+                background: GRADIENT.primary
               }}
             >
               <Button sx={{ color: COLOR.baseWhite, textTransform: 'uppercase' }}>{t('button.buyNow')}</Button>
@@ -89,7 +88,7 @@ const NftDetails = () => {
               <Typography variant='h5'>{data?.nft?.name}</Typography>
               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', paddingTop: 8, paddingBottom: 8 }}>
                 <Typography sx={{ display: 'flex', flexDirection: 'row', margin: 0, fontWeight: 500 }} variant="body1">
-                  {data?.nft?.collection.verified ? <VerifiedOutlinedIcon sx={{ color: COLOR.baseGray }} /> : <Unverified />}
+                  {data?.nft?.collection.verified ? <VerifiedOutlinedIcon sx={{ color: COLOR.baseGray }} /> : <UnverifiedIcon />}
                 </Typography>
                 <Typography variant='body2' sx={{ marginLeft: 0.5, color: COLOR.baseGray }}>
                   {data?.nft?.collection.verified ? t('home.verified') : t('home.unVerified')}
@@ -122,7 +121,7 @@ const NftDetails = () => {
                   sx={{ fontWeight: 500, color: COLOR.baseGray }}
                   variant='subtitle2'
                 >
-                  Mint Address
+                  {t('home.mintAddress')}
                 </Typography>
 
                 <Tooltip title={copy} placement="top" onClick={() => handleCopy(data?.nft?.mint!)}>
@@ -139,7 +138,7 @@ const NftDetails = () => {
                   sx={{ fontWeight: 500, color: COLOR.baseGray }}
                   variant='subtitle2'
                 >
-                  Owner
+                  {t('home.owner')}
                 </Typography>
                 <Tooltip title={copy} placement="top" onClick={() => handleCopy(data?.nft?.owner!)}>
                   <Typography
@@ -155,7 +154,7 @@ const NftDetails = () => {
                   sx={{ fontWeight: 500, color: COLOR.baseGray }}
                   variant='subtitle2'
                 >
-                  Royalties
+                  {t('home.royalties')}
                 </Typography>
                 <Typography
                   sx={{ fontWeight: 500, color: COLOR.baseWhite }}

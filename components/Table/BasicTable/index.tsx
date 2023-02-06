@@ -2,13 +2,13 @@ import React from 'react'
 import { COLOR } from '@/utils/globalVariable'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Paper, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import NoteIcon from '@/components/NoteIcon';
-import { CustomTable } from './style';
+import { NoteIcon } from '@/components/index';
+import { BasicTable } from './style';
 import { columns } from './config';
 import { useSelector } from 'react-redux';
 import actionPagination from '@/store/pagination/action'
 import { ReduxState } from '@/types/redux';
-import { GridValidRowModel } from '@mui/x-data-grid';
+import { GridRowClassNameParams, GridValidRowModel } from '@mui/x-data-grid';
 
 const CustomFooter = () => {
   const defaultpage = useSelector((state: ReduxState) => state.pagination)
@@ -22,7 +22,7 @@ const CustomFooter = () => {
         size='large'
         variant='contained'
         disabled={defaultpage.page === 1 ? true : false}
-        sx={{ color: defaultpage.page !== 1 && COLOR.baseWhite, fontWeight: 500 }}
+        sx={{ color: defaultpage.page !== 1 ? COLOR.baseWhite : '', fontWeight: 500 }}
         onClick={previousPage}
       >
         PREVIOUS
@@ -35,7 +35,7 @@ const CustomFooter = () => {
       >
         NEXT
       </Button>
-    </Box >
+    </Box>
   )
 }
 
@@ -43,7 +43,7 @@ const MemoizedCustomFooter = React.memo(CustomFooter)
 
 const KomoverseTable = () => {
   const [expanded, setExpanded] = React.useState<string | false>('historyTransaction');
-  const data = useSelector((state: ReduxState) => state.transactionHistory as GridValidRowModel[])
+  const data = useSelector((state: ReduxState) => state.transactionHistory as readonly GridValidRowModel[])
 
   const handleChange = (panel: string) => (
     event: React.SyntheticEvent, newExpanded: boolean
@@ -72,7 +72,7 @@ const KomoverseTable = () => {
               <Box sx={{ width: '100%' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                   <Paper sx={{ flexGrow: 1, height: '500px' }}>
-                    <CustomTable
+                    <BasicTable
                       rows={data}
                       columns={columns}
                       pageSize={7}
@@ -80,7 +80,9 @@ const KomoverseTable = () => {
                       disableSelectionOnClick
                       disableColumnMenu
                       disableColumnFilter
-                      getRowClassName={(params) => params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'}
+                      getRowClassName={(params: GridRowClassNameParams<GridValidRowModel>) =>
+                        params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
+                      }
                       components={{
                         Footer() {
                           return <MemoizedCustomFooter />
@@ -99,4 +101,4 @@ const KomoverseTable = () => {
   )
 }
 
-export default KomoverseTable
+export default React.memo(KomoverseTable)
