@@ -48,10 +48,55 @@ export function flattenMarketItemsAttributes(data: any) {
   });
 }
 
+function sortByDate(data: any, sortKey: string) {
+  switch (sortKey) {
+    case "DATE_DESC":
+      return data.sort(function (a: any, b: any) {
+        var key1 = new Date(a.created_at);
+        var key2 = new Date(b.created_at);
+
+        if (key1 < key2) {
+          return -1;
+        } else if (key1 == key2) {
+          return 0;
+        } else {
+          return 1;
+        }
+      });
+    case "DATE_ASC":
+      return data.sort(function (a: any, b: any) {
+        var key1 = new Date(a.created_at);
+        var key2 = new Date(b.created_at);
+
+        if (key1 > key2) {
+          return -1;
+        } else if (key1 == key2) {
+          return 0;
+        } else {
+          return 1;
+        }
+      });
+    default:
+      break;
+  }
+}
+
+function sortByPrice(data: any, sortKey: string) {
+  switch (sortKey) {
+    case "PRICE_DESC":
+      return data.sort((a: any, b: any) => b.price - a.price);
+    case "PRICE_ASC":
+      return data.sort((a: any, b: any) => a.price - b.price);
+    default:
+      break;
+  }
+}
+
 export function mapMarketItems(
   data: any,
   selectedFilter: string[],
-  searchKeyword: string
+  searchKeyword: string,
+  sortKey: string
 ) {
   let finalItems: any[] = [];
   finalItems = flattenMarketItemsAttributes(data);
@@ -71,6 +116,14 @@ export function mapMarketItems(
   finalItems = finalItems.filter((item) =>
     item.nft.name.includes(searchKeyword.toLowerCase())
   );
+
+  if (sortKey.includes("PRICE")) {
+    finalItems = sortByPrice(finalItems, sortKey);
+  }
+
+  if (sortKey.includes("DATE")) {
+    finalItems = sortByDate(finalItems, sortKey);
+  }
 
   return finalItems;
 }

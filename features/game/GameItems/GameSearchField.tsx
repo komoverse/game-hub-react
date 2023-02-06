@@ -3,16 +3,25 @@ import Iconify from "@/components/Iconify";
 import {
   Box,
   FormControl,
+  MenuItem,
   OutlinedInput,
   Select,
+  SelectChangeEvent,
   TextField,
 } from "@mui/material";
 
 const GameSearchField = ({
-  setValue,
+  sortKey,
+  setSortKey,
+  setKeyword,
 }: {
-  setValue: Dispatch<SetStateAction<string>>;
+  sortKey: string;
+  setSortKey: Dispatch<SetStateAction<string>>;
+  setKeyword: Dispatch<SetStateAction<string>>;
 }) => {
+  const handleSelectSortKey = (event: SelectChangeEvent) => {
+    setSortKey(event.target.value as string);
+  };
   return (
     <Box
       sx={{
@@ -22,7 +31,7 @@ const GameSearchField = ({
       }}
     >
       <TextField
-        onChange={(event) => setValue(event.target.value)}
+        onChange={(event) => setKeyword(event.target.value)}
         placeholder="Search..."
         sx={{
           flexGrow: 1,
@@ -39,7 +48,8 @@ const GameSearchField = ({
       />
       <FormControl>
         <Select
-          multiple
+          value={sortKey}
+          onChange={handleSelectSortKey}
           input={
             <OutlinedInput
               sx={{
@@ -49,7 +59,12 @@ const GameSearchField = ({
               }}
             />
           }
-        ></Select>
+        >
+          <MenuItem value="DATE_ASC">Date: New to Old</MenuItem>
+          <MenuItem value="DATE_DESC">Date: Old to New</MenuItem>
+          <MenuItem value="PRICE_ASC">Price: Low to High</MenuItem>
+          <MenuItem value="PRICE_DESC">Price: High to Low</MenuItem>
+        </Select>
       </FormControl>
     </Box>
   );
