@@ -37,10 +37,11 @@ const Accordion = styled((props: AccordionProps) => (
 
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
-    expandIcon={<Iconify icon="mdi:chevron-down" sx={{ fontSize: "0.9rem" }} />}
+    expandIcon={<Iconify icon="mdi:chevron-down" />}
     {...props}
   />
 ))(({ theme }) => ({
+  padding: theme.spacing(1),
   backgroundColor: COLOR.backgroundRoot,
   "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
     transform: "rotate(180deg)",
@@ -51,7 +52,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(1),
+  padding: theme.spacing(2),
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 

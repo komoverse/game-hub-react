@@ -6,55 +6,10 @@ import MarketSidebar from "./SidebarFilter";
 import { getCollectionItems, getMarketCollections } from "@/services/games";
 import { useSelector } from "react-redux";
 import { ReduxState } from "@/types/redux";
-import { IFilterOption } from "./types";
 import GameItem from "./GameItem";
-import _intersection from "lodash.intersection";
-
-function mapFilters(
-  data: Array<{
-    nft: {
-      attributes_array: Array<{ [key: string]: string }>;
-    };
-  }>
-) {
-  if (!data) {
-    return {};
-  }
-  const attrs = data.map((item) => item.nft.attributes_array).flat();
-
-  let finalAttrs: IFilterOption = {};
-
-  attrs.forEach((el) => {
-    if (finalAttrs[el.trait_type] === undefined) {
-      finalAttrs = {
-        ...finalAttrs,
-        [el.trait_type]: { values: [el.value] },
-      };
-    } else {
-      if (!finalAttrs[el.trait_type].values.includes(el.value)) {
-        finalAttrs[el.trait_type].values.push(el.value);
-      }
-    }
-  });
-
-  return finalAttrs;
-}
-
-function flattenMarketItems(data: any) {
-  return data.map((item: any) => {
-    const attrs = item.nft.attributes_array.flat();
-    let finalAttrs: string[] = [];
-
-    attrs.forEach((el: any) => {
-      finalAttrs.push(el.value);
-    });
-
-    return {
-      ...item,
-      attributes: finalAttrs,
-    };
-  });
-}
+import GameSearchField from "./GameSearchField";
+import { mapFilters, mapMarketItems } from "./helpers";
+import useDebounce from "@/hooks/useDebounce";
 
 const GameMarket = () => {
   const router = useRouter();
@@ -85,22 +40,17 @@ const GameMarket = () => {
       state.market?.value && Object.values(state.market?.value).flat()
   );
 
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const debouncedSearchKeyword: string = useDebounce<string>(
+    searchKeyword,
+    500
+  );
+
   if (isError || isLoading) {
     return null;
   }
 
-  const marketItems = flattenMarketItems(_marketItems).filter((item: any) => {
-    const intersect = _intersection(selectedFilter, item.attributes);
-
-    if (intersect.length !== 0 && selectedFilter !== undefined) {
-      return item;
-    }
-
-    if (selectedFilter === undefined || selectedFilter.length === 0 ) {
-      return item;
-    }
-  });
-  console.log("🚀 ~ GameMarket ~ marketItems", marketItems);
+  const marketItems = mapMarketItems(_marketItems, selectedFilter, debouncedSearchKeyword)
 
   return (
     <Box
@@ -117,19 +67,60 @@ const GameMarket = () => {
         filters={filters}
       />
       <Box component="section" sx={{ flexGrow: 1, p: 3 }}>
-        <Box sx={{ height: "64px", border: "solid 1px #fff" }}></Box>
+        <GameSearchField setValue={setSearchKeyword} />
         <Box
           display="grid"
           gap={2}
           sx={{
             mt: 4,
             gridTemplateColumns: {
-              xs: "repeat(2, 1fr)",
+              xs: "repeat(1, 1fr)",
+              sm: "repeat(3, 1fr)",
               md: "repeat(4, 1fr)",
               lg: "repeat(5, 1fr)",
             },
           }}
         >
+          {marketItems.map((item: any, i: number) => (
+            <GameItem
+              key={i}
+              imageUrl={item.nft.cached_image_uri}
+              name={item.nft.name}
+              price={item.price}
+              createdDate={item.created_at}
+              currency={item.currency_symbol}
+            />
+          ))}
+          {marketItems.map((item: any, i: number) => (
+            <GameItem
+              key={i}
+              imageUrl={item.nft.cached_image_uri}
+              name={item.nft.name}
+              price={item.price}
+              createdDate={item.created_at}
+              currency={item.currency_symbol}
+            />
+          ))}
+          {marketItems.map((item: any, i: number) => (
+            <GameItem
+              key={i}
+              imageUrl={item.nft.cached_image_uri}
+              name={item.nft.name}
+              price={item.price}
+              createdDate={item.created_at}
+              currency={item.currency_symbol}
+            />
+          ))}
+          {marketItems.map((item: any, i: number) => (
+            <GameItem
+              key={i}
+              imageUrl={item.nft.cached_image_uri}
+              name={item.nft.name}
+              price={item.price}
+              createdDate={item.created_at}
+              currency={item.currency_symbol}
+            />
+          ))}
           {marketItems.map((item: any, i: number) => (
             <GameItem
               key={i}

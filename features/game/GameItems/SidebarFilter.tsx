@@ -71,7 +71,7 @@ const MarketSidebar = ({
     setCurrCollection(val);
     handleClose();
   };
-  const isMobile = useResponsive("down", "sm");
+  const isMobile = useResponsive("down", "md");
   const sidebarWidth = isMobile ? "100%" : "360px";
 
   return (
