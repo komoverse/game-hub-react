@@ -67,7 +67,7 @@ const CustomFooter = () => {
         size='large'
         variant='contained'
         disabled={defaultpage.page === 1 ? true : false}
-        sx={{ color: defaultpage.page !== 1 && COLOR.baseWhite, fontWeight: 500 }}
+        sx={{ color: defaultpage.page !== 1 ? COLOR.baseWhite : '', fontWeight: 500 }}
         onClick={previousPage}
       >
         PREVIOUS
@@ -80,7 +80,7 @@ const CustomFooter = () => {
       >
         NEXT
       </Button>
-    </Box >
+    </Box>
   )
 }
 
