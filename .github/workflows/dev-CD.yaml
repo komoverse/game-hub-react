@@ -16,6 +16,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          port: 22
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd /opt/bitnami/projects/game-hub-react
