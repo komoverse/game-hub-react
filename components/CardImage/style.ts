@@ -8,6 +8,7 @@ export const BoxCard = styled('div')(() => ({
   transform: 'none',
   zIndex: 'auto',
   cursor: 'pointer',
+  width: "100%"
 }));
 
 export const CardActionArea = styled('div')(() => ({
