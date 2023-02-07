@@ -66,7 +66,7 @@ const SidebarFilterField = ({
     (state: ReduxState) => state.market?.value
   );
   const [selectedAttributes, setSelectedAttributes] = useState<string[]>([]);
-  const handleChange = (
+  const handleSelectFilter = (
     event: SelectChangeEvent<typeof selectedAttributes>
   ) => {
     const {
@@ -90,7 +90,7 @@ const SidebarFilterField = ({
             id="demo-multiple-chip"
             multiple
             value={selectedAttributes}
-            onChange={handleChange}
+            onChange={handleSelectFilter}
             input={
               <OutlinedInput
                 id="select-multiple-chip"

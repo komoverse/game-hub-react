@@ -46,11 +46,18 @@ const GameMarket = () => {
     500
   );
 
+  const [sortKey, setSortKey] = useState<string>("DATE_ASC");
+
   if (isError || isLoading) {
     return null;
   }
 
-  const marketItems = mapMarketItems(_marketItems, selectedFilter, debouncedSearchKeyword)
+  const marketItems = mapMarketItems(
+    _marketItems,
+    selectedFilter,
+    debouncedSearchKeyword,
+    sortKey
+  );
 
   return (
     <Box
@@ -67,7 +74,11 @@ const GameMarket = () => {
         filters={filters}
       />
       <Box component="section" sx={{ flexGrow: 1, p: 3 }}>
-        <GameSearchField setValue={setSearchKeyword} />
+        <GameSearchField
+          sortKey={sortKey}
+          setSortKey={setSortKey}
+          setKeyword={setSearchKeyword}
+        />
         <Box
           display="grid"
           gap={2}
