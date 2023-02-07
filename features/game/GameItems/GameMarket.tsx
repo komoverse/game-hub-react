@@ -6,18 +6,32 @@ import {
   Button,
   Checkbox,
   FormControlLabel,
-  IconButton,
+  Grid,
+  Paper,
   Typography,
+  styled,
 } from "@mui/material";
-import MarketSidebar from "./SidebarFilter";
-import { getCollectionItems, getMarketCollections } from "@/services/games";
 import { useSelector } from "react-redux";
 import { ReduxState } from "@/types/redux";
+import MarketSidebar from "./SidebarFilter";
+import { getCollectionItems, getMarketCollections } from "@/services/games";
 import GameItem from "./GameItem";
 import GameSearchField from "./GameSearchField";
 import { mapFilters, mapMarketItems } from "./helpers";
 import useDebounce from "@/hooks/useDebounce";
 import Iconify from "@/components/Iconify";
+import { getMarketItemById } from "@/services/homepage";
+import { ErrorResponseDto } from "@/types/response";
+import actionNft from "@/store/detailNft/action";
+import { Modal } from "@/components/index";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 const GameMarket = () => {
   const router = useRouter();
@@ -36,6 +50,25 @@ const GameMarket = () => {
   } = useQuery(["getCollectionItems", currCollection], () =>
     getCollectionItems(currCollection)
   );
+
+  const [openModalDetail, setOpenModalDetail] = useState<boolean>(false);
+  const [listingId, setListingId] = useState<string>("");
+  const { isFetching: isFetchItemDetail } = useQuery(
+    ["marketItemById", listingId],
+    () => getMarketItemById(listingId),
+    {
+      staleTime: 3000,
+      cacheTime: 3000,
+      enabled: !!listingId,
+      onError: (error: ErrorResponseDto) => error,
+      onSuccess: (data) => actionNft.setDetailNft(data),
+    }
+  );
+
+  const onClickMarketItem = (listing_id: string) => {
+    setOpenModalDetail(true);
+    setListingId(listing_id);
+  };
 
   useEffect(() => {
     if (collections) {
@@ -83,7 +116,7 @@ const GameMarket = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: { xs: "column", md: "row" },
+        flexDirection: { xs: "column", lg: "row" },
         position: "relative",
       }}
     >
@@ -103,7 +136,7 @@ const GameMarket = () => {
           <Button color="info" onCanPlay={() => refetch()}>
             <Iconify icon="mdi:sync" height={24} width={24} color="#29b6f6" />
           </Button>
-          {/* <FormControlLabel
+          <FormControlLabel
             control={
               <Checkbox
                 checked={isDisplayUserItems}
@@ -111,7 +144,7 @@ const GameMarket = () => {
               />
             }
             label="Show only your items"
-          /> */}
+          />
         </Box>
 
         {isLoginBanner && (
@@ -125,32 +158,27 @@ const GameMarket = () => {
         )}
 
         {!isLoginBanner && (
-          <Box
-            display="grid"
-            gap={2}
-            sx={{
-              mt: 1,
-              gridTemplateColumns: {
-                xs: "repeat(1, 1fr)",
-                sm: "repeat(3, 1fr)",
-                md: "repeat(4, 1fr)",
-                lg: "repeat(5, 1fr)",
-              },
-            }}
-          >
+          <Grid container spacing={2}>
             {marketItems.map((item: any, i: number) => (
-              <GameItem
-                key={i}
-                imageUrl={item.nft.cached_image_uri}
-                name={item.nft.name}
-                price={item.price}
-                createdDate={item.created_at}
-                currency={item.currency_symbol}
-              />
+              <Grid item xs={6} sm={4} lg={2} key={i}>
+                <GameItem
+                  itemId={item.list_state}
+                  imageUrl={item.nft.cached_image_uri}
+                  name={item.nft.name}
+                  price={item.price}
+                  createdDate={item.created_at}
+                  currency={item.currency_symbol}
+                  onClickMarketItem={onClickMarketItem}
+                />
+              </Grid>
             ))}
-          </Box>
+          </Grid>
         )}
       </Box>
+
+      {!isFetchItemDetail && (
+        <Modal open={openModalDetail} setOpen={setOpenModalDetail} />
+      )}
     </Box>
   );
 };
