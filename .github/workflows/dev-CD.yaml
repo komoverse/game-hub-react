@@ -19,7 +19,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
-        port: 22
+        port: 3113
         script: |
           cd /opt/bitnami/projects/game-hub-react
           git pull origin develop
