@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js CD
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
+        key: ${{ secrets.KEY }}
         port: 22
         script: |
           cd /opt/bitnami/projects/game-hub-react
