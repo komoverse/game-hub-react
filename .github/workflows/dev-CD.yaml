@@ -22,4 +22,6 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         port: 22
         script: |
-          ls -al
+          sudo cp /opt/bitnami/projects/game-hub-react
+          git pull origin develop
+          pm2 restart game-hub-react
