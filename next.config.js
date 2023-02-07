@@ -11,13 +11,9 @@ module.exports = {
       'cdn.shyft.to',
       'www.arweave.net',
       'komo.s3.ap-southeast-1.amazonaws.com',
+      'hub.komoverse.dev',
+      'hub.komoverse.io',
+      'komo.s3.amazonaws.com',
     ],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'komo.s3.ap-southeast-1.amazonaws.com',
-        pathname: '/game_files/**',
-      }
-    ]
   },
 };

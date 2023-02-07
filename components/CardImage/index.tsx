@@ -1,7 +1,9 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import Image from 'next/image'
 import { BoxCard, BoxContent, BoxImage, CardActionArea } from './style'
+import dynamic from 'next/dynamic'
+
+const Image = dynamic(() => import('next/image'), { ssr: false })
 
 type CardImageProps = {
   image_url: string,
