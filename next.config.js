@@ -12,5 +12,12 @@ module.exports = {
       'www.arweave.net',
       'komo.s3.ap-southeast-1.amazonaws.com',
     ],
+    remotePatterns: [
+      {
+        protocol: 'https:',
+        hostname: 'komo.s3.ap-southeast-1.amazonaws.com',
+        pathname: '/game_files/**',
+      }
+    ]
   },
 };
