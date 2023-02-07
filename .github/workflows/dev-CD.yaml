@@ -18,6 +18,5 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           git pull origin develop
-          npm install
           cd /opt/bitnami/projects/game-hub-react
           pm2 restart game-hub-react
