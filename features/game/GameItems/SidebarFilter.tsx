@@ -82,6 +82,7 @@ const MarketSidebar = ({
         borderRight: "solid 1px",
         borderColor: "divider",
         bgcolor: COLOR.backgroundRoot,
+        position: "sticky",
       }}
     >
       <Box

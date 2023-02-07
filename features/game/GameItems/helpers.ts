@@ -96,7 +96,9 @@ export function mapMarketItems(
   data: any,
   selectedFilter: string[],
   searchKeyword: string,
-  sortKey: string
+  sortKey: string,
+  isDisplayUserItems: boolean,
+  userWalletAddres: string
 ) {
   let finalItems: any[] = [];
   finalItems = flattenMarketItemsAttributes(data);
@@ -123,6 +125,12 @@ export function mapMarketItems(
 
   if (sortKey.includes("DATE")) {
     finalItems = sortByDate(finalItems, sortKey);
+  }
+
+  if (isDisplayUserItems && userWalletAddres) {
+    finalItems = finalItems.filter(
+      (item) => item.seller_address === userWalletAddres
+    );
   }
 
   return finalItems;
