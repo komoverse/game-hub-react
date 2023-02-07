@@ -19,6 +19,7 @@ jobs:
         key: ${{ secrets.KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         port: 22
+        debug: true
         script: |
           cd /opt/bitnami/projects/game-hub-react
           git pull origin develop
