@@ -19,4 +19,4 @@ jobs:
         script: |
           cd /opt/bitnami/projects/game-hub-react
           git pull origin develop
-          pm2 restart game-hub-react
+      ## pm2 restart game-hub-react
