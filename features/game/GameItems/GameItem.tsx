@@ -12,15 +12,23 @@ const GameItem = ({
   price,
   createdDate,
   currency,
+  onClickMarketItem,
+  itemId,
 }: {
   imageUrl: string;
   name: string;
   price: number;
   createdDate: string;
   currency: string;
+  onClickMarketItem: (args: string) => void;
+  itemId: string;
 }) => {
   return (
-    <CardImage image_url={imageUrl}>
+    <CardImage
+      width="100%"
+      image_url={imageUrl}
+      onClick={() => onClickMarketItem(itemId)}
+    >
       <CardContent
         sx={{
           display: "flex",

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Iconify from "@/components/Iconify";
 import {
@@ -71,8 +71,14 @@ const MarketSidebar = ({
     setCurrCollection(val);
     handleClose();
   };
-  const isMobile = useResponsive("down", "md");
-  const sidebarWidth = isMobile ? "100%" : "360px";
+  const isNotDesktop = useResponsive("down", "lg");
+  const sidebarWidth = isNotDesktop ? "100%" : "360px";
+
+  useEffect(() => {
+    if (isNotDesktop) {
+      setIsExpand(true);
+    }
+  }, [isNotDesktop]);
 
   return (
     <Box
@@ -93,7 +99,7 @@ const MarketSidebar = ({
         color={COLOR.baseGray}
       >
         {isExpand && <Typography variant="overline">filters</Typography>}
-        {!isMobile && (
+        {!isNotDesktop && (
           <Iconify
             onClick={() => setIsExpand(!isExpand)}
             icon={isExpand ? "mdi:keyboard-tab-reverse" : "mdi:keyboard-tab"}
