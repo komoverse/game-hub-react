@@ -14,7 +14,7 @@ module.exports = {
     ],
     remotePatterns: [
       {
-        protocol: 'https:',
+        protocol: 'https',
         hostname: 'komo.s3.ap-southeast-1.amazonaws.com',
         pathname: '/game_files/**',
       }
