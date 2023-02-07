@@ -14,11 +14,11 @@ jobs:
         run: yarn
       - name: Build dependencies
         run: yarn build
-      - name: Archive production artifact
+      - name: Archive development artifact
         uses: actions/upload-artifact@v3
         with:
-          name: dist-folder
-          path: ./dist/
+          name: .next 
+          path: ./opt/bitnami/projects/game-hub-react/
   deploy:
     name: Deploy
     needs: build
@@ -30,13 +30,13 @@ jobs:
         uses: actions/download-artifact@v3
         with: 
           name: dist-folder
-          path: ./dist/
+          path: ./next/
       - name: Deploy to react.komoverse.dev
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with: 
-          server: ${{ secrets.ftp_server }}
-          username: ${{ secrets.ftp_username }}
-          password: ${{ secrets.ftp_password }}
-          port: ${{ secrets.ftp_port }}
-          local-dir: ./dist/
-          server-dir: ${{ secrets.dev_path }}
+          server: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PRIVATE_KEY }}
+          port: 21
+          local-dir: ./next/
+          server-dir: ${{ secrets.PATH }}
