@@ -20,5 +20,5 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: 22
-        script: |
-          cd /opt/bitnami/projects/game-hub-react
+#         script: |
+#           cd /opt/bitnami/projects/game-hub-react
