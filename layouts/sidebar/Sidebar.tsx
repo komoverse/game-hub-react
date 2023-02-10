@@ -9,6 +9,7 @@ import {
 import SidebarMenuItem from "./SidebarMenuItem";
 import useResponsive from "@/hooks/useResponsive";
 import { SidebarProps } from "./types";
+import { COLOR } from "@/utils/globalVariable";
 
 export default function Sidebar({ isOpen, setIsOpen, isGamePage, menuItems, isSuccess }: SidebarProps) {
   const isMobile = useResponsive("down", "md");
@@ -26,7 +27,7 @@ export default function Sidebar({ isOpen, setIsOpen, isGamePage, menuItems, isSu
         [`& .MuiDrawer-paper`]: {
           width: SIDEBAR_WIDTH,
           boxSizing: "border-box",
-          backgroundColor: "#000",
+          backgroundColor: COLOR.backgroundRoot,
           backgroundImage: "none",
         },
       }}
