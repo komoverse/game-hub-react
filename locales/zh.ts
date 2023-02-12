@@ -27,5 +27,15 @@ const lang = {
     topPlayers: '顶级球员',
     tweets: '鸣叫',
   },
+  auth: {
+    signInGoogle: '用谷歌登录',
+    signInTwitter: '用Twitter登录',
+    signInDiscord: '用Dicord登录',
+    recommended: '推荐',
+    signInWith: '用...登录',
+    earnReward: '赚取奖励',
+    noChromeExtension: '没有安装Chrome扩展程序',
+    buyNftYourPhone: '在您的手机上购买NFT',
+  },
 };
 export default lang;

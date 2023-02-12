@@ -27,5 +27,15 @@ const lang = {
     topPlayers: 'शीर्ष खिलाड़ी',
     tweets: 'ट्वीट्स',
   },
+  auth: {
+    signInGoogle: 'Google के साथ साइन इन करें',
+    signInTwitter: 'Twitter के साथ साइन इन करें',
+    signInDiscord: 'Dicord के साथ साइन इन करें',
+    recommended: 'अनुशंसित',
+    signInWith: 'साथ साइन इन करें',
+    earnReward: 'इनाम प्राप्त करें',
+    noChromeExtension: 'कोई Chrome एक्सटेंशन इंस्टॉल नहीं है',
+    buyNftYourPhone: 'अपने फोन पर NFT खरीदें',
+  },
 };
 export default lang;

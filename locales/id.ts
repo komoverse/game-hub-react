@@ -27,5 +27,15 @@ const lang = {
     topPlayers: 'Pemain Top',
     tweets: 'Tweet',
   },
+  auth: {
+    signInGoogle: 'Masuk dengan Google',
+    signInTwitter: 'Masuk dengan Twitter',
+    signInDiscord: 'Masuk dengan Dicord',
+    recommended: 'Direkomendasikan',
+    signInWith: 'Masuk dengan',
+    earnReward: 'Dapatkan hadiah',
+    noChromeExtension: 'Tidak ada ekstensi Chrome yang terpasang',
+    buyNftYourPhone: 'Beli NFT di HP Anda',
+  },
 };
 export default lang;
