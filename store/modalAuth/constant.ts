@@ -1,0 +1,3 @@
+export const SET_MODAL_AUTH = 'SET_MODAL_AUTH';
+export const CLEAR_MODAL_AUTH = 'CLEAR_MODAL_AUTH';
+export const UPDATE_MODAL_AUTH = 'UPDATE_MODAL_AUTH';

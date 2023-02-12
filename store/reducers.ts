@@ -1,9 +1,11 @@
-import lang from "./language/reducer";
-import detailNft from "./detailNft/reducer";
-import transactionHistory from "./historyTransaction/reducer";
-import pagination from "./pagination/reducer";
-import sidebar from "./sidebar/reducer";
-import market from "./market/reducer";
+import lang from './language/reducer';
+import detailNft from './detailNft/reducer';
+import transactionHistory from './historyTransaction/reducer';
+import pagination from './pagination/reducer';
+import sidebar from './sidebar/reducer';
+import market from './market/reducer';
+import modalAuth from './modalAuth/reducer';
+import wallets from './wallets/reducer';
 
 const reducers = {
   lang,
@@ -12,6 +14,8 @@ const reducers = {
   pagination,
   sidebar,
   market,
+  modalAuth,
+  wallets,
 };
 
 export default reducers;
