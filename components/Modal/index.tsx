@@ -2,19 +2,20 @@ import React from 'react'
 import { Breadcrumbs, Dialog, DialogContent, DialogTitle, Typography } from '@mui/material'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { COLOR } from '@/utils/globalVariable';
-import actionNtt from '@/store/detailNft/action'
+import actionNft from '@/store/detailNft/action'
 // import actionTransaction from '@/store/historyTransaction/action'
 import { NftDetails, BasicTable } from '@/components/index';
-
-type ModalTProps = {
-  open: boolean,
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-}
+import { useSelector } from 'react-redux';
+import { ReduxState } from '@/types/redux';
+import { MarketItemDto } from '@/types/detail';
+import { ModalTProps } from '@/types/general';
 
 const Modal = ({ open, setOpen }: ModalTProps) => {
+  const data = useSelector((state: ReduxState) => state.detailNft as MarketItemDto)
+
   const handleClose = () => {
     setOpen(!open)
-    actionNtt.clearDetailNft()
+    actionNft.clearDetailNft()
     // actionTransaction.clearHistoryTransaction()
   }
 
@@ -36,7 +37,7 @@ const Modal = ({ open, setOpen }: ModalTProps) => {
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
           <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>Komoverse</Typography>
           <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>Item</Typography>
-          <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>heheh</Typography>
+          <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>{data.nft?.name}</Typography>
         </Breadcrumbs>
       </DialogTitle>
       <DialogContent sx={{ backgroundColor: COLOR.baseSemiBlack }}>
