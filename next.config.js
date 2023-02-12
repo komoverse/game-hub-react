@@ -14,6 +14,8 @@ module.exports = {
       'hub.komoverse.dev',
       'hub.komoverse.io',
       'komo.s3.amazonaws.com',
+      'avatars.githubusercontent.com',
+      'raw.githubusercontent.com',
     ],
   },
 };
