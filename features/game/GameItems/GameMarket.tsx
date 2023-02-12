@@ -21,7 +21,7 @@ import { mapFilters, mapMarketItems } from "./helpers";
 import useDebounce from "@/hooks/useDebounce";
 import Iconify from "@/components/Iconify";
 import { getMarketItemById } from "@/services/homepage";
-import { ErrorResponseDto } from "@/types/response";
+import { ErrorResponseDto } from "@/types/general";
 import actionNft from "@/store/detailNft/action";
 import { Modal } from "@/components/index";
 
