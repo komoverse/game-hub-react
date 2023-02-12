@@ -21,6 +21,8 @@ export const COLOR = {
   baseBackgroundButtonGray: '#323232',
   baseColumnBlack: '#161616',
   baseButtonBlack: '#121212',
+  baseSemiTextGray: '#868686',
+  baseLightTextGray: '#A5A5A5',
 };
 
 export const GRADIENT = {
