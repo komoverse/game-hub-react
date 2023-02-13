@@ -1,3 +1,5 @@
-export default function Mint() {
-  return <div style={{ height: "100vw" }}>Minst</div>;
+import Mints from "@/features/game/Mint";
+
+export default function MintPage() {
+  return <Mints />
 }

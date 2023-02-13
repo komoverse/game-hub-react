@@ -26,6 +26,8 @@ const lang = {
     reviews: 'Reviews',
     topPlayers: 'शीर्ष खिलाड़ी',
     tweets: 'ट्वीट्स',
+    commingSoon: 'जल्द ही आ रहा है',
+    commingSoonDescription: 'मिन्ट के बाद यहां फिर से जाएं और आइटम देखें।',
   },
   auth: {
     signInGoogle: 'Google के साथ साइन इन करें',

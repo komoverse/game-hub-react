@@ -26,6 +26,8 @@ const lang = {
     reviews: '点评',
     topPlayers: '顶级球员',
     tweets: '鸣叫',
+    commingSoon: '即将推出',
+    commingSoonDescription: '检查回来，以查看项目。',
   },
   auth: {
     signInGoogle: '用谷歌登录',

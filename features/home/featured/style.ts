@@ -1,3 +1,4 @@
+import { GRADIENT } from '@/utils/globalVariable';
 import { Paper, styled } from '@mui/material';
 
 export const Root = styled('div')(() => ({
@@ -16,8 +17,7 @@ export const Item = styled(Paper)(() => ({
   borderRadius: '4px',
   boxShadow:
     'rgb(0 0 0 / 20 %) 0px 2px 1px - 1px, rgb(0 0 0 / 14 %) 0px 1px 1px 0px, rgb(0 0 0 / 12 %) 0px 1px 3px 0px',
-  backgroundImage:
-    'linearGradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
+  backgroundImage: GRADIENT.secondary,
   overflow: 'hidden',
   flexShrink: 0,
   position: 'relative',

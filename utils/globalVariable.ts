@@ -22,11 +22,16 @@ export const COLOR = {
   baseColumnBlack: '#161616',
   baseButtonBlack: '#121212',
   baseError: '#F4636F',
+  baseSemiTextGray: '#868686',
+  baseLightTextGray: '#A5A5A5',
+  baseEmptyBackground: '#202020',
 };
 
 export const GRADIENT = {
   primary:
     'radial-gradient(292.31% 1418.72% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)',
+  secondary:
+    'linearGradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
 };
 
 export const RADIUS = {
