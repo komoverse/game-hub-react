@@ -26,6 +26,9 @@ const lang = {
     reviews: 'Reviews',
     topPlayers: 'Top Players',
     tweets: 'Tweets',
+    commingSoon: 'Comming Soon',
+    commingSoonDescription:
+      'Check back here after the mint has completed to view items.',
   },
 };
 export default lang;

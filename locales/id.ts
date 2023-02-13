@@ -26,6 +26,9 @@ const lang = {
     reviews: 'Review',
     topPlayers: 'Pemain Top',
     tweets: 'Tweet',
+    commingSoon: 'Akan Segera Datang',
+    commingSoonDescription:
+      'Periksa kembali di sini setelah mint selesai untuk melihat item.',
   },
 };
 export default lang;
