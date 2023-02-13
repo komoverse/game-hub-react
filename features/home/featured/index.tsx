@@ -10,6 +10,7 @@ import { BoxContent, BoxVideo, Item, Root } from './style';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from "swiper";
 import { SectionWrapperCard } from '@/utils/globalVariable';
+import useResponsive from '@/hooks/useResponsive';
 
 const PopupVidio = ({ videoId, isOpen, setOpen }: {
   videoId: string,
@@ -31,6 +32,8 @@ const Featured = () => {
   const [activeVideo, setActiveVideo] = React.useState<string | null>(null);
   const [isOpen, setOpen] = React.useState(false)
   const [vidioId, setVidioId] = React.useState<string>('')
+  const smDown = useResponsive('down', 'sm');
+  const mdUp = useResponsive('up', 'md');
 
   const { data } = useQuery(['listFeatured'], () => getListFeatured(), {
     staleTime: 3000,
@@ -62,7 +65,7 @@ const Featured = () => {
             navigation={true}
             allowTouchMove={false}
             modules={[Navigation]}
-            className="featured-swipper"
+            className={smDown || mdUp ? 'featured-swipperSmDown' : "featured-swipper"}
           >
             {data?.map((video: ListFeaturedDto) => {
               const idYT = video.youtube_url.split('=')[1]
