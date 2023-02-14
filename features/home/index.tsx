@@ -2,7 +2,7 @@ import { Container } from "@mui/system";
 import Carrousel from "@/components/Carrousel";
 import { useQuery } from "react-query";
 import { getSlideshow } from "services/slideshow";
-import Featured from "./Featured";
+import Featured from "./FeaturedContent";
 import NewListings from "./NewListing";
 import Events from "./Event";
 
