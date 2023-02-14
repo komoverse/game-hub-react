@@ -1,4 +1,4 @@
-import * as ActionType from "./constants";
+import * as ActionType from './constants';
 
 const initState = {};
 

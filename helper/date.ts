@@ -1,15 +1,15 @@
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-import _isBetween from "dayjs/plugin/isBetween";
-import relativeTime from "dayjs/plugin/relativeTime";
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import _isBetween from 'dayjs/plugin/isBetween';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(_isBetween);
 dayjs.extend(relativeTime);
 
-dayjs.tz.setDefault("Asia/Jakarta");
+dayjs.tz.setDefault('Asia/Jakarta');
 
 export function formatDate(date: string, format: string) {
   const formatedDate = dayjs(date).format(format);
@@ -18,7 +18,7 @@ export function formatDate(date: string, format: string) {
 }
 
 export function getCurrentDate() {
-  const currentDate = dayjs().format("MMM D, YYYY");
+  const currentDate = dayjs().format('MMM D, YYYY');
 
   return currentDate;
 }
@@ -26,7 +26,7 @@ export function getCurrentDate() {
 export function isBetween(date: string, startDate: string, endDate: string) {
   const resDate = dayjs(date);
 
-  return resDate.isBetween(startDate, endDate, "day", "[)");
+  return resDate.isBetween(startDate, endDate, 'day', '[)');
 }
 
 export function isBefore(date: string, startDate: string) {
@@ -44,7 +44,7 @@ export function isAfter(date: string, endDate: string) {
 export function getDiff(date: string, targetDate: string) {
   const resDate = dayjs(date);
 
-  return resDate.diff(targetDate, "day");
+  return resDate.diff(targetDate, 'day');
 }
 
 export function dateFromNow(date: string) {

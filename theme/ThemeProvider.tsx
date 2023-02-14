@@ -1,24 +1,24 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
 import {
   ThemeProvider as MUIThemeProvider,
   createTheme,
   StyledEngineProvider,
-} from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { Work_Sans } from "@next/font/google";
-import customTypography from "./Typography";
+} from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Work_Sans } from '@next/font/google';
+import customTypography from './Typography';
 
 export const workSans = Work_Sans({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-  fallback: ["Helvetica", "Arial", "sans-serif"],
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 
 const palette = {
-  mode: "dark",
+  mode: 'dark',
   primary: {
-    main: "#32cd32",
+    main: '#32cd32',
   },
 };
 

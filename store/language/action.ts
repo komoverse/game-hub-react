@@ -1,6 +1,6 @@
-import i18next from "i18next";
-import store from "../store";
-import * as ActionType from "./constant";
+import i18next from 'i18next';
+import store from '../store';
+import * as ActionType from './constant';
 
 const languageAction = {
   changeLanguage: (value: string) => {

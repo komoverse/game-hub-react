@@ -1,4 +1,4 @@
-import store from "./store";
+import store from './store';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {

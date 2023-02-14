@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useQuery } from "react-query";
-import { useTranslation } from "react-i18next";
+import { useState } from 'react';
+import { useQuery } from 'react-query';
+import { useTranslation } from 'react-i18next';
 import {
   TextField,
   Autocomplete,
@@ -8,12 +8,12 @@ import {
   ListItemAvatar,
   Avatar,
   ListItemText,
-} from "@mui/material";
-import { Iconify } from "@/components/index";
-import { getSearcContent } from "@/services/search";
-import useDebounce from "@/hooks/useDebounce";
-import { useRouter } from "next/router";
-import { shortenArbitraryText } from "@/utils/shorten";
+} from '@mui/material';
+import { Iconify } from '@/components/index';
+import { getSearcContent } from '@/services/search';
+import useDebounce from '@/hooks/useDebounce';
+import { useRouter } from 'next/router';
+import { shortenArbitraryText } from '@/utils/shorten';
 
 interface SearchContent {
   id: string;
@@ -27,17 +27,17 @@ export default function SearchField() {
   const { t } = useTranslation();
 
   const [open, setOpen] = useState(false);
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState('');
   const debouncedKeyword: string = useDebounce<string>(keyword, 500);
 
   const { data, isLoading } = useQuery<readonly SearchContent[] | undefined>(
-    ["searchContent", debouncedKeyword],
+    ['searchContent', debouncedKeyword],
     () => getSearcContent(debouncedKeyword)
   );
 
   const router = useRouter();
   const onClickOption = (category: string, path: string) => {
-    if (category === "game") {
+    if (category === 'game') {
       const nextRoute = `/${path}`;
       router.push(nextRoute, nextRoute);
       return;
@@ -55,9 +55,9 @@ export default function SearchField() {
       id="asynchronous-demo"
       size="small"
       sx={{
-        width: { xs: "320px", md: "553px" },
-        flexGrow: { xs: "1" },
-        borderRadius: "1rem",
+        width: { xs: '320px', md: '553px' },
+        flexGrow: { xs: '1' },
+        borderRadius: '1rem',
       }}
       open={open}
       onOpen={() => {
@@ -72,17 +72,17 @@ export default function SearchField() {
       }}
       groupBy={(option) => option.category}
       isOptionEqualToValue={(option, value) => option.title === value.title}
-      getOptionLabel={(option) => option.title || ""}
+      getOptionLabel={(option) => option.title || ''}
       options={data || []}
       renderOption={(_, option) => {
         if (!option.id) return;
         return (
           <ListItemButton
             onClick={() => onClickOption(option.category, option.id)}
-            sx={{ p: "8px 16px 8px 24px" }}
+            sx={{ p: '8px 16px 8px 24px' }}
           >
             {option.img_url && (
-              <ListItemAvatar sx={{ minWidth: "40px" }}>
+              <ListItemAvatar sx={{ minWidth: '40px' }}>
                 <Avatar
                   variant="rounded"
                   alt={`image of ${option.title}`}
@@ -96,14 +96,14 @@ export default function SearchField() {
               secondary={
                 option.description
                   ? shortenArbitraryText(option.description, 70)
-                  : ""
+                  : ''
               }
               primaryTypographyProps={{
-                fontWeight: "semibold",
-                fontSize: "medium",
+                fontWeight: 'semibold',
+                fontSize: 'medium',
               }}
               secondaryTypographyProps={{
-                fontSize: "small",
+                fontSize: 'small',
               }}
             />
           </ListItemButton>
@@ -113,19 +113,19 @@ export default function SearchField() {
         <TextField
           {...params}
           sx={{
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "2rem",
+            '& .MuiOutlinedInput-root': {
+              borderRadius: '2rem',
 
               legend: {
-                marginLeft: "30px",
+                marginLeft: '30px',
               },
             },
-            "& .MuiAutocomplete-inputRoot": {
-              paddingLeft: "20px !important",
-              borderRadius: "2rem",
+            '& .MuiAutocomplete-inputRoot': {
+              paddingLeft: '20px !important',
+              borderRadius: '2rem',
             },
           }}
-          placeholder={t("navbar.search") || ""}
+          placeholder={t('navbar.search') || ''}
           InputProps={{
             ...params.InputProps,
             startAdornment: (

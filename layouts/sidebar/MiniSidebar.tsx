@@ -1,18 +1,11 @@
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import {
-  List,
-  ListItem,
-  ListItemIcon,
-} from "@mui/material";
-import {
-  APPBAR_DESKTOP,
-  APPBAR_MOBILE,
-} from "../constants";
-import { SidebarProps } from "./types";
-import { sidebarHeader } from "../constants";
-import { Iconify } from "@/components/index";
-import { COLOR } from "@/utils/globalVariable";
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import { List, ListItem, ListItemIcon } from '@mui/material';
+import { APPBAR_DESKTOP, APPBAR_MOBILE } from '../constants';
+import { SidebarProps } from './types';
+import { sidebarHeader } from '../constants';
+import { Iconify } from '@/components/index';
+import { COLOR } from '@/utils/globalVariable';
 
 export default function MiniSidebar({
   isOpen,
@@ -29,14 +22,14 @@ export default function MiniSidebar({
     <Drawer
       variant="persistent"
       sx={{
-        width: isOpen && isGamePage ? "58px" : "0",
+        width: isOpen && isGamePage ? '58px' : '0',
         flexShrink: 0,
         [`& .MuiDrawer-paper`]: {
-          width: "58px",
-          overflow: "hidden",
-          boxSizing: "border-box",
+          width: '58px',
+          overflow: 'hidden',
+          boxSizing: 'border-box',
           backgroundColor: COLOR.backgroundRoot,
-          backgroundImage: "none",
+          backgroundImage: 'none',
         },
       }}
       hideBackdrop
@@ -67,7 +60,7 @@ export default function MiniSidebar({
           <ListItem key="mints">
             <ListItemIcon>
               <Iconify
-                icon={sidebarHeader["resource"].icon}
+                icon={sidebarHeader['resource'].icon}
                 height={24}
                 width={24}
               />

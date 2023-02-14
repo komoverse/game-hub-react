@@ -1,10 +1,10 @@
-import * as ActionType from "./constant";
+import * as ActionType from './constant';
 
 const initState = {
-  code: "id",
+  code: 'id',
   list: [
-    { code: "eng", text: "English" },
-    { code: "id", text: "Indonesia" },
+    { code: 'eng', text: 'English' },
+    { code: 'id', text: 'Indonesia' },
   ],
 };
 

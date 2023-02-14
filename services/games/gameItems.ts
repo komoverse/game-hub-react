@@ -1,5 +1,5 @@
-import komoverseAxiosIns from "helper/headers";
-import { GAME_MARKET_COLLECTIONS, GAME_COLLECTION_ITEMS } from "helper/url";
+import komoverseAxiosIns from 'helper/headers';
+import { GAME_MARKET_COLLECTIONS, GAME_COLLECTION_ITEMS } from 'helper/url';
 
 export const getMarketCollections = async (gameId: string) => {
   const { data } = await komoverseAxiosIns.get(
