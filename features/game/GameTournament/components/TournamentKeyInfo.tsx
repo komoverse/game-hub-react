@@ -1,10 +1,10 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
-import { COLOR } from "@/utils/globalVariable";
-import { TournamentContentWrapper } from "../styles";
-import { formatDate } from "@/helper/date";
+import { COLOR } from '@/utils/globalVariable';
+import { TournamentContentWrapper } from '../styles';
+import { formatDate } from '@/helper/date';
 
 const TournamentKeyInfo = ({
   prize,
@@ -23,8 +23,8 @@ const TournamentKeyInfo = ({
         <TournamentContentWrapper
           sx={{
             background: COLOR.backgroundTableStriped1,
-            padding: "16px",
-            height: "100%",
+            padding: '16px',
+            height: '100%',
           }}
         >
           <Typography variant="body2" color="primary" fontWeight={500}>
@@ -39,17 +39,17 @@ const TournamentKeyInfo = ({
         <TournamentContentWrapper
           sx={{
             background: COLOR.backgroundTableStriped1,
-            padding: "16px",
-            height: "100%",
+            padding: '16px',
+            height: '100%',
           }}
         >
           <Typography variant="body2" color="primary" fontWeight={500}>
             Tournament Dates
           </Typography>
           <Typography variant="body2" fontWeight={300}>
-            {`${formatDate(startTime, "MMMM D [at] HH:mm A")} — ${formatDate(
+            {`${formatDate(startTime, 'MMMM D [at] HH:mm A')} — ${formatDate(
               endTime,
-              "MMMM D [at] HH:mm A"
+              'MMMM D [at] HH:mm A'
             )}`}
           </Typography>
         </TournamentContentWrapper>
@@ -58,8 +58,8 @@ const TournamentKeyInfo = ({
         <TournamentContentWrapper
           sx={{
             background: COLOR.backgroundTableStriped1,
-            padding: "16px",
-            height: "100%",
+            padding: '16px',
+            height: '100%',
           }}
         >
           <Typography variant="body2" color="primary" fontWeight={500}>

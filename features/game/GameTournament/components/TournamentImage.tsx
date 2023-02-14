@@ -1,7 +1,7 @@
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
-import { ImageStyled, TournamentContentWrapper, VideoStyled } from "../styles";
-import { regexImageFileValidation } from "@/utils/regex";
+import { ImageStyled, TournamentContentWrapper, VideoStyled } from '../styles';
+import { regexImageFileValidation } from '@/utils/regex';
 
 const TournamnetImage = ({ bannerUrl }: { bannerUrl: string }) => {
   const isContentImage = (url: string) => {
@@ -18,13 +18,7 @@ const TournamnetImage = ({ bannerUrl }: { bannerUrl: string }) => {
             height={100}
           />
         ) : (
-          <VideoStyled
-            src={bannerUrl}
-            autoPlay
-            loop
-            playsInline
-            muted
-          />
+          <VideoStyled src={bannerUrl} autoPlay loop playsInline muted />
         )}
       </TournamentContentWrapper>
     </Grid>

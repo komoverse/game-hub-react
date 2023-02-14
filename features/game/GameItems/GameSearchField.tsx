@@ -71,3 +71,4 @@ const GameSearchField = ({
 };
 
 export default GameSearchField;
+

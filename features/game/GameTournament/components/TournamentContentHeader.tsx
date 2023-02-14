@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
-import { formatDate, isAfter, isBefore, isBetween } from "@/helper/date";
-import { COLOR, GRADIENT } from "@/utils/globalVariable";
+import { formatDate, isAfter, isBefore, isBetween } from '@/helper/date';
+import { COLOR, GRADIENT } from '@/utils/globalVariable';
 
 const Countdown = ({ startTime }: { startTime: string }) => {
   const [days, setDays] = useState(0);
@@ -27,22 +27,22 @@ const Countdown = ({ startTime }: { startTime: string }) => {
   }, [startTime]);
 
   const dayOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
   ][new Date(startTime).getDay()];
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          gap: "8px",
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: '8px',
         }}
       >
         <Typography variant="h3" fontWeight={500}>
@@ -50,18 +50,18 @@ const Countdown = ({ startTime }: { startTime: string }) => {
         </Typography>
         <Box
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "8px",
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '8px',
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "flex-end", gap: "8px" }}>
+          <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
             <Typography
               variant="h3"
               fontWeight={500}
-              sx={{ fontVariantNumeric: "tabular-nums" }}
+              sx={{ fontVariantNumeric: 'tabular-nums' }}
             >
-              {days < 10 ? "0" + days : days}
+              {days < 10 ? '0' + days : days}
             </Typography>
             <Typography
               variant="body2"
@@ -72,13 +72,13 @@ const Countdown = ({ startTime }: { startTime: string }) => {
               days
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "flex-end", gap: "8px" }}>
+          <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
             <Typography
               variant="h3"
               fontWeight={500}
-              sx={{ fontVariantNumeric: "tabular-nums" }}
+              sx={{ fontVariantNumeric: 'tabular-nums' }}
             >
-              {hours < 10 ? "0" + hours : hours}
+              {hours < 10 ? '0' + hours : hours}
             </Typography>
             <Typography
               variant="body2"
@@ -89,13 +89,13 @@ const Countdown = ({ startTime }: { startTime: string }) => {
               hours
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "flex-end", gap: "8px" }}>
+          <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
             <Typography
               variant="h3"
               fontWeight={500}
-              sx={{ fontVariantNumeric: "tabular-nums" }}
+              sx={{ fontVariantNumeric: 'tabular-nums' }}
             >
-              {minutes < 10 ? "0" + minutes : minutes}
+              {minutes < 10 ? '0' + minutes : minutes}
             </Typography>
             <Typography
               variant="body2"
@@ -106,13 +106,13 @@ const Countdown = ({ startTime }: { startTime: string }) => {
               min
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "flex-end", gap: "8px" }}>
+          <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
             <Typography
               variant="h3"
               fontWeight={500}
-              sx={{ fontVariantNumeric: "tabular-nums" }}
+              sx={{ fontVariantNumeric: 'tabular-nums' }}
             >
-              {seconds < 10 ? "0" + seconds : seconds}
+              {seconds < 10 ? '0' + seconds : seconds}
             </Typography>
             <Typography
               variant="body2"
@@ -126,7 +126,7 @@ const Countdown = ({ startTime }: { startTime: string }) => {
         </Box>
       </Box>
       <Typography variant="subtitle2" fontWeight={500} color={COLOR.baseGray}>
-        {`${dayOfWeek}, ${formatDate(startTime, "MMMM, DD, YYYY HH:mm A")}`}
+        {`${dayOfWeek}, ${formatDate(startTime, 'MMMM, DD, YYYY HH:mm A')}`}
       </Typography>
     </Box>
   );
@@ -134,22 +134,22 @@ const Countdown = ({ startTime }: { startTime: string }) => {
 
 const LiveBadge = () => {
   return (
-    <Box sx={{ display: "flex", height: "24px", width: "50px" }}>
+    <Box sx={{ display: 'flex', height: '24px', width: '50px' }}>
       <Box
         component="span"
         sx={{
-          position: "absolute",
-          borderRadius: "20px",
+          position: 'absolute',
+          borderRadius: '20px',
           background: GRADIENT.primary,
-          width: "50px",
-          height: "24px",
+          width: '50px',
+          height: '24px',
 
-          animation: "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
+          animation: 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
 
-          "@keyframes ping": {
-            "75%, 100%": {
-              transform: "scale(1.5)",
-              opacity: "0",
+          '@keyframes ping': {
+            '75%, 100%': {
+              transform: 'scale(1.5)',
+              opacity: '0',
             },
           },
         }}
@@ -157,15 +157,15 @@ const LiveBadge = () => {
       <Box
         component="span"
         sx={{
-          position: "relative",
+          position: 'relative',
           color: COLOR.baseWhite,
-          borderRadius: "20px",
+          borderRadius: '20px',
           background: GRADIENT.primary,
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <Typography variant="overline" fontSize={12} fontWeight={500}>

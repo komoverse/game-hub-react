@@ -1,26 +1,26 @@
-import React from "react";
-import { Box, CardContent, Grid, Typography } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { CardImage, SectionTitle } from "@/components/index";
+import React from 'react';
+import { Box, CardContent, Grid, Typography } from '@mui/material';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { CardImage, SectionTitle } from '@/components/index';
 import {
   ButtonCard,
   COLOR,
   SectionWrapper,
   SectionWrapperCard,
-} from "@/utils/globalVariable";
-import { useTranslation } from "react-i18next";
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-import { shortenTitleGame } from "@/utils/shorten";
-import { getDiff, isBefore, isBetween } from "@/helper/date";
+} from '@/utils/globalVariable';
+import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { shortenTitleGame } from '@/utils/shorten';
+import { getDiff, isBefore, isBetween } from '@/helper/date';
 import {
   EventTypes,
   MintScheduleDto,
   ScheduleEvents,
   TournamentScheduleDto,
-} from "@/types/home";
-import { ReduxState } from "@/types/redux";
-import { Navigation } from "swiper";
+} from '@/types/home';
+import { ReduxState } from '@/types/redux';
+import { Navigation } from 'swiper';
 
 const Events = () => {
   const { t } = useTranslation();
@@ -77,8 +77,8 @@ const Events = () => {
   return (
     <SectionWrapper>
       <SectionWrapperCard>
-        <SectionTitle title={t("home.event")} />
-        <Box sx={{ position: "relative" }}>
+        <SectionTitle title={t('home.event')} />
+        <Box sx={{ position: 'relative' }}>
           <Swiper
             slidesPerView="auto"
             loopedSlides={4}
@@ -86,7 +86,7 @@ const Events = () => {
             preloadImages={false}
             lazy={true}
             pagination={{
-              el: ".swiper-pagination",
+              el: '.swiper-pagination',
               clickable: true,
             }}
             navigation={true}
@@ -100,10 +100,10 @@ const Events = () => {
               const eventName = event.phase_name || event.tournament_name;
 
               const time = isBefore(currDate, startTime)
-                ? `${Math.abs(getDiff(currDate, startTime))} ${t("time.days")}`
+                ? `${Math.abs(getDiff(currDate, startTime))} ${t('time.days')}`
                 : isBetween(currDate, startTime, endTime)
-                ? t("button.live")
-                : "-";
+                ? t('button.live')
+                : '-';
 
               return (
                 <SwiperSlide key={idx}>
@@ -115,10 +115,10 @@ const Events = () => {
                       >
                         <CardContent
                           sx={{
-                            display: "flex",
-                            flexDirection: "column",
+                            display: 'flex',
+                            flexDirection: 'column',
                             borderRadius: 4,
-                            textAlign: "center",
+                            textAlign: 'center',
                           }}
                         >
                           <Typography variant="h6" sx={{ fontWeight: 700 }}>
@@ -155,6 +155,7 @@ const Events = () => {
     </SectionWrapper>
   );
 };
+
 const memoizedEvents = React.memo(Events);
 
 export default memoizedEvents;

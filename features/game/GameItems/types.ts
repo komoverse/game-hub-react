@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 
 export interface IFilterOption {
   [key: string]: { values: Array<string>; isOpen?: boolean };
@@ -40,7 +40,7 @@ export interface ISidebarFilterProps {
   collections: any[];
   currCollection: string;
   setCurrCollection: Dispatch<SetStateAction<string>>;
-  filters: { [key: string]: { values: Array<string>, isOpen?: boolean } };
+  filters: { [key: string]: { values: Array<string>; isOpen?: boolean } };
 }
 
 export interface ISidebarFilterField {

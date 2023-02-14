@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import { useQuery } from "react-query";
-import { Iconify } from "@/components/index";
-import { getGameDetails } from "@/services/games";
-import { COLOR, GRADIENT } from "@/utils/globalVariable";
-import { Box, Button, Typography } from "@mui/material";
-import { regexImageFileValidation } from "@/utils/regex";
-import GameTabs from "./GameTabs";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
+import { Iconify } from '@/components/index';
+import { getGameDetails } from '@/services/games';
+import { COLOR, GRADIENT } from '@/utils/globalVariable';
+import { Box, Button, Typography } from '@mui/material';
+import { regexImageFileValidation } from '@/utils/regex';
+import GameTabs from './GameTabs';
 import {
   GradientOverlay,
   ImageStyled,
   SliderActionWrapper,
   VideoStyled,
-} from "./styles";
-import ModalVideo from "react-modal-video";
-import GameSocialMedia from "./GameSocialMedia";
+} from './styles';
+import ModalVideo from 'react-modal-video';
+import GameSocialMedia from './GameSocialMedia';
 
 export const PopupVidio = ({
   videoId,
@@ -42,18 +42,18 @@ const HeroBanner = () => {
     data: gameDetails,
     isError,
     isLoading,
-  } = useQuery(["getGameDetails", game], () => getGameDetails(game as string));
+  } = useQuery(['getGameDetails', game], () => getGameDetails(game as string));
 
   const [isOpenTrailer, setIsOpenTrailer] = useState(false);
   const watchTrailer = () => setIsOpenTrailer(!isOpenTrailer);
 
   if (isLoading) {
-    return <Box sx={{ height: "65%", position: "relative" }}>...loading</Box>;
+    return <Box sx={{ height: '65%', position: 'relative' }}>...loading</Box>;
   }
 
   if (isError) {
     return (
-      <Box sx={{ height: "65%", position: "relative" }}>
+      <Box sx={{ height: '65%', position: 'relative' }}>
         something went wrong
       </Box>
     );
@@ -68,9 +68,9 @@ const HeroBanner = () => {
         src={gameDetails.hero_banner_url}
         alt=""
         sx={{
-          height: "100%",
-          width: "100%",
-          position: "absolute",
+          height: '100%',
+          width: '100%',
+          position: 'absolute',
         }}
       />
     ) : (
@@ -84,17 +84,17 @@ const HeroBanner = () => {
     );
   };
 
-  const idYT = gameDetails?.trailer_url?.split("=")[1];
+  const idYT = gameDetails?.trailer_url?.split('=')[1];
 
   return (
     <>
-      <Box sx={{ height: "65%", position: "relative" }}>
+      <Box sx={{ height: '65%', position: 'relative' }}>
         {renderBanner()}
         <GradientOverlay />
         <SliderActionWrapper>
           <Box
             sx={{
-              px: "8px",
+              px: '8px',
             }}
           >
             <GameSocialMedia gameDetails={gameDetails} />
@@ -102,16 +102,16 @@ const HeroBanner = () => {
               variant="h2"
               fontWeight={700}
               sx={{
-                maxWidth: "400px",
-                display: "-webkit-box",
+                maxWidth: '400px',
+                display: '-webkit-box',
                 WebkitLineClamp: 2,
-                overflow: "hidden",
-                WebkitBoxOrient: "vertical",
+                overflow: 'hidden',
+                WebkitBoxOrient: 'vertical',
               }}
             >
               {gameDetails.game_name}
             </Typography>
-            <Box sx={{ my: "16px", display: "flex", gap: "18px" }}>
+            <Box sx={{ my: '16px', display: 'flex', gap: '18px' }}>
               {gameDetails?.trailer_url && (
                 <Button
                   variant="outlined"
@@ -126,7 +126,7 @@ const HeroBanner = () => {
                   onClick={watchTrailer}
                   sx={{
                     color: COLOR.baseGreen,
-                    fontWeight: "500",
+                    fontWeight: '500',
                     borderRadius: 2,
                     borderColor: COLOR.baseGreen,
                   }}
@@ -134,7 +134,7 @@ const HeroBanner = () => {
                   WATCH TRAILER
                 </Button>
               )}
-              {gameDetails.tabsEnabled.includes("play-now") && (
+              {gameDetails.tabsEnabled.includes('play-now') && (
                 <Button
                   variant="contained"
                   size="small"
@@ -146,10 +146,10 @@ const HeroBanner = () => {
                     />
                   }
                   sx={{
-                    color: "#fff",
-                    fontWeight: "500",
+                    color: '#fff',
+                    fontWeight: '500',
                     borderRadius: 2,
-                    background: GRADIENT.primary
+                    background: GRADIENT.primary,
                   }}
                 >
                   PLAY NOW
@@ -160,11 +160,11 @@ const HeroBanner = () => {
               variant="body1"
               fontWeight={300}
               sx={{
-                maxWidth: "700px",
-                display: "-webkit-box",
+                maxWidth: '700px',
+                display: '-webkit-box',
                 WebkitLineClamp: 2,
-                overflow: "hidden",
-                WebkitBoxOrient: "vertical",
+                overflow: 'hidden',
+                WebkitBoxOrient: 'vertical',
               }}
             >
               by <b>{gameDetails.developer_name}</b>
@@ -173,11 +173,11 @@ const HeroBanner = () => {
               variant="body1"
               fontWeight={300}
               sx={{
-                maxWidth: "400px",
-                display: "-webkit-box",
+                maxWidth: '400px',
+                display: '-webkit-box',
                 WebkitLineClamp: 3,
-                overflow: "hidden",
-                WebkitBoxOrient: "vertical",
+                overflow: 'hidden',
+                WebkitBoxOrient: 'vertical',
                 mt: 2,
               }}
             >
