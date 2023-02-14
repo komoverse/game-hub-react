@@ -38,12 +38,24 @@ const Countdown = ({ startTime }: { startTime: string }) => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Box sx={{ display: "flex", gap: "8px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          gap: "8px",
+        }}
+      >
         <Typography variant="h3" fontWeight={500}>
           Starting in
         </Typography>
-        <Box sx={{ display: "flex", gap: "8px" }}>
-          <Box sx={{ display: "flex", gap: "8px" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "8px",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "flex-end", gap: "8px" }}>
             <Typography
               variant="h3"
               fontWeight={500}
@@ -60,7 +72,7 @@ const Countdown = ({ startTime }: { startTime: string }) => {
               days
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", gap: "8px" }}>
+          <Box sx={{ display: "flex", alignItems: "flex-end", gap: "8px" }}>
             <Typography
               variant="h3"
               fontWeight={500}
@@ -77,7 +89,7 @@ const Countdown = ({ startTime }: { startTime: string }) => {
               hours
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", gap: "8px" }}>
+          <Box sx={{ display: "flex", alignItems: "flex-end", gap: "8px" }}>
             <Typography
               variant="h3"
               fontWeight={500}
@@ -94,7 +106,7 @@ const Countdown = ({ startTime }: { startTime: string }) => {
               min
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", gap: "8px" }}>
+          <Box sx={{ display: "flex", alignItems: "flex-end", gap: "8px" }}>
             <Typography
               variant="h3"
               fontWeight={500}
@@ -113,11 +125,9 @@ const Countdown = ({ startTime }: { startTime: string }) => {
           </Box>
         </Box>
       </Box>
-      <Box>
-        <Typography variant="subtitle2" fontWeight={500} color={COLOR.baseGray}>
-          {`${dayOfWeek}, ${formatDate(startTime, "MMMM, DD, YYYY HH:mm A")}`}
-        </Typography>
-      </Box>
+      <Typography variant="subtitle2" fontWeight={500} color={COLOR.baseGray}>
+        {`${dayOfWeek}, ${formatDate(startTime, "MMMM, DD, YYYY HH:mm A")}`}
+      </Typography>
     </Box>
   );
 };
@@ -148,12 +158,14 @@ const LiveBadge = () => {
         component="span"
         sx={{
           position: "relative",
-          textAlign: "center",
           color: COLOR.baseWhite,
           borderRadius: "20px",
           background: GRADIENT.primary,
-          width: "50px",
-          height: "24px",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Typography variant="overline" fontSize={12} fontWeight={500}>
