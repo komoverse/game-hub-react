@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { styled } from "@mui/material/styles";
-import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";
+import { useState } from 'react';
+import { styled } from '@mui/material/styles';
+import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
 import MuiAccordionSummary, {
   AccordionSummaryProps,
-} from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
+} from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import {
   Box,
   Chip,
@@ -15,23 +15,23 @@ import {
   Select,
   SelectChangeEvent,
   Typography,
-} from "@mui/material";
-import Iconify from "@/components/Iconify";
-import { COLOR } from "@/utils/globalVariable";
-import action from "@/store/market/action";
-import { useSelector } from "react-redux";
-import { ReduxState } from "@/types/redux";
-import { ISidebarFilterField } from "./types";
+} from '@mui/material';
+import Iconify from '@/components/Iconify';
+import { COLOR } from '@/utils/globalVariable';
+import action from '@/store/market/action';
+import { useSelector } from 'react-redux';
+import { ReduxState } from '@/types/redux';
+import { ISidebarFilterField } from './types';
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
   border: `1px solid ${theme.palette.divider}`,
-  "&:not(:last-child)": {
+  '&:not(:last-child)': {
     borderBottom: 0,
   },
-  "&:before": {
-    display: "none",
+  '&:before': {
+    display: 'none',
   },
 }));
 
@@ -43,17 +43,17 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 ))(({ theme }) => ({
   padding: theme.spacing(1),
   backgroundColor: COLOR.backgroundRoot,
-  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-    transform: "rotate(180deg)",
+  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+    transform: 'rotate(180deg)',
   },
-  "& .MuiAccordionSummary-content": {
+  '& .MuiAccordionSummary-content': {
     marginLeft: theme.spacing(1),
   },
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
-  borderTop: "1px solid rgba(0, 0, 0, .125)",
+  borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
 const SidebarFilterField = ({
@@ -73,7 +73,7 @@ const SidebarFilterField = ({
       target: { value },
     } = event;
 
-    setSelectedAttributes(typeof value === "string" ? value.split(",") : value);
+    setSelectedAttributes(typeof value === 'string' ? value.split(',') : value);
     action.setFilter({ ...selectedFilter, [attributes]: value });
   };
 
@@ -83,7 +83,7 @@ const SidebarFilterField = ({
         <Typography>{attributes}</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <FormControl sx={{ width: "100%" }}>
+        <FormControl sx={{ width: '100%' }}>
           <InputLabel id="demo-multiple-chip-label">{`Select ${attributes}`}</InputLabel>
           <Select
             labelId="demo-multiple-chip-label"
@@ -98,7 +98,7 @@ const SidebarFilterField = ({
               />
             }
             renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                 {selected.map((value) => (
                   <Chip size="small" key={value} label={value} />
                 ))}

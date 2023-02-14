@@ -1,7 +1,7 @@
-import { useKeenSlider } from "keen-slider/react";
-import { Box, Button, Typography } from "@mui/material";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { useKeenSlider } from 'keen-slider/react';
+import { Box, Button, Typography } from '@mui/material';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
   NavigatorItemStyled,
   NavigatorStyled,
@@ -9,8 +9,8 @@ import {
   VideoStyled,
   GradientOverlay,
   SliderActionWrapper,
-} from "./styles";
-import { regexUrlValidation } from "@/utils/regex";
+} from './styles';
+import { regexUrlValidation } from '@/utils/regex';
 
 type slideshowType = {
   id: number;
@@ -56,20 +56,20 @@ const Carrousel = ({ slideshow }: Props) => {
             slider.next();
           }, 3000);
         }
-        slider.on("created", () => {
-          slider.container.addEventListener("mouseover", () => {
+        slider.on('created', () => {
+          slider.container.addEventListener('mouseover', () => {
             mouseOver = true;
             clearNextTimeout();
           });
-          slider.container.addEventListener("mouseout", () => {
+          slider.container.addEventListener('mouseout', () => {
             mouseOver = false;
             nextTimeout();
           });
           nextTimeout();
         });
-        slider.on("dragStarted", clearNextTimeout);
-        slider.on("animationEnded", nextTimeout);
-        slider.on("updated", nextTimeout);
+        slider.on('dragStarted', clearNextTimeout);
+        slider.on('animationEnded', nextTimeout);
+        slider.on('updated', nextTimeout);
       },
     ]
   );
@@ -82,7 +82,7 @@ const Carrousel = ({ slideshow }: Props) => {
             key={idx}
             onClick={() => instanceRef.current?.moveToIdx(idx)}
             sx={{
-              backgroundColor: currentSlide === idx ? "white" : "transparent",
+              backgroundColor: currentSlide === idx ? 'white' : 'transparent',
             }}
           />
         ))}
@@ -97,7 +97,7 @@ const Carrousel = ({ slideshow }: Props) => {
     const locale = router.locale;
 
     if (isExternal !== null) {
-      window.open(url, "_blank");
+      window.open(url, '_blank');
       return;
     }
 
@@ -105,14 +105,12 @@ const Carrousel = ({ slideshow }: Props) => {
   };
 
   return (
-    <Box
-      sx={{ height: { xs: "40%", md: "50%", lg: "95%" } }}
-    >
-      <Box ref={sliderRef} className="keen-slider" sx={{ height: "100%" }}>
+    <Box sx={{ height: { xs: '40%', md: '50%', lg: '95%' } }}>
+      <Box ref={sliderRef} className="keen-slider" sx={{ height: '100%' }}>
         {slideshow.map((slide, idx) => (
           <Box key={idx} className="keen-slider__slide">
-            <Box sx={{ height: "100%" }}>
-              {slide.content_type === "image" ? (
+            <Box sx={{ height: '100%' }}>
+              {slide.content_type === 'image' ? (
                 <ImageStyled src={slide.slide_content_url} alt={slide.text_1} />
               ) : (
                 <VideoStyled
@@ -128,8 +126,8 @@ const Carrousel = ({ slideshow }: Props) => {
               <SliderActionWrapper>
                 <Box
                   sx={{
-                    textAlign: { xs: "center", md: "left" },
-                    px: "8px",
+                    textAlign: { xs: 'center', md: 'left' },
+                    px: '8px',
                   }}
                 >
                   <Typography variant="h5" color="limegreen" fontWeight={700}>
@@ -139,11 +137,11 @@ const Carrousel = ({ slideshow }: Props) => {
                     variant="h2"
                     fontWeight={700}
                     sx={{
-                      maxWidth: "700px",
-                      display: "-webkit-box",
+                      maxWidth: '700px',
+                      display: '-webkit-box',
                       WebkitLineClamp: 2,
-                      overflow: "hidden",
-                      WebkitBoxOrient: "vertical",
+                      overflow: 'hidden',
+                      WebkitBoxOrient: 'vertical',
                     }}
                   >
                     {slide.text_2}
@@ -152,24 +150,24 @@ const Carrousel = ({ slideshow }: Props) => {
                     variant="body1"
                     fontWeight={500}
                     sx={{
-                      maxWidth: "700px",
-                      display: "-webkit-box",
+                      maxWidth: '700px',
+                      display: '-webkit-box',
                       WebkitLineClamp: 2,
-                      overflow: "hidden",
-                      WebkitBoxOrient: "vertical",
+                      overflow: 'hidden',
+                      WebkitBoxOrient: 'vertical',
                     }}
                   >
                     {slide.text_3}
                   </Typography>
-                  <Box sx={{ my: "16px" }}>
+                  <Box sx={{ my: '16px' }}>
                     <Button
                       variant="contained"
                       onClick={() => onClickAction(slide.cta_url)}
                       size="large"
                       sx={{
-                        color: "#fff",
+                        color: '#fff',
                         background:
-                          "radial-gradient(293.74% 1431.43% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)",
+                          'radial-gradient(293.74% 1431.43% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)',
                         borderRadius: 2,
                       }}
                     >

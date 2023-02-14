@@ -1,5 +1,5 @@
-import komoverseAxiosIns from "helper/headers";
-import { SLIDESHOW } from "helper/url";
+import komoverseAxiosIns from 'helper/headers';
+import { SLIDESHOW } from 'helper/url';
 
 export const getSlideshow = async () => {
   const { data } = await komoverseAxiosIns.get(SLIDESHOW);

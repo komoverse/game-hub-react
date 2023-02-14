@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import Iconify from "@/components/Iconify";
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import Iconify from '@/components/Iconify';
 import {
   Accordion,
   AccordionSummary,
@@ -9,13 +9,13 @@ import {
   MenuItem,
   Stack,
   Typography,
-} from "@mui/material";
-import { COLOR, KomoverseTag } from "@/utils/globalVariable";
-import Solana from "public/solana.svg";
-import MenuPopover from "@/components/MenuPopover";
-import SidebarFilterField from "./SidebarFilterField";
-import useResponsive from "@/hooks/useResponsive";
-import { ICollectionItemProps, ISidebarFilterProps } from "./types";
+} from '@mui/material';
+import { COLOR, KomoverseTag } from '@/utils/globalVariable';
+import Solana from 'public/solana.svg';
+import MenuPopover from '@/components/MenuPopover';
+import SidebarFilterField from './SidebarFilterField';
+import useResponsive from '@/hooks/useResponsive';
+import { ICollectionItemProps, ISidebarFilterProps } from './types';
 
 const CollectionItem = ({
   image,
@@ -71,8 +71,8 @@ const MarketSidebar = ({
     setCurrCollection(val);
     handleClose();
   };
-  const isNotDesktop = useResponsive("down", "lg");
-  const sidebarWidth = isNotDesktop ? "100%" : "360px";
+  const isNotDesktop = useResponsive('down', 'lg');
+  const sidebarWidth = isNotDesktop ? '100%' : '360px';
 
   useEffect(() => {
     if (isNotDesktop) {
@@ -83,12 +83,12 @@ const MarketSidebar = ({
   return (
     <Box
       sx={{
-        maxWidth: isExpand ? sidebarWidth : "50px",
+        maxWidth: isExpand ? sidebarWidth : '50px',
         flexGrow: 1,
-        borderRight: "solid 1px",
-        borderColor: "divider",
+        borderRight: 'solid 1px',
+        borderColor: 'divider',
         bgcolor: COLOR.backgroundRoot,
-        position: "sticky",
+        position: 'sticky',
       }}
     >
       <Box
@@ -102,7 +102,7 @@ const MarketSidebar = ({
         {!isNotDesktop && (
           <Iconify
             onClick={() => setIsExpand(!isExpand)}
-            icon={isExpand ? "mdi:keyboard-tab-reverse" : "mdi:keyboard-tab"}
+            icon={isExpand ? 'mdi:keyboard-tab-reverse' : 'mdi:keyboard-tab'}
           />
         )}
       </Box>
@@ -138,10 +138,10 @@ const MarketSidebar = ({
             onClose={handleClose}
             anchorEl={anchorRef.current}
             sx={{
-              width: "360px",
-              "& .MuiMenuItem-root": {
+              width: '360px',
+              '& .MuiMenuItem-root': {
                 px: 1,
-                typography: "body2",
+                typography: 'body2',
                 borderRadius: 0.75,
               },
             }}

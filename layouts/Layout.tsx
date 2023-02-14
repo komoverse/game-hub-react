@@ -1,31 +1,31 @@
-import { ReactNode, useState } from "react";
-import { styled } from "@mui/material/styles";
-import Navbar from "./navbar/Navbar";
-import Sidebar from "./sidebar/Sidebar";
-import { APPBAR_DESKTOP, APPBAR_MOBILE } from "./constants";
-import { useRouter } from "next/router";
-import { useQuery } from "react-query";
-import { getSidebarMenu } from "@/services/sidebar";
-import MiniSidebar from "./sidebar/MiniSidebar";
-import useResponsive from "@/hooks/useResponsive";
-import HeroBanner from "@/features/game/HeroBanner/HeroBanner";
+import { ReactNode, useState } from 'react';
+import { styled } from '@mui/material/styles';
+import Navbar from './navbar/Navbar';
+import Sidebar from './sidebar/Sidebar';
+import { APPBAR_DESKTOP, APPBAR_MOBILE } from './constants';
+import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
+import { getSidebarMenu } from '@/services/sidebar';
+import MiniSidebar from './sidebar/MiniSidebar';
+import useResponsive from '@/hooks/useResponsive';
+import HeroBanner from '@/features/game/HeroBanner/HeroBanner';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const RootStyled = styled("div")({
-  display: "flex",
-  height: "100vh",
-  overflow: "hidden",
+const RootStyled = styled('div')({
+  display: 'flex',
+  height: '100vh',
+  overflow: 'hidden',
 });
 
-const MainStyled = styled("div")(({ theme }) => ({
+const MainStyled = styled('div')(({ theme }) => ({
   flexGrow: 1,
-  overflow: "auto",
-  minHeight: "100%",
+  overflow: 'auto',
+  minHeight: '100%',
   paddingTop: APPBAR_MOBILE,
-  [theme.breakpoints.up("lg")]: {
+  [theme.breakpoints.up('lg')]: {
     paddingTop: APPBAR_DESKTOP,
   },
 }));
@@ -33,16 +33,16 @@ const MainStyled = styled("div")(({ theme }) => ({
 function Layout({ children }: LayoutProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMiniDrawerOpen, setIsMiniDrawerOpen] = useState(true);
-  const isMobile = useResponsive("down", "md");
+  const isMobile = useResponsive('down', 'md');
 
   const { data: sidebarMenuItems, isSuccess } = useQuery(
-    ["sidebarMenu"],
+    ['sidebarMenu'],
     () => getSidebarMenu(),
     {}
   );
 
   const router = useRouter();
-  const isGamePage = router.pathname.includes("[game]");
+  const isGamePage = router.pathname.includes('[game]');
 
   const toggleDrawer = () => {
     if (isGamePage && !isMobile) {
@@ -70,7 +70,7 @@ function Layout({ children }: LayoutProps) {
         menuItems={sidebarMenuItems}
         isSuccess={isSuccess}
       />
-      <MainStyled sx={{ position: isGamePage ? "relative" : "static" }}>
+      <MainStyled sx={{ position: isGamePage ? 'relative' : 'static' }}>
         {isGamePage && <HeroBanner />}
         {children}
       </MainStyled>

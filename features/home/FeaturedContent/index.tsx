@@ -1,16 +1,16 @@
-import React from "react";
-import { Box, CardContent, Typography } from "@mui/material";
-import { useQuery } from "react-query";
-import { getListFeatured } from "services/homepage";
-import { ListFeaturedDto } from "@/types/home";
-import ModalVideo from "react-modal-video";
-import { SectionTitle } from "@/components/index";
-import { useTranslation } from "react-i18next";
-import { BoxContent, BoxVideo, Item, Root } from "./style";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
-import { SectionWrapperCard } from "@/utils/globalVariable";
-import useResponsive from "@/hooks/useResponsive";
+import React from 'react';
+import { Box, CardContent, Typography } from '@mui/material';
+import { useQuery } from 'react-query';
+import { getListFeatured } from 'services/homepage';
+import { ListFeaturedDto } from '@/types/home';
+import ModalVideo from 'react-modal-video';
+import { SectionTitle } from '@/components/index';
+import { useTranslation } from 'react-i18next';
+import { BoxContent, BoxVideo, Item, Root } from './style';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
+import { SectionWrapperCard } from '@/utils/globalVariable';
+import useResponsive from '@/hooks/useResponsive';
 
 const PopupVidio = ({
   videoId,
@@ -35,11 +35,11 @@ const Featured = () => {
   const { t } = useTranslation();
   const [activeVideo, setActiveVideo] = React.useState<string | null>(null);
   const [isOpen, setOpen] = React.useState(false);
-  const [vidioId, setVidioId] = React.useState<string>("");
-  const smDown = useResponsive("down", "sm");
-  const mdUp = useResponsive("up", "md");
+  const [vidioId, setVidioId] = React.useState<string>('');
+  const smDown = useResponsive('down', 'sm');
+  const mdUp = useResponsive('up', 'md');
 
-  const { data } = useQuery(["listFeatured"], () => getListFeatured(), {
+  const { data } = useQuery(['listFeatured'], () => getListFeatured(), {
     staleTime: 3000,
     refetchOnMount: false,
   });
@@ -54,8 +54,8 @@ const Featured = () => {
   return (
     <Root>
       <SectionWrapperCard>
-        <SectionTitle title={t("home.featured")} />
-        <Box sx={{ position: "relative", height: "158px" }}>
+        <SectionTitle title={t('home.featured')} />
+        <Box sx={{ position: 'relative', height: '158px' }}>
           <Swiper
             slidesPerView="auto"
             loopedSlides={4}
@@ -63,18 +63,18 @@ const Featured = () => {
             preloadImages={false}
             lazy={true}
             pagination={{
-              el: ".swiper-pagination",
+              el: '.swiper-pagination',
               clickable: true,
             }}
             navigation={true}
             allowTouchMove={false}
             modules={[Navigation]}
             className={
-              smDown || mdUp ? "featured-swipperSmDown" : "featured-swipper"
+              smDown || mdUp ? 'featured-swipperSmDown' : 'featured-swipper'
             }
           >
             {data?.map((video: ListFeaturedDto) => {
-              const idYT = video.youtube_url.split("=")[1];
+              const idYT = video.youtube_url.split('=')[1];
               const autoPlay = activeVideo === video.youtube_url ? 1 : 0;
               const src = `https://www.youtube.co/embed/${idYT}?autoplay=${autoPlay}&amp;mute=1&amp;controls=0&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;enablejsapi=1&amp`;
 
@@ -91,12 +91,12 @@ const Featured = () => {
                       <BoxVideo>
                         <Box
                           style={{
-                            pointerEvents: "none",
-                            width: "100%",
-                            height: "100%",
+                            pointerEvents: 'none',
+                            width: '100%',
+                            height: '100%',
                           }}
                         >
-                          <Box style={{ width: "100%", height: "100%" }}>
+                          <Box style={{ width: '100%', height: '100%' }}>
                             <iframe
                               frameBorder="0"
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
