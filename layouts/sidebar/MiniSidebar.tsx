@@ -12,6 +12,7 @@ import {
 import { SidebarProps } from "./types";
 import { sidebarHeader } from "../constants";
 import { Iconify } from "@/components/index";
+import { COLOR } from "@/utils/globalVariable";
 
 export default function MiniSidebar({
   isOpen,
@@ -34,7 +35,7 @@ export default function MiniSidebar({
           width: "58px",
           overflow: "hidden",
           boxSizing: "border-box",
-          backgroundColor: "#000",
+          backgroundColor: COLOR.backgroundRoot,
           backgroundImage: "none",
         },
       }}

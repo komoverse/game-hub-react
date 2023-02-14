@@ -29,6 +29,7 @@
 html,
 body {
   height: 100%;
+  background: black;
 }
 /*
   Typographic tweaks!
@@ -81,11 +82,11 @@ svg {
     width: 215px !important;
   }
 }
-.featured-swipper  {
+.featured-swipper {
   overflow: unset;
   .swiper-slide {
     transform: none;
-    width: 283px !important
+    width: 283px !important;
   }
 }
 

@@ -11,10 +11,11 @@ import SearchFieldPopOver from "./SearchFieldPopover";
 import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constants";
 import useResponsive from "@/hooks/useResponsive";
 import { useRouter } from "next/router";
+import { COLOR } from "@/utils/globalVariable";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
-  backgroundColor: "#111111",
+  backgroundColor: COLOR.backgroundRoot,
   backgroundImage: "none",
   zIndex: theme.zIndex.drawer + 1,
 }));

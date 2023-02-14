@@ -14,6 +14,7 @@ module.exports = {
       'hub.komoverse.dev',
       'hub.komoverse.io',
       'komo.s3.amazonaws.com',
+      'komoverse-api-bucket.s3.ap-southeast-1.amazonaws.com'
     ],
   },
 };
