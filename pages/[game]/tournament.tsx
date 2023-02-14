@@ -1,4 +1,5 @@
-import TournamentPage from "@/features/game/Tournament/TournamentPage";
+import TournamentPage from "@/features/game/GameTournament/TournamentPage";
+
 
 export default function Tournament() {
   return <TournamentPage />;
