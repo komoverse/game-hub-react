@@ -9,11 +9,9 @@ import { Iconify } from '@/components/index';
 import { t } from 'i18next';
 import { useMutation } from 'react-query';
 import { loginSocmed } from '@/services/auth';
-import Router, { useRouter } from 'next/router';
-import secureLocalStorage from '@/utils/secureLocalStorage';
+import Router from 'next/router';
 import { Provider } from '@/types/general';
 import { NextResponse } from 'next/server';
-import actionModalAuth from '@/store/modalAuth/action'
 import isEmpty from 'lodash/isEmpty';
 
 export const ContainterSigin = styled('div')(() => ({

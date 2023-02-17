@@ -1,5 +1,11 @@
 import komoverseAxiosIns from 'helper/headers';
-import { FEATURED, MARKET_ITEM_ID, MARKET_RECENT, PORTFOLIO } from 'helper/url';
+import {
+  FEATURED,
+  MARKET_ITEM_ID,
+  MARKET_RECENT,
+  ME,
+  PORTFOLIO,
+} from 'helper/url';
 
 export const getListFeatured = async () => {
   const { data } = await komoverseAxiosIns.get(FEATURED);
@@ -26,5 +32,10 @@ export const getMarket = async (page = 1) => {
 
 export const getPortfolio = async () => {
   const { data } = await komoverseAxiosIns.get(PORTFOLIO);
+  return data.data;
+};
+
+export const getProfile = async () => {
+  const { data } = await komoverseAxiosIns.get(ME);
   return data.data;
 };

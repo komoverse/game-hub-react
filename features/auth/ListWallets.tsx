@@ -11,7 +11,6 @@ import {
 } from '@mui/material'
 import { t } from 'i18next'
 import Image from 'next/image'
-// import { useConnect } from 'wagmi'
 import { useMutation } from 'react-query'
 import { loginSocmed } from '@/services/auth'
 import Router from 'next/router'
@@ -37,7 +36,7 @@ export const Solana = ({ wallet }: any) => {
   }
 
   return (
-    <Accordion sx={{ width: '100%', justifyContent: 'space-between' }}>
+    <Accordion sx={{ width: '100%', justifyContent: 'space-between', boxShadow: 'none' }}>
       <AccordionSummary sx={{ backgroundColor: COLOR.baseSemiBlack }} expandIcon={<ExpandMoreIcon />}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <ListItemIcon>

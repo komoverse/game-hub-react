@@ -13,6 +13,7 @@ const lang = {
     mintAddress: '造币厂地址',
     owner: '所有者',
     royalties: '版税',
+    walletBalance: '钱包余额',
   },
   button: {
     buyNow: '立即购买',
@@ -41,6 +42,21 @@ const lang = {
     viewMoreWallet: '查看所有Solana钱包...',
     komoverseWallet: 'Komoverse钱包',
     komoverseSignInDescription: 'Komoverse钱包是Komoverse的官方钱包。它是',
+  },
+  utils: {
+    currency: 'CNY',
+    format: 'zh-CN',
+    INR: 'INR',
+    in: 'hi-IN',
+  },
+  profile: {
+    myAccount: '我的帐户',
+    viewWallets: '查看钱包',
+    learnMore: '了解更多',
+    exportPhrase: '导出短语',
+    setupAccount: '设置帐户',
+    downloadKomo: '下载Komoverse',
+    diconnect: '断开连接',
   },
 };
 export default lang;

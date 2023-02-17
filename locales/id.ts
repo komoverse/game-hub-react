@@ -13,6 +13,7 @@ const lang = {
     mintAddress: 'Alamat Mint',
     owner: 'Pemilik',
     royalties: 'Royalti',
+    walletBalance: 'Saldo Dompet',
   },
   button: {
     buyNow: 'Bayar Sekarang',
@@ -43,6 +44,19 @@ const lang = {
     komoverseWallet: 'Dompet Komoverse',
     komoverseSignInDescription:
       'Bermain di turnamen dan permainan Komoverse secara langsung. Masuk dengan Google, Twitter atau Discord. Bekerja di ponsel. Tidak perlu mengunduh. Hanya Anda yang mengendalikan kunci.',
+  },
+  utils: {
+    currency: 'IDR',
+    format: 'id-ID',
+  },
+  profile: {
+    myAccount: 'Akun Saya',
+    viewWallets: 'Lihat Dompet',
+    learnMore: 'Pelajari Lebih Lanjut',
+    exportPhrase: 'Ekspor frasa rahasia',
+    setupAccount: 'Atur akun',
+    downloadKomo: 'Unduh komoverse',
+    diconnect: 'Putuskan koneksi',
   },
 };
 export default lang;

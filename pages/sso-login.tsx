@@ -4,18 +4,12 @@ import { Box, CircularProgress } from '@mui/material';
 import { NextResponse } from 'next/server';
 import actionLogin from '@/store/auth/action'
 import { ContainterSigin, Wrapper } from './signin';
-
-type SSLoginProps = {
-  query: {
-    success: boolean
-    token: string
-  }
-}
+import { SSLoginProps } from '@/types/general';
 
 const SSOLogin = ({ query }: SSLoginProps) => {
   React.useEffect(() => {
     actionLogin.setAuthLogin(query)
-    Router.replace({ pathname: '/', query: { status: query.success } })
+    Router.replace({ pathname: '/', query: { success: query.success } })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

@@ -13,6 +13,7 @@ const lang = {
     mintAddress: 'मिन्ट पता',
     owner: 'मालिक',
     royalties: 'रॉयाल्टी',
+    walletBalance: 'वॉलेट बैलेंस',
   },
   button: {
     buyNow: 'अभी खरीदें',
@@ -42,6 +43,19 @@ const lang = {
     komoverseWallet: 'Komoverse वॉलेट',
     komoverseSignInDescription:
       'Komoverse वॉलेट Komoverse का आधिकारिक वॉलेट है। यह',
+  },
+  utils: {
+    currency: 'INR',
+    format: 'hi-IN',
+  },
+  profile: {
+    myAccount: 'मेरा खाता',
+    viewWallets: 'वॉलेट देखें',
+    learnMore: 'और जानें',
+    exportPhrase: 'वाक्यांश निर्यात करें',
+    setupAccount: 'खाता पुनर्स्थापना करें',
+    downloadKomo: 'Komoverse डाउनलोड करें',
+    diconnect: 'डिस्कनेक्ट करें',
   },
 };
 export default lang;

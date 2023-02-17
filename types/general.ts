@@ -28,12 +28,8 @@ export type ToastProps = {
 };
 
 export interface ErrorResponseDto {
-  response: {
-    data: {
-      status: number | string;
-      message: string;
-    };
-  };
+  status: number | string;
+  message: string;
 }
 
 export enum TopPlayersRowClassnames {
@@ -61,4 +57,11 @@ export type TypeAuthLogin = {
   success: boolean;
   message?: string;
   token?: string;
+};
+
+export type SSLoginProps = {
+  query: {
+    success: boolean;
+    token: string;
+  };
 };

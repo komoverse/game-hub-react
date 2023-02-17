@@ -13,6 +13,7 @@ const lang = {
     mintAddress: 'Mint Address',
     owner: 'Owner',
     royalties: 'Royalties',
+    walletBalance: 'Wallet Balance',
   },
   button: {
     buyNow: 'Buy Now',
@@ -43,6 +44,19 @@ const lang = {
     komoverseWallet: 'Komoverse Wallet',
     komoverseSignInDescription:
       'Play in Komoverse tournaments and games live. Login with Google, Twitter or Discord. Work on mobile. No download required. Only you control the keys.',
+  },
+  utils: {
+    currency: 'USD',
+    format: 'en-US',
+  },
+  profile: {
+    myAccount: 'My Account',
+    viewWallets: 'View Wallets',
+    learnMore: 'Learn More',
+    exportPhrase: 'Export seed phrase',
+    setupAccount: 'Setup account recovery',
+    downloadKomo: 'Download Komoverse',
+    diconnect: 'Disconnect',
   },
 };
 export default lang;

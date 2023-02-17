@@ -1,11 +1,11 @@
 import * as ActionType from './constant';
 import secureLocalStorage from 'utils/secureLocalStorage';
 
-const STORAGE = 'state_auth';
+export const STATE_AUTH = 'state_auth';
 const initState = {};
 
 const initializeState = () => {
-  const auth = secureLocalStorage.getItem(STORAGE);
+  const auth = secureLocalStorage.getItem(STATE_AUTH);
   let state;
   if (auth) {
     state = auth;
@@ -21,7 +21,7 @@ const reducer = (state = initializeState(), action: any) => {
 
   switch (type) {
     case ActionType.SET_AUTH_LOGIN:
-      secureLocalStorage.setItem(STORAGE, JSON.stringify(value));
+      secureLocalStorage.setItem(STATE_AUTH, JSON.stringify(value));
       return value;
     case ActionType.CLEAR_AUTH_LOGIN:
       localStorage.clear();
