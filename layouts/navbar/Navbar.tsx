@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { styled } from "@mui/material/styles";
-import { AppBar, Box, IconButton, Toolbar, Button } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import Image from "next/image";
 import { Iconify } from "@/components/index";
 import SearchField from "./SearchField";
@@ -14,14 +13,13 @@ import Login from "@/features/auth/Login";
 import actionModalAuth from '@/store/modalAuth/action'
 import { useSelector } from "react-redux";
 import { ReduxState } from "@/types/redux";
-import { COLOR, GRADIENT } from "@/utils/globalVariable";
-import AccountPopover from "./AccountPopover";
-import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import { COLOR } from "@/utils/globalVariable";
 import { TypeAuthLogin } from "@/types/general";
+import ProfileMenu from "./ProfileMenu";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
-  backgroundColor: "#111111",
+  backgroundColor: COLOR.backgroundCardSemiBlack,
   backgroundImage: "none",
   zIndex: theme.zIndex.drawer + 1,
 }));
@@ -38,18 +36,11 @@ interface NavbarProps {
 }
 
 function Navbar({ toggleDrawer }: NavbarProps) {
-  const { t } = useTranslation();
   const isMobile = useResponsive("down", "sm");
   const router = useRouter();
-  const anchorRef = useRef(null);
-
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
-  const [accountPopover, setAccountPopover] = useState(false);
-  const { token } = useSelector((state: ReduxState) => state.login as TypeAuthLogin)
 
   const toggleSearchBar = () => setIsSearchBarOpen((prev) => !prev);
-  const handleVisibleLogin = () => actionModalAuth.setModalAuth({ visible: true });
-  const handleOpenAccountPopover = () => setAccountPopover(true);
 
   useEffect(() => {
     if (!isMobile) {
@@ -112,37 +103,12 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               <Iconify icon="ic:outline-search" height={24} width={24} />
             </IconButton>
             <LanguageMenu />
-            <Button
-              ref={anchorRef}
-              onClick={token ? handleOpenAccountPopover : handleVisibleLogin}
-              variant="contained"
-              size="medium"
-              sx={{
-                '&:hover': {
-                  backgroundColor: 'transparent'
-                },
-                color: COLOR.baseWhite,
-                background: token ? "transparent" : GRADIENT.primary,
-                borderRadius: 2,
-                border: `1px solid ${COLOR.baseGreen}`
-              }}
-              endIcon={token && <AccountBalanceWalletOutlinedIcon sx={{ width: 20, height: 20, color: COLOR.baseGreen }} />}
-            >
-              {token ? (
-                'adad'
-              ) : t("navbar.login")}
-            </Button>
+            <ProfileMenu />
           </Box>
         </Box>
       </ToolbarStyled>
 
       <Login />
-
-      <AccountPopover
-        open={accountPopover}
-        setOpen={setAccountPopover}
-        anchorRef={anchorRef}
-      />
     </AppbarStyled>
   );
 }

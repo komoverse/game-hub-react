@@ -9,45 +9,46 @@ import LockIcon from '@mui/icons-material/Lock';
 import { Button, Divider, ListItemIcon, ListItemText, MenuItem, Typography } from '@mui/material';
 import { COLOR } from '@/utils/globalVariable';
 import secureLocalStorage from '@/utils/secureLocalStorage';
+import { t } from 'i18next';
+import actionAuth from '@/store/auth/action'
+import Cookies from 'js-cookie';
+import { STATE_AUTH } from '@/store/auth/reducer';
+import Router from 'next/router';
 
 const MenuKomoWallet = () => {
+  const logout = async () => actionAuth.clearAuthLogin()
+
   const menuItemOneKomoWallet = [
     {
       id: 1,
-      name: 'My Account',
+      name: t('profile.myAccount'),
       icon: <PersonIcon />,
       onClick: () => console.log('items')
     },
     {
       id: 2,
-      name: 'View Wallets',
+      name: t('profile.viewWallets'),
       icon: <AccountBalanceWalletIcon />,
       onClick: () => console.log('manage')
     },
     {
       id: 3,
-      name: 'Learn More',
+      name: t('profile.learnMore'),
       icon: <OpenInNewRoundedIcon />,
       onClick: () => console.log('connect')
     },
-    // {
-    //   id: 4,
-    //   name: 'Disconnect',
-    //   icon: <VpnKeyOffIcon />,
-    //   // onClick: () => disconnect()
-    // }
   ]
 
   const menuItemTwoKomoWallet = [
     {
       id: 1,
-      name: 'Export seed phrase',
+      name: t('profile.exportPhrase'),
       icon: <VpnKeyRoundedIcon />,
       onClick: () => console.log('items')
     },
     {
       id: 2,
-      name: 'Setup account recovery',
+      name: t('profile.setupAccount'),
       icon: <LockIcon />,
       onClick: () => console.log('manage')
     },
@@ -56,15 +57,16 @@ const MenuKomoWallet = () => {
   const menuItemThreeKomoWallet = [
     {
       id: 1,
-      name: 'Download Komoverse',
+      name: t('profile.downloadKomo'),
       icon: <InstallDesktopRoundedIcon />,
       onClick: () => console.log('items')
     },
     {
       id: 2,
-      name: 'Disconnect',
+      name: t('profile.diconnect'),
       icon: <VpnKeyOffIcon />,
-      onClick: () => secureLocalStorage.clearItem('ssoLogin')
+      onClick: async () => await logout()
+        .then(() => Router.reload())
     },
   ]
 
