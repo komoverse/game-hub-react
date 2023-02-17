@@ -1,43 +1,107 @@
-import React from 'react'
-import { COLOR, KomoverseTag } from '@/utils/globalVariable'
+import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable'
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   Button,
   ListItemIcon,
-  ListItemSecondaryAction,
   ListItemText,
   Typography
 } from '@mui/material'
 import { t } from 'i18next'
 import Image from 'next/image'
-import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
-import { useConnect } from 'wagmi'
-import { Toast } from '@/components/index'
-import actionModalAuth from '@/store/modalAuth/action'
-import actionWallets from '@/store/wallets/action'
-import { WalletsDto } from '@/types/auth'
+// import { useConnect } from 'wagmi'
 import { useMutation } from 'react-query'
-import { loginWallet } from '@/services/auth'
+import { loginSocmed } from '@/services/auth'
+import Router from 'next/router'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import GoogleIcon from '@mui/icons-material/Google';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import { Iconify } from '@/components/index';
+import { Provider } from '@/types/general'
 
 export const Solana = ({ wallet }: any) => {
-  const chooseLoginSocmed = () => {
-    const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
-    const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
+  const { mutate } = useMutation(async (provider: string) => await loginSocmed(provider), {
+    onSuccess: (url: string) => Router.replace(url)
+  })
 
-    const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-    const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+  const onFinsih = (provider: string) => mutate(provider)
 
-    const systemZoom = width / window.screen.availWidth;
-    const left = (width - 378) / 2 / systemZoom + dualScreenLeft
-    const top = (height - 600) / 2 / systemZoom + dualScreenTop
-
-    let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no, width=378,height=600,left=${left},top=${top}`;
-    window.open('/signin', 'Komoverse Wallet', params)
+  const styleButton = {
+    fontWeight: 500,
+    textTransform: 'uppercase',
+    margin: '8px 0px 0px',
+    background: GRADIENT.primary,
+    color: COLOR.baseWhite
   }
 
   return (
-    <Button sx={{ width: '100%', justifyContent: 'space-between' }}>
-      <Box sx={{ display: 'flex' }}>
+    <Accordion sx={{ width: '100%', justifyContent: 'space-between' }}>
+      <AccordionSummary sx={{ backgroundColor: COLOR.baseSemiBlack }} expandIcon={<ExpandMoreIcon />}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <ListItemIcon>
+            <Image
+              src={wallet.image}
+              alt={KomoverseTag}
+              width={25}
+              height={25}
+            />
+          </ListItemIcon>
+          <ListItemText>
+            <Typography variant='subtitle2' sx={{ color: COLOR.baseWhite, fontWeight: 500 }}>
+              {wallet.name}
+            </Typography>
+          </ListItemText>
+        </Box>
+      </AccordionSummary>
+      <AccordionDetails sx={{ backgroundColor: COLOR.baseSemiBlack }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center' }}>
+          <Box>
+            <Typography variant='h5' sx={{ fontWeight: 500, mb: 1 }}>{t('auth.signInWith')}</Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Image
+                src="/komoverse.webp"
+                alt="komoverse-logo"
+                height={40}
+                width={80}
+                priority={true}
+              />
+            </Box>
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', my: 2 }}>
+            <Button
+              onClick={() => onFinsih(Provider.GOOGLE)}
+              size='large'
+              sx={styleButton} endIcon={<GoogleIcon />}
+            >
+              {t('auth.signInGoogle')}
+            </Button>
+            <Button
+              onClick={() => onFinsih(Provider.TWITTER)}
+              size='large'
+              sx={styleButton}
+              endIcon={<TwitterIcon />}
+            >
+              {t('auth.signInTwitter')}
+            </Button>
+            <Button
+              onClick={() => onFinsih(Provider.DISCORD)}
+              size='large'
+              sx={styleButton}
+              endIcon={<Iconify icon="ic:baseline-discord" height={24} width={24} />}
+            >
+              {t('auth.signInDiscord')}
+            </Button>
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div>{t('auth.earnReward')}</div>
+            <div>{t('auth.noChromeExtension')}</div>
+            <div>{t('auth.buyNftYourPhone')}</div>
+          </Box>
+        </Box>
+      </AccordionDetails>
+      {/* <Box sx={{ display: 'flex' }}>
         <ListItemIcon>
           <Image
             src={wallet.image}
@@ -61,78 +125,78 @@ export const Solana = ({ wallet }: any) => {
         </ListItemSecondaryAction>
       ) : wallet.id === 2 ? (
         <ArrowForwardOutlinedIcon sx={{ color: COLOR.baseGray }} />
-      ) : null}
-    </Button>
+      ) : null} */}
+    </Accordion>
   )
 }
 
-export const Ethereum = () => {
-  const [openToast, setOpenToast] = React.useState<boolean>(false)
-  const [isMessage, setIsMessage] = React.useState<string>('')
+// export const Ethereum = () => {
+//   const [openToast, setOpenToast] = React.useState<boolean>(false)
+//   const [isMessage, setIsMessage] = React.useState<string>('')
 
-  const { connectAsync, connectors } = useConnect({
-    onSuccess: (data) => {
-      actionModalAuth.setModalAuth({ visible: false });
-      actionWallets.setWallets(data)
-    },
-    onError: (error) => console.error(error),
-    onSettled(data, error) {
-      if (error) {
-        setOpenToast(true)
-        setIsMessage(error.message)
-      }
-    },
-  })
+//   const { connectAsync, connectors } = useConnect({
+//     onSuccess: (data) => {
+//       actionModalAuth.setModalAuth({ visible: false });
+//       actionWallets.setWallets(data)
+//     },
+//     onError: (error) => console.error(error),
+//     onSettled(data, error) {
+//       if (error) {
+//         setOpenToast(true)
+//         setIsMessage(error.message)
+//       }
+//     },
+//   })
 
-  const { mutate } = useMutation((data: WalletsDto) => loginWallet(data))
+//   const { mutate } = useMutation((data: WalletsDto) => loginWallet(data))
 
-  const handleLoginWallet = async (data: any) => {
-    await connectAsync(data)
-      .then((res: any) => mutate(res))
-      .catch((err) => console.log(err.response))
-  };
+//   const handleLoginWallet = async (data: any) => {
+//     await connectAsync(data)
+//       .then((res: any) => mutate(res))
+//       .catch((err) => console.log(err.response))
+//   };
 
-  return (
-    <>
-      {connectors?.map((connector) => (
-        <Button
-          key={connector?.id}
-          disabled={!connector.ready}
-          sx={{ width: '100%', justifyContent: 'space-between' }}
-          onClick={() => handleLoginWallet({ connector })}
-        >
-          <Box sx={{ display: 'flex' }}>
-            <ListItemIcon>
-              <Image
-                src={connector?.options.appLogoUrl}
-                alt={KomoverseTag}
-                width={25}
-                height={25}
-              />
-            </ListItemIcon>
-            <ListItemText>
-              <Typography variant='subtitle2' sx={{ color: COLOR.baseWhite, fontWeight: 500 }}>
-                {connector?.name}
-              </Typography>
-            </ListItemText>
-          </Box>
-          {connector.name === "Komoverse Wallet" && (
-            <ListItemSecondaryAction
-              sx={{ color: COLOR.baseGray, fontWeight: 500 }}
-            >
-              {t('auth.recommended')}
-            </ListItemSecondaryAction>
-          )}
-        </Button>
-      ))
-      }
-      <Toast
-        open={openToast}
-        setOpen={setOpenToast}
-        message={isMessage}
-        position={{ vertical: 'top', horizontal: 'center' }}
-        type="error"
-      />
-    </>
-  )
-}
+//   return (
+//     <>
+//       {connectors?.map((connector) => (
+//         <Button
+//           key={connector?.id}
+//           disabled={!connector.ready}
+//           sx={{ width: '100%', justifyContent: 'space-between' }}
+//           onClick={() => handleLoginWallet({ connector })}
+//         >
+//           <Box sx={{ display: 'flex' }}>
+//             <ListItemIcon>
+//               <Image
+//                 src={connector?.options.appLogoUrl}
+//                 alt={KomoverseTag}
+//                 width={25}
+//                 height={25}
+//               />
+//             </ListItemIcon>
+//             <ListItemText>
+//               <Typography variant='subtitle2' sx={{ color: COLOR.baseWhite, fontWeight: 500 }}>
+//                 {connector?.name}
+//               </Typography>
+//             </ListItemText>
+//           </Box>
+//           {connector.name === "Komoverse Wallet" && (
+//             <ListItemSecondaryAction
+//               sx={{ color: COLOR.baseGray, fontWeight: 500 }}
+//             >
+//               {t('auth.recommended')}
+//             </ListItemSecondaryAction>
+//           )}
+//         </Button>
+//       ))
+//       }
+//       <Toast
+//         open={openToast}
+//         setOpen={setOpenToast}
+//         message={isMessage}
+//         position={{ vertical: 'top', horizontal: 'center' }}
+//         type="error"
+//       />
+//     </>
+//   )
+// }

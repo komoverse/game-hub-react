@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { styled } from "@mui/material/styles";
-import { AppBar, Box, IconButton, Toolbar, Button, Avatar, Typography, Paper, MenuList, Divider, MenuItem, ListItemIcon, ListItemText, ButtonBase } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import { Iconify } from "@/components/index";
@@ -14,10 +14,10 @@ import Login from "@/features/auth/Login";
 import actionModalAuth from '@/store/modalAuth/action'
 import { useSelector } from "react-redux";
 import { ReduxState } from "@/types/redux";
-import { shortenWalletAddress } from "@/utils/shorten";
-import { WalletsDto } from "@/types/auth";
 import { COLOR, GRADIENT } from "@/utils/globalVariable";
 import AccountPopover from "./AccountPopover";
+import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import { TypeAuthLogin } from "@/types/general";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: "none",
@@ -45,9 +45,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
 
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
   const [accountPopover, setAccountPopover] = useState(false);
-
-  const walletsData: WalletsDto = useSelector((state: ReduxState) => state.wallets)
-  const walletLogo = walletsData?.connector?.options.appLogoUrl
+  const { token } = useSelector((state: ReduxState) => state.login as TypeAuthLogin)
 
   const toggleSearchBar = () => setIsSearchBarOpen((prev) => !prev);
   const handleVisibleLogin = () => actionModalAuth.setModalAuth({ visible: true });
@@ -116,7 +114,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
             <LanguageMenu />
             <Button
               ref={anchorRef}
-              onClick={walletsData.account !== undefined ? handleOpenAccountPopover : handleVisibleLogin}
+              onClick={token ? handleOpenAccountPopover : handleVisibleLogin}
               variant="contained"
               size="medium"
               sx={{
@@ -124,16 +122,14 @@ function Navbar({ toggleDrawer }: NavbarProps) {
                   backgroundColor: 'transparent'
                 },
                 color: COLOR.baseWhite,
-                background: walletsData.account !== undefined ? "transparent" : GRADIENT.primary,
+                background: token ? "transparent" : GRADIENT.primary,
                 borderRadius: 2,
                 border: `1px solid ${COLOR.baseGreen}`
               }}
-              startIcon={
-                walletsData.account !== undefined && <Avatar src={walletLogo} sx={{ width: 24, height: 24 }} />
-              }
+              endIcon={token && <AccountBalanceWalletOutlinedIcon sx={{ width: 20, height: 20, color: COLOR.baseGreen }} />}
             >
-              {walletsData.account !== undefined ? (
-                <Typography variant="body2" color={COLOR.baseGreen}>({shortenWalletAddress(walletsData?.account)})</Typography>
+              {token ? (
+                'adad'
               ) : t("navbar.login")}
             </Button>
           </Box>

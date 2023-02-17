@@ -49,3 +49,16 @@ export enum TopPlayersCellClassnames {
   PLAYER_NAME = 'player-name',
   SCORE = 'score',
 }
+
+export enum Provider {
+  GOOGLE = 'google',
+  FACEBOOK = 'facebook',
+  TWITTER = 'twitter',
+  DISCORD = 'discord',
+}
+
+export type TypeAuthLogin = {
+  success: boolean;
+  message?: string;
+  token?: string;
+};

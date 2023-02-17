@@ -38,6 +38,10 @@ const lang = {
     earnReward: 'इनाम प्राप्त करें',
     noChromeExtension: 'कोई Chrome एक्सटेंशन इंस्टॉल नहीं है',
     buyNftYourPhone: 'अपने फोन पर NFT खरीदें',
+    viewMoreWallet: 'सभी Solana वॉलेट देखें...',
+    komoverseWallet: 'Komoverse वॉलेट',
+    komoverseSignInDescription:
+      'Komoverse वॉलेट Komoverse का आधिकारिक वॉलेट है। यह',
   },
 };
 export default lang;

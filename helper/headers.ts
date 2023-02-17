@@ -1,8 +1,8 @@
 import axios from 'axios';
+import state from '@/store/index';
 
 const headers = {
-  Accept: 'application/vnd.api+json',
-  'Content-Type': 'application/vnd.api+json',
+  Accept: 'application/json',
   'Access-Control-Allow-Origin': true,
   'x-api-key': process.env.NEXT_PUBLIC_API_KEY,
 };
@@ -12,8 +12,16 @@ const komoverseAxiosIns = axios.create({
   headers,
 });
 
-komoverseAxiosIns.interceptors.response.use(
-  (response) => response,
+komoverseAxiosIns.interceptors.request.use(
+  async (config) => {
+    const { login = {} } = state.getState();
+    const { token } = login;
+
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
   (error) => {
     return Promise.reject(error);
   }

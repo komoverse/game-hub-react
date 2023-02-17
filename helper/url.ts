@@ -10,3 +10,5 @@ export const GAME_COLLECTION_ITEMS = 'v2/market/collection';
 export const MINT = '/v2/mint/game/{{id}}';
 export const SSO_LOGIN = '/v2/sso-login';
 export const WALLET_LOGIN = '/v2/wallet-login';
+export const SSO_GENERATE = '/v2/sso/generate/{{provider}}';
+export const PORTFOLIO = '/v2/wallet/portfolio';

@@ -39,6 +39,10 @@ const lang = {
     earnReward: 'Earn Reward',
     noChromeExtension: 'No Chrome Extension Installed',
     buyNftYourPhone: 'Buy NFT on your phone',
+    viewMoreWallet: 'View all Solana wallets...',
+    komoverseWallet: 'Komoverse Wallet',
+    komoverseSignInDescription:
+      'Play in Komoverse tournaments and games live. Login with Google, Twitter or Discord. Work on mobile. No download required. Only you control the keys.',
   },
 };
 export default lang;

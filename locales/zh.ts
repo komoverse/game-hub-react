@@ -38,6 +38,9 @@ const lang = {
     earnReward: '赚取奖励',
     noChromeExtension: '没有安装Chrome扩展程序',
     buyNftYourPhone: '在您的手机上购买NFT',
+    viewMoreWallet: '查看所有Solana钱包...',
+    komoverseWallet: 'Komoverse钱包',
+    komoverseSignInDescription: 'Komoverse钱包是Komoverse的官方钱包。它是',
   },
 };
 export default lang;

@@ -39,6 +39,10 @@ const lang = {
     earnReward: 'Dapatkan hadiah',
     noChromeExtension: 'Tidak ada ekstensi Chrome yang terpasang',
     buyNftYourPhone: 'Beli NFT di HP Anda',
+    viewMoreWallet: 'Lihat semua dompet Solana...',
+    komoverseWallet: 'Dompet Komoverse',
+    komoverseSignInDescription:
+      'Bermain di turnamen dan permainan Komoverse secara langsung. Masuk dengan Google, Twitter atau Discord. Bekerja di ponsel. Tidak perlu mengunduh. Hanya Anda yang mengendalikan kunci.',
   },
 };
 export default lang;

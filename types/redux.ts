@@ -1,4 +1,5 @@
 import { WalletsDto } from './auth';
+import { TypeAuthLogin } from './general';
 
 export interface ReduxState {
   market: { [key: string]: Array<string> };
@@ -14,4 +15,5 @@ export interface ReduxState {
     visible: boolean;
   };
   wallets: WalletsDto;
+  login: TypeAuthLogin;
 }
