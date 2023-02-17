@@ -1,12 +1,11 @@
 import komoverseAxiosIns from '@/helper/headers';
-import { SSO_LOGIN, WALLET_LOGIN } from '@/helper/url';
+import { SSO_GENERATE, SSO_LOGIN, WALLET_LOGIN } from '@/helper/url';
 import { LoginSocmedDto, WalletsDto } from '@/types/auth';
 
-export const loginSocmed = async (value: LoginSocmedDto) => {
-  const { provider, token, otp } = value;
-  const params = `?provider=${provider}&token=${token}`;
-
-  const { data } = await komoverseAxiosIns.post(SSO_LOGIN + params);
+export const loginSocmed = async (provider: string) => {
+  const { data } = await komoverseAxiosIns.get(
+    SSO_GENERATE.replace('{{provider}}', provider)
+  );
   return data.data;
 };
 
