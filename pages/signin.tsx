@@ -1,5 +1,12 @@
-import React from 'react'
-import { Box, Button, CircularProgress, Grid, Paper, Typography } from '@mui/material'
+import React from 'react';
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  Paper,
+  Typography,
+} from '@mui/material';
 import { styled } from '@mui/system';
 import { COLOR, GRADIENT } from '@/utils/globalVariable';
 import Image from 'next/image';
@@ -32,19 +39,22 @@ export const Wrapper = styled(Paper)(() => ({
 }));
 
 const SignIn = ({ query }: any) => {
-  const { mutate, isLoading, status } = useMutation(async (provider: string) => await loginSocmed(provider), {
-    onSuccess: (url: string) => Router.replace(url)
-  })
+  const { mutate, isLoading, status } = useMutation(
+    async (provider: string) => await loginSocmed(provider),
+    {
+      onSuccess: (url: string) => Router.replace(url),
+    }
+  );
 
-  const onFinsih = (provider: string) => mutate(provider)
+  const onFinsih = (provider: string) => mutate(provider);
 
   const styleButton = {
     fontWeight: 500,
     textTransform: 'uppercase',
     margin: '8px 0px 0px',
     background: GRADIENT.primary,
-    color: COLOR.baseWhite
-  }
+    color: COLOR.baseWhite,
+  };
 
   return (
     <ContainterSigin>
@@ -53,12 +63,21 @@ const SignIn = ({ query }: any) => {
           <Wrapper>
             {isLoading || !isEmpty(query) ? (
               <Box sx={{ textAlign: 'center' }}>
-                <CircularProgress color='success' />
+                <CircularProgress color="success" />
               </Box>
             ) : (
-              <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  width: '100%',
+                  alignItems: 'center',
+                }}
+              >
                 <Box sx={{ marginBottom: 3 }}>
-                  <Typography variant='h3' sx={{ fontWeight: 500, mb: 1 }}>{t('auth.signInWith')}</Typography>
+                  <Typography variant="h3" sx={{ fontWeight: 500, mb: 1 }}>
+                    {t('auth.signInWith')}
+                  </Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <Image
                       src="/komoverse.webp"
@@ -69,17 +88,24 @@ const SignIn = ({ query }: any) => {
                     />
                   </Box>
                 </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '300px',
+                  }}
+                >
                   <Button
                     onClick={() => onFinsih(Provider.GOOGLE)}
-                    size='large'
-                    sx={styleButton} endIcon={<GoogleIcon />}
+                    size="large"
+                    sx={styleButton}
+                    endIcon={<GoogleIcon />}
                   >
                     {t('auth.signInGoogle')}
                   </Button>
                   <Button
                     onClick={() => onFinsih(Provider.TWITTER)}
-                    size='large'
+                    size="large"
                     sx={styleButton}
                     endIcon={<TwitterIcon />}
                   >
@@ -87,14 +113,27 @@ const SignIn = ({ query }: any) => {
                   </Button>
                   <Button
                     onClick={() => onFinsih(Provider.DISCORD)}
-                    size='large'
+                    size="large"
                     sx={styleButton}
-                    endIcon={<Iconify icon="ic:baseline-discord" height={24} width={24} />}
+                    endIcon={
+                      <Iconify
+                        icon="ic:baseline-discord"
+                        height={24}
+                        width={24}
+                      />
+                    }
                   >
                     {t('auth.signInDiscord')}
                   </Button>
                 </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 6 }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    marginTop: 6,
+                  }}
+                >
                   <div>{t('auth.earnReward')}</div>
                   <div>{t('auth.noChromeExtension')}</div>
                   <div>{t('auth.buyNftYourPhone')}</div>
@@ -105,18 +144,18 @@ const SignIn = ({ query }: any) => {
         </Grid>
       </Grid>
     </ContainterSigin>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
 
 export const getServerSideProps = async (res: NextResponse) => {
   // @ts-ignore
-  const { query } = res
+  const { query } = res;
 
   return {
     props: {
-      query
-    }
-  }
-}
+      query,
+    },
+  };
+};

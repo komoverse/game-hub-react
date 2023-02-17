@@ -1,14 +1,20 @@
 import React from 'react';
-import { COLOR, KomoverseTag, RADIUS, SectionWrapper, SectionWrapperCard } from "@/utils/globalVariable";
-import { useQuery } from "react-query";
-import { getGameMint } from "@/services/games";
-import { useRouter } from "next/router";
-import { ErrorResponseDto } from "@/types/general";
-import { Button, CardContent, Divider, Grid, Typography } from "@mui/material";
-import Image from "next/image";
-import { GameMintDto } from "@/types/game";
-import Box from "@mui/material/Box";
-import { formatDate } from "@/helper/date";
+import {
+  COLOR,
+  KomoverseTag,
+  RADIUS,
+  SectionWrapper,
+  SectionWrapperCard,
+} from '@/utils/globalVariable';
+import { useQuery } from 'react-query';
+import { getGameMint } from '@/services/games';
+import { useRouter } from 'next/router';
+import { ErrorResponseDto } from '@/types/general';
+import { Button, CardContent, Divider, Grid, Typography } from '@mui/material';
+import Image from 'next/image';
+import { GameMintDto } from '@/types/game';
+import Box from '@mui/material/Box';
+import { formatDate } from '@/helper/date';
 import Link from 'next/link';
 import EmptyData from '@/components/EmptyData';
 import { t } from 'i18next';

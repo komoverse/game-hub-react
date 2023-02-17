@@ -1,11 +1,11 @@
-import React from 'react'
-import { Dialog, DialogContent, List, Tab, Tabs } from '@mui/material'
-import { COLOR } from '@/utils/globalVariable'
-import { TabPanelProps } from '@/types/general'
+import React from 'react';
+import { Dialog, DialogContent, List, Tab, Tabs } from '@mui/material';
+import { COLOR } from '@/utils/globalVariable';
+import { TabPanelProps } from '@/types/general';
 import { Solana } from './ListWallets';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
-import actionModalAuth from '@/store/modalAuth/action'
+import actionModalAuth from '@/store/modalAuth/action';
 import { solana } from 'static';
 
 const TabPanel = (props: TabPanelProps) => {
@@ -19,42 +19,39 @@ const TabPanel = (props: TabPanelProps) => {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <List>
-          {children}
-        </List>
-      )}
+      {value === index && <List>{children}</List>}
     </div>
   );
-}
+};
 
-const MemoizedTabPanel = React.memo(TabPanel)
+const MemoizedTabPanel = React.memo(TabPanel);
 
 const a11yProps = (index: number) => {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   };
-}
+};
 
 const Login = () => {
   const [value, setValue] = React.useState(0);
-  const defaultVisible = useSelector((state: ReduxState) => state.modalAuth)
+  const defaultVisible = useSelector((state: ReduxState) => state.modalAuth);
 
   const handleClose = () => actionModalAuth.setModalAuth({ visible: false });
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => setValue(newValue);
+  const handleChange = (event: React.SyntheticEvent, newValue: number) =>
+    setValue(newValue);
 
   return (
     <Dialog
       sx={{
         '& .MuiDialog-container': {
-          height: 'auto'
+          height: 'auto',
         },
         '& .MuiDialog-paper': {
           width: '443px',
           backgroundColor: 'rgb(0, 0, 0)',
           borderRadius: 3,
-          border: '1px solid rgb(30, 30, 30)'
+          border: '1px solid rgb(30, 30, 30)',
         },
       }}
       open={defaultVisible.visible}
@@ -75,7 +72,7 @@ const Login = () => {
         </MemoizedTabPanel> */}
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

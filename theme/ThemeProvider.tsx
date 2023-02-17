@@ -3,12 +3,12 @@ import {
   ThemeProvider as MUIThemeProvider,
   createTheme,
   StyledEngineProvider,
-} from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { Work_Sans } from "@next/font/google";
-import customTypography from "./Typography";
-import { CacheProvider } from "@emotion/react";
-import createEmotionCache from "./createEmotionCache";
+} from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Work_Sans } from '@next/font/google';
+import customTypography from './Typography';
+import { CacheProvider } from '@emotion/react';
+import createEmotionCache from './createEmotionCache';
 
 export const workSans = Work_Sans({
   weight: ['300', '400', '500', '700'],

@@ -10,26 +10,26 @@ import {
   Paper,
   Typography,
   styled,
-} from "@mui/material";
-import { useSelector } from "react-redux";
-import { ReduxState } from "@/types/redux";
-import MarketSidebar from "./SidebarFilter";
-import { getCollectionItems, getMarketCollections } from "@/services/games";
-import GameItem from "./GameItem";
-import GameSearchField from "./GameSearchField";
-import { mapFilters, mapMarketItems } from "./helpers";
-import useDebounce from "@/hooks/useDebounce";
-import Iconify from "@/components/Iconify";
-import { getMarketItemById } from "@/services/homepage";
-import { ErrorResponseDto } from "@/types/general";
-import actionNft from "@/store/detailNft/action";
-import { Modal } from "@/components/index";
+} from '@mui/material';
+import { useSelector } from 'react-redux';
+import { ReduxState } from '@/types/redux';
+import MarketSidebar from './SidebarFilter';
+import { getCollectionItems, getMarketCollections } from '@/services/games';
+import GameItem from './GameItem';
+import GameSearchField from './GameSearchField';
+import { mapFilters, mapMarketItems } from './helpers';
+import useDebounce from '@/hooks/useDebounce';
+import Iconify from '@/components/Iconify';
+import { getMarketItemById } from '@/services/homepage';
+import { ErrorResponseDto } from '@/types/general';
+import actionNft from '@/store/detailNft/action';
+import { Modal } from '@/components/index';
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: "center",
+  textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
 

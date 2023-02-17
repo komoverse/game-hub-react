@@ -1,19 +1,19 @@
-import Head from "next/head";
-import { AppProps } from "next/app";
-import { EmotionCache } from "@emotion/react";
-import i18next from "i18next";
-import { initReactI18next, I18nextProvider } from "react-i18next";
-import enTranslations from "locales/en";
-import idTranslations from "locales/id";
-import zhTranslations from "locales/zh";
-import hiTranslations from "locales/hi";
-import ThemeProvider from "@/theme/ThemeProvider";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Provider } from "react-redux";
-import store from "store/store";
-import "styles/global.scss";
-import { ReactQueryDevtools } from "react-query/devtools";
-import Layout from "@/layouts/Layout";
+import Head from 'next/head';
+import { AppProps } from 'next/app';
+import { EmotionCache } from '@emotion/react';
+import i18next from 'i18next';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
+import enTranslations from 'locales/en';
+import idTranslations from 'locales/id';
+import zhTranslations from 'locales/zh';
+import hiTranslations from 'locales/hi';
+import ThemeProvider from '@/theme/ThemeProvider';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
+import store from 'store/store';
+import 'styles/global.scss';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import Layout from '@/layouts/Layout';
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -57,8 +57,7 @@ export default function MyApp(props: MyAppProps) {
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
           <QueryClientProvider client={queryClient}>
-
-            {process.env.NODE_ENV === "development" && (
+            {process.env.NODE_ENV === 'development' && (
               <ReactQueryDevtools initialIsOpen={false} />
             )}
 

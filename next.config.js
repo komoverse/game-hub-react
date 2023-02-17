@@ -16,7 +16,7 @@ module.exports = {
       'komo.s3.amazonaws.com',
       'avatars.githubusercontent.com',
       'raw.githubusercontent.com',
-      'komoverse-api-bucket.s3.ap-southeast-1.amazonaws.com'
+      'komoverse-api-bucket.s3.ap-southeast-1.amazonaws.com',
     ],
   },
   trailingSlash: true,

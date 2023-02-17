@@ -1,13 +1,20 @@
-import React from 'react'
-import { Box, Button } from '@mui/material'
-import { columns } from './config'
-import { CustomTable } from './style'
-import { GridCellParams, GridRowClassNameParams, GridValidRowModel } from '@mui/x-data-grid'
-import { TopPlayersCellClassnames, TopPlayersRowClassnames } from '@/types/general'
-import { useSelector } from 'react-redux'
-import { ReduxState } from '@/types/redux'
-import { COLOR } from '@/utils/globalVariable'
-import actionPagination from '@/store/pagination/action'
+import React from 'react';
+import { Box, Button } from '@mui/material';
+import { columns } from './config';
+import { CustomTable } from './style';
+import {
+  GridCellParams,
+  GridRowClassNameParams,
+  GridValidRowModel,
+} from '@mui/x-data-grid';
+import {
+  TopPlayersCellClassnames,
+  TopPlayersRowClassnames,
+} from '@/types/general';
+import { useSelector } from 'react-redux';
+import { ReduxState } from '@/types/redux';
+import { COLOR } from '@/utils/globalVariable';
+import actionPagination from '@/store/pagination/action';
 
 const KomoverseTableCustom = () => {
   const data = useSelector(

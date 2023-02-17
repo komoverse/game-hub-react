@@ -7,14 +7,14 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "pre-commit": "next lint"
+    "pre-commit": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.5",
-    "@metamask/detect-provider": "^2.0.0",
     "@mui/icons-material": "^5.11.0",
     "@mui/lab": "^5.0.0-alpha.116",
     "@mui/material": "^5.11.4",

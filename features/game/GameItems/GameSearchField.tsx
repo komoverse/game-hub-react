@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
-import Iconify from "@/components/Iconify";
+import { Dispatch, SetStateAction } from 'react';
+import Iconify from '@/components/Iconify';
 import {
   Box,
   FormControl,
@@ -8,7 +8,7 @@ import {
   Select,
   SelectChangeEvent,
   TextField,
-} from "@mui/material";
+} from '@mui/material';
 
 const GameSearchField = ({
   sortKey,
@@ -25,8 +25,8 @@ const GameSearchField = ({
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
         gap: 1,
       }}
     >
@@ -35,9 +35,9 @@ const GameSearchField = ({
         placeholder="Search..."
         sx={{
           flexGrow: 1,
-          "& .MuiOutlinedInput-root": {
-            borderRadius: "2rem",
-            height: "40px",
+          '& .MuiOutlinedInput-root': {
+            borderRadius: '2rem',
+            height: '40px',
           },
         }}
         InputProps={{
@@ -53,9 +53,9 @@ const GameSearchField = ({
           input={
             <OutlinedInput
               sx={{
-                borderRadius: "2rem",
-                height: "40px",
-                minWidth: "180px",
+                borderRadius: '2rem',
+                height: '40px',
+                minWidth: '180px',
               }}
             />
           }
@@ -71,4 +71,3 @@ const GameSearchField = ({
 };
 
 export default GameSearchField;
-

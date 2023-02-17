@@ -1,22 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import { styled } from "@mui/material/styles";
-import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
-import Image from "next/image";
-import { Iconify } from "@/components/index";
-import SearchField from "./SearchField";
-import LanguageMenu from "./LanguageMenu";
-import SearchFieldPopOver from "./SearchFieldPopover";
-import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constants";
-import useResponsive from "@/hooks/useResponsive";
-import { useRouter } from "next/router";
-import Login from "@/features/auth/Login";
-import { COLOR } from "@/utils/globalVariable";
-import ProfileMenu from "./ProfileMenu";
+import { useEffect, useRef, useState } from 'react';
+import { styled } from '@mui/material/styles';
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
+import Image from 'next/image';
+import { Iconify } from '@/components/index';
+import SearchField from './SearchField';
+import LanguageMenu from './LanguageMenu';
+import SearchFieldPopOver from './SearchFieldPopover';
+import { APPBAR_DESKTOP, APPBAR_MOBILE } from '../constants';
+import useResponsive from '@/hooks/useResponsive';
+import { useRouter } from 'next/router';
+import Login from '@/features/auth/Login';
+import { COLOR } from '@/utils/globalVariable';
+import ProfileMenu from './ProfileMenu';
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
-  boxShadow: "none",
+  boxShadow: 'none',
   backgroundColor: COLOR.backgroundCardSemiBlack,
-  backgroundImage: "none",
+  backgroundImage: 'none',
   zIndex: theme.zIndex.drawer + 1,
 }));
 
@@ -32,7 +32,7 @@ interface NavbarProps {
 }
 
 function Navbar({ toggleDrawer }: NavbarProps) {
-  const isMobile = useResponsive("down", "sm");
+  const isMobile = useResponsive('down', 'sm');
   const router = useRouter();
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
 

@@ -1,21 +1,24 @@
-import React from 'react'
+import React from 'react';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
-import { COLOR } from '@/utils/globalVariable'
-import { Snackbar } from '@mui/material'
+import { COLOR } from '@/utils/globalVariable';
+import { Snackbar } from '@mui/material';
 import { ToastProps, TypeMessage } from '@/types/general';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
-  ref,
+  ref
 ) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const Toast = ({ open, setOpen, message, position, type }: ToastProps) => {
-  const vertical = position?.vertical
-  const horizontal = position?.horizontal
+  const vertical = position?.vertical;
+  const horizontal = position?.horizontal;
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -23,9 +26,12 @@ const Toast = ({ open, setOpen, message, position, type }: ToastProps) => {
     setOpen(false);
   };
 
-  const border = type === TypeMessage.ERROR ?
-    `1px solid ${COLOR.baseError}` : type === TypeMessage.SUCCESS ?
-      `1px solid ${COLOR.baseGreen}` : ''
+  const border =
+    type === TypeMessage.ERROR
+      ? `1px solid ${COLOR.baseError}`
+      : type === TypeMessage.SUCCESS
+        ? `1px solid ${COLOR.baseGreen}`
+        : '';
 
   return (
     <Snackbar
@@ -39,7 +45,7 @@ const Toast = ({ open, setOpen, message, position, type }: ToastProps) => {
           width: '100%',
           background: COLOR.baseSemiBlack,
           color: COLOR.baseWhite,
-          border: border
+          border: border,
         }}
         onClose={handleClose}
         icon={false}
@@ -47,7 +53,7 @@ const Toast = ({ open, setOpen, message, position, type }: ToastProps) => {
         {message}
       </Alert>
     </Snackbar>
-  )
-}
+  );
+};
 
-export default React.memo(Toast)
+export default React.memo(Toast);
