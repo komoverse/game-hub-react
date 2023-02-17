@@ -1,5 +1,11 @@
-import React from 'react'
-import { Breadcrumbs, Dialog, DialogContent, DialogTitle, Typography } from '@mui/material'
+import React from 'react';
+import {
+  Breadcrumbs,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Typography,
+} from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { COLOR } from '@/utils/globalVariable';
 import actionNft from '@/store/detailNft/action'
@@ -17,7 +23,7 @@ const Modal = ({ open, setOpen }: ModalTProps) => {
     setOpen(!open)
     actionNft.clearDetailNft()
     // actionTransaction.clearHistoryTransaction()
-  }
+  };
 
   return (
     <Dialog
@@ -45,7 +51,7 @@ const Modal = ({ open, setOpen }: ModalTProps) => {
         <BasicTable />
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};
 
-export default React.memo(Modal)
+export default React.memo(Modal);

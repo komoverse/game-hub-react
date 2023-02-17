@@ -10,11 +10,7 @@ import { APPBAR_DESKTOP, APPBAR_MOBILE } from "../constants";
 import useResponsive from "@/hooks/useResponsive";
 import { useRouter } from "next/router";
 import Login from "@/features/auth/Login";
-import actionModalAuth from '@/store/modalAuth/action'
-import { useSelector } from "react-redux";
-import { ReduxState } from "@/types/redux";
 import { COLOR } from "@/utils/globalVariable";
-import { TypeAuthLogin } from "@/types/general";
 import ProfileMenu from "./ProfileMenu";
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
@@ -26,7 +22,7 @@ const AppbarStyled = styled(AppBar)(({ theme }) => ({
 
 const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
   minHeight: APPBAR_MOBILE,
-  [theme.breakpoints.up("md")]: {
+  [theme.breakpoints.up('md')]: {
     minHeight: APPBAR_DESKTOP,
   },
 }));
@@ -53,16 +49,16 @@ function Navbar({ toggleDrawer }: NavbarProps) {
       <ToolbarStyled>
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "100%",
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
           }}
         >
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <IconButton
@@ -80,7 +76,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               alt="komoverse-logo"
               height={40}
               width={84}
-              onClick={() => router.push("/", "/")}
+              onClick={() => router.push('/', '/')}
               priority={true}
             />
           </Box>
@@ -91,13 +87,13 @@ function Navbar({ toggleDrawer }: NavbarProps) {
           />
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
+              display: 'flex',
+              alignItems: 'center',
             }}
           >
             <IconButton
               size="medium"
-              sx={{ display: { sm: "none" } }}
+              sx={{ display: { sm: 'none' } }}
               onClick={toggleSearchBar}
             >
               <Iconify icon="ic:outline-search" height={24} width={24} />

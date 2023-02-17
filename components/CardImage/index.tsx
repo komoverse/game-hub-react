@@ -1,9 +1,9 @@
-import React from "react";
-import { Box } from "@mui/material";
-import { BoxCard, BoxContent, BoxImage, CardActionArea } from "./style";
-import dynamic from "next/dynamic";
+import React from 'react';
+import { Box } from '@mui/material';
+import { BoxCard, BoxContent, BoxImage, CardActionArea } from './style';
+import dynamic from 'next/dynamic';
 
-const Image = dynamic(() => import("next/image"), { ssr: false });
+const Image = dynamic(() => import('next/image'), { ssr: false });
 
 type CardImageProps = {
   image_url: string;
@@ -12,9 +12,14 @@ type CardImageProps = {
   width?: string | number;
 };
 
-const CardImage = ({ image_url, onClick, children, width = 208.5 }: CardImageProps) => {
+const CardImage = ({
+  image_url,
+  onClick,
+  children,
+  width = 208.5,
+}: CardImageProps) => {
   return (
-    <Box sx={{ height: 341, position: "relative" }}>
+    <Box sx={{ height: 341, position: 'relative' }}>
       <BoxCard onClick={onClick}>
         <Box sx={{ width: width }}>
           <CardActionArea>
@@ -25,20 +30,20 @@ const CardImage = ({ image_url, onClick, children, width = 208.5 }: CardImagePro
                 src={image_url}
                 decoding="async"
                 style={{
-                  position: "absolute",
+                  position: 'absolute',
                   inset: 0,
-                  boxSizing: "border-box",
+                  boxSizing: 'border-box',
                   padding: 0,
-                  border: "none",
-                  margin: "auto",
-                  display: "block",
+                  border: 'none',
+                  margin: 'auto',
+                  display: 'block',
                   width: 0,
                   height: 0,
-                  minWidth: "100%",
-                  maxWidth: "100%",
-                  minHeight: "100%",
-                  maxHeight: "100%",
-                  objectFit: "contain",
+                  minWidth: '100%',
+                  maxWidth: '100%',
+                  minHeight: '100%',
+                  maxHeight: '100%',
+                  objectFit: 'contain',
                 }}
                 width={100}
                 height={100}

@@ -32,14 +32,14 @@ i18n.init({
     wait: true,
   },
   resources,
-  lng: "en",
-  fallbackLng: "en",
-  keySeparator: ".",
+  lng: 'en',
+  fallbackLng: 'en',
+  keySeparator: '.',
   interpolation: {
     escapeValue: false,
   },
-  ns: ["messages"],
-  defaultNS: "messages",
+  ns: ['messages'],
+  defaultNS: 'messages',
   fallbackNS: [],
 });
 
@@ -61,7 +61,7 @@ export default function MyApp(props: MyAppProps) {
             {process.env.NODE_ENV === "development" && (
               <ReactQueryDevtools initialIsOpen={false} />
             )}
-            
+
             <Layout>
               <Component {...pageProps} />
             </Layout>

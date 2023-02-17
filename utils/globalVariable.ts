@@ -7,7 +7,7 @@ export const COLOR = {
   baseSemiBlack: '#141414',
   baseGray: '#B5B5B5',
   backgroundCardSemiBlack: '#111111',
-  backgroundRoot: '#000000DD',
+  backgroundRoot: '#000000',
   borderSemiBlack: '#1E1E1E',
   backgroundSemiBlack: '#191919',
   baseSemiGray: '#ABABAB',

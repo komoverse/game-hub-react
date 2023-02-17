@@ -1,17 +1,24 @@
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
 import {
   APPBAR_DESKTOP,
   APPBAR_MOBILE,
   SIDEBAR_WIDTH,
   komoverseSocialMedia,
-} from "../constants";
-import SidebarMenuItem from "./SidebarMenuItem";
-import useResponsive from "@/hooks/useResponsive";
-import { SidebarProps } from "./types";
+} from '../constants';
+import SidebarMenuItem from './SidebarMenuItem';
+import useResponsive from '@/hooks/useResponsive';
+import { SidebarProps } from './types';
+import { COLOR } from '@/utils/globalVariable';
 
-export default function Sidebar({ isOpen, setIsOpen, isGamePage, menuItems, isSuccess }: SidebarProps) {
-  const isMobile = useResponsive("down", "md");
+export default function Sidebar({
+  isOpen,
+  setIsOpen,
+  isGamePage,
+  menuItems,
+  isSuccess,
+}: SidebarProps) {
+  const isMobile = useResponsive('down', 'md');
 
   const toggleClose = () => {
     if (isGamePage) setIsOpen(false);
@@ -19,15 +26,15 @@ export default function Sidebar({ isOpen, setIsOpen, isGamePage, menuItems, isSu
 
   return (
     <Drawer
-      variant={isMobile || isGamePage ? "temporary" : "persistent"}
+      variant={isMobile || isGamePage ? 'temporary' : 'persistent'}
       sx={{
-        width: isOpen ? SIDEBAR_WIDTH : "0",
+        width: isOpen ? SIDEBAR_WIDTH : '0',
         flexShrink: 0,
         [`& .MuiDrawer-paper`]: {
           width: SIDEBAR_WIDTH,
-          boxSizing: "border-box",
-          backgroundColor: "#000",
-          backgroundImage: "none",
+          boxSizing: 'border-box',
+          backgroundColor: COLOR.backgroundRoot,
+          backgroundImage: 'none',
         },
       }}
       hideBackdrop

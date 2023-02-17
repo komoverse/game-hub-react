@@ -1,33 +1,33 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { alpha } from "@mui/material/styles";
-import { Box, MenuItem, Stack, IconButton } from "@mui/material";
-import { MenuPopover } from "@/components/index";
-import languageAction from "store/language/action";
-import { useRouter, withRouter } from "next/router";
-import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { alpha } from '@mui/material/styles';
+import { Box, MenuItem, Stack, IconButton } from '@mui/material';
+import { MenuPopover } from '@/components/index';
+import languageAction from 'store/language/action';
+import { useRouter, withRouter } from 'next/router';
+import Image from 'next/image';
 
 // resource for flag icon
 // https://flagpedia.net/download/api
 const LANGS = [
   {
-    value: "zh",
-    label: "Chinese",
-    icon: "https://flagcdn.com/cn.svg",
+    value: 'zh',
+    label: 'Chinese',
+    icon: 'https://flagcdn.com/cn.svg',
   },
   {
-    value: "en",
-    label: "English",
-    icon: "https://flagcdn.com/gb.svg",
+    value: 'en',
+    label: 'English',
+    icon: 'https://flagcdn.com/gb.svg',
   },
   {
-    value: "hi",
-    label: "Hindi",
-    icon: "https://flagcdn.com/in.svg",
+    value: 'hi',
+    label: 'Hindi',
+    icon: 'https://flagcdn.com/in.svg',
   },
   {
-    value: "id",
-    label: "Indonesian",
-    icon: "https://flagcdn.com/id.svg",
+    value: 'id',
+    label: 'Indonesian',
+    icon: 'https://flagcdn.com/id.svg',
   },
 ];
 
@@ -85,7 +85,7 @@ const LanguagePopover = () => {
         }}
       >
         <Image
-          src={getFlagIcon(language || "en")}
+          src={getFlagIcon(language || 'en')}
           alt={`flag icon of te current language ${language}`}
           width={30}
           height={30}
@@ -100,9 +100,9 @@ const LanguagePopover = () => {
           mt: 1.5,
           ml: 0.75,
           width: 180,
-          "& .MuiMenuItem-root": {
+          '& .MuiMenuItem-root': {
             px: 1,
-            typography: "body2",
+            typography: 'body2',
             borderRadius: 0.75,
           },
         }}

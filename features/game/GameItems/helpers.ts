@@ -1,6 +1,6 @@
-import _intersection from "lodash.intersection";
+import _intersection from 'lodash.intersection';
 
-import { IFilterOption } from "./types";
+import { IFilterOption } from './types';
 
 export function mapFilters(
   data: Array<{
@@ -50,7 +50,7 @@ export function flattenMarketItemsAttributes(data: any) {
 
 function sortByDate(data: any, sortKey: string) {
   switch (sortKey) {
-    case "DATE_DESC":
+    case 'DATE_DESC':
       return data.sort(function (a: any, b: any) {
         var key1 = new Date(a.created_at);
         var key2 = new Date(b.created_at);
@@ -63,7 +63,7 @@ function sortByDate(data: any, sortKey: string) {
           return 1;
         }
       });
-    case "DATE_ASC":
+    case 'DATE_ASC':
       return data.sort(function (a: any, b: any) {
         var key1 = new Date(a.created_at);
         var key2 = new Date(b.created_at);
@@ -83,9 +83,9 @@ function sortByDate(data: any, sortKey: string) {
 
 function sortByPrice(data: any, sortKey: string) {
   switch (sortKey) {
-    case "PRICE_DESC":
+    case 'PRICE_DESC':
       return data.sort((a: any, b: any) => b.price - a.price);
-    case "PRICE_ASC":
+    case 'PRICE_ASC':
       return data.sort((a: any, b: any) => a.price - b.price);
     default:
       break;
@@ -119,11 +119,11 @@ export function mapMarketItems(
     item.nft.name.includes(searchKeyword.toLowerCase())
   );
 
-  if (sortKey.includes("PRICE")) {
+  if (sortKey.includes('PRICE')) {
     finalItems = sortByPrice(finalItems, sortKey);
   }
 
-  if (sortKey.includes("DATE")) {
+  if (sortKey.includes('DATE')) {
     finalItems = sortByDate(finalItems, sortKey);
   }
 

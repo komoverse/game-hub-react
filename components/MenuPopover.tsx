@@ -1,7 +1,5 @@
-import { memo, ReactNode } from "react";
-import { Popover } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { alpha } from "@mui/material/styles";
+import { memo, ReactNode } from 'react';
+import { Popover } from '@mui/material';
 
 interface MenuPopoverProps {
   children: ReactNode;
@@ -14,13 +12,13 @@ const MenuPopover = ({
   ...other
 }: MenuPopoverProps & $ComponentType<typeof Popover>) => (
   <Popover
-    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-    transformOrigin={{ vertical: "top", horizontal: "right" }}
+    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
     PaperProps={{
       sx: {
         p: 1,
         width: 200,
-        overflow: "inherit",
+        overflow: 'inherit',
         ...sx,
       },
     }}

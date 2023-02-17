@@ -1,5 +1,5 @@
-import { Icon } from "@iconify/react";
-import { Box, SxProps, Theme } from "@mui/material";
+import { Icon } from '@iconify/react';
+import { Box, SxProps, Theme } from '@mui/material';
 
 type IconifyProps = {
   icon: string;

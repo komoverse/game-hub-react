@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo } from 'react';
 import {
   ThemeProvider as MUIThemeProvider,
   createTheme,
@@ -11,16 +11,16 @@ import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "./createEmotionCache";
 
 export const workSans = Work_Sans({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-  fallback: ["Helvetica", "Arial", "sans-serif"],
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 
 const palette = {
-  mode: "dark",
+  mode: 'dark',
   primary: {
-    main: "#32cd32",
+    main: '#32cd32',
   },
 };
 

@@ -1,4 +1,4 @@
-import { Items, Reviews, TopPlayers } from "@/features/game/Overview";
+import { Items, Reviews, TopPlayers } from '@/features/game/Overview';
 
 export default function OverviewPages() {
   return (
@@ -7,5 +7,5 @@ export default function OverviewPages() {
       <Reviews />
       <TopPlayers />
     </>
-  )
+  );
 }

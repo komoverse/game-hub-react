@@ -35,6 +35,12 @@ export function isBefore(date: string, startDate: string) {
   return resDate.isBefore(startDate);
 }
 
+export function isAfter(date: string, endDate: string) {
+  const resDate = dayjs(date);
+
+  return resDate.isAfter(endDate);
+}
+
 export function getDiff(date: string, targetDate: string) {
   const resDate = dayjs(date);
 

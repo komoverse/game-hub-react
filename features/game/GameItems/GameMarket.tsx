@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { useQuery } from "react-query";
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
 import {
   Box,
   Button,
@@ -36,9 +36,9 @@ const Item = styled(Paper)(({ theme }) => ({
 const GameMarket = () => {
   const router = useRouter();
   const { game: gameId } = router.query;
-  const [currCollection, setCurrCollection] = useState<string>("");
+  const [currCollection, setCurrCollection] = useState<string>('');
 
-  const { data: collections } = useQuery(["getMarketCollections", gameId], () =>
+  const { data: collections } = useQuery(['getMarketCollections', gameId], () =>
     getMarketCollections(gameId as string)
   );
 
@@ -47,14 +47,14 @@ const GameMarket = () => {
     isError,
     isLoading,
     refetch,
-  } = useQuery(["getCollectionItems", currCollection], () =>
+  } = useQuery(['getCollectionItems', currCollection], () =>
     getCollectionItems(currCollection)
   );
 
   const [openModalDetail, setOpenModalDetail] = useState<boolean>(false);
-  const [listingId, setListingId] = useState<string>("");
+  const [listingId, setListingId] = useState<string>('');
   const { isFetching: isFetchItemDetail } = useQuery(
-    ["marketItemById", listingId],
+    ['marketItemById', listingId],
     () => getMarketItemById(listingId),
     {
       staleTime: 3000,
@@ -82,15 +82,15 @@ const GameMarket = () => {
       state.market?.value && Object.values(state.market?.value).flat()
   );
 
-  const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
   const debouncedSearchKeyword: string = useDebounce<string>(
     searchKeyword,
     500
   );
 
-  const [sortKey, setSortKey] = useState<string>("DATE_ASC");
+  const [sortKey, setSortKey] = useState<string>('DATE_ASC');
   // TDOD: get user address fro login
-  const userWalletAddres = "";
+  const userWalletAddres = '';
   const [isDisplayUserItems, setIsDisplayUserItems] = useState<boolean>(false);
 
   const onDisplayUserItems = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -115,9 +115,9 @@ const GameMarket = () => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: { xs: "column", lg: "row" },
-        position: "relative",
+        display: 'flex',
+        flexDirection: { xs: 'column', lg: 'row' },
+        position: 'relative',
       }}
     >
       <MarketSidebar
@@ -132,7 +132,7 @@ const GameMarket = () => {
           setSortKey={setSortKey}
           setKeyword={setSearchKeyword}
         />
-        <Box sx={{ py: 1, display: "flex" }} gap={2}>
+        <Box sx={{ py: 1, display: 'flex' }} gap={2}>
           <Button color="info" onCanPlay={() => refetch()}>
             <Iconify icon="mdi:sync" height={24} width={24} color="#29b6f6" />
           </Button>
@@ -151,7 +151,7 @@ const GameMarket = () => {
           <Box
             bgcolor="#202020"
             p={4}
-            sx={{ borderRadius: "16px", textAlign: "center" }}
+            sx={{ borderRadius: '16px', textAlign: 'center' }}
           >
             <Typography>Connect a wallet to see your items.</Typography>
           </Box>

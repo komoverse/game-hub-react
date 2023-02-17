@@ -1,7 +1,7 @@
-import { COLOR } from "@/utils/globalVariable";
-import { Box, Tab, Tabs, AppBar } from "@mui/material";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { COLOR } from '@/utils/globalVariable';
+import { Box, Tab, Tabs, AppBar } from '@mui/material';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
   const router = useRouter();
@@ -9,8 +9,8 @@ const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
 
   const handleChangeTab = (event: React.SyntheticEvent, value: string) => {
     setCurrTab(value);
-    if (value === "overview") {
-      value = "";
+    if (value === 'overview') {
+      value = '';
     }
     const { game } = router.query;
     const nextRoute = `/${game}/${value}`;
@@ -18,8 +18,8 @@ const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
   };
 
   useEffect(() => {
-    if (router.pathname !== "/[game]") {
-      const path = router.pathname.split("/");
+    if (router.pathname !== '/[game]') {
+      const path = router.pathname.split('/');
       const tab = path[path.length - 1];
       setCurrTab(tab);
     }
@@ -30,7 +30,7 @@ const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
       <Box
         sx={{
           borderBottom: 1,
-          borderColor: "divider",
+          borderColor: 'divider',
           background: COLOR.backgroundRoot,
         }}
       >
@@ -41,7 +41,7 @@ const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
           variant="scrollable"
         >
           {tabs.map((item, i) => (
-            <Tab key={i} sx={{ minWidth: "172px" }} value={item} label={item} />
+            <Tab key={i} sx={{ minWidth: '172px' }} value={item} label={item} />
           ))}
         </Tabs>
       </Box>
