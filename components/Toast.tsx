@@ -26,12 +26,12 @@ const Toast = ({ open, setOpen, message, position, type }: ToastProps) => {
     setOpen(false);
   };
 
-  const border =
-    type === TypeMessage.ERROR
-      ? `1px solid ${COLOR.baseError}`
-      : type === TypeMessage.SUCCESS
-        ? `1px solid ${COLOR.baseGreen}`
-        : '';
+  // const border =
+  //   type === TypeMessage.ERROR
+  //     ? `1px solid ${COLOR.baseError}`
+  //     : type === TypeMessage.SUCCESS
+  //       ? `1px solid ${COLOR.baseGreen}`
+  //       : '';
 
   return (
     <Snackbar
@@ -45,7 +45,7 @@ const Toast = ({ open, setOpen, message, position, type }: ToastProps) => {
           width: '100%',
           background: COLOR.baseSemiBlack,
           color: COLOR.baseWhite,
-          border: border,
+          // border: border,
         }}
         onClose={handleClose}
         icon={false}
