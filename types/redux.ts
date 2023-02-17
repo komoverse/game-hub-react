@@ -1,5 +1,6 @@
 import { WalletsDto } from './auth';
 import { TypeAuthLogin } from './general';
+import { ProfileDto } from './home';
 
 export interface ReduxState {
   market: { [key: string]: Array<string> };
@@ -16,4 +17,5 @@ export interface ReduxState {
   };
   wallets: WalletsDto;
   login: TypeAuthLogin;
+  profile: ProfileDto;
 }

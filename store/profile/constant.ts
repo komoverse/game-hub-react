@@ -1,0 +1,3 @@
+export const SET_PROFILE = 'SET_PROFILE';
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';

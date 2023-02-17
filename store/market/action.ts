@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import store from '../store';
-import * as ActionType from './constants';
+import * as ActionType from './constant';
 
 export default {
   setFilter: (value: any) => {

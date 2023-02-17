@@ -7,6 +7,7 @@ import market from './market/reducer';
 import modalAuth from './modalAuth/reducer';
 import wallets from './wallets/reducer';
 import login from './auth/reducer';
+import profile from './profile/reducer';
 
 const reducers = {
   lang,
@@ -18,6 +19,7 @@ const reducers = {
   modalAuth,
   wallets,
   login,
+  profile,
 };
 
 export default reducers;

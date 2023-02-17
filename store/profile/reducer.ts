@@ -11,8 +11,12 @@ const reducer = (state = initializeState(), action: any) => {
   const { type, value } = action;
 
   switch (type) {
-    case ActionType.SET_FILTER:
-      return { ...initState, value };
+    case ActionType.SET_PROFILE:
+      return { ...initState, ...value };
+    case ActionType.UPDATE_PROFILE:
+      return value;
+    case ActionType.CLEAR_PROFILE:
+      return initState;
     default:
       return state;
   }
