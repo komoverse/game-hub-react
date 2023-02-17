@@ -18,4 +18,5 @@ module.exports = {
       'raw.githubusercontent.com',
     ],
   },
+  trailingSlash: true,
 };
