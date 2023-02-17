@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { ProfileDto } from '@/types/home';
 import store from '../store';
-import * as ActionType from './constant';
+import * as ActionType from './constants';
 
 export default {
   setProfile: (value: ProfileDto) => {
