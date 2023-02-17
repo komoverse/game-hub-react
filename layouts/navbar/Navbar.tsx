@@ -78,6 +78,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               width={84}
               onClick={() => router.push('/', '/')}
               priority={true}
+              style={{ cursor: 'pointer' }}
             />
           </Box>
           <Box>{!isMobile && <SearchField />}</Box>
