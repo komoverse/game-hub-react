@@ -2,8 +2,6 @@ import { memo, useRef, useState } from 'react';
 import { COLOR, GRADIENT } from '@/utils/globalVariable';
 import {
   Box,
-  Button,
-  CircularProgress,
   Divider,
   MenuList,
   Typography,
@@ -23,6 +21,9 @@ import MenuPopover from '@/components/MenuPopover';
 import { IDR } from '@/utils/currency';
 import MenuKomoWallet from './MenuKomoWallet';
 import actionModalAuth from '@/store/modalAuth/action';
+
+const Button = dynamic(() => import('@mui/material/Button'), { ssr: false });
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false });
 
 const ProfileMenu = () => {
   const anchorRef = useRef(null);
@@ -93,7 +94,7 @@ const ProfileMenu = () => {
         anchorEl={anchorRef.current}
         sx={{
           background: COLOR.backgroundCardSemiBlack,
-          mt: 3,
+          mt: -9,
           ml: 0.75,
           width: 304,
           borderRadius: '11px',
