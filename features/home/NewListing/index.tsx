@@ -24,7 +24,7 @@ import { CardContent } from '@mui/material';
 import { shortenTitleGame } from '@/utils/shorten';
 import { dateFromNow } from '@/helper/date';
 import { ReduxState } from '@/types/redux';
-import { ErrorResponseDto } from '@/types/response';
+import { ErrorResponseDto } from '@/types/general';
 import { Navigation } from 'swiper';
 
 const NewListings = () => {

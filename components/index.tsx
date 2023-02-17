@@ -10,3 +10,4 @@ export { default as NoteIcon } from './NoteIcon';
 export { default as UnverifiedIcon } from './UnverifiedIcon';
 export { default as ViewIcon } from './ViewIcon';
 export { default as CustomTable } from './Table/CustomTable';
+export { default as Toast } from './Toast';

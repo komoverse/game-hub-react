@@ -1,3 +1,7 @@
+import { WalletsDto } from './auth';
+import { TypeAuthLogin } from './general';
+import { ProfileDto } from './home';
+
 export interface ReduxState {
   market: { [key: string]: Array<string> };
   pagination: {
@@ -8,4 +12,10 @@ export interface ReduxState {
   sidebar: {
     value: Array<{}>;
   };
+  modalAuth: {
+    visible: boolean;
+  };
+  wallets: WalletsDto;
+  login: TypeAuthLogin;
+  profile: ProfileDto;
 }

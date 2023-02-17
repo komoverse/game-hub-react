@@ -70,7 +70,7 @@ const Featured = () => {
             allowTouchMove={false}
             modules={[Navigation]}
             className={
-              smDown || mdUp ? 'featured-swipperSmDown' : 'featured-swipper'
+              smDown || mdUp ? 'featured-swipper' : 'featured-swipperSmDown'
             }
           >
             {data?.map((video: ListFeaturedDto) => {

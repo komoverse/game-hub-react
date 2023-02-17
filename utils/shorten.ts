@@ -21,3 +21,7 @@ export const shortedDescription = (text: string, length: number) => {
   }
   return text;
 };
+
+export const shortenBalanceWallet = (number: number) => {
+  return number.toFixed(2);
+};

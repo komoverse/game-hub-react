@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   i18n: {
     locales: ['en', 'id', 'zh', 'hi'],
     defaultLocale: 'en',
@@ -14,7 +14,10 @@ module.exports = {
       'hub.komoverse.dev',
       'hub.komoverse.io',
       'komo.s3.amazonaws.com',
-      'komoverse-api-bucket.s3.ap-southeast-1.amazonaws.com'
+      'avatars.githubusercontent.com',
+      'raw.githubusercontent.com',
+      'komoverse-api-bucket.s3.ap-southeast-1.amazonaws.com',
     ],
   },
+  trailingSlash: true,
 };

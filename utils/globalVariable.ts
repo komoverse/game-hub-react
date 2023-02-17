@@ -21,6 +21,7 @@ export const COLOR = {
   baseBackgroundButtonGray: '#323232',
   baseColumnBlack: '#161616',
   baseButtonBlack: '#121212',
+  baseError: '#F4636F',
   baseSemiTextGray: '#868686',
   baseLightTextGray: '#A5A5A5',
   baseEmptyBackground: '#202020',

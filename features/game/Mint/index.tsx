@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   COLOR,
   KomoverseTag,
@@ -8,7 +9,7 @@ import {
 import { useQuery } from 'react-query';
 import { getGameMint } from '@/services/games';
 import { useRouter } from 'next/router';
-import { ErrorResponseDto } from '@/types/response';
+import { ErrorResponseDto } from '@/types/general';
 import { Button, CardContent, Divider, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import { GameMintDto } from '@/types/game';

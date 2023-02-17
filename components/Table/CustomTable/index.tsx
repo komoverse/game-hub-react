@@ -10,7 +10,7 @@ import {
 import {
   TopPlayersCellClassnames,
   TopPlayersRowClassnames,
-} from '@/types/response';
+} from '@/types/general';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
 import { COLOR } from '@/utils/globalVariable';

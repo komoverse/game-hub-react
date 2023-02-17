@@ -1,7 +1,7 @@
 import {
   TopPlayersCellClassnames,
   TopPlayersRowClassnames,
-} from '@/types/response';
+} from '@/types/general';
 import { COLOR, RADIUS } from '@/utils/globalVariable';
 import { styled } from '@mui/material';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';

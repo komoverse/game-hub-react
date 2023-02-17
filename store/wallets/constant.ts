@@ -1,0 +1,3 @@
+export const SET_WALLETS = 'SET_WALLETS';
+export const CLEAR_WALLETS = 'CLEAR_WALLETS';
+export const UPDATE_WALLETS = 'UPDATE_WALLETS';

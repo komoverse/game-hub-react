@@ -21,9 +21,17 @@ import { mapFilters, mapMarketItems } from './helpers';
 import useDebounce from '@/hooks/useDebounce';
 import Iconify from '@/components/Iconify';
 import { getMarketItemById } from '@/services/homepage';
-import { ErrorResponseDto } from '@/types/response';
+import { ErrorResponseDto } from '@/types/general';
 import actionNft from '@/store/detailNft/action';
 import { Modal } from '@/components/index';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const GameMarket = () => {
   const router = useRouter();

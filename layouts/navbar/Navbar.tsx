@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { AppBar, Box, IconButton, Toolbar, Button } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
 import Image from 'next/image';
 import { Iconify } from '@/components/index';
 import SearchField from './SearchField';
 import LanguageMenu from './LanguageMenu';
 import SearchFieldPopOver from './SearchFieldPopover';
-
 import { APPBAR_DESKTOP, APPBAR_MOBILE } from '../constants';
 import useResponsive from '@/hooks/useResponsive';
 import { useRouter } from 'next/router';
+import Login from '@/features/auth/Login';
 import { COLOR } from '@/utils/globalVariable';
+import ProfileMenu from './ProfileMenu';
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
-  backgroundColor: COLOR.backgroundRoot,
+  backgroundColor: COLOR.backgroundCardSemiBlack,
   backgroundImage: 'none',
   zIndex: theme.zIndex.drawer + 1,
 }));
@@ -32,27 +32,17 @@ interface NavbarProps {
 }
 
 function Navbar({ toggleDrawer }: NavbarProps) {
-  const { t } = useTranslation();
   const isMobile = useResponsive('down', 'sm');
   const router = useRouter();
-
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
 
-  const toggleSearchBar = () => {
-    setIsSearchBarOpen((prev) => !prev);
-  };
+  const toggleSearchBar = () => setIsSearchBarOpen((prev) => !prev);
 
   useEffect(() => {
     if (!isMobile) {
       setIsSearchBarOpen(false);
     }
   }, [isMobile]);
-
-  const changePage = () => {
-    router.push('/komo-chess/items', '/komo-chess/items', {
-      locale: router.locale,
-    });
-  };
 
   return (
     <AppbarStyled>
@@ -88,6 +78,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               width={84}
               onClick={() => router.push('/', '/')}
               priority={true}
+              style={{ cursor: 'pointer' }}
             />
           </Box>
           <Box>{!isMobile && <SearchField />}</Box>
@@ -109,22 +100,12 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               <Iconify icon="ic:outline-search" height={24} width={24} />
             </IconButton>
             <LanguageMenu />
-            <Button
-              onClick={changePage}
-              variant="contained"
-              size="medium"
-              sx={{
-                color: '#fff',
-                background:
-                  'radial-gradient(293.74% 1431.43% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)',
-                borderRadius: 2,
-              }}
-            >
-              {t('navbar.login')}
-            </Button>
+            <ProfileMenu />
           </Box>
         </Box>
       </ToolbarStyled>
+
+      <Login />
     </AppbarStyled>
   );
 }
