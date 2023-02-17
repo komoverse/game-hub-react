@@ -7,6 +7,8 @@ import {
 import CssBaseline from "@mui/material/CssBaseline";
 import { Work_Sans } from "@next/font/google";
 import customTypography from "./Typography";
+import { CacheProvider } from "@emotion/react";
+import createEmotionCache from "./createEmotionCache";
 
 export const workSans = Work_Sans({
   weight: ["300", "400", "500", "700"],
@@ -39,14 +41,17 @@ const ThemeProvider = ({ children }: ChildrenProps) => {
   );
 
   const theme = createTheme(themeOptions as any);
+  const cache = createEmotionCache();
 
   return (
-    <StyledEngineProvider injectFirst>
-      <MUIThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </MUIThemeProvider>
-    </StyledEngineProvider>
+    <CacheProvider value={cache}>
+      <StyledEngineProvider injectFirst>
+        <MUIThemeProvider theme={theme}>
+          <CssBaseline />
+          {children}
+        </MUIThemeProvider>
+      </StyledEngineProvider>
+    </CacheProvider>
   );
 };
 
