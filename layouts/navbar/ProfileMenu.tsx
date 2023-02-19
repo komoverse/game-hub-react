@@ -1,11 +1,6 @@
 import { memo, useRef, useState } from 'react';
 import { COLOR, GRADIENT } from '@/utils/globalVariable';
-import {
-  Box,
-  Divider,
-  MenuList,
-  Typography,
-} from '@mui/material';
+import { Box, Divider, MenuList, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
 import { ErrorResponseDto, TypeAuthLogin } from '@/types/general';
@@ -23,7 +18,10 @@ import MenuKomoWallet from './MenuKomoWallet';
 import actionModalAuth from '@/store/modalAuth/action';
 
 const Button = dynamic(() => import('@mui/material/Button'), { ssr: false });
-const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false });
+const CircularProgress = dynamic(
+  () => import('@mui/material/CircularProgress'),
+  { ssr: false }
+);
 
 const ProfileMenu = () => {
   const anchorRef = useRef(null);
