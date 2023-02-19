@@ -2,11 +2,10 @@ import React from 'react';
 import { Dialog, DialogContent, List, Tab, Tabs } from '@mui/material';
 import { COLOR } from '@/utils/globalVariable';
 import { TabPanelProps } from '@/types/general';
-import { Solana } from './ListWallets';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
 import actionModalAuth from '@/store/modalAuth/action';
-import { solana } from 'static';
+import KomoWallets from './KomoWallets';
 
 const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
@@ -49,9 +48,9 @@ const Login = () => {
         },
         '& .MuiDialog-paper': {
           width: '443px',
-          backgroundColor: 'rgb(0, 0, 0)',
+          backgroundColor: COLOR.backgroundRoot,
           borderRadius: 3,
-          border: '1px solid rgb(30, 30, 30)',
+          border: `1px solid ${COLOR.borderSemiBlack}`,
         },
       }}
       open={defaultVisible.visible}
@@ -63,9 +62,7 @@ const Login = () => {
           {/* <Tab sx={{ fontWeight: 500 }} label="ETHEREUM" {...a11yProps(1)} /> */}
         </Tabs>
         <MemoizedTabPanel value={value} index={0}>
-          {solana.map((wallet) => (
-            <Solana wallet={wallet} key={wallet.id} />
-          ))}
+          <KomoWallets />
         </MemoizedTabPanel>
         {/* <MemoizedTabPanel value={value} index={1}>
           <Ethereum />
