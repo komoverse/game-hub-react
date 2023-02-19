@@ -30,6 +30,14 @@ const lang = {
     commingSoon: 'Comming Soon',
     commingSoonDescription:
       'Check back here after the mint has completed to view items.',
+    mintGuide: 'Mint Guide',
+    supply: 'Supply',
+    mintPrice: 'Mint Price',
+    mintSchedule: 'Mint Schedule',
+    to: 'to',
+    allowList: 'Allow List',
+    learnMore: 'Learn More',
+    previousMint: 'Previous Mint',
   },
   auth: {
     signInGoogle: 'Sign in with Google',

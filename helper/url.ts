@@ -13,3 +13,4 @@ export const WALLET_LOGIN = '/v2/wallet-login';
 export const SSO_GENERATE = '/v2/sso/generate/{{provider}}';
 export const PORTFOLIO = '/v2/wallet/portfolio';
 export const ME = '/v2/me';
+export const MINT_PHASE = '/v2/mint-phase/game/{{id}}';
