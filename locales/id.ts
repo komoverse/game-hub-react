@@ -30,6 +30,14 @@ const lang = {
     commingSoon: 'Akan Segera Datang',
     commingSoonDescription:
       'Periksa kembali di sini setelah mint selesai untuk melihat item.',
+    mintGuide: 'Panduan Mint',
+    supply: 'Supply',
+    mintPrice: 'Harga Mint',
+    mintSchedule: 'Jadwal Mint',
+    to: 'sampai',
+    allowList: 'Daftar Izin',
+    learnMore: 'Pelajari Lebih Lanjut',
+    previousMint: 'Mint Sebelumnya',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',
