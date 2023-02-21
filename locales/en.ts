@@ -18,6 +18,7 @@ const lang = {
   button: {
     buyNow: 'Buy Now',
     live: 'Live',
+    send: 'Send',
   },
   time: {
     days: 'days',
@@ -30,11 +31,21 @@ const lang = {
     commingSoon: 'Comming Soon',
     commingSoonDescription:
       'Check back here after the mint has completed to view items.',
+    mintGuide: 'Mint Guide',
+    supply: 'Supply',
+    mintPrice: 'Mint Price',
+    mintSchedule: 'Mint Schedule',
+    to: 'to',
+    allowList: 'Allow List',
+    learnMore: 'Learn More',
+    previousMint: 'Previous Mint',
   },
   auth: {
     signInGoogle: 'Sign in with Google',
     signInTwitter: 'Sign in with Twitter',
     signInDiscord: 'Sign in with Dicord',
+    signInFacebook: 'Sign in with Facebook',
+    createAccount: 'Create Account',
     recommended: 'Recommended',
     signInWith: 'Sign in With',
     earnReward: 'Earn Reward',

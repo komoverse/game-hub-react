@@ -15,3 +15,4 @@ export const USER_REGISTER = '/v2/register';
 export const PORTFOLIO = '/v2/wallet/portfolio';
 export const ME = '/v2/me';
 export const COUNTRY_CODE = '/v2/country-code';
+export const MINT_PHASE = '/v2/mint-phase/game/{{id}}';

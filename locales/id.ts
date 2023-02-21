@@ -18,6 +18,7 @@ const lang = {
   button: {
     buyNow: 'Bayar Sekarang',
     live: 'Berlangsung',
+    send: 'Kirim',
   },
   time: {
     days: 'hari',
@@ -30,11 +31,21 @@ const lang = {
     commingSoon: 'Akan Segera Datang',
     commingSoonDescription:
       'Periksa kembali di sini setelah mint selesai untuk melihat item.',
+    mintGuide: 'Panduan Mint',
+    supply: 'Supply',
+    mintPrice: 'Harga Mint',
+    mintSchedule: 'Jadwal Mint',
+    to: 'sampai',
+    allowList: 'Daftar Izin',
+    learnMore: 'Pelajari Lebih Lanjut',
+    previousMint: 'Mint Sebelumnya',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',
     signInTwitter: 'Masuk dengan Twitter',
     signInDiscord: 'Masuk dengan Dicord',
+    signInFacebook: 'Masuk dengan Facebook',
+    createAccount: 'Buat akun',
     recommended: 'Direkomendasikan',
     signInWith: 'Masuk dengan',
     earnReward: 'Dapatkan hadiah',
