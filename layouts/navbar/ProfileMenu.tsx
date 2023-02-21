@@ -13,7 +13,7 @@ import { ProfileDto } from '@/types/home';
 import { t } from 'i18next';
 import dynamic from 'next/dynamic';
 import MenuPopover from '@/components/MenuPopover';
-import { IDR } from '@/utils/currency';
+import { currency } from '@/utils/currency';
 import MenuKomoWallet from './MenuKomoWallet';
 import actionModalAuth from '@/store/modalAuth/action';
 
@@ -30,7 +30,7 @@ const ProfileMenu = () => {
   const { token } = useSelector(
     (state: ReduxState) => state.login as TypeAuthLogin
   );
-  const { sc_wallet_fail_count } = useSelector(
+  const { balance } = useSelector(
     (state: ReduxState) => state.profile as ProfileDto
   );
 
@@ -128,8 +128,8 @@ const ProfileMenu = () => {
                 {t('home.walletBalance')}
               </Typography>
               <Typography variant="h3" sx={{ fontWeight: 500 }}>
-                {IDR(
-                  sc_wallet_fail_count,
+                {currency(
+                  balance?.total_balance.USD_equivalent,
                   t('utils.format'),
                   t('utils.currency')
                 )}
