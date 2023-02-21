@@ -1,11 +1,6 @@
 import { memo, useRef, useState } from 'react';
 import { COLOR, GRADIENT } from '@/utils/globalVariable';
-import {
-  Box,
-  Divider,
-  MenuList,
-  Typography,
-} from '@mui/material';
+import { Box, Divider, MenuList, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
 import { ErrorResponseDto, TypeAuthLogin } from '@/types/general';
@@ -23,7 +18,10 @@ import MenuKomoWallet from './MenuKomoWallet';
 import actionModalAuth from '@/store/modalAuth/action';
 
 const Button = dynamic(() => import('@mui/material/Button'), { ssr: false });
-const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false });
+const CircularProgress = dynamic(
+  () => import('@mui/material/CircularProgress'),
+  { ssr: false }
+);
 
 const ProfileMenu = () => {
   const anchorRef = useRef(null);
@@ -94,7 +92,7 @@ const ProfileMenu = () => {
         anchorEl={anchorRef.current}
         sx={{
           background: COLOR.backgroundCardSemiBlack,
-          mt: -9,
+          mt: -3.5,
           ml: 0.75,
           width: 304,
           borderRadius: '11px',
@@ -137,6 +135,17 @@ const ProfileMenu = () => {
                 )}
               </Typography>
             </Box>
+            <Button
+              sx={{
+                width: '90%',
+                background: GRADIENT.primary,
+                color: COLOR.baseWhite,
+                textTransform: 'uppercase',
+                mt: 1,
+              }}
+            >
+              {t('button.send')}
+            </Button>
           </Box>
           <Divider />
         </MenuList>

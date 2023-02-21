@@ -32,6 +32,38 @@ const KomoWallets = () => {
 
   const onFinsih = (provider: string) => mutate(provider);
 
+  const provider = [
+    {
+      id: 1,
+      icon: <GoogleIcon />,
+      onClick: () => onFinsih(Provider.GOOGLE),
+      text: t('auth.signInGoogle'),
+    },
+    {
+      id: 2,
+      icon: <TwitterIcon />,
+      onClick: () => onFinsih(Provider.TWITTER),
+      text: t('auth.signInTwitter'),
+    },
+    {
+      id: 3,
+      icon: <Iconify icon="mdi:discord" />,
+      onClick: () => onFinsih(Provider.DISCORD),
+      text: t('auth.signInDiscord'),
+    },
+    {
+      id: 4,
+      icon: <Iconify icon="mdi:facebook" />,
+      onClick: () => onFinsih(Provider.FACEBOOK),
+      text: t('auth.signInFacebook'),
+    },
+    {
+      id: 5,
+      onClick: () => onFinsih(Provider.FACEBOOK),
+      text: t('auth.createAccount'),
+    },
+  ];
+
   const styleButton = {
     fontWeight: 500,
     textTransform: 'uppercase',
@@ -71,60 +103,32 @@ const KomoWallets = () => {
             alignItems: 'center',
           }}
         >
-          <Box>
-            <Typography variant="h5" sx={{ fontWeight: 500, mb: 1 }}>
-              {t('auth.signInWith')}
-            </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Image
-                src="/komoverse.webp"
-                alt="komoverse-logo"
-                height={40}
-                width={80}
-                priority={true}
-              />
-            </Box>
-          </Box>
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               width: '300px',
-              my: 2,
+              my: 1,
             }}
           >
-            <Button
-              onClick={() => onFinsih(Provider.GOOGLE)}
-              size="large"
-              sx={styleButton}
-              endIcon={<GoogleIcon />}
-            >
-              {t('auth.signInGoogle')}
-            </Button>
-            <Button
-              onClick={() => onFinsih(Provider.TWITTER)}
-              size="large"
-              sx={styleButton}
-              endIcon={<TwitterIcon />}
-            >
-              {t('auth.signInTwitter')}
-            </Button>
-            <Button
-              onClick={() => onFinsih(Provider.DISCORD)}
-              size="large"
-              sx={styleButton}
-              endIcon={
-                <Iconify icon="ic:baseline-discord" height={24} width={24} />
-              }
-            >
-              {t('auth.signInDiscord')}
-            </Button>
+            {provider.map((item) => (
+              <Button
+                key={item.id}
+                onClick={item.onClick}
+                size="large"
+                sx={styleButton}
+                endIcon={item.icon}
+              >
+                {item.text}
+              </Button>
+            ))}
           </Box>
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              my: 2,
             }}
           >
             <div>{t('auth.earnReward')}</div>
