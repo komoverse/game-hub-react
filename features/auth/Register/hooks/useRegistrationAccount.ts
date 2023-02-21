@@ -78,7 +78,7 @@ function useRegistrationAccount() {
   const registrationMutation = useMutation({
     mutationFn: userRegister,
     onSuccess(data) {
-      actionLogin.setAuthLogin(data.token);
+      actionLogin.setAuthLogin(data);
     },
     onError(error: any) {
       console.log('🚀 ~ onError ~ error:', error);
