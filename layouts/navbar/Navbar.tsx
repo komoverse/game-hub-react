@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
 import Image from 'next/image';
@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import Login from '@/features/auth/Login';
 import { COLOR } from '@/utils/globalVariable';
 import ProfileMenu from './ProfileMenu';
+// import WalletBalance from './WalletBalance';
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
@@ -99,6 +100,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
             >
               <Iconify icon="ic:outline-search" height={24} width={24} />
             </IconButton>
+            {/* <WalletBalance /> */}
             <LanguageMenu />
             <ProfileMenu />
           </Box>

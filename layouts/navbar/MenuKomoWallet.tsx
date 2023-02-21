@@ -1,8 +1,8 @@
 import React from 'react';
-import PersonIcon from '@mui/icons-material/Person';
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import AccountBalanceWalletRoundedIcon from '@mui/icons-material/AccountBalanceWalletRounded';
 import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
-import VpnKeyOffIcon from '@mui/icons-material/VpnKeyOff';
+import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import InstallDesktopRoundedIcon from '@mui/icons-material/InstallDesktopRounded';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import LockIcon from '@mui/icons-material/Lock';
@@ -15,11 +15,8 @@ import {
   Typography,
 } from '@mui/material';
 import { COLOR } from '@/utils/globalVariable';
-import secureLocalStorage from '@/utils/secureLocalStorage';
 import { t } from 'i18next';
 import actionAuth from '@/store/auth/action';
-import Cookies from 'js-cookie';
-import { STATE_AUTH } from '@/store/auth/reducer';
 import Router from 'next/router';
 
 const MenuKomoWallet = () => {
@@ -29,13 +26,13 @@ const MenuKomoWallet = () => {
     {
       id: 1,
       name: t('profile.myAccount'),
-      icon: <PersonIcon />,
+      icon: <PersonRoundedIcon />,
       onClick: () => console.log('items'),
     },
     {
       id: 2,
       name: t('profile.viewWallets'),
-      icon: <AccountBalanceWalletIcon />,
+      icon: <AccountBalanceWalletRoundedIcon />,
       onClick: () => console.log('manage'),
     },
     {
@@ -71,7 +68,7 @@ const MenuKomoWallet = () => {
     {
       id: 2,
       name: t('profile.diconnect'),
-      icon: <VpnKeyOffIcon />,
+      icon: <VisibilityOffRoundedIcon />,
       onClick: async () => await logout().then(() => Router.reload()),
     },
   ];

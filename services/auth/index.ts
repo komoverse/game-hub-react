@@ -1,6 +1,6 @@
 import komoverseAxiosIns from '@/helper/headers';
-import { SSO_GENERATE, SSO_LOGIN, WALLET_LOGIN } from '@/helper/url';
-import { LoginSocmedDto, WalletsDto } from '@/types/auth';
+import { SSO_GENERATE, WALLET_LOGIN } from '@/helper/url';
+import { WalletsDto } from '@/types/auth';
 
 export const loginSocmed = async (provider: string) => {
   const { data } = await komoverseAxiosIns.get(
