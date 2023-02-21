@@ -1,5 +1,4 @@
 import React from 'react';
-import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
 import {
   Accordion,
   AccordionDetails,
@@ -10,17 +9,20 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Image from 'next/image';
+import Router from 'next/router';
 import { t } from 'i18next';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import GoogleIcon from '@mui/icons-material/Google';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import Iconify from '@/components/Iconify';
 import { useMutation } from 'react-query';
-import Router from 'next/router';
+
+import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
+import Iconify from '@/components/Iconify';
 import { loginSocmed } from '@/services/auth';
-import Logo from 'public/logo.svg';
 import { Provider } from '@/types/general';
+import actionModalAuth from '@/store/modalAuth/action';
+import Logo from 'public/logo.svg';
 
 const KomoWallets = () => {
   const { mutate } = useMutation(
@@ -31,6 +33,10 @@ const KomoWallets = () => {
   );
 
   const onFinsih = (provider: string) => mutate(provider);
+
+  const handleRegister = () => {
+    actionModalAuth.setModalAuth({ modalType: 'REGISTER', visible: true });
+  };
 
   const provider = [
     {
@@ -59,7 +65,7 @@ const KomoWallets = () => {
     },
     {
       id: 5,
-      onClick: () => onFinsih(Provider.FACEBOOK),
+      onClick: () => handleRegister(),
       text: t('auth.createAccount'),
     },
   ];

@@ -9,7 +9,7 @@ import SearchFieldPopOver from './SearchFieldPopover';
 import { APPBAR_DESKTOP, APPBAR_MOBILE } from '../constants';
 import useResponsive from '@/hooks/useResponsive';
 import { useRouter } from 'next/router';
-import Login from '@/features/auth/Login';
+import AuthModal from '@/features/auth/AuthModal';
 import { COLOR } from '@/utils/globalVariable';
 import ProfileMenu from './ProfileMenu';
 // import WalletBalance from './WalletBalance';
@@ -107,7 +107,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
         </Box>
       </ToolbarStyled>
 
-      <Login />
+      <AuthModal />
     </AppbarStyled>
   );
 }
