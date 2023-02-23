@@ -1,4 +1,10 @@
+import { ProfileDto } from '@/types/home';
 import * as ActionType from './constants';
+
+type ACTIONTYPES = {
+  type: string;
+  value: ProfileDto;
+};
 
 const initState = {};
 
@@ -7,7 +13,7 @@ const initializeState = () => {
   return state;
 };
 
-const reducer = (state = initializeState(), action: any) => {
+const reducer = (state = typeof initializeState(), action: ACTIONTYPES) => {
   const { type, value } = action;
 
   switch (type) {
