@@ -25,6 +25,7 @@ export const COLOR = {
   baseSemiTextGray: '#868686',
   baseLightTextGray: '#A5A5A5',
   baseEmptyBackground: '#202020',
+  baseBackgroundReview: '#171717',
 };
 
 export const GRADIENT = {

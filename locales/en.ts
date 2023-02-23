@@ -18,6 +18,7 @@ const lang = {
   button: {
     buyNow: 'Buy Now',
     live: 'Live',
+    loadMore: 'Load More',
   },
   time: {
     days: 'days',
@@ -38,6 +39,11 @@ const lang = {
     allowList: 'Allow List',
     learnMore: 'Learn More',
     previousMint: 'Previous Mint',
+    playerReviews: 'Player Reviews',
+    rating: 'Rating',
+    overallRating: 'Overall Rating',
+    reviewSummary: 'Review Summary',
+    review: '{{count}} Review',
   },
   auth: {
     signInGoogle: 'Sign in with Google',
@@ -65,6 +71,10 @@ const lang = {
     setupAccount: 'Setup account recovery',
     downloadKomo: 'Download Komoverse',
     diconnect: 'Disconnect',
+  },
+  filter: {
+    sortBy: 'Sort By',
+    mostRecent: 'Most Recent',
   },
 };
 export default lang;

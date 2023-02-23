@@ -8,6 +8,7 @@ import modalAuth from './modalAuth/reducer';
 import wallets from './wallets/reducer';
 import login from './auth/reducer';
 import profile from './profile/reducer';
+import reviews from './reviews/reducer';
 
 const reducers = {
   lang,
@@ -20,6 +21,7 @@ const reducers = {
   wallets,
   login,
   profile,
+  reviews,
 };
 
 export default reducers;

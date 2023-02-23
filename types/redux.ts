@@ -1,4 +1,5 @@
 import { WalletsDto } from './auth';
+import { ListReviewsDto } from './game';
 import { TypeAuthLogin } from './general';
 import { ProfileDto } from './home';
 
@@ -18,4 +19,5 @@ export interface ReduxState {
   wallets: WalletsDto;
   login: TypeAuthLogin;
   profile: ProfileDto;
+  reviews: ListReviewsDto;
 }

@@ -14,3 +14,7 @@ export const SSO_GENERATE = '/v2/sso/generate/{{provider}}';
 export const PORTFOLIO = '/v2/wallet/portfolio';
 export const ME = '/v2/me';
 export const MINT_PHASE = '/v2/mint-phase/game/{{id}}';
+export const REVIEW_GAME = '/v2/review/game/{{game_id}}';
+export const REVIEW_INSERT = '/v2/review/insert';
+export const LIKE_REVIEW = '/v2/review/like-review/{{game_review_id}}';
+export const DISLIKE_REVIEW = '/v2/review/dislike-review/{{game_review_id}}';

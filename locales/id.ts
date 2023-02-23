@@ -18,6 +18,7 @@ const lang = {
   button: {
     buyNow: 'Bayar Sekarang',
     live: 'Berlangsung',
+    loadMore: 'Muat Lebih Banyak',
   },
   time: {
     days: 'hari',
@@ -38,6 +39,11 @@ const lang = {
     allowList: 'Daftar Izin',
     learnMore: 'Pelajari Lebih Lanjut',
     previousMint: 'Mint Sebelumnya',
+    playerReviews: 'Review Pemain',
+    rating: 'Rating',
+    overallRating: 'Rating Keseluruhan',
+    reviewSummary: 'Ringkasan Review',
+    review: '{{count}} Ulasan',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',
@@ -65,6 +71,10 @@ const lang = {
     setupAccount: 'Atur akun',
     downloadKomo: 'Unduh komoverse',
     diconnect: 'Putuskan koneksi',
+  },
+  filter: {
+    sortBy: 'Urutkan berdasarkan',
+    mostRecent: 'Terbaru',
   },
 };
 export default lang;
