@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Image from 'next/image';
 
-import { COLOR, RADIUS } from '@/utils/globalVariable';
+import { RADIUS } from '@/utils/globalVariable';
 
 export const VideoStyled = styled('video')({
   objectFit: 'cover',

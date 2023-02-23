@@ -46,7 +46,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
   }, [isMobile]);
 
   return (
-    <AppbarStyled>
+    <AppbarStyled sx={{ backgroundColor: COLOR.backgroundRoot }}>
       <ToolbarStyled>
         <Box
           sx={{

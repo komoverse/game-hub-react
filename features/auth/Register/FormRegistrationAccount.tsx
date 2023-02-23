@@ -104,11 +104,11 @@ const FormRegistrationAccount = () => {
             label={
               <Typography variant="body2" fontSize={12}>
                 I agree to Privacy{' '}
-                <Link href="https://komoverse.io/news" target="_blank">
+                <Link href="/term-of-use" target="_blank">
                   Policy
                 </Link>{' '}
                 and{' '}
-                <Link href="https://komoverse.io/news" target="_blank">
+                <Link href="/policy" target="_blank">
                   Terms of Use
                 </Link>
               </Typography>
