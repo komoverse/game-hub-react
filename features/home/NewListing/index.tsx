@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { CardImage, Modal, SectionTitle } from '@/components/index';
+import { CardImage, ModalNftDetails, SectionTitle } from '@/components/index';
 import { useTranslation } from 'react-i18next';
 import {
   ButtonCard,
@@ -129,7 +129,7 @@ const NewListings = () => {
         </Box>
       </SectionWrapperCard>
 
-      {!isFetching && <Modal open={open} setOpen={setOpen} />}
+      {!isFetching && <ModalNftDetails open={open} setOpen={setOpen} />}
     </SectionWrapper>
   );
 };
