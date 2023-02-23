@@ -1,5 +1,4 @@
 import React from 'react';
-import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
 import {
   Accordion,
   AccordionDetails,
@@ -10,17 +9,20 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Image from 'next/image';
+import Router from 'next/router';
 import { t } from 'i18next';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import GoogleIcon from '@mui/icons-material/Google';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import Iconify from '@/components/Iconify';
 import { useMutation } from 'react-query';
-import Router from 'next/router';
+
+import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
+import Iconify from '@/components/Iconify';
 import { loginSocmed } from '@/services/auth';
-import Logo from 'public/logo.svg';
 import { Provider } from '@/types/general';
+import actionModalAuth from '@/store/modalAuth/action';
+import Logo from 'public/logo.svg';
 
 const KomoWallets = () => {
   const { mutate } = useMutation(
@@ -31,6 +33,42 @@ const KomoWallets = () => {
   );
 
   const onFinsih = (provider: string) => mutate(provider);
+
+  const handleRegister = () => {
+    actionModalAuth.setModalAuth({ modalType: 'REGISTER', visible: true });
+  };
+
+  const provider = [
+    {
+      id: 1,
+      icon: <GoogleIcon />,
+      onClick: () => onFinsih(Provider.GOOGLE),
+      text: t('auth.signInGoogle'),
+    },
+    {
+      id: 2,
+      icon: <TwitterIcon />,
+      onClick: () => onFinsih(Provider.TWITTER),
+      text: t('auth.signInTwitter'),
+    },
+    {
+      id: 3,
+      icon: <Iconify icon="mdi:discord" />,
+      onClick: () => onFinsih(Provider.DISCORD),
+      text: t('auth.signInDiscord'),
+    },
+    {
+      id: 4,
+      icon: <Iconify icon="mdi:facebook" />,
+      onClick: () => onFinsih(Provider.FACEBOOK),
+      text: t('auth.signInFacebook'),
+    },
+    {
+      id: 5,
+      onClick: () => handleRegister(),
+      text: t('auth.createAccount'),
+    },
+  ];
 
   const styleButton = {
     fontWeight: 500,
@@ -71,60 +109,32 @@ const KomoWallets = () => {
             alignItems: 'center',
           }}
         >
-          <Box>
-            <Typography variant="h5" sx={{ fontWeight: 500, mb: 1 }}>
-              {t('auth.signInWith')}
-            </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Image
-                src="/komoverse.webp"
-                alt="komoverse-logo"
-                height={40}
-                width={80}
-                priority={true}
-              />
-            </Box>
-          </Box>
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               width: '300px',
-              my: 2,
+              my: 1,
             }}
           >
-            <Button
-              onClick={() => onFinsih(Provider.GOOGLE)}
-              size="large"
-              sx={styleButton}
-              endIcon={<GoogleIcon />}
-            >
-              {t('auth.signInGoogle')}
-            </Button>
-            <Button
-              onClick={() => onFinsih(Provider.TWITTER)}
-              size="large"
-              sx={styleButton}
-              endIcon={<TwitterIcon />}
-            >
-              {t('auth.signInTwitter')}
-            </Button>
-            <Button
-              onClick={() => onFinsih(Provider.DISCORD)}
-              size="large"
-              sx={styleButton}
-              endIcon={
-                <Iconify icon="ic:baseline-discord" height={24} width={24} />
-              }
-            >
-              {t('auth.signInDiscord')}
-            </Button>
+            {provider.map((item) => (
+              <Button
+                key={item.id}
+                onClick={item.onClick}
+                size="large"
+                sx={styleButton}
+                endIcon={item.icon}
+              >
+                {item.text}
+              </Button>
+            ))}
           </Box>
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              my: 2,
             }}
           >
             <div>{t('auth.earnReward')}</div>

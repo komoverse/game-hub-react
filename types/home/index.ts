@@ -45,6 +45,22 @@ export enum EventTypes {
 }
 
 export interface ProfileDto {
+  balance: {
+    sc_wallet: {
+      KOMO: number;
+      SOL: number;
+    };
+    total_balance: {
+      KOMO: number;
+      SHARD: number;
+      SOL: number;
+      USD_equivalent: number;
+    };
+    web3_wallet: {
+      KOMO: number;
+      SOL: number;
+    };
+  };
   country: string;
   email: string;
   game_newsletter_subscribe: number;
@@ -53,8 +69,7 @@ export interface ProfileDto {
   komo_username: string;
   primary_language: string;
   profile_picture_url: string | null;
-  sc_wallet_fail_count: number;
   semi_custodial_wallet_pubkey: string;
-  shard: number;
+  two_fa_active: boolean;
   wallet_pubkey: string;
 }

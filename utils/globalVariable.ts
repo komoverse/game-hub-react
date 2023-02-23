@@ -71,8 +71,8 @@ export const SectionWrapperCard = styled('div')(({ theme }) => ({
 }));
 
 export const ButtonCard = styled('div')(() => ({
-  border: '1.3px solid #181818',
-  background: '#181818',
+  border: `1.3px solid #181818 ${COLOR.backgroundTableStriped1}`,
+  background: COLOR.backgroundTableStriped1,
   marginBottom: '5px',
   padding: '6px 8px',
   fontWeight: 700,

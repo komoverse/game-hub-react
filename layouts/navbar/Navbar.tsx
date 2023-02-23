@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
 import Image from 'next/image';
@@ -9,9 +9,10 @@ import SearchFieldPopOver from './SearchFieldPopover';
 import { APPBAR_DESKTOP, APPBAR_MOBILE } from '../constants';
 import useResponsive from '@/hooks/useResponsive';
 import { useRouter } from 'next/router';
-import Login from '@/features/auth/Login';
+import AuthModal from '@/features/auth/AuthModal';
 import { COLOR } from '@/utils/globalVariable';
 import ProfileMenu from './ProfileMenu';
+// import WalletBalance from './WalletBalance';
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
@@ -45,7 +46,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
   }, [isMobile]);
 
   return (
-    <AppbarStyled>
+    <AppbarStyled sx={{ backgroundColor: COLOR.backgroundRoot }}>
       <ToolbarStyled>
         <Box
           sx={{
@@ -99,13 +100,14 @@ function Navbar({ toggleDrawer }: NavbarProps) {
             >
               <Iconify icon="ic:outline-search" height={24} width={24} />
             </IconButton>
+            {/* <WalletBalance /> */}
             <LanguageMenu />
             <ProfileMenu />
           </Box>
         </Box>
       </ToolbarStyled>
 
-      <Login />
+      <AuthModal />
     </AppbarStyled>
   );
 }

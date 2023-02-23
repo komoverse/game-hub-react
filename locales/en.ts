@@ -19,6 +19,7 @@ const lang = {
     buyNow: 'Buy Now',
     live: 'Live',
     loadMore: 'Load More',
+    send: 'Send',
   },
   time: {
     days: 'days',
@@ -49,6 +50,8 @@ const lang = {
     signInGoogle: 'Sign in with Google',
     signInTwitter: 'Sign in with Twitter',
     signInDiscord: 'Sign in with Dicord',
+    signInFacebook: 'Sign in with Facebook',
+    createAccount: 'Create Account',
     recommended: 'Recommended',
     signInWith: 'Sign in With',
     earnReward: 'Earn Reward',

@@ -15,6 +15,7 @@ export interface ReduxState {
   };
   modalAuth: {
     visible: boolean;
+    modalType: 'LOGIN' | 'REGISTER';
   };
   wallets: WalletsDto;
   login: TypeAuthLogin;

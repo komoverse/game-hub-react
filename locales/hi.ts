@@ -19,6 +19,7 @@ const lang = {
     buyNow: 'अभी खरीदें',
     live: 'लाइव',
     loadMore: 'और लोड करें',
+    send: 'भेजें',
   },
   time: {
     days: 'दिन',
@@ -48,6 +49,8 @@ const lang = {
     signInGoogle: 'Google के साथ साइन इन करें',
     signInTwitter: 'Twitter के साथ साइन इन करें',
     signInDiscord: 'Dicord के साथ साइन इन करें',
+    signInFacebook: 'Facebook के साथ साइन इन करें',
+    createAccount: 'खाता बनाएं',
     recommended: 'अनुशंसित',
     signInWith: 'साथ साइन इन करें',
     earnReward: 'इनाम प्राप्त करें',

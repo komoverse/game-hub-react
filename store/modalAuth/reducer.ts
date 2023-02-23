@@ -2,6 +2,7 @@ import * as ActionType from './constant';
 
 const initState = {
   visible: false,
+  modalType: 'LOGIN',
 };
 
 const initializeState = () => {

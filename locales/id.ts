@@ -18,7 +18,7 @@ const lang = {
   button: {
     buyNow: 'Bayar Sekarang',
     live: 'Berlangsung',
-    loadMore: 'Muat Lebih Banyak',
+    send: 'Kirim',
   },
   time: {
     days: 'hari',
@@ -49,6 +49,8 @@ const lang = {
     signInGoogle: 'Masuk dengan Google',
     signInTwitter: 'Masuk dengan Twitter',
     signInDiscord: 'Masuk dengan Dicord',
+    signInFacebook: 'Masuk dengan Facebook',
+    createAccount: 'Buat akun',
     recommended: 'Direkomendasikan',
     signInWith: 'Masuk dengan',
     earnReward: 'Dapatkan hadiah',

@@ -13,7 +13,7 @@ import { ProfileDto } from '@/types/home';
 import { t } from 'i18next';
 import dynamic from 'next/dynamic';
 import MenuPopover from '@/components/MenuPopover';
-import { IDR } from '@/utils/currency';
+import { currency } from '@/utils/currency';
 import MenuKomoWallet from './MenuKomoWallet';
 import actionModalAuth from '@/store/modalAuth/action';
 
@@ -90,7 +90,7 @@ const ProfileMenu = () => {
         anchorEl={anchorRef.current}
         sx={{
           background: COLOR.backgroundCardSemiBlack,
-          mt: -9,
+          mt: -3.5,
           ml: 0.75,
           width: 304,
           borderRadius: '11px',
@@ -126,13 +126,24 @@ const ProfileMenu = () => {
                 {t('home.walletBalance')}
               </Typography>
               <Typography variant="h3" sx={{ fontWeight: 500 }}>
-                {IDR(
-                  profile?.sc_wallet_fail_count,
+                {currency(
+                  profile?.balance?.total_balance?.USD_equivalent,
                   t('utils.format'),
                   t('utils.currency')
                 )}
               </Typography>
             </Box>
+            <Button
+              sx={{
+                width: '90%',
+                background: GRADIENT.primary,
+                color: COLOR.baseWhite,
+                textTransform: 'uppercase',
+                mt: 1,
+              }}
+            >
+              {t('button.send')}
+            </Button>
           </Box>
           <Divider />
         </MenuList>

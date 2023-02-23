@@ -18,7 +18,7 @@ const lang = {
   button: {
     buyNow: '立即购买',
     live: '居住',
-    loadMore: '加载更多',
+    send: '发送',
   },
   time: {
     days: '天',
@@ -48,6 +48,8 @@ const lang = {
     signInGoogle: '用谷歌登录',
     signInTwitter: '用Twitter登录',
     signInDiscord: '用Dicord登录',
+    signInFacebook: '用Facebook登录',
+    createAccount: '创建帐户',
     recommended: '推荐',
     signInWith: '用...登录',
     earnReward: '赚取奖励',

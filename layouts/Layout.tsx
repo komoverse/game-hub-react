@@ -9,6 +9,7 @@ import { getSidebarMenu } from '@/services/sidebar';
 import MiniSidebar from './sidebar/MiniSidebar';
 import useResponsive from '@/hooks/useResponsive';
 import HeroBanner from '@/features/game/HeroBanner/HeroBanner';
+import { COLOR } from '@/utils/globalVariable';
 
 interface LayoutProps {
   children: ReactNode;
@@ -70,7 +71,12 @@ function Layout({ children }: LayoutProps) {
         menuItems={sidebarMenuItems}
         isSuccess={isSuccess}
       />
-      <MainStyled sx={{ position: isGamePage ? 'relative' : 'static' }}>
+      <MainStyled
+        sx={{
+          position: isGamePage ? 'relative' : 'static',
+          backgroundColor: COLOR.backgroundRoot,
+        }}
+      >
         {isGamePage && <HeroBanner />}
         {children}
       </MainStyled>
