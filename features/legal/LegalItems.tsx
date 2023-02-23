@@ -13,7 +13,7 @@ export const LegalSectionContainer = ({
   index: string;
   title: string;
 }) => (
-  <Grid container spacing={2} mt={4}>
+  <Grid container spacing={2} mt={2}>
     <Grid item md={4} sx={{ textAlign: 'left' }}>
       <Box sx={{ display: 'flex', gap: '8px' }}>
         <StyledSubheading>{index}.</StyledSubheading>

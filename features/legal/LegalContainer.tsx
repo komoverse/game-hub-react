@@ -15,10 +15,10 @@ const LegalContainer = ({
   children: ReactNode;
 }) => {
   return (
-    <Container maxWidth={false} sx={{ padding: '50px' }}>
+    <Container maxWidth={false}>
       <Paper
         sx={{
-          padding: '63px 72px',
+          padding: { lg: '63px 72px', md: '32px', xs: '20px' },
           backgroundColor: COLOR.backgroundCardSemiBlack,
           backgroundImage: 'none',
         }}
