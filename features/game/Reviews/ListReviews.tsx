@@ -76,12 +76,6 @@ const ListReviews = ({ getListReviewsFn }: any) => {
               />
               <Box>
                 <Typography variant="h6">{review.komo_username}</Typography>
-                <ReviewRattingButton size="small">
-                  <Rating max={1} value={1} size="small" readOnly={true} />
-                  <Typography sx={ReviewButtonRattingStyle}>
-                    Top Player
-                  </Typography>
-                </ReviewRattingButton>
               </Box>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>

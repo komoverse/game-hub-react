@@ -167,14 +167,6 @@ const Ratting = ({ getListReviewsFn }: any) => {
               <Typography variant="h6" fontWeight={600}>
                 {profile?.komo_username}
               </Typography>
-              <Box>
-                <ReviewRattingButton size="small">
-                  <Rating max={1} value={1} size="small" readOnly={true} />
-                  <Typography sx={ReviewButtonRattingStyle}>
-                    Top Player
-                  </Typography>
-                </ReviewRattingButton>
-              </Box>
             </Box>
           </Box>
           <Box sx={{ my: 2 }}>
