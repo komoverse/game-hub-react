@@ -1,3 +1,4 @@
+import { AlertColor } from '@mui/material/Alert';
 import { WalletsDto } from './auth';
 import { TypeAuthLogin } from './general';
 import { ProfileDto } from './home';
@@ -16,7 +17,16 @@ export interface ReduxState {
     visible: boolean;
     modalType: 'LOGIN' | 'REGISTER';
   };
+  modalWallet: {
+    display: boolean;
+    modalType: 'ATTACH' | 'PIN' | 'INITIAL';
+  };
   wallets: WalletsDto;
   login: TypeAuthLogin;
   profile: ProfileDto;
+  toast: {
+    display: boolean;
+    message: string;
+    type: AlertColor;
+  };
 }

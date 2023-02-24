@@ -72,10 +72,7 @@ const FormRegistrationAccount = () => {
         >
           <RegistrationCustomInput
             type="password"
-            {...register('confirm_password', {
-              validate: (value) =>
-                value !== getValues('password') || 'error message',
-            })}
+            {...register('confirm_password')}
           />
         </RegistrationInput>
 

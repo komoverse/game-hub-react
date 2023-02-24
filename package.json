@@ -21,6 +21,7 @@
     "@mui/material": "^5.11.4",
     "@mui/x-data-grid": "^5.17.21",
     "@next/font": "^13.1.1",
+    "@solana/web3.js": "^1.73.2",
     "axios": "^1.2.3",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.7",
