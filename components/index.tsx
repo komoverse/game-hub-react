@@ -11,3 +11,4 @@ export { default as UnverifiedIcon } from './UnverifiedIcon';
 export { default as ViewIcon } from './ViewIcon';
 export { default as CustomTable } from './Table/CustomTable';
 export { default as EmptyData } from './EmptyData';
+export { default as Toast } from './Toast';
