@@ -26,6 +26,7 @@ import { EmptyData } from '@/components/index';
 import actionReviews from '@/store/reviews/action';
 import { LoadingButton } from '@mui/lab';
 import { t } from 'i18next';
+import { QueryFn } from '@/types/general';
 
 const Reviews = () => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const Reviews = () => {
   });
 
   const { data: reviews, isLoading } = useQuery(
-    ['list-reviews', gameId, params.filter, params.sortBy, params.page],
+    [QueryFn.LIST_REVIEWS, gameId, params.filter, params.sortBy, params.page],
     () =>
       getListReviews(
         gameId as string,
@@ -63,15 +64,6 @@ const Reviews = () => {
       },
     }
   );
-
-  const getListReviewsFn = () => {
-    getListReviews(
-      gameId as string,
-      params.filter as string,
-      params.sortBy as string,
-      params.page as number
-    );
-  };
 
   const handleSortBy = (event: SelectChangeEvent<string>) => {
     setParams({ ...params, sortBy: event.target.value as string });
@@ -117,7 +109,7 @@ const Reviews = () => {
       <SectionWrapperCard>
         <Grid sx={{ width: 'auto', mt: 1 }} container spacing={3}>
           <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-            <Ratting getListReviewsFn={getListReviewsFn} />
+            <Ratting />
           </Grid>
           <Grid item xl={8} lg={8} md={6} sm={12} xs={12}>
             {/* Filter */}
@@ -173,7 +165,7 @@ const Reviews = () => {
               <EmptyData title="Tidak ada data" />
             ) : (
               <>
-                <ListReviews getListReviewsFn={getListReviewsFn} />
+                <ListReviews />
 
                 {paginate.total > paginate.to && (
                   <LoadingButton
