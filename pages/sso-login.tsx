@@ -24,11 +24,15 @@ export const Wrapper = styled(Paper)(() => ({
 }));
 
 const SSOLogin = ({ query }: SSLoginProps) => {
-  console.log('query', query);
-
+  const { success, message } = query;
   React.useEffect(() => {
-    actionLogin.setAuthLogin(query);
-    Router.replace({ pathname: '/', query: { success: query.success } });
+    if (success !== ('false' as any)) {
+      return actionLogin.setAuthLogin(query);
+    }
+    Router.replace({
+      pathname: '/',
+      query: { success, message },
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -63,6 +63,7 @@ export type SSLoginProps = {
   query: {
     success: boolean;
     token: string;
+    message: string;
   };
 };
 

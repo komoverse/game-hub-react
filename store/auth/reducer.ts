@@ -1,5 +1,11 @@
 import * as ActionType from './constant';
 import secureLocalStorage from 'utils/secureLocalStorage';
+import { TypeAuthLogin } from '@/types/general';
+
+type ACTIONTYPES = {
+  type: string;
+  value: TypeAuthLogin;
+};
 
 export const STATE_AUTH = 'state_auth';
 const initState = {};
@@ -16,7 +22,7 @@ const initializeState = () => {
   return state;
 };
 
-const reducer = (state = initializeState(), action: any) => {
+const reducer = (state = initializeState(), action: ACTIONTYPES) => {
   const { type, value } = action;
 
   switch (type) {
