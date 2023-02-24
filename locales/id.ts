@@ -45,6 +45,7 @@ const lang = {
     overallRating: 'Rating Keseluruhan',
     reviewSummary: 'Ringkasan Review',
     review: '{{count}} Ulasan',
+    reviewed: 'Anda telah mereview game ini',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',
@@ -74,7 +75,7 @@ const lang = {
     exportPhrase: 'Ekspor frasa rahasia',
     setupAccount: 'Atur akun',
     downloadKomo: 'Unduh komoverse',
-    diconnect: 'Putuskan koneksi',
+    disconnect: 'Putuskan koneksi',
   },
   filter: {
     sortBy: 'Urutkan berdasarkan',

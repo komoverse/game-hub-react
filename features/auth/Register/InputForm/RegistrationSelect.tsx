@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
 import { getCountryCodeList } from '@/services/countryCode';
+import { QueryKey } from '@/types/general';
 
 const SelectMenuProps = {
   PaperProps: {
@@ -14,11 +15,10 @@ const SelectMenuProps = {
 };
 
 const RegistrationSelect = ({ input }: { input: ReactElement }) => {
-  const {
-    data: countriesCode,
-    isLoading,
-    isError,
-  } = useQuery(['getCountryCodeList'], () => getCountryCodeList());
+  const { data: countriesCode } = useQuery({
+    queryKey: [QueryKey.LIST_COUNTRY_CODE],
+    queryFn: () => getCountryCodeList(),
+  });
 
   return (
     <Select

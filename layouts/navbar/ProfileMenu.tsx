@@ -3,7 +3,7 @@ import { COLOR, GRADIENT } from '@/utils/globalVariable';
 import { Box, Divider, MenuList, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
-import { ErrorResponseDto, TypeAuthLogin } from '@/types/general';
+import { ErrorResponseDto, QueryKey, TypeAuthLogin } from '@/types/general';
 import actionProfile from '@/store/profile/action';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import { useQuery } from 'react-query';
@@ -32,7 +32,9 @@ const ProfileMenu = () => {
     profile: state.profile as ProfileDto,
   }));
 
-  const { data, isLoading } = useQuery('profile', () => getProfile(), {
+  const { data, isLoading } = useQuery({
+    queryKey: QueryKey.PROFILE,
+    queryFn: () => getProfile(),
     staleTime: 3000,
     cacheTime: 3000,
     enabled: !isEmpty(token.token),

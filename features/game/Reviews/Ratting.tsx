@@ -22,7 +22,8 @@ import { LoadingButton } from '@mui/lab';
 import { toast } from 'react-toastify';
 import { t } from 'i18next';
 import { BorderLinearProgress, OveralRatting } from './style';
-import { MutationFn, QueryFn } from '@/types/general';
+import { MutationKey, QueryKey } from '@/types/general';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 const LinearProgressWithLabel = (
   props: LinearProgressProps & { value: number }
@@ -71,33 +72,31 @@ const Ratting = () => {
     comment: '',
   });
 
-  const { mutate, isLoading } = useMutation(
-    [MutationFn.SUBMIT_REVIEW],
-    (data: ReviewFormDto) => submitReview(gameId as string, data),
-    {
-      onMutate: () => {
-        const previousData = queryClient.getQueryData(QueryFn.LIST_REVIEWS);
+  const { mutate, isLoading } = useMutation({
+    mutationKey: MutationKey.SUBMIT_REVIEW,
+    mutationFn: (data: ReviewFormDto) => submitReview(gameId as string, data),
+    onMutate: () => {
+      const previousData = queryClient.getQueryData(QueryKey.LIST_REVIEWS);
 
-        queryClient.setQueriesData(QueryFn.LIST_REVIEWS, (oldData: any) => {
-          return {
-            ...oldData,
-            data: [oldData.reviews.data],
-          };
-        });
-        return { previousData };
-      },
-      onSuccess: () => setState({ rating: 0, comment: '' }),
-      onError: (error: any) => {
-        toast.error(error.response.data.messages, {
-          position: 'top-right',
-          autoClose: 3000,
-          theme: 'dark',
-          type: 'error',
-          toastId: MutationFn.SUBMIT_REVIEW,
-        });
-      },
-    }
-  );
+      queryClient.setQueriesData(QueryKey.LIST_REVIEWS, (oldData: any) => {
+        return {
+          ...oldData,
+          data: [oldData.reviews.data],
+        };
+      });
+      return { previousData };
+    },
+    onSuccess: () => setState({ rating: 0, comment: '' }),
+    onError: (error: any) => {
+      toast.error(error.response.data.messages, {
+        position: 'top-right',
+        autoClose: 3000,
+        theme: 'dark',
+        type: 'error',
+        toastId: MutationKey.SUBMIT_REVIEW,
+      });
+    },
+  });
 
   const onSubmit = (data: ReviewFormDto) => mutate(data);
 
@@ -221,7 +220,15 @@ const Ratting = () => {
           </Box>
         </Box>
       ) : (
-        <div>Udah pernah reviewed</div>
+        <Box sx={{ mt: 2 }}>
+          <CheckCircleRoundedIcon
+            sx={{ color: COLOR.baseGreen }}
+            fontSize="large"
+          />
+          <Typography variant="h5" fontWeight={500}>
+            {t('game.reviewed')}
+          </Typography>
+        </Box>
       )}
     </OveralRatting>
   );

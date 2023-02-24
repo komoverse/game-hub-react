@@ -46,6 +46,7 @@ const lang = {
     overallRating: 'Overall Rating',
     reviewSummary: 'Review Summary',
     review: '{{count}} Review',
+    reviewed: 'You have reviewd this game',
   },
   auth: {
     signInGoogle: 'Sign in with Google',
@@ -75,7 +76,7 @@ const lang = {
     exportPhrase: 'Export seed phrase',
     setupAccount: 'Setup account recovery',
     downloadKomo: 'Download Komoverse',
-    diconnect: 'Disconnect',
+    disconnect: 'Disconnect',
   },
   filter: {
     sortBy: 'Sort By',

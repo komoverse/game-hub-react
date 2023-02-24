@@ -44,6 +44,7 @@ const lang = {
     overallRating: '总体评价',
     reviewSummary: '评论摘要',
     review: '{{count}} 评论',
+    reviewed: '您已经评论了这个游戏',
   },
   auth: {
     signInGoogle: '用谷歌登录',
@@ -72,7 +73,7 @@ const lang = {
     exportPhrase: '导出短语',
     setupAccount: '设置帐户',
     downloadKomo: '下载Komoverse',
-    diconnect: '断开连接',
+    disconnect: '断开连接',
   },
   filter: {
     sortBy: '排序方式',

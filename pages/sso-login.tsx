@@ -24,6 +24,8 @@ export const Wrapper = styled(Paper)(() => ({
 }));
 
 const SSOLogin = ({ query }: SSLoginProps) => {
+  console.log('query', query);
+
   React.useEffect(() => {
     actionLogin.setAuthLogin(query);
     Router.replace({ pathname: '/', query: { success: query.success } });

@@ -26,7 +26,7 @@ import { EmptyData } from '@/components/index';
 import actionReviews from '@/store/reviews/action';
 import { LoadingButton } from '@mui/lab';
 import { t } from 'i18next';
-import { QueryFn } from '@/types/general';
+import { QueryKey } from '@/types/general';
 
 const Reviews = () => {
   const router = useRouter();
@@ -43,27 +43,30 @@ const Reviews = () => {
     to: 0 as number,
   });
 
-  const { data: reviews, isLoading } = useQuery(
-    [QueryFn.LIST_REVIEWS, gameId, params.filter, params.sortBy, params.page],
-    () =>
+  const { data: reviews, isLoading } = useQuery({
+    queryKey: [
+      QueryKey.LIST_REVIEWS,
+      gameId,
+      params.filter,
+      params.sortBy,
+      params.page,
+    ],
+    queryFn: () =>
       getListReviews(
         gameId as string,
         params.filter as string,
         params.sortBy as string,
         params.page as number
       ),
-    {
-      keepPreviousData: true,
-      staleTime: 2000,
-      cacheTime: 2000,
-      enabled: !!gameId,
-      onSuccess: (data: ListReviewsDto) => {
-        actionReviews.setReviews(data);
-        const { total, to } = data.reviews;
-        setPaginate({ total, to });
-      },
-    }
-  );
+    keepPreviousData: true,
+    staleTime: 2000,
+    enabled: !!gameId,
+    onSuccess: (data: ListReviewsDto) => {
+      actionReviews.setReviews(data);
+      const { total, to } = data.reviews;
+      setPaginate({ total, to });
+    },
+  });
 
   const handleSortBy = (event: SelectChangeEvent<string>) => {
     setParams({ ...params, sortBy: event.target.value as string });

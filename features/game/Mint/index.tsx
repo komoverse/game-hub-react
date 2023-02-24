@@ -8,7 +8,7 @@ import {
 } from '@/utils/globalVariable';
 import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
-import { ErrorResponseDto } from '@/types/general';
+import { ErrorResponseDto, QueryKey } from '@/types/general';
 import {
   Button,
   CardContent,
@@ -32,16 +32,14 @@ const Mints = () => {
   const [visibleMintGuide, setVisibleMintGuide] = React.useState(false);
   const [mintUrl, setMintUrl] = React.useState('');
 
-  const { data, isLoading } = useQuery(
-    ['mints-phase', gameId],
-    () => getGameMintPhase(gameId as string),
-    {
-      staleTime: 3000,
-      cacheTime: 3000,
-      enabled: !!gameId,
-      onError: (error: ErrorResponseDto) => error,
-    }
-  );
+  const { data, isLoading } = useQuery({
+    queryKey: [QueryKey.LIST_MINT_PHASE, gameId],
+    queryFn: () => getGameMintPhase(gameId as string),
+    staleTime: 3000,
+    cacheTime: 3000,
+    enabled: !!gameId,
+    onError: (error: ErrorResponseDto) => error,
+  });
 
   const mintGuide = (mintUrl: string) => {
     setVisibleMintGuide(true);

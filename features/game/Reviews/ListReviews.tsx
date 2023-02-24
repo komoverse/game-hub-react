@@ -21,7 +21,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { disLikeReview, likeReview } from '@/services/games/reviews';
 import { toast } from 'react-toastify';
 import isEmpty from 'lodash/isEmpty';
-import { MutationFn, QueryFn } from '@/types/general';
+import { MutationKey, QueryKey } from '@/types/general';
 
 const ListReviews = () => {
   const queryClient = useQueryClient();
@@ -30,60 +30,56 @@ const ListReviews = () => {
     profile: state.profile as ProfileDto,
   }));
 
-  const { mutate: like } = useMutation(
-    [MutationFn.LIKE_REVIEW],
-    (id: number) => likeReview(id as number),
-    {
-      onMutate: () => {
-        const previousData = queryClient.getQueryData(QueryFn.LIST_REVIEWS);
+  const { mutate: like } = useMutation({
+    mutationKey: [MutationKey.LIKE_REVIEW],
+    mutationFn: (id: number) => likeReview(id as number),
+    onMutate: () => {
+      const previousData = queryClient.getQueryData(QueryKey.LIST_REVIEWS);
 
-        queryClient.setQueriesData(QueryFn.LIST_REVIEWS, (oldData: any) => {
-          return {
-            ...oldData,
-            data: [oldData.reviews.data],
-          };
-        });
-        return { previousData };
-      },
-      onSuccess: () => queryClient.invalidateQueries(QueryFn.LIST_REVIEWS),
-      onError: (error: any) => {
-        toast.error(error.response.data.messages, {
-          position: 'top-right',
-          autoClose: 3000,
-          theme: 'dark',
-          type: 'error',
-          toastId: MutationFn.LIKE_REVIEW,
-        });
-      },
-    }
-  );
+      queryClient.setQueriesData(QueryKey.LIST_REVIEWS, (oldData: any) => {
+        return {
+          ...oldData,
+          data: [oldData.reviews.data],
+        };
+      });
+      return { previousData };
+    },
+    onSuccess: () => queryClient.invalidateQueries(QueryKey.LIST_REVIEWS),
+    onError: (error: any) => {
+      toast.error(error.response.data.messages, {
+        position: 'top-right',
+        autoClose: 3000,
+        theme: 'dark',
+        type: 'error',
+        toastId: MutationKey.LIKE_REVIEW,
+      });
+    },
+  });
 
-  const { mutate: dislike } = useMutation(
-    [MutationFn.DISLIKE_REVIEW],
-    (id: number) => disLikeReview(id as number),
-    {
-      onMutate: () => {
-        const previousData = queryClient.getQueryData(QueryFn.LIST_REVIEWS);
+  const { mutate: dislike } = useMutation({
+    mutationKey: [MutationKey.DISLIKE_REVIEW],
+    mutationFn: (id: number) => disLikeReview(id as number),
+    onMutate: () => {
+      const previousData = queryClient.getQueryData(QueryKey.LIST_REVIEWS);
 
-        queryClient.setQueriesData(QueryFn.LIST_REVIEWS, (oldData: any) => {
-          return {
-            ...oldData,
-            data: [oldData.reviews.data],
-          };
-        });
-        return { previousData };
-      },
-      onError: (error: any) => {
-        toast.error(error.response.data.messages, {
-          position: 'top-right',
-          autoClose: 3000,
-          theme: 'dark',
-          type: 'error',
-          toastId: MutationFn.DISLIKE_REVIEW,
-        });
-      },
-    }
-  );
+      queryClient.setQueriesData(QueryKey.LIST_REVIEWS, (oldData: any) => {
+        return {
+          ...oldData,
+          data: [oldData.reviews.data],
+        };
+      });
+      return { previousData };
+    },
+    onError: (error: any) => {
+      toast.error(error.response.data.messages, {
+        position: 'top-right',
+        autoClose: 3000,
+        theme: 'dark',
+        type: 'error',
+        toastId: MutationKey.DISLIKE_REVIEW,
+      });
+    },
+  });
 
   const handleLike = (id: number) => like(id);
   const handleDisLike = (id: number) => dislike(id);

@@ -67,7 +67,7 @@ const MenuKomoWallet = () => {
     },
     {
       id: 2,
-      name: t('profile.diconnect'),
+      name: t('profile.disconnect'),
       icon: <VisibilityOffRoundedIcon />,
       onClick: async () => await logout().then(() => Router.reload()),
     },

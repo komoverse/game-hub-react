@@ -45,6 +45,7 @@ const lang = {
     overallRating: 'समग्र रेटिंग',
     reviewSummary: 'समीक्षा सारांश',
     review: '{{count}} समीक्षा',
+    reviewed: 'आपने इस गेम की समीक्षा की है',
   },
   auth: {
     signInGoogle: 'Google के साथ साइन इन करें',
@@ -74,7 +75,7 @@ const lang = {
     exportPhrase: 'वाक्यांश निर्यात करें',
     setupAccount: 'खाता पुनर्स्थापना करें',
     downloadKomo: 'Komoverse डाउनलोड करें',
-    diconnect: 'डिस्कनेक्ट करें',
+    disconnect: 'डिस्कनेक्ट करें',
   },
   filter: {
     sortBy: 'इसके अनुसार क्रमबद्ध करें',

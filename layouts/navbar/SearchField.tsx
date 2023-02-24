@@ -14,6 +14,7 @@ import { getSearcContent } from '@/services/search';
 import useDebounce from '@/hooks/useDebounce';
 import { useRouter } from 'next/router';
 import { shortenArbitraryText } from '@/utils/shorten';
+import { QueryKey } from '@/types/general';
 
 interface SearchContent {
   id: string;
@@ -30,10 +31,10 @@ export default function SearchField() {
   const [keyword, setKeyword] = useState('');
   const debouncedKeyword: string = useDebounce<string>(keyword, 500);
 
-  const { data, isLoading } = useQuery<readonly SearchContent[] | undefined>(
-    ['searchContent', debouncedKeyword],
-    () => getSearcContent(debouncedKeyword)
-  );
+  const { data, isLoading } = useQuery<readonly SearchContent[] | undefined>({
+    queryKey: [QueryKey.SEARCH_CONTENT, debouncedKeyword],
+    queryFn: () => getSearcContent(debouncedKeyword),
+  });
 
   const router = useRouter();
   const onClickOption = (category: string, path: string) => {
