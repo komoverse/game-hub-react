@@ -16,3 +16,5 @@ export const PORTFOLIO = '/v2/wallet/portfolio';
 export const ME = '/v2/me';
 export const COUNTRY_CODE = '/v2/country-code';
 export const MINT_PHASE = '/v2/mint-phase/game/{{id}}';
+export const ATTACH_WALLET = '/v2/wallet/solana/attach';
+export const CREATE_SEMI_CUSTODIAL_WALLET = '/v2/wallet/semi-custodial/create';

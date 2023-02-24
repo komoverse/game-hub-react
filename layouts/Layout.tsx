@@ -10,6 +10,7 @@ import MiniSidebar from './sidebar/MiniSidebar';
 import useResponsive from '@/hooks/useResponsive';
 import HeroBanner from '@/features/game/HeroBanner/HeroBanner';
 import { COLOR } from '@/utils/globalVariable';
+import { Toast } from '../components';
 
 interface LayoutProps {
   children: ReactNode;

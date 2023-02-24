@@ -16,6 +16,10 @@ export interface ReduxState {
     visible: boolean;
     modalType: 'LOGIN' | 'REGISTER';
   };
+  modalWallet: {
+    display: boolean;
+    modalType: 'ATTACH' | 'PIN' | 'INITIAL';
+  };
   wallets: WalletsDto;
   login: TypeAuthLogin;
   profile: ProfileDto;
