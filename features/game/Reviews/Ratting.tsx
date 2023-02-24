@@ -7,25 +7,22 @@ import {
   TextareaAutosize,
   Typography,
 } from '@mui/material';
-import {
-  ReviewButtonRattingStyle,
-  ReviewRattingButton,
-} from '../Overview/style';
 import StarIcon from '@mui/icons-material/Star';
 import { Iconify } from '@/components/index';
 import { COLOR, GRADIENT } from '@/utils/globalVariable';
 import { ListReviewsDto, ReviewFormDto } from '@/types/game';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { submitReview } from '@/services/games/reviews';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { ProfileDto } from '@/types/home';
 import { LoadingButton } from '@mui/lab';
 import { toast } from 'react-toastify';
 import { t } from 'i18next';
 import { BorderLinearProgress, OveralRatting } from './style';
+import { MutationFn, QueryFn } from '@/types/general';
 
 const LinearProgressWithLabel = (
   props: LinearProgressProps & { value: number }
@@ -59,34 +56,44 @@ const LinearProgressWithLabel = (
   );
 };
 
-const Ratting = ({ getListReviewsFn }: any) => {
+const Ratting = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const { game: gameId } = router.query;
-  const [state, setState] = React.useState<ReviewFormDto>({
-    rating: 0,
-    comment: '',
-  });
 
   const { profile, reviews } = useSelector((state: ReduxState) => ({
     profile: state.profile as ProfileDto,
     reviews: state.reviews as ListReviewsDto,
   }));
 
+  const [state, setState] = React.useState<ReviewFormDto>({
+    rating: 0,
+    comment: '',
+  });
+
   const { mutate, isLoading } = useMutation(
-    'submit-review',
+    [MutationFn.SUBMIT_REVIEW],
     (data: ReviewFormDto) => submitReview(gameId as string, data),
     {
-      onSuccess: () => {
-        getListReviewsFn();
-        setState({ rating: 0, comment: '' });
+      onMutate: () => {
+        const previousData = queryClient.getQueryData(QueryFn.LIST_REVIEWS);
+
+        queryClient.setQueriesData(QueryFn.LIST_REVIEWS, (oldData: any) => {
+          return {
+            ...oldData,
+            data: [oldData.reviews.data],
+          };
+        });
+        return { previousData };
       },
-      onError: () => {
-        toast.error('Terjadi Kesalahan, silahkan', {
+      onSuccess: () => setState({ rating: 0, comment: '' }),
+      onError: (error: any) => {
+        toast.error(error.response.data.messages, {
           position: 'top-right',
           autoClose: 3000,
           theme: 'dark',
           type: 'error',
-          toastId: 'submit-review',
+          toastId: MutationFn.SUBMIT_REVIEW,
         });
       },
     }
@@ -103,6 +110,9 @@ const Ratting = ({ getListReviewsFn }: any) => {
   ];
 
   const sortingDescProgress = progress.sort((a, b) => b.value - a.value);
+
+  const isReview =
+    !isEmpty(profile.komo_username) && isEmpty(reviews.reviewed_by_me);
 
   return (
     <OveralRatting>
@@ -149,7 +159,7 @@ const Ratting = ({ getListReviewsFn }: any) => {
         })}
       </Box>
 
-      {!isEmpty(profile.komo_username) ? (
+      {isReview ? (
         <Box
           sx={{
             p: 2,
@@ -206,11 +216,13 @@ const Ratting = ({ getListReviewsFn }: any) => {
                 mt: 1,
               }}
             >
-              Publish
+              {t('button.publish')}
             </LoadingButton>
           </Box>
         </Box>
-      ) : null}
+      ) : (
+        <div>Udah pernah reviewed</div>
+      )}
     </OveralRatting>
   );
 };

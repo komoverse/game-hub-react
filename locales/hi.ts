@@ -20,6 +20,7 @@ const lang = {
     live: 'लाइव',
     loadMore: 'और लोड करें',
     send: 'भेजें',
+    publish: 'प्रकाशित करें',
   },
   time: {
     days: 'दिन',
@@ -64,6 +65,7 @@ const lang = {
   utils: {
     currency: 'INR',
     format: 'hi-IN',
+    errorMessage: 'कुछ गलत हो गया। कृपया बाद में पुन: प्रयास करें।',
   },
   profile: {
     myAccount: 'मेरा खाता',

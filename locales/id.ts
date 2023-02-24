@@ -19,6 +19,7 @@ const lang = {
     buyNow: 'Bayar Sekarang',
     live: 'Berlangsung',
     send: 'Kirim',
+    publish: 'Publikasikan',
   },
   time: {
     days: 'hari',
@@ -64,6 +65,7 @@ const lang = {
   utils: {
     currency: 'IDR',
     format: 'id-ID',
+    errorMessage: 'Terjadi kesalahan. Silakan coba lagi nanti.',
   },
   profile: {
     myAccount: 'Akun Saya',

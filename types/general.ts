@@ -65,3 +65,16 @@ export type SSLoginProps = {
     token: string;
   };
 };
+
+export enum QueryFn {
+  LIST_REVIEWS = 'listReviews',
+  LIST_FEATURED = 'listFeatured',
+  LIST_MARKET_RECENT = 'listMarketRecent',
+  GET_MARKET_ITEM_BY_ID = 'getMarketItemById',
+}
+
+export enum MutationFn {
+  LIKE_REVIEW = 'likeReview',
+  DISLIKE_REVIEW = 'dislikeReview',
+  SUBMIT_REVIEW = 'submitReview',
+}

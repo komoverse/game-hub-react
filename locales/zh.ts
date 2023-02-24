@@ -19,6 +19,7 @@ const lang = {
     buyNow: '立即购买',
     live: '居住',
     send: '发送',
+    publish: '发布',
   },
   time: {
     days: '天',
@@ -62,8 +63,7 @@ const lang = {
   utils: {
     currency: 'CNY',
     format: 'zh-CN',
-    INR: 'INR',
-    in: 'hi-IN',
+    errorMessage: '错误信息',
   },
   profile: {
     myAccount: '我的帐户',

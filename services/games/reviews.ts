@@ -21,7 +21,7 @@ export const getListReviews = async (
 };
 
 export const submitReview = async (gameId: string, query: ReviewFormDto) => {
-  const params = `?game_id=${gameId}&ratting=${query.rating}&comment=${query.comment}`;
+  const params = `?game_id=${gameId}&rating=${query.rating}&comment=${query.comment}`;
   const { data } = await komoverseAxiosIns.post(REVIEW_INSERT + params);
   return data.data;
 };

@@ -8,48 +8,90 @@ import {
   Rating,
   Typography,
 } from '@mui/material';
-import {
-  ReviewButtonRattingStyle,
-  ReviewRattingButton,
-} from '../Overview/style';
 import { ListReviewsDto, ReviewsDto } from '@/types/game';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import { COLOR, RADIUS } from '@/utils/globalVariable';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
 import { ProfileDto } from '@/types/home';
-import { useMutation } from 'react-query';
-import { likeReview } from '@/services/games/reviews';
+import { useMutation, useQueryClient } from 'react-query';
+import { disLikeReview, likeReview } from '@/services/games/reviews';
 import { toast } from 'react-toastify';
 import isEmpty from 'lodash/isEmpty';
+import { MutationFn, QueryFn } from '@/types/general';
 
-const ListReviews = ({ getListReviewsFn }: any) => {
+const ListReviews = () => {
+  const queryClient = useQueryClient();
   const { reviews, profile } = useSelector((state: ReduxState) => ({
     reviews: state.reviews as ListReviewsDto,
     profile: state.profile as ProfileDto,
   }));
 
-  const { mutate } = useMutation(
-    ['like'],
+  const { mutate: like } = useMutation(
+    [MutationFn.LIKE_REVIEW],
     (id: number) => likeReview(id as number),
     {
-      onSuccess: () => getListReviewsFn(),
-      onError: () => {
-        getListReviewsFn();
-        toast.error('Terjadi Kesalahan, silahkan coba kembali', {
+      onMutate: () => {
+        const previousData = queryClient.getQueryData(QueryFn.LIST_REVIEWS);
+
+        queryClient.setQueriesData(QueryFn.LIST_REVIEWS, (oldData: any) => {
+          return {
+            ...oldData,
+            data: [oldData.reviews.data],
+          };
+        });
+        return { previousData };
+      },
+      onSuccess: () => queryClient.invalidateQueries(QueryFn.LIST_REVIEWS),
+      onError: (error: any) => {
+        toast.error(error.response.data.messages, {
           position: 'top-right',
           autoClose: 3000,
           theme: 'dark',
           type: 'error',
-          toastId: 'like',
+          toastId: MutationFn.LIKE_REVIEW,
         });
       },
     }
   );
 
-  const handleLike = (id: number) => mutate(id);
-  const handleDisLike = (id: number) => mutate(id);
+  const { mutate: dislike } = useMutation(
+    [MutationFn.DISLIKE_REVIEW],
+    (id: number) => disLikeReview(id as number),
+    {
+      onMutate: () => {
+        const previousData = queryClient.getQueryData(QueryFn.LIST_REVIEWS);
+
+        queryClient.setQueriesData(QueryFn.LIST_REVIEWS, (oldData: any) => {
+          return {
+            ...oldData,
+            data: [oldData.reviews.data],
+          };
+        });
+        return { previousData };
+      },
+      onError: (error: any) => {
+        toast.error(error.response.data.messages, {
+          position: 'top-right',
+          autoClose: 3000,
+          theme: 'dark',
+          type: 'error',
+          toastId: MutationFn.DISLIKE_REVIEW,
+        });
+      },
+    }
+  );
+
+  const handleLike = (id: number) => like(id);
+  const handleDisLike = (id: number) => dislike(id);
+
+  const colorIconLikeDislike = { color: COLOR.baseWhite };
+
+  const submitLikeDislike =
+    !isEmpty(profile.komo_username) && isEmpty(reviews.reviewed_by_me);
 
   return (
     <>
@@ -92,10 +134,16 @@ const ListReviews = ({ getListReviewsFn }: any) => {
           <Typography variant="body2">{review.comment}</Typography>
           <Box sx={{ textAlign: 'end' }}>
             <Button
-              onClick={() => handleLike(review.id)}
+              onClick={() => submitLikeDislike && handleLike(review.id)}
               sx={{ background: COLOR.baseBackgroundButtonGray, mr: 1 }}
               size="small"
-              startIcon={<ThumbUpIcon sx={{ color: COLOR.baseWhite }} />}
+              startIcon={
+                submitLikeDislike ? (
+                  <ThumbUpIcon sx={colorIconLikeDislike} />
+                ) : (
+                  <ThumbUpOffAltIcon sx={colorIconLikeDislike} />
+                )
+              }
               disabled={isEmpty(profile.komo_username)}
             >
               <Typography variant="body2" color={COLOR.baseWhite}>
@@ -103,10 +151,16 @@ const ListReviews = ({ getListReviewsFn }: any) => {
               </Typography>
             </Button>
             <Button
-              onClick={() => handleDisLike(review.id)}
+              onClick={() => submitLikeDislike && handleDisLike(review.id)}
               sx={{ background: COLOR.baseBackgroundButtonGray }}
               size="small"
-              startIcon={<ThumbDownIcon sx={{ color: COLOR.baseWhite }} />}
+              startIcon={
+                submitLikeDislike ? (
+                  <ThumbDownIcon sx={colorIconLikeDislike} />
+                ) : (
+                  <ThumbDownOffAltIcon sx={colorIconLikeDislike} />
+                )
+              }
               disabled={isEmpty(profile.komo_username)}
             >
               <Typography variant="body2" color={COLOR.baseWhite}>

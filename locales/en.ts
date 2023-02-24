@@ -20,6 +20,7 @@ const lang = {
     live: 'Live',
     loadMore: 'Load More',
     send: 'Send',
+    publish: 'Publish',
   },
   time: {
     days: 'days',
@@ -65,6 +66,7 @@ const lang = {
   utils: {
     currency: 'USD',
     format: 'en-US',
+    errorMessage: 'Something went wrong. Please try again later.',
   },
   profile: {
     myAccount: 'My Account',
