@@ -11,6 +11,7 @@ import useResponsive from '@/hooks/useResponsive';
 import HeroBanner from '@/features/game/HeroBanner/HeroBanner';
 import { COLOR } from '@/utils/globalVariable';
 import { QueryKey } from '@/types/general';
+import { Toast } from '../components';
 
 interface LayoutProps {
   children: ReactNode;
@@ -80,6 +81,7 @@ function Layout({ children }: LayoutProps) {
         {isGamePage && <HeroBanner />}
         {children}
       </MainStyled>
+      <Toast />
     </RootStyled>
   );
 }

@@ -13,13 +13,13 @@ const RegistrationInput = ({
   required = true,
 }: {
   id: string;
-  label: string;
+  label?: string;
   helper?: string;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   children: ReactNode;
   required?: boolean;
 }) => {
-  const inputLabel = `${label}${required ? '*' : ''}`;
+  const inputLabel = `${label ? label : ''}${required ? '*' : ''}`;
   const errorMessage = error?.message as string;
   const isShowHelperText = helper && !error;
 
@@ -31,7 +31,7 @@ const RegistrationInput = ({
       fullWidth
       error={!!error}
     >
-      <InputLabel shrink>{inputLabel}</InputLabel>
+      {inputLabel && <InputLabel shrink>{inputLabel}</InputLabel>}
       {children}
       {isShowHelperText && <FormHelperText>{helper}</FormHelperText>}
       {error && <FormHelperText>{errorMessage}</FormHelperText>}

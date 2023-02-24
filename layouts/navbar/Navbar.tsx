@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import AuthModal from '@/features/auth/AuthModal';
 import { COLOR } from '@/utils/globalVariable';
 import ProfileMenu from './ProfileMenu';
+import WalletAndPinModal from '@/features/auth/Account/WalletAndPinModal';
 // import WalletBalance from './WalletBalance';
 
 const AppbarStyled = styled(AppBar)(({ theme }) => ({
@@ -108,6 +109,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
       </ToolbarStyled>
 
       <AuthModal />
+      <WalletAndPinModal />
     </AppbarStyled>
   );
 }

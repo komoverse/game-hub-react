@@ -4,3 +4,4 @@ export const regexImageFileValidation = /\.(gif|jpg|jpeg|tiff|png|webp)$/i;
 export const komoAccountUsernameValidation =
   /^(?=.{6,30}$)(?![.])(?!.*[.]{2})[a-zA-Z0-9.]+(?<![.])$/i;
 export const emailValidation = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i;
+export const solanaAddressValidation = /^0x[a-fA-F0-9]{40}$/g;

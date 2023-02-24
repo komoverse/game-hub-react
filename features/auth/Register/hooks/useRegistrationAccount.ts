@@ -8,6 +8,9 @@ import { emailValidation, komoAccountUsernameValidation } from '@/utils/regex';
 import { userRegister } from '@/services/auth/register';
 import { validateRecaptcha } from '@/services/auth/recaptcha';
 import actionLogin from '@/store/auth/action';
+import actionModalAuth from '@/store/modalAuth/action';
+import actionModalWallet from '@/store/modalWallet/action';
+import actionToast from '@/store/toast/action';
 
 function useRegistrationAccount() {
   const recaptchaRef = useRef<any>(null);
@@ -18,8 +21,8 @@ function useRegistrationAccount() {
     onSuccess() {
       setIsRecaptchaValid(true);
     },
-    onError(error: any) {
-      console.log('🚀 ~ onError ~ error:', error);
+    onError() {
+      return;
     },
   });
 
@@ -79,9 +82,13 @@ function useRegistrationAccount() {
     mutationFn: userRegister,
     onSuccess(data) {
       actionLogin.setAuthLogin(data);
+      actionModalAuth.clearModalAuth();
+      actionModalWallet.setModalWallet({ display: true, modalType: 'INITIAL' });
     },
     onError(error: any) {
-      console.log('🚀 ~ onError ~ error:', error);
+      const { messages } = error.response.data;
+
+      actionToast.setToast({ display: true, message: messages, type: 'error' });
     },
   });
 
@@ -90,8 +97,7 @@ function useRegistrationAccount() {
       ...values,
       game_newsletter_subscribe: values.game_newsletter_subscribe ? 1 : 0,
     };
-    console.log('🚀 ~ onSubmit ~ payload:', payload);
-    // registrationMutation.mutate(payload);
+    registrationMutation.mutate(payload);
   }
 
   const submit = handleSubmit(onSubmit);
