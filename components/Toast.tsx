@@ -1,19 +1,17 @@
 import React from 'react';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
-import { COLOR } from '@/utils/globalVariable';
-import { Snackbar } from '@mui/material';
-import { ToastProps, TypeMessage } from '@/types/general';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+import { useSelector } from 'react-redux';
+import { ReduxState } from '@/types/redux';
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref
-) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import actionToast from '@/store/toast/action';
 
-const Toast = ({ open, setOpen, message, position, type }: ToastProps) => {
-  const vertical = position?.vertical;
-  const horizontal = position?.horizontal;
+const Toast = () => {
+  const {
+    display: isOpen,
+    message,
+    type,
+  } = useSelector((state: ReduxState) => state.toast);
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -23,33 +21,20 @@ const Toast = ({ open, setOpen, message, position, type }: ToastProps) => {
       return;
     }
 
-    setOpen(false);
+    actionToast.setToast({ display: false });
   };
-
-  // const border =
-  //   type === TypeMessage.ERROR
-  //     ? `1px solid ${COLOR.baseError}`
-  //     : type === TypeMessage.SUCCESS
-  //       ? `1px solid ${COLOR.baseGreen}`
-  //       : '';
 
   return (
     <Snackbar
-      open={open}
+      open={isOpen}
       autoHideDuration={5000}
       onClose={handleClose}
-      anchorOrigin={{ vertical: vertical, horizontal: horizontal }}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
     >
-      <Alert
-        sx={{
-          width: '100%',
-          background: COLOR.baseSemiBlack,
-          color: COLOR.baseWhite,
-          // border: border,
-        }}
-        onClose={handleClose}
-        icon={false}
-      >
+      <Alert onClose={handleClose} severity={type}>
         {message}
       </Alert>
     </Snackbar>

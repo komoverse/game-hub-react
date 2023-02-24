@@ -81,6 +81,7 @@ function Layout({ children }: LayoutProps) {
         {isGamePage && <HeroBanner />}
         {children}
       </MainStyled>
+      <Toast />
     </RootStyled>
   );
 }

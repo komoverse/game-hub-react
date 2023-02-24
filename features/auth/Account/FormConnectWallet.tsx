@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 
 import { attachWalletAddress } from '@/services/auth/wallet';
 import actionModalWallet from '@/store/modalWallet/action';
+import actionToast from '@/store/toast/action';
 
 import RegistrationInput from '../Register/InputForm/RegistrationInput';
 import { RegistrationCustomInput } from '../Register/InputForm/styles';
@@ -47,7 +48,9 @@ const FormConnectWallet = () => {
       });
     },
     onError(error: any) {
-      console.log('🚀 ~ onError ~ error:', error);
+      const { messages } = error.response.data;
+
+      actionToast.setToast({ display: true, message: messages, type: 'error' });
     },
   });
 

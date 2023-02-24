@@ -10,6 +10,7 @@ import { validateRecaptcha } from '@/services/auth/recaptcha';
 import actionLogin from '@/store/auth/action';
 import actionModalAuth from '@/store/modalAuth/action';
 import actionModalWallet from '@/store/modalWallet/action';
+import actionToast from '@/store/toast/action';
 
 function useRegistrationAccount() {
   const recaptchaRef = useRef<any>(null);
@@ -20,8 +21,8 @@ function useRegistrationAccount() {
     onSuccess() {
       setIsRecaptchaValid(true);
     },
-    onError(error: any) {
-      console.log('🚀 ~ onError ~ error:', error);
+    onError() {
+      return;
     },
   });
 
@@ -85,7 +86,9 @@ function useRegistrationAccount() {
       actionModalWallet.setModalWallet({ display: true, modalType: 'INITIAL' });
     },
     onError(error: any) {
-      console.log('🚀 ~ onError ~ error:', error);
+      const { messages } = error.response.data;
+
+      actionToast.setToast({ display: true, message: messages, type: 'error' });
     },
   });
 
