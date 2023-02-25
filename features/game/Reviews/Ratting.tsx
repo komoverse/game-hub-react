@@ -19,7 +19,7 @@ import { ReduxState } from '@/types/redux';
 import isEmpty from 'lodash/isEmpty';
 import { ProfileDto } from '@/types/home';
 import { LoadingButton } from '@mui/lab';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { t } from 'i18next';
 import { BorderLinearProgress, OveralRatting } from './style';
 import { MutationKey, QueryKey } from '@/types/general';
@@ -88,13 +88,13 @@ const Ratting = () => {
     },
     onSuccess: () => setState({ rating: 0, comment: '' }),
     onError: (error: any) => {
-      toast.error(error.response.data.messages, {
-        position: 'top-right',
-        autoClose: 3000,
-        theme: 'dark',
-        type: 'error',
-        toastId: MutationKey.SUBMIT_REVIEW,
-      });
+      // toast.error(error.response.data.messages, {
+      //   position: 'top-right',
+      //   autoClose: 3000,
+      //   theme: 'dark',
+      //   type: 'error',
+      //   toastId: MutationKey.SUBMIT_REVIEW,
+      // });
     },
   });
 

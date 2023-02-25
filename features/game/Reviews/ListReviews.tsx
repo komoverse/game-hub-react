@@ -19,7 +19,7 @@ import { ReduxState } from '@/types/redux';
 import { ProfileDto } from '@/types/home';
 import { useMutation, useQueryClient } from 'react-query';
 import { disLikeReview, likeReview } from '@/services/games/reviews';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import isEmpty from 'lodash/isEmpty';
 import { MutationKey, QueryKey } from '@/types/general';
 
@@ -46,13 +46,13 @@ const ListReviews = () => {
     },
     onSuccess: () => queryClient.invalidateQueries(QueryKey.LIST_REVIEWS),
     onError: (error: any) => {
-      toast.error(error.response.data.messages, {
-        position: 'top-right',
-        autoClose: 3000,
-        theme: 'dark',
-        type: 'error',
-        toastId: MutationKey.LIKE_REVIEW,
-      });
+      // toast.error(error.response.data.messages, {
+      //   position: 'top-right',
+      //   autoClose: 3000,
+      //   theme: 'dark',
+      //   type: 'error',
+      //   toastId: MutationKey.LIKE_REVIEW,
+      // });
     },
   });
 
@@ -71,13 +71,13 @@ const ListReviews = () => {
       return { previousData };
     },
     onError: (error: any) => {
-      toast.error(error.response.data.messages, {
-        position: 'top-right',
-        autoClose: 3000,
-        theme: 'dark',
-        type: 'error',
-        toastId: MutationKey.DISLIKE_REVIEW,
-      });
+      // toast.error(error.response.data.messages, {
+      //   position: 'top-right',
+      //   autoClose: 3000,
+      //   theme: 'dark',
+      //   type: 'error',
+      //   toastId: MutationKey.DISLIKE_REVIEW,
+      // });
     },
   });
 

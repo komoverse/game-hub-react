@@ -26,7 +26,7 @@ import { dateFromNow } from '@/helper/date';
 import { ReduxState } from '@/types/redux';
 import { QueryKey } from '@/types/general';
 import { Navigation } from 'swiper';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 const NewListings = () => {
   const { t } = useTranslation();
@@ -48,13 +48,13 @@ const NewListings = () => {
     cacheTime: 3000,
     enabled: !!listingId,
     onError: () => {
-      toast.error(t('utils.errorMessage'), {
-        position: 'top-right',
-        autoClose: 3000,
-        theme: 'dark',
-        type: 'error',
-        toastId: QueryKey.GET_MARKET_ITEM_BY_ID,
-      });
+      // toast.error(t('utils.errorMessage'), {
+      //   position: 'top-right',
+      //   autoClose: 3000,
+      //   theme: 'dark',
+      //   type: 'error',
+      //   toastId: QueryKey.GET_MARKET_ITEM_BY_ID,
+      // });
     },
     onSuccess: (data) => actionNft.setDetailNft(data),
   });
