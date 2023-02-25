@@ -18,7 +18,9 @@ const lang = {
   button: {
     buyNow: 'अभी खरीदें',
     live: 'लाइव',
+    loadMore: 'और लोड करें',
     send: 'भेजें',
+    publish: 'प्रकाशित करें',
   },
   time: {
     days: 'दिन',
@@ -38,6 +40,12 @@ const lang = {
     allowList: 'सूची की अनुमति दें',
     learnMore: 'और जानें',
     previousMint: 'पिछला मिन्ट',
+    playerReviews: 'खिलाड़ी की समीक्षा',
+    rating: 'रेटिंग',
+    overallRating: 'समग्र रेटिंग',
+    reviewSummary: 'समीक्षा सारांश',
+    review: '{{count}} समीक्षा',
+    reviewed: 'आपने इस गेम की समीक्षा की है',
   },
   auth: {
     signInGoogle: 'Google के साथ साइन इन करें',
@@ -58,6 +66,7 @@ const lang = {
   utils: {
     currency: 'INR',
     format: 'hi-IN',
+    errorMessage: 'कुछ गलत हो गया। कृपया बाद में पुन: प्रयास करें।',
   },
   profile: {
     myAccount: 'मेरा खाता',
@@ -66,7 +75,11 @@ const lang = {
     exportPhrase: 'वाक्यांश निर्यात करें',
     setupAccount: 'खाता पुनर्स्थापना करें',
     downloadKomo: 'Komoverse डाउनलोड करें',
-    diconnect: 'डिस्कनेक्ट करें',
+    disconnect: 'डिस्कनेक्ट करें',
+  },
+  filter: {
+    sortBy: 'इसके अनुसार क्रमबद्ध करें',
+    mostRecent: 'सबसे हाल की',
   },
 };
 export default lang;

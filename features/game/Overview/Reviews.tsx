@@ -127,28 +127,26 @@ const Reviews = () => {
                     {lgUp ? (
                       <>
                         <BoxReview>
-                          <BoxReview>
-                            <Avatar
-                              src="https://fractal-media.imgix.net/media_f4ad9784-6589-41b9-afdb-5c367d8a8eb6?w=500&h=500&fit=crop&auto=format,compress&frame=1"
-                              sx={{ marginRight: 2 }}
-                            />
-                            <Box>
-                              <Typography variant="subtitle1" fontWeight={500}>
-                                Bandit Komoverse
+                          <Avatar
+                            src="https://fractal-media.imgix.net/media_f4ad9784-6589-41b9-afdb-5c367d8a8eb6?w=500&h=500&fit=crop&auto=format,compress&frame=1"
+                            sx={{ marginRight: 2 }}
+                          />
+                          <Box>
+                            <Typography variant="subtitle1" fontWeight={500}>
+                              Bandit Komoverse
+                            </Typography>
+                            <ReviewRattingButton size="small">
+                              <Rating
+                                max={1}
+                                value={1}
+                                size="small"
+                                readOnly={true}
+                              />
+                              <Typography sx={ReviewButtonRattingStyle}>
+                                Top Player
                               </Typography>
-                              <ReviewRattingButton size="small">
-                                <Rating
-                                  max={1}
-                                  value={1}
-                                  size="small"
-                                  readOnly={true}
-                                />
-                                <Typography sx={ReviewButtonRattingStyle}>
-                                  Top Player
-                                </Typography>
-                              </ReviewRattingButton>
-                            </Box>
-                          </BoxReview>
+                            </ReviewRattingButton>
+                          </Box>
                           <Box sx={{ display: 'flex', alignItems: 'center' }}>
                             <Rating max={1} value={1} readOnly={true} />
                             <Typography

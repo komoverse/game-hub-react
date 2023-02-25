@@ -1,9 +1,9 @@
-import { ProfileDto } from '@/types/home';
-import * as ActionType from './constants';
+import * as ActionType from './constant';
+import { ListReviewsDto } from '@/types/game';
 
 type ACTIONTYPES = {
   type: string;
-  value: ProfileDto;
+  value: ListReviewsDto[];
 };
 
 const initState = {};
@@ -17,11 +17,11 @@ const reducer = (state = typeof initializeState(), action: ACTIONTYPES) => {
   const { type, value } = action;
 
   switch (type) {
-    case ActionType.SET_PROFILE:
-      return { ...initState, ...value };
-    case ActionType.UPDATE_PROFILE:
+    case ActionType.SET_REVIEWS:
       return value;
-    case ActionType.CLEAR_PROFILE:
+    case ActionType.UPDATE_REVIEWS:
+      return value;
+    case ActionType.CLEAR_REVIEWS:
       return initState;
     default:
       return state;

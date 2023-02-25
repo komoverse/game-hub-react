@@ -17,9 +17,12 @@ import { Navigation } from 'swiper';
 import Image from 'next/image';
 import Solana from 'public/solana.svg';
 import { CardImage, SectionTitle } from '@/components/index';
+import { QueryKey } from '@/types/general';
 
 const Overview = () => {
-  const { data: listNft } = useQuery('newListing', () => getListRecent(), {
+  const { data: listNft } = useQuery({
+    queryKey: QueryKey.LIST_MARKET_RECENT,
+    queryFn: () => getListRecent(),
     staleTime: 3000,
     refetchOnMount: false,
   });

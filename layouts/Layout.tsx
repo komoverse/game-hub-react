@@ -10,6 +10,7 @@ import MiniSidebar from './sidebar/MiniSidebar';
 import useResponsive from '@/hooks/useResponsive';
 import HeroBanner from '@/features/game/HeroBanner/HeroBanner';
 import { COLOR } from '@/utils/globalVariable';
+import { QueryKey } from '@/types/general';
 import { Toast } from '../components';
 
 interface LayoutProps {
@@ -37,11 +38,10 @@ function Layout({ children }: LayoutProps) {
   const [isMiniDrawerOpen, setIsMiniDrawerOpen] = useState(true);
   const isMobile = useResponsive('down', 'md');
 
-  const { data: sidebarMenuItems, isSuccess } = useQuery(
-    ['sidebarMenu'],
-    () => getSidebarMenu(),
-    {}
-  );
+  const { data: sidebarMenuItems, isSuccess } = useQuery({
+    queryKey: [QueryKey.SIDEBAR_MENU],
+    queryFn: () => getSidebarMenu(),
+  });
 
   const router = useRouter();
   const isGamePage = router.pathname.includes('[game]');

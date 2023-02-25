@@ -9,7 +9,7 @@ import {
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { COLOR } from '@/utils/globalVariable';
 import actionNft from '@/store/detailNft/action';
-// import actionTransaction from '@/store/historyTransaction/action'
+import actionPagination from '@/store/pagination/action';
 import { NftDetails, BasicTable } from '@/components/index';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
@@ -24,7 +24,7 @@ const Modal = ({ open, setOpen }: ModalTProps) => {
   const handleClose = () => {
     setOpen(!open);
     actionNft.clearDetailNft();
-    // actionTransaction.clearHistoryTransaction()
+    actionPagination.clearPagination();
   };
 
   return (

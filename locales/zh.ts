@@ -19,6 +19,7 @@ const lang = {
     buyNow: '立即购买',
     live: '居住',
     send: '发送',
+    publish: '发布',
   },
   time: {
     days: '天',
@@ -38,6 +39,12 @@ const lang = {
     allowList: '允许列表',
     learnMore: '了解更多',
     previousMint: '上一次造币',
+    playerReviews: '玩家评论',
+    rating: '评分',
+    overallRating: '总体评价',
+    reviewSummary: '评论摘要',
+    review: '{{count}} 评论',
+    reviewed: '您已经评论了这个游戏',
   },
   auth: {
     signInGoogle: '用谷歌登录',
@@ -57,8 +64,7 @@ const lang = {
   utils: {
     currency: 'CNY',
     format: 'zh-CN',
-    INR: 'INR',
-    in: 'hi-IN',
+    errorMessage: '错误信息',
   },
   profile: {
     myAccount: '我的帐户',
@@ -67,7 +73,12 @@ const lang = {
     exportPhrase: '导出短语',
     setupAccount: '设置帐户',
     downloadKomo: '下载Komoverse',
-    diconnect: '断开连接',
+    disconnect: '断开连接',
+  },
+  filter: {
+    sortBy: '排序方式',
+    createdAt: '创建时间',
+    mostRecent: '最近',
   },
 };
 export default lang;

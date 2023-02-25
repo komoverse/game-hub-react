@@ -19,6 +19,7 @@ const lang = {
     buyNow: 'Bayar Sekarang',
     live: 'Berlangsung',
     send: 'Kirim',
+    publish: 'Publikasikan',
   },
   time: {
     days: 'hari',
@@ -39,6 +40,12 @@ const lang = {
     allowList: 'Daftar Izin',
     learnMore: 'Pelajari Lebih Lanjut',
     previousMint: 'Mint Sebelumnya',
+    playerReviews: 'Review Pemain',
+    rating: 'Rating',
+    overallRating: 'Rating Keseluruhan',
+    reviewSummary: 'Ringkasan Review',
+    review: '{{count}} Ulasan',
+    reviewed: 'Anda telah mereview game ini',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',
@@ -59,6 +66,7 @@ const lang = {
   utils: {
     currency: 'IDR',
     format: 'id-ID',
+    errorMessage: 'Terjadi kesalahan. Silakan coba lagi nanti.',
   },
   profile: {
     myAccount: 'Akun Saya',
@@ -67,7 +75,11 @@ const lang = {
     exportPhrase: 'Ekspor frasa rahasia',
     setupAccount: 'Atur akun',
     downloadKomo: 'Unduh komoverse',
-    diconnect: 'Putuskan koneksi',
+    disconnect: 'Putuskan koneksi',
+  },
+  filter: {
+    sortBy: 'Urutkan berdasarkan',
+    mostRecent: 'Terbaru',
   },
 };
 export default lang;

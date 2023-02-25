@@ -1,6 +1,6 @@
 export { default as CardImage } from './CardImage';
 export { default as Carrousel } from './Carrousel';
-export { default as Modal } from './Modal';
+export { default as ModalNftDetails } from './ModalNftDetails';
 export { default as NftDetails } from './NftDetails';
 export { default as BasicTable } from './Table/BasicTable';
 export { default as Iconify } from './Iconify';
@@ -10,4 +10,5 @@ export { default as NoteIcon } from './NoteIcon';
 export { default as UnverifiedIcon } from './UnverifiedIcon';
 export { default as ViewIcon } from './ViewIcon';
 export { default as CustomTable } from './Table/CustomTable';
+export { default as EmptyData } from './EmptyData';
 export { default as Toast } from './Toast';

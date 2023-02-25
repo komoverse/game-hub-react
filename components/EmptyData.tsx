@@ -3,7 +3,13 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { t } from 'i18next';
 
-const EmptyData = ({ message, title }: { message: string; title: string }) => {
+const EmptyData = ({
+  title,
+  message,
+}: {
+  title: string;
+  message?: string | any;
+}) => {
   return (
     <Box
       sx={{
