@@ -27,7 +27,7 @@ const SSOLogin = ({ query }: SSLoginProps) => {
   const { success, message } = query;
   React.useEffect(() => {
     if (success !== ('false' as any)) {
-      return actionLogin.setAuthLogin(query);
+      actionLogin.setAuthLogin(query);
     }
     Router.replace({
       pathname: '/',
