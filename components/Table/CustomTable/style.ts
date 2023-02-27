@@ -6,8 +6,6 @@ import { COLOR, RADIUS } from '@/utils/globalVariable';
 import { styled } from '@mui/material';
 import { DataGrid, gridClasses } from '@mui/x-data-grid';
 
-const ODD_OPACITY = 0.2;
-
 const RadiusLeft = {
   borderTopLeftRadius: RADIUS.medium,
   borderBottomLeftRadius: RADIUS.medium,
@@ -18,12 +16,18 @@ const RadiusRight = {
   borderBottomRightRadius: RADIUS.medium,
 };
 
-export const CustomTable = styled(DataGrid)(({ theme }) => ({
+export const CustomTable = styled(DataGrid)(() => ({
   border: 0,
   WebkitFontSmoothing: 'auto',
   '& .MuiDataGrid-columnHeaders': {
     borderBottom: 0,
     fontSize: 14,
+  },
+  '& .score': {
+    minWidth: '220px !important',
+  },
+  '& .rank': {
+    minWidth: '110px !important',
   },
   '& .MuiDataGrid-columnHeaderTitleContainerContent': {
     height: 25,
