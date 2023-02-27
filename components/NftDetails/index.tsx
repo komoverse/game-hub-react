@@ -14,11 +14,14 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
 import { t } from 'i18next';
+import { ProfileDto } from '@/types/home';
+import isEmpty from 'lodash/isEmpty';
 
 const NftDetails = () => {
-  const data = useSelector(
-    (state: ReduxState) => state.detailNft as MarketItemDto
-  );
+  const { nftDetail: data, profile } = useSelector((state: ReduxState) => ({
+    nftDetail: state.detailNft as MarketItemDto,
+    profile: state.profile as ProfileDto,
+  }));
   const [copy, setCopy] = React.useState('Copy');
 
   const handleCopy = (address: string) => {
@@ -116,6 +119,7 @@ const NftDetails = () => {
               }}
             >
               <Button
+                disabled={isEmpty(profile.komo_username)}
                 sx={{ color: COLOR.baseWhite, textTransform: 'uppercase' }}
               >
                 {t('button.buyNow')}

@@ -33,40 +33,42 @@ const Reviews = () => {
   const { game: gameId } = router.query;
 
   const [params, setParams] = React.useState({
-    filter: 'default' as string,
-    sortBy: 'rating' as string,
-    page: 1 as number,
+    filter: 'default',
+    sortBy: 'rating',
+    page: 1,
   });
 
-  const [paginate, setPaginate] = React.useState({
-    total: 0 as number,
-    to: 0 as number,
+  const [pagination, setPagination] = React.useState({
+    total: 0,
+    to: 0,
   });
 
-  const { data: reviews, isLoading } = useQuery({
-    queryKey: [
-      QueryKey.LIST_REVIEWS,
-      gameId,
-      params.filter,
-      params.sortBy,
-      params.page,
-    ],
-    queryFn: () =>
-      getListReviews(
-        gameId as string,
-        params.filter as string,
-        params.sortBy as string,
-        params.page as number
-      ),
-    keepPreviousData: true,
-    staleTime: 2000,
-    enabled: !!gameId,
-    onSuccess: (data: ListReviewsDto) => {
-      actionReviews.setReviews(data);
-      const { total, to } = data.reviews;
-      setPaginate({ total, to });
-    },
-  });
+  const { data: reviews, isLoading } = useQuery<ListReviewsDto, ListReviewsDto>(
+    {
+      queryKey: [
+        QueryKey.LIST_REVIEWS,
+        gameId,
+        params.filter,
+        params.sortBy,
+        params.page,
+      ],
+      queryFn: () =>
+        getListReviews(
+          gameId as string,
+          params.filter as string,
+          params.sortBy as string,
+          params.page as number
+        ),
+      keepPreviousData: true,
+      staleTime: 2000,
+      enabled: !!gameId,
+      onSuccess: (data) => {
+        actionReviews.setReviews(data);
+        const { total, to } = data.reviews;
+        setPagination({ total, to });
+      },
+    }
+  );
 
   const handleSortBy = (event: SelectChangeEvent<string>) => {
     setParams({ ...params, sortBy: event.target.value as string });
@@ -170,7 +172,7 @@ const Reviews = () => {
               <>
                 <ListReviews />
 
-                {paginate.total > paginate.to && (
+                {pagination.total > pagination.to && (
                   <LoadingButton
                     loading={isLoading}
                     onClick={() =>
