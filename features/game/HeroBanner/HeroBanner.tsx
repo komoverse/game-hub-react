@@ -15,6 +15,7 @@ import {
 } from './styles';
 import ModalVideo from 'react-modal-video';
 import GameSocialMedia from './GameSocialMedia';
+import { QueryKey } from '@/types/general';
 
 export const PopupVidio = ({
   videoId,
@@ -42,7 +43,10 @@ const HeroBanner = () => {
     data: gameDetails,
     isError,
     isLoading,
-  } = useQuery(['getGameDetails', game], () => getGameDetails(game as string));
+  } = useQuery({
+    queryKey: [QueryKey.GAME_DETAILS, game],
+    queryFn: () => getGameDetails(game as string),
+  });
 
   const [isOpenTrailer, setIsOpenTrailer] = useState(false);
   const watchTrailer = () => setIsOpenTrailer(!isOpenTrailer);

@@ -23,3 +23,44 @@ export interface MintPhaseDto {
   nft_sample_url: string;
   phase: PhaseDto[];
 }
+
+export type ReviewsMonthlyStatsDto = {
+  average_rating: number;
+  review_month: string;
+};
+
+export type ReviewsDto = {
+  comment: string;
+  created_at: string;
+  dislike_comment_count: number;
+  game_id: string;
+  id: number;
+  komo_username: string;
+  like_comment_count: number;
+  rating: number;
+  review_comment_count: number;
+  reviewer_picture_url: string;
+};
+
+export type SummaryDto = {
+  overall_rating: number;
+  total_reviews: number;
+};
+
+export interface ListReviewsDto {
+  monthly_stats: ReviewsMonthlyStatsDto;
+  reviews: {
+    data: ReviewsDto[];
+    total: number;
+    to: number;
+    current_page: number;
+  };
+  reviewed_by_me: string | null;
+  summary: SummaryDto;
+  length: number;
+}
+
+export interface ReviewFormDto {
+  rating: number;
+  comment: string;
+}

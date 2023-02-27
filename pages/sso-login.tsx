@@ -1,15 +1,38 @@
 import React from 'react';
 import Router from 'next/router';
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, Paper, styled } from '@mui/material';
 import { NextResponse } from 'next/server';
 import actionLogin from '@/store/auth/action';
-import { ContainterSigin, Wrapper } from './signin';
 import { SSLoginProps } from '@/types/general';
+import { COLOR } from '@/utils/globalVariable';
+
+export const ContainterSigin = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  background: 'black',
+  justifyContent: 'center',
+  minHeight: '100vh',
+  padding: '16px',
+}));
+
+export const Wrapper = styled(Paper)(() => ({
+  color: COLOR.baseWhite,
+  backgroundColor: 'black',
+  borderRadius: '8px',
+  padding: '32px 24px',
+  border: `1px solid ${COLOR.backgroundTableHover}`,
+}));
 
 const SSOLogin = ({ query }: SSLoginProps) => {
+  const { success, message } = query;
   React.useEffect(() => {
-    actionLogin.setAuthLogin(query);
-    Router.replace({ pathname: '/', query: { success: query.success } });
+    if (success !== ('false' as any)) {
+      actionLogin.setAuthLogin(query);
+    }
+    Router.replace({
+      pathname: '/',
+      query: { success, message },
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

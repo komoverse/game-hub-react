@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import { SectionWrapperCard } from '@/utils/globalVariable';
 import useResponsive from '@/hooks/useResponsive';
+import { QueryKey } from '@/types/general';
 
 const PopupVidio = ({
   videoId,
@@ -39,7 +40,9 @@ const Featured = () => {
   const smDown = useResponsive('down', 'sm');
   const mdUp = useResponsive('up', 'md');
 
-  const { data } = useQuery(['listFeatured'], () => getListFeatured(), {
+  const { data } = useQuery({
+    queryKey: [QueryKey.LIST_FEATURED],
+    queryFn: () => getListFeatured(),
     staleTime: 3000,
     refetchOnMount: false,
   });

@@ -63,5 +63,30 @@ export type SSLoginProps = {
   query: {
     success: boolean;
     token: string;
+    message: string;
   };
 };
+
+export enum QueryKey {
+  LIST_REVIEWS = 'listReviews',
+  LIST_FEATURED = 'listFeatured',
+  LIST_MARKET_RECENT = 'listMarketRecent',
+  GET_MARKET_ITEM_BY_ID = 'getMarketItemById',
+  LIST_COUNTRY_CODE = 'listCountryCode',
+  LIST_MINT_PHASE = 'listMintPhase',
+  GAME_DETAILS = 'gameDetails',
+  MARKET_COLLECTION = 'marketCollection',
+  COLLECTION_ITEMS = 'collectionItems',
+  SEARCH_CONTENT = 'searchContent',
+  SIDEBAR_MENU = 'sidebarMenu',
+  PORTFOLIO = 'portfolio',
+  PROFILE = 'profile',
+  SLIDESHOW = 'slideshow',
+}
+
+export enum MutationKey {
+  LIKE_REVIEW = 'likeReview',
+  DISLIKE_REVIEW = 'dislikeReview',
+  SUBMIT_REVIEW = 'submitReview',
+  LOGIN_SOCMED = 'loginSocmed',
+}

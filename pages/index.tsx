@@ -1,17 +1,23 @@
 import React from 'react';
 import Router from 'next/router';
-import { NextRequest, NextResponse } from 'next/server';
-import { SSLoginProps } from '@/types/general';
+import { MutationKey, SSLoginProps } from '@/types/general';
 import MainPage from 'features/home';
-import isEmpty from 'lodash/isEmpty';
+import { toast } from 'react-toastify';
+import { NextResponse } from 'next/server';
 
 const Home = ({ query }: SSLoginProps) => {
-  const { success } = query;
+  const { success, message } = query;
 
   React.useEffect(() => {
     Router.replace({ pathname: '/' });
-    if (!success && !isEmpty(success)) {
-      // redirect to register page
+    if (success === ('false' as any)) {
+      toast.error(message, {
+        position: 'top-right',
+        autoClose: 4000,
+        theme: 'dark',
+        type: 'error',
+        toastId: MutationKey.LOGIN_SOCMED,
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -21,10 +27,7 @@ const Home = ({ query }: SSLoginProps) => {
 
 export default Home;
 
-export const getServerSideProps = async (
-  res: NextResponse,
-  req: NextRequest
-) => {
+export const getServerSideProps = async (res: NextResponse) => {
   // @ts-ignore
   const { query } = res;
 

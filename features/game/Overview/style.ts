@@ -41,6 +41,7 @@ export const ReviewRattingButton = styled(Button)(() => ({
   backgroundColor: COLOR.baseBackgroundButtonGray,
   borderRadius: RADIUS.small,
   padding: '1px 5px',
+  cursor: 'default',
 }));
 
 export const ReviewButtonRattingStyle = {

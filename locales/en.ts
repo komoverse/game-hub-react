@@ -18,7 +18,9 @@ const lang = {
   button: {
     buyNow: 'Buy Now',
     live: 'Live',
+    loadMore: 'Load More',
     send: 'Send',
+    publish: 'Publish',
   },
   time: {
     days: 'days',
@@ -39,6 +41,12 @@ const lang = {
     allowList: 'Allow List',
     learnMore: 'Learn More',
     previousMint: 'Previous Mint',
+    playerReviews: 'Player Reviews',
+    rating: 'Rating',
+    overallRating: 'Overall Rating',
+    reviewSummary: 'Review Summary',
+    review: '{{count}} Review',
+    reviewed: 'You have reviewd this game',
   },
   auth: {
     signInGoogle: 'Sign in with Google',
@@ -59,6 +67,7 @@ const lang = {
   utils: {
     currency: 'USD',
     format: 'en-US',
+    errorMessage: 'Something went wrong. Please try again later.',
   },
   profile: {
     myAccount: 'My Account',
@@ -67,7 +76,11 @@ const lang = {
     exportPhrase: 'Export seed phrase',
     setupAccount: 'Setup account recovery',
     downloadKomo: 'Download Komoverse',
-    diconnect: 'Disconnect',
+    disconnect: 'Disconnect',
+  },
+  filter: {
+    sortBy: 'Sort By',
+    mostRecent: 'Most Recent',
   },
 };
 export default lang;

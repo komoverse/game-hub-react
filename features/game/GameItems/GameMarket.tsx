@@ -21,9 +21,9 @@ import { mapFilters, mapMarketItems } from './helpers';
 import useDebounce from '@/hooks/useDebounce';
 import Iconify from '@/components/Iconify';
 import { getMarketItemById } from '@/services/homepage';
-import { ErrorResponseDto } from '@/types/general';
+import { ErrorResponseDto, QueryKey } from '@/types/general';
 import actionNft from '@/store/detailNft/action';
-import { Modal } from '@/components/index';
+import { ModalNftDetails } from '@/components/index';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -38,32 +38,32 @@ const GameMarket = () => {
   const { game: gameId } = router.query;
   const [currCollection, setCurrCollection] = useState<string>('');
 
-  const { data: collections } = useQuery(['getMarketCollections', gameId], () =>
-    getMarketCollections(gameId as string)
-  );
+  const { data: collections } = useQuery({
+    queryKey: [QueryKey.MARKET_COLLECTION, gameId],
+    queryFn: () => getMarketCollections(gameId as string),
+  });
 
   const {
     data: _marketItems,
     isError,
     isLoading,
     refetch,
-  } = useQuery(['getCollectionItems', currCollection], () =>
-    getCollectionItems(currCollection)
-  );
+  } = useQuery({
+    queryKey: [QueryKey.COLLECTION_ITEMS, currCollection],
+    queryFn: () => getCollectionItems(currCollection),
+  });
 
   const [openModalDetail, setOpenModalDetail] = useState<boolean>(false);
   const [listingId, setListingId] = useState<string>('');
-  const { isFetching: isFetchItemDetail } = useQuery(
-    ['marketItemById', listingId],
-    () => getMarketItemById(listingId),
-    {
-      staleTime: 3000,
-      cacheTime: 3000,
-      enabled: !!listingId,
-      onError: (error: ErrorResponseDto) => error,
-      onSuccess: (data) => actionNft.setDetailNft(data),
-    }
-  );
+  const { isFetching: isFetchItemDetail } = useQuery({
+    queryKey: [QueryKey.GET_MARKET_ITEM_BY_ID, listingId],
+    queryFn: () => getMarketItemById(listingId),
+    staleTime: 3000,
+    cacheTime: 3000,
+    enabled: !!listingId,
+    onError: (error: ErrorResponseDto) => error,
+    onSuccess: (data) => actionNft.setDetailNft(data),
+  });
 
   const onClickMarketItem = (listing_id: string) => {
     setOpenModalDetail(true);
@@ -177,7 +177,7 @@ const GameMarket = () => {
       </Box>
 
       {!isFetchItemDetail && (
-        <Modal open={openModalDetail} setOpen={setOpenModalDetail} />
+        <ModalNftDetails open={openModalDetail} setOpen={setOpenModalDetail} />
       )}
     </Box>
   );

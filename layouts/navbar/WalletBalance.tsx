@@ -13,7 +13,7 @@ import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import { useQuery } from 'react-query';
 import { getPortfolio } from '@/services/homepage';
 import isEmpty from 'lodash/isEmpty';
-import { ErrorResponseDto } from '@/types/general';
+import { ErrorResponseDto, QueryKey } from '@/types/general';
 import { MenuPopover } from '@/components/index';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -21,7 +21,9 @@ const WalletBalance = () => {
   const anchorRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const { data } = useQuery('portfolio', () => getPortfolio(), {
+  const { data } = useQuery({
+    queryKey: QueryKey.PORTFOLIO,
+    queryFn: () => getPortfolio(),
     staleTime: 3000,
     cacheTime: 3000,
     // enabled: !isEmpty(token),

@@ -18,15 +18,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import GoogleIcon from '@mui/icons-material/Google';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Iconify } from '@/components/index';
-import { Provider } from '@/types/general';
+import { MutationKey, Provider } from '@/types/general';
 
 export const Solana = ({ wallet }: any) => {
-  const { mutate } = useMutation(
-    async (provider: string) => await loginSocmed(provider),
-    {
-      onSuccess: (url: string) => Router.replace(url),
-    }
-  );
+  const { mutate } = useMutation({
+    mutationKey: MutationKey.LOGIN_SOCMED,
+    mutationFn: (provider: string) => loginSocmed(provider),
+    onSuccess: (url: string) => Router.replace(url),
+  });
 
   const onFinsih = (provider: string) => mutate(provider);
 

@@ -3,7 +3,7 @@ import { COLOR, GRADIENT } from '@/utils/globalVariable';
 import { Box, Divider, MenuList, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
-import { ErrorResponseDto, TypeAuthLogin } from '@/types/general';
+import { ErrorResponseDto, QueryKey, TypeAuthLogin } from '@/types/general';
 import actionProfile from '@/store/profile/action';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import { useQuery } from 'react-query';
@@ -27,17 +27,17 @@ const ProfileMenu = () => {
   const anchorRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { token } = useSelector(
-    (state: ReduxState) => state.login as TypeAuthLogin
-  );
-  const { balance } = useSelector(
-    (state: ReduxState) => state.profile as ProfileDto
-  );
+  const { token, profile } = useSelector((state: ReduxState) => ({
+    token: state.login as TypeAuthLogin,
+    profile: state.profile as ProfileDto,
+  }));
 
-  const { data: profile, isLoading } = useQuery('profile', () => getProfile(), {
+  const { data, isLoading } = useQuery({
+    queryKey: QueryKey.PROFILE,
+    queryFn: () => getProfile(),
     staleTime: 3000,
     cacheTime: 3000,
-    enabled: !isEmpty(token),
+    enabled: !isEmpty(token.token),
     onSuccess: (data: ProfileDto) => actionProfile.setProfile(data),
     onError: (error: ErrorResponseDto) => error,
   });
@@ -48,7 +48,7 @@ const ProfileMenu = () => {
   const handleOpenAccountPopover = () => setIsOpen(true);
 
   const togglePopover = () => {
-    if (token) {
+    if (token.token) {
       handleOpenAccountPopover();
     } else {
       handleVisibleLogin();
@@ -71,19 +71,19 @@ const ProfileMenu = () => {
             backgroundColor: 'transparent',
           },
           color: COLOR.baseWhite,
-          background: token ? 'transparent' : GRADIENT.primary,
+          background: token.token ? 'transparent' : GRADIENT.primary,
           borderRadius: 2,
           border: `1px solid ${COLOR.baseGreen}`,
         }}
         endIcon={
-          token && (
+          token?.token && (
             <AccountBalanceWalletOutlinedIcon
               sx={{ width: 20, height: 20, color: COLOR.baseGreen }}
             />
           )
         }
       >
-        {token ? profile?.komo_username : t('navbar.login')}
+        {token?.token ? data?.komo_username : t('navbar.login')}
       </Button>
 
       <MenuPopover
@@ -129,7 +129,7 @@ const ProfileMenu = () => {
               </Typography>
               <Typography variant="h3" sx={{ fontWeight: 500 }}>
                 {currency(
-                  balance?.total_balance.USD_equivalent,
+                  profile?.balance?.total_balance?.USD_equivalent,
                   t('utils.format'),
                   t('utils.currency')
                 )}

@@ -1,3 +1,5 @@
+import Reviews from '@/features/game/Reviews';
+
 export default function Review() {
-  return <div>Review</div>;
+  return <Reviews />;
 }

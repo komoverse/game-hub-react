@@ -20,17 +20,16 @@ import { useMutation } from 'react-query';
 import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
 import Iconify from '@/components/Iconify';
 import { loginSocmed } from '@/services/auth';
-import { Provider } from '@/types/general';
+import { MutationKey, Provider } from '@/types/general';
 import actionModalAuth from '@/store/modalAuth/action';
 import Logo from 'public/logo.svg';
 
 const KomoWallets = () => {
-  const { mutate } = useMutation(
-    async (provider: string) => await loginSocmed(provider),
-    {
-      onSuccess: (url: string) => Router.replace(url),
-    }
-  );
+  const { mutate } = useMutation({
+    mutationKey: MutationKey.LOGIN_SOCMED,
+    mutationFn: (provider: string) => loginSocmed(provider),
+    onSuccess: (url: string) => Router.replace(url),
+  });
 
   const onFinsih = (provider: string) => mutate(provider);
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { CardImage, Modal, SectionTitle } from '@/components/index';
+import { CardImage, ModalNftDetails, SectionTitle } from '@/components/index';
 import { useTranslation } from 'react-i18next';
 import {
   ButtonCard,
@@ -24,8 +24,9 @@ import { CardContent } from '@mui/material';
 import { shortenTitleGame } from '@/utils/shorten';
 import { dateFromNow } from '@/helper/date';
 import { ReduxState } from '@/types/redux';
-import { ErrorResponseDto } from '@/types/general';
+import { QueryKey } from '@/types/general';
 import { Navigation } from 'swiper';
+import { toast } from 'react-toastify';
 
 const NewListings = () => {
   const { t } = useTranslation();
@@ -33,22 +34,30 @@ const NewListings = () => {
   const [listingId, setListingId] = React.useState<string>('');
   const defaultpage = useSelector((state: ReduxState) => state.pagination);
 
-  const { data: listNft } = useQuery('newListing', () => getListRecent(), {
+  const { data: listNft } = useQuery({
+    queryKey: [QueryKey.LIST_MARKET_RECENT],
+    queryFn: () => getListRecent(),
     staleTime: 3000,
     refetchOnMount: false,
   });
 
-  const { isFetching } = useQuery(
-    ['marketItemById', listingId],
-    () => getMarketItemById(listingId),
-    {
-      staleTime: 3000,
-      cacheTime: 3000,
-      enabled: !!listingId,
-      onError: (error: ErrorResponseDto) => error,
-      onSuccess: (data) => actionNft.setDetailNft(data),
-    }
-  );
+  const { isFetching } = useQuery({
+    queryKey: [QueryKey.GET_MARKET_ITEM_BY_ID, listingId],
+    queryFn: () => getMarketItemById(listingId),
+    staleTime: 3000,
+    cacheTime: 3000,
+    enabled: !!listingId,
+    onError: () => {
+      toast.error(t('utils.errorMessage'), {
+        position: 'top-right',
+        autoClose: 3000,
+        theme: 'dark',
+        type: 'error',
+        toastId: QueryKey.GET_MARKET_ITEM_BY_ID,
+      });
+    },
+    onSuccess: (data) => actionNft.setDetailNft(data),
+  });
 
   useQuery(['getMarket', defaultpage.page], () => getMarket(defaultpage.page), {
     staleTime: 3000,
@@ -129,7 +138,7 @@ const NewListings = () => {
         </Box>
       </SectionWrapperCard>
 
-      {!isFetching && <Modal open={open} setOpen={setOpen} />}
+      {!isFetching && <ModalNftDetails open={open} setOpen={setOpen} />}
     </SectionWrapper>
   );
 };
