@@ -20,7 +20,7 @@ const TournamentPage = () => {
     data: tournaments,
     isError,
     isLoading,
-  } = useQuery(['getMarketCollections', gameId], () =>
+  } = useQuery(['getTournament', gameId], () =>
     getGameTournaments(gameId as string)
   );
 
@@ -41,7 +41,7 @@ const TournamentPage = () => {
       <Box sx={{ p: '32px' }}>
         {tournaments.map((item: any, i: number) => (
           <Grid key={i} container spacing={3} sx={{ mt: '8px' }}>
-            <TournamnetImage bannerUrl={item.game.hero_banner_url} />
+            <TournamnetImage bannerUrl={item.image_url} />
             <Grid item xs={12} md={8}>
               <TournamentContentWrapper sx={{ padding: '32px' }}>
                 <TournamentContentHeader

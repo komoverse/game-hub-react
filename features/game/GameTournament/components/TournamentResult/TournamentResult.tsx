@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 
 import { getGameTournamentLeaderboard } from '@/services/games/tournament';
 import SingleElimination from './SingleElimination';
+import RoundRobin from './RoundRobin';
 
 const TournamentResult = ({
   tournamentId,
@@ -32,6 +33,9 @@ const TournamentResult = ({
       <Grid item xs={12}>
         {tournamentType === 'single_elim' && (
           <SingleElimination data={leaderboard.tournament_result} />
+        )}
+        {tournamentType === 'round_robin' && (
+          <RoundRobin data={leaderboard.tournament_result} />
         )}
       </Grid>
     </Grid>
