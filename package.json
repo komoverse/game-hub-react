@@ -33,6 +33,7 @@
     "next": "^13.1.1",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
+    "react-brackets": "^0.4.7",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^2.1.0",
     "react-hook-form": "^7.43.1",
