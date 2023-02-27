@@ -64,3 +64,12 @@ export interface ReviewFormDto {
   rating: number;
   comment: string;
 }
+
+export interface InsightDto {
+  game_id: string;
+  twitter_followers: number | null;
+  discord_member: number | null;
+  discord_active: number | null;
+  telegram_member: number | null;
+  telegram_active: number | null;
+}

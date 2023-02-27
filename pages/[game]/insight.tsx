@@ -1,3 +1,5 @@
-export default function Insight() {
-  return <div>Game Insight</div>;
+import Insight from '@/features/game/Insight';
+
+export default function InsightPage() {
+  return <Insight />;
 }

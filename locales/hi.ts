@@ -46,6 +46,7 @@ const lang = {
     reviewSummary: 'समीक्षा सारांश',
     review: '{{count}} समीक्षा',
     reviewed: 'आपने इस गेम की समीक्षा की है',
+    social: 'सामाजिक',
   },
   auth: {
     signInGoogle: 'Google के साथ साइन इन करें',

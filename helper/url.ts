@@ -22,3 +22,5 @@ export const LIKE_REVIEW = '/v2/review/like-review/{{game_review_id}}';
 export const DISLIKE_REVIEW = '/v2/review/dislike-review/{{game_review_id}}';
 export const ATTACH_WALLET = '/v2/wallet/solana/attach';
 export const CREATE_SEMI_CUSTODIAL_WALLET = '/v2/wallet/semi-custodial/create';
+export const UPDATE_INSIGHT = '/v2/insight/update';
+export const GAME_INSIGHT = '/v2/insight/game/{{game_id}}';

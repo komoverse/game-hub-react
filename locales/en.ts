@@ -47,6 +47,7 @@ const lang = {
     reviewSummary: 'Review Summary',
     review: '{{count}} Review',
     reviewed: 'You have reviewd this game',
+    social: 'Social',
   },
   auth: {
     signInGoogle: 'Sign in with Google',

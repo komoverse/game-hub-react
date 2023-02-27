@@ -82,6 +82,7 @@ export enum QueryKey {
   PORTFOLIO = 'portfolio',
   PROFILE = 'profile',
   SLIDESHOW = 'slideshow',
+  GAME_INSIGHT = 'gameInsight',
 }
 
 export enum MutationKey {

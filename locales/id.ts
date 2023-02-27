@@ -46,6 +46,7 @@ const lang = {
     reviewSummary: 'Ringkasan Review',
     review: '{{count}} Ulasan',
     reviewed: 'Anda telah mereview game ini',
+    social: 'Sosial',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',
