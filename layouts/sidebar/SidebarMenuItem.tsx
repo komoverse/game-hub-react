@@ -17,14 +17,7 @@ import { getDiff, isBefore, isBetween } from '@/helper/date';
 import { useRouter } from 'next/router';
 import { regexUrlValidation } from '@/utils/regex';
 import { COLOR, GRADIENT } from '@/utils/globalVariable';
-
-const LiveIndicator = styled('span')({
-  padding: '4px 8px',
-  textTransform: 'uppercase',
-  color: COLOR.baseWhite,
-  borderRadius: '20px',
-  background: GRADIENT.primary,
-});
+import LiveBadge from '@/components/LiveBadge';
 
 const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
   const currDate = new Date().toISOString();
@@ -125,7 +118,7 @@ const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
                   {isBefore(currDate, menu.startTime) ? (
                     `${Math.abs(getDiff(currDate, menu.startTime))} days`
                   ) : isBetween(currDate, menu.startTime, menu.endTime) ? (
-                    <LiveIndicator>Live</LiveIndicator>
+                    <LiveBadge />
                   ) : (
                     ''
                   )}
