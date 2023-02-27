@@ -81,5 +81,12 @@ const lang = {
     sortBy: 'Urutkan berdasarkan',
     mostRecent: 'Terbaru',
   },
+  table: {
+    rank: 'Peringkat',
+    playersName: 'Nama Pemain',
+    shareEarned: 'Bagi Hasil yang Diperoleh',
+    previous: 'Sebelumnya',
+    next: 'Berikutnya',
+  },
 };
 export default lang;

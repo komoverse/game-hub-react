@@ -81,5 +81,12 @@ const lang = {
     sortBy: 'इसके अनुसार क्रमबद्ध करें',
     mostRecent: 'सबसे हाल की',
   },
+  table: {
+    rank: 'रैंक',
+    playersName: 'खिलाड़ी का नाम',
+    shareEarned: 'इनाम का शेयर',
+    previous: 'पिछला',
+    next: 'अगला',
+  },
 };
 export default lang;

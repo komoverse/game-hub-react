@@ -65,10 +65,11 @@ const KomoverseTable = () => {
   const [expanded, setExpanded] = React.useState<string | false>(
     'historyTransaction'
   );
-  const data = useSelector(
-    (state: ReduxState) =>
-      state.transactionHistory as readonly GridValidRowModel[]
-  );
+  const data: GridValidRowModel[] = [];
+  // const data = useSelector(
+  //   (state: ReduxState) =>
+  //     state.transactionHistory as readonly GridValidRowModel[]
+  // );
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) =>
