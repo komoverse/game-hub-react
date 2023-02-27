@@ -12,13 +12,12 @@ import {
   SectionWrapperCard,
 } from '@/utils/globalVariable';
 import { useQuery } from 'react-query';
-import { getListRecent, getMarket, getMarketItemById } from 'services/homepage';
+import { getListRecent, getMarketItemById } from 'services/homepage';
 import { ListRecentDto } from '@/types/home';
 import Solana from 'public/solana.svg';
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import actionNft from '@/store/detailNft/action';
-import actionTransaction from '@/store/historyTransaction/action';
 import { useSelector } from 'react-redux';
 import { CardContent } from '@mui/material';
 import { shortenTitleGame } from '@/utils/shorten';
@@ -59,10 +58,10 @@ const NewListings = () => {
     onSuccess: (data) => actionNft.setDetailNft(data),
   });
 
-  useQuery(['getMarket', defaultpage.page], () => getMarket(defaultpage.page), {
-    staleTime: 3000,
-    onSuccess: (data) => actionTransaction.setHistoryTransaction(data),
-  });
+  // useQuery(['getMarket', defaultpage.page], () => getMarket(defaultpage.page), {
+  //   staleTime: 3000,
+  //   onSuccess: (data) => actionTransaction.setHistoryTransaction(data),
+  // });
 
   const handleOpen = (listing_id: string) => {
     setOpen(true);
