@@ -46,7 +46,7 @@ const lang = {
     overallRating: 'Overall Rating',
     reviewSummary: 'Review Summary',
     review: '{{count}} Review',
-    reviewed: 'You have reviewd this game',
+    reviewed: 'You have reviewed this game',
   },
   auth: {
     signInGoogle: 'Sign in with Google',
@@ -81,6 +81,13 @@ const lang = {
   filter: {
     sortBy: 'Sort By',
     mostRecent: 'Most Recent',
+  },
+  table: {
+    rank: 'Rank',
+    playersName: 'Players Name',
+    shareEarned: 'Share Earned',
+    previous: 'Previous',
+    next: 'Next',
   },
 };
 export default lang;

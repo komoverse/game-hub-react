@@ -80,5 +80,12 @@ const lang = {
     createdAt: '创建时间',
     mostRecent: '最近',
   },
+  table: {
+    rank: '排名',
+    playersName: '球员姓名',
+    shareEarned: '分享赚取',
+    previous: '上一个',
+    next: '下一个',
+  },
 };
 export default lang;
