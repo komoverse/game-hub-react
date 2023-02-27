@@ -41,7 +41,12 @@ const GameTabs = ({ tabs = [] }: { tabs: string[] }) => {
           variant="scrollable"
         >
           {tabs.map((item, i) => (
-            <Tab key={i} sx={{ minWidth: '172px' }} value={item} label={item} />
+            <Tab
+              key={i}
+              sx={{ minWidth: '172px', textTransform: 'uppercase' }}
+              value={item}
+              label={item}
+            />
           ))}
         </Tabs>
       </Box>
