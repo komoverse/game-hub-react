@@ -8,6 +8,7 @@ module.exports = {
   },
   images: {
     domains: [
+      'localhost',
       'cdn.shyft.to',
       'www.arweave.net',
       'komo.s3.ap-southeast-1.amazonaws.com',
