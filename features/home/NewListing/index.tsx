@@ -18,20 +18,20 @@ import Solana from 'public/solana.svg';
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import actionNft from '@/store/detailNft/action';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { CardContent } from '@mui/material';
 import { shortenTitleGame } from '@/utils/shorten';
 import { dateFromNow } from '@/helper/date';
-import { ReduxState } from '@/types/redux';
+// import { ReduxState } from '@/types/redux';
 import { QueryKey } from '@/types/general';
 import { Navigation } from 'swiper';
-import { toast } from 'react-toastify';
+import actionToast from '@/store/toast/action';
 
 const NewListings = () => {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState<boolean>(false);
   const [listingId, setListingId] = React.useState<string>('');
-  const defaultpage = useSelector((state: ReduxState) => state.pagination);
+  // const defaultpage = useSelector((state: ReduxState) => state.pagination);
 
   const { data: listNft } = useQuery({
     queryKey: [QueryKey.LIST_MARKET_RECENT],
@@ -47,12 +47,10 @@ const NewListings = () => {
     cacheTime: 3000,
     enabled: !!listingId,
     onError: () => {
-      toast.error(t('utils.errorMessage'), {
-        position: 'top-right',
-        autoClose: 3000,
-        theme: 'dark',
+      actionToast.setToast({
+        display: true,
+        message: t('utils.errorMessage'),
         type: 'error',
-        toastId: QueryKey.GET_MARKET_ITEM_BY_ID,
       });
     },
     onSuccess: (data) => actionNft.setDetailNft(data),
