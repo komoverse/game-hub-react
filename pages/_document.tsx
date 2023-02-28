@@ -2,6 +2,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import { workSans } from '@/theme/ThemeProvider';
 import createEmotionCache from '@/theme/createEmotionCache';
+import Script from 'next/script';
 
 export default class MyDocument extends Document {
   render() {
@@ -12,6 +13,19 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta name="emotion-insertion-point" content="" />
           {(this.props as any).emotionStyleTags}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function () {
+                var s1 = document.createElement('script'),
+                  s0 = document.getElementsByTagName('script')[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/63fd99a731ebfa0fe7efb760/1gqba9ql4';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+              })();`,
+            }}
+          />
         </Head>
         <body>
           <Main />
