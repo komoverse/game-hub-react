@@ -63,6 +63,38 @@ const Reviews = () => {
       staleTime: 2000,
       enabled: !!gameId,
       onSuccess: (data) => {
+        const { disliked_by_me, liked_by_me, reviews } = data;
+
+        let review = reviews.data.map((review) => {
+          review.like = false;
+          review.dislike = false;
+          return review;
+        });
+
+        if (liked_by_me !== null) {
+          review = review.map((review) => {
+            const likedReview = liked_by_me.find(
+              (liked) => liked.game_review_id === review.id
+            );
+            if (likedReview) {
+              review.like = likedReview.like === 1;
+            }
+            return review;
+          });
+        }
+
+        if (disliked_by_me !== null) {
+          review = review.map((review) => {
+            const dislikedReview = disliked_by_me.find(
+              (disliked) => disliked.game_review_id === review.id
+            );
+            if (dislikedReview) {
+              review.dislike = dislikedReview.dislike === 1;
+            }
+            return review;
+          });
+        }
+
         actionReviews.setReviews(data);
         const { total, to } = data.reviews;
         setPagination({ total, to });
@@ -112,63 +144,65 @@ const Reviews = () => {
   return (
     <SectionWrapper>
       <SectionWrapperCard>
-        <Grid sx={{ width: 'auto', mt: 1 }} container spacing={3}>
-          <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-            <Ratting />
-          </Grid>
-          <Grid item xl={8} lg={8} md={6} sm={12} xs={12}>
-            {/* Filter */}
-            <Grid container spacing={2} sx={{ mb: 3, alignItems: 'center' }}>
-              <Grid item xs={12} sm={12} lg={3}>
-                <Typography variant="h4">{t('game.playerReviews')}</Typography>
-              </Grid>
-              <Grid item xs={12} sm={12} lg={5}>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  {buttonFilter.map((button) => (
-                    <Button
-                      key={button.id}
-                      size="small"
-                      sx={{
-                        background: button.background,
-                        color: button.color,
-                        width: '100%',
-                        mr: 1.5,
-                        border: button.border,
-                      }}
-                      onClick={button.onClick}
-                    >
-                      {button.name}
-                    </Button>
-                  ))}
-                </Box>
-              </Grid>
+        {reviews?.reviews.data.length === 0 ? (
+          <EmptyData title="Tidak ada data" />
+        ) : (
+          <Grid sx={{ width: 'auto', mt: 1 }} container spacing={3}>
+            <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
+              <Ratting />
             </Grid>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography variant="h5" color={COLOR.baseLightTextGray}>
-                {t('filter.sortBy')}
-              </Typography>
-              <FormControl variant="standard" sx={{ ml: 2 }}>
-                <Select
-                  sx={{
-                    minWidth: 140,
-                    height: '40px',
-                    color: COLOR.baseLightTextGray,
-                  }}
-                  value={params.sortBy}
-                  onChange={handleSortBy}
-                >
-                  <MenuItem value="rating">{t('game.rating')}</MenuItem>
-                  <MenuItem value="created_at">
-                    {t('filter.mostRecent')}
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            {/* End Filter */}
+            <Grid item xl={8} lg={8} md={6} sm={12} xs={12}>
+              {/* Filter */}
+              <Grid container spacing={2} sx={{ mb: 3, alignItems: 'center' }}>
+                <Grid item xs={12} sm={12} lg={3}>
+                  <Typography variant="h4">
+                    {t('game.playerReviews')}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} sm={12} lg={5}>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    {buttonFilter.map((button) => (
+                      <Button
+                        key={button.id}
+                        size="small"
+                        sx={{
+                          background: button.background,
+                          color: button.color,
+                          width: '100%',
+                          mr: 1.5,
+                          border: button.border,
+                        }}
+                        onClick={button.onClick}
+                      >
+                        {button.name}
+                      </Button>
+                    ))}
+                  </Box>
+                </Grid>
+              </Grid>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Typography variant="h5" color={COLOR.baseLightTextGray}>
+                  {t('filter.sortBy')}
+                </Typography>
+                <FormControl variant="standard" sx={{ ml: 2 }}>
+                  <Select
+                    sx={{
+                      minWidth: 140,
+                      height: '40px',
+                      color: COLOR.baseLightTextGray,
+                    }}
+                    value={params.sortBy}
+                    onChange={handleSortBy}
+                  >
+                    <MenuItem value="rating">{t('game.rating')}</MenuItem>
+                    <MenuItem value="created_at">
+                      {t('filter.mostRecent')}
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              {/* End Filter */}
 
-            {reviews?.reviews.data.length === 0 ? (
-              <EmptyData title="Tidak ada data" />
-            ) : (
               <>
                 <ListReviews />
 
@@ -190,9 +224,9 @@ const Reviews = () => {
                   </LoadingButton>
                 )}
               </>
-            )}
+            </Grid>
           </Grid>
-        </Grid>
+        )}
       </SectionWrapperCard>
     </SectionWrapper>
   );

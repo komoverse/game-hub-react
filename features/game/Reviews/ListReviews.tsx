@@ -19,9 +19,10 @@ import { ReduxState } from '@/types/redux';
 import { ProfileDto } from '@/types/home';
 import { useMutation, useQueryClient } from 'react-query';
 import { disLikeReview, likeReview } from '@/services/games/reviews';
-import { toast } from 'react-toastify';
 import isEmpty from 'lodash/isEmpty';
 import { MutationKey, QueryKey } from '@/types/general';
+import actionModalAuth from '@/store/modalAuth/action';
+import actionToast from '@/store/toast/action';
 
 const ListReviews = () => {
   const queryClient = useQueryClient();
@@ -31,63 +32,44 @@ const ListReviews = () => {
   }));
 
   const { mutate: like } = useMutation({
-    mutationKey: [MutationKey.LIKE_REVIEW],
+    mutationKey: MutationKey.LIKE_REVIEW,
     mutationFn: (id: number) => likeReview(id as number),
-    onMutate: () => {
-      const previousData = queryClient.getQueryData(QueryKey.LIST_REVIEWS);
-
-      queryClient.setQueriesData(QueryKey.LIST_REVIEWS, (oldData: any) => {
-        return {
-          ...oldData,
-          data: [oldData.reviews.data],
-        };
-      });
-      return { previousData };
-    },
     onSuccess: () => queryClient.invalidateQueries(QueryKey.LIST_REVIEWS),
     onError: (error: any) => {
-      toast.error(error.response.data.messages, {
-        position: 'top-right',
-        autoClose: 3000,
-        theme: 'dark',
+      actionToast.setToast({
+        display: true,
+        message: error.response.data.messages,
         type: 'error',
-        toastId: MutationKey.LIKE_REVIEW,
       });
     },
   });
 
   const { mutate: dislike } = useMutation({
-    mutationKey: [MutationKey.DISLIKE_REVIEW],
+    mutationKey: MutationKey.DISLIKE_REVIEW,
     mutationFn: (id: number) => disLikeReview(id as number),
-    onMutate: () => {
-      const previousData = queryClient.getQueryData(QueryKey.LIST_REVIEWS);
-
-      queryClient.setQueriesData(QueryKey.LIST_REVIEWS, (oldData: any) => {
-        return {
-          ...oldData,
-          data: [oldData.reviews.data],
-        };
-      });
-      return { previousData };
-    },
+    onSuccess: () => queryClient.invalidateQueries(QueryKey.LIST_REVIEWS),
     onError: (error: any) => {
-      toast.error(error.response.data.messages, {
-        position: 'top-right',
-        autoClose: 3000,
-        theme: 'dark',
+      actionToast.setToast({
+        display: true,
+        message: error.response.data.messages,
         type: 'error',
-        toastId: MutationKey.DISLIKE_REVIEW,
       });
     },
   });
 
-  const handleLike = (id: number) => like(id);
-  const handleDisLike = (id: number) => dislike(id);
+  const handleLike = (id: number) => {
+    !isEmpty(profile.komo_username)
+      ? like(id)
+      : actionModalAuth.setModalAuth({ visible: true });
+  };
+
+  const handleDisLike = (id: number) => {
+    !isEmpty(profile.komo_username)
+      ? dislike(id)
+      : actionModalAuth.setModalAuth({ visible: true });
+  };
 
   const colorIconLikeDislike = { color: COLOR.baseWhite };
-
-  const submitLikeDislike =
-    !isEmpty(profile.komo_username) && isEmpty(reviews.reviewed_by_me);
 
   return (
     <>
@@ -130,34 +112,40 @@ const ListReviews = () => {
           <Typography variant="body2">{review.comment}</Typography>
           <Box sx={{ textAlign: 'end' }}>
             <Button
-              onClick={() => submitLikeDislike && handleLike(review.id)}
+              onClick={() => {
+                if (review.like === false) {
+                  handleLike(review.id);
+                }
+              }}
               sx={{ background: COLOR.baseBackgroundButtonGray, mr: 1 }}
               size="small"
               startIcon={
-                submitLikeDislike ? (
+                review.like ? (
                   <ThumbUpIcon sx={colorIconLikeDislike} />
                 ) : (
                   <ThumbUpOffAltIcon sx={colorIconLikeDislike} />
                 )
               }
-              disabled={isEmpty(profile.komo_username)}
             >
               <Typography variant="body2" color={COLOR.baseWhite}>
                 {review.like_comment_count}
               </Typography>
             </Button>
             <Button
-              onClick={() => submitLikeDislike && handleDisLike(review.id)}
+              onClick={() => {
+                if (review.dislike === false) {
+                  handleDisLike(review.id);
+                }
+              }}
               sx={{ background: COLOR.baseBackgroundButtonGray }}
               size="small"
               startIcon={
-                submitLikeDislike ? (
+                review.dislike ? (
                   <ThumbDownIcon sx={colorIconLikeDislike} />
                 ) : (
                   <ThumbDownOffAltIcon sx={colorIconLikeDislike} />
                 )
               }
-              disabled={isEmpty(profile.komo_username)}
             >
               <Typography variant="body2" color={COLOR.baseWhite}>
                 {review.dislike_comment_count}
