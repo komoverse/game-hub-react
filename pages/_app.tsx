@@ -14,7 +14,6 @@ import store from 'store/store';
 import 'styles/global.scss';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import Layout from '@/layouts/Layout';
-import { ToastContainer } from 'react-toastify';
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -64,7 +63,6 @@ export default function MyApp(props: MyAppProps) {
 
             <Layout>
               <Component {...pageProps} />
-              <ToastContainer />
             </Layout>
           </QueryClientProvider>
         </I18nextProvider>
