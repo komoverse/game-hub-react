@@ -63,6 +63,38 @@ const Reviews = () => {
       staleTime: 2000,
       enabled: !!gameId,
       onSuccess: (data) => {
+        const { disliked_by_me, liked_by_me, reviews } = data;
+
+        let review = reviews.data.map((review) => {
+          review.like = false;
+          review.dislike = false;
+          return review;
+        });
+
+        if (liked_by_me !== null) {
+          review = review.map((review) => {
+            const likedReview = liked_by_me.find(
+              (liked) => liked.game_review_id === review.id
+            );
+            if (likedReview) {
+              review.like = likedReview.like === 1;
+            }
+            return review;
+          });
+        }
+
+        if (disliked_by_me !== null) {
+          review = review.map((review) => {
+            const dislikedReview = disliked_by_me.find(
+              (disliked) => disliked.game_review_id === review.id
+            );
+            if (dislikedReview) {
+              review.dislike = dislikedReview.dislike === 1;
+            }
+            return review;
+          });
+        }
+
         actionReviews.setReviews(data);
         const { total, to } = data.reviews;
         setPagination({ total, to });

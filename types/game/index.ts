@@ -40,6 +40,8 @@ export type ReviewsDto = {
   rating: number;
   review_comment_count: number;
   reviewer_picture_url: string;
+  like: boolean;
+  dislike: boolean;
 };
 
 export type SummaryDto = {
@@ -89,8 +91,8 @@ export type ReviewByMeDto = {
 };
 
 export interface ListReviewsDto {
-  disliked_by_me: LikeDislikeByMeDto[];
-  liked_by_me: LikeDislikeByMeDto[];
+  disliked_by_me: LikeDislikeByMeDto[] | null;
+  liked_by_me: LikeDislikeByMeDto[] | null;
   monthly_stats: ReviewsMonthlyStatsDto;
   overall_summary: OverallSumaryDto;
   rating_summary: RatingSummaryDto[];
@@ -100,7 +102,7 @@ export interface ListReviewsDto {
     to: number;
     current_page: number;
   };
-  reviewed_by_me: ReviewByMeDto;
+  reviewed_by_me: ReviewByMeDto | null;
   summary: SummaryDto;
   length: number;
 }
