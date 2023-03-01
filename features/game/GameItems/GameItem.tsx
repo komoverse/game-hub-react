@@ -1,9 +1,11 @@
 import CardImage from '@/components/CardImage';
 import Image from 'next/image';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+
 import { dateFromNow } from '@/helper/date';
 import { ButtonCard, COLOR, KomoverseTag } from '@/utils/globalVariable';
 import { shortenTitleGame } from '@/utils/shorten';
-import { CardContent, Typography } from '@mui/material';
 import Solana from 'public/solana.svg';
 
 const GameItem = ({

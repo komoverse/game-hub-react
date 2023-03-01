@@ -1,29 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  Paper,
-  Typography,
-  styled,
-} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
-import MarketSidebar from './SidebarFilter';
+
 import { getCollectionItems, getMarketCollections } from '@/services/games';
-import GameItem from './GameItem';
-import GameSearchField from './GameSearchField';
-import { mapFilters, mapMarketItems } from './helpers';
 import useDebounce from '@/hooks/useDebounce';
 import Iconify from '@/components/Iconify';
 import { getMarketItemById } from '@/services/homepage';
 import { ErrorResponseDto, QueryKey } from '@/types/general';
 import actionNft from '@/store/detailNft/action';
 import { ModalNftDetails } from '@/components/index';
+
+import GameItem from './GameItem';
+import MarketSidebar from './SidebarFilter';
+import GameSearchField from './GameSearchField';
+import { mapFilters, mapMarketItems } from './helpers';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -89,19 +89,25 @@ const GameMarket = () => {
   );
 
   const [sortKey, setSortKey] = useState<string>('DATE_ASC');
-  // TDOD: get user address fro login
-  const userWalletAddres = '';
+  const {
+    semi_custodial_wallet_pubkey: semiCustodialPubkey,
+    wallet_pubkey: walletPubkey,
+  } = useSelector((state: ReduxState) => state.profile);
+
   const [isDisplayUserItems, setIsDisplayUserItems] = useState<boolean>(false);
 
   const onDisplayUserItems = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsDisplayUserItems(event.target.checked);
   };
 
+  const isLoginBanner = useMemo(
+    () => !walletPubkey && !semiCustodialPubkey && isDisplayUserItems,
+    [walletPubkey, semiCustodialPubkey, isDisplayUserItems]
+  );
+
   if (isError || isLoading) {
     return null;
   }
-
-  const isLoginBanner = !userWalletAddres && isDisplayUserItems;
 
   const marketItems = mapMarketItems(
     _marketItems,
@@ -109,7 +115,8 @@ const GameMarket = () => {
     debouncedSearchKeyword,
     sortKey,
     isDisplayUserItems,
-    userWalletAddres
+    walletPubkey,
+    semiCustodialPubkey
   );
 
   return (
@@ -147,6 +154,7 @@ const GameMarket = () => {
           />
         </Box>
 
+        {/* display if user was not login */}
         {isLoginBanner && (
           <Box
             bgcolor="#202020"
@@ -157,9 +165,22 @@ const GameMarket = () => {
           </Box>
         )}
 
+        {/* display if user was login but the market was empty */}
+        {!isLoginBanner && !marketItems.length && (
+          <Box
+            bgcolor="#202020"
+            p={4}
+            sx={{ borderRadius: '16px', textAlign: 'center' }}
+          >
+            <Typography>
+              We cannot find items that match your wallet address
+            </Typography>
+          </Box>
+        )}
+
         {!isLoginBanner && (
           <Grid container spacing={2}>
-            {marketItems.map((item: any, i: number) => (
+            {marketItems.map((item, i) => (
               <Grid item xs={6} sm={4} lg={2} key={i}>
                 <GameItem
                   itemId={item.list_state}
