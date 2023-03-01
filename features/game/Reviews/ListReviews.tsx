@@ -128,7 +128,7 @@ const ListReviews = () => {
               }
             >
               <Typography variant="body2" color={COLOR.baseWhite}>
-                {review.like_comment_count}
+                {review.like_count}
               </Typography>
             </Button>
             <Button
@@ -148,7 +148,7 @@ const ListReviews = () => {
               }
             >
               <Typography variant="body2" color={COLOR.baseWhite}>
-                {review.dislike_comment_count}
+                {review.dislike_count}
               </Typography>
             </Button>
           </Box>

@@ -32,11 +32,11 @@ export type ReviewsMonthlyStatsDto = {
 export type ReviewsDto = {
   comment: string;
   created_at: string;
-  dislike_comment_count: number;
+  dislike_count: number | string;
   game_id: string;
   id: number;
   komo_username: string;
-  like_comment_count: number;
+  like_count: number | string;
   rating: number;
   review_comment_count: number;
   reviewer_picture_url: string;
@@ -97,10 +97,11 @@ export interface ListReviewsDto {
   overall_summary: OverallSumaryDto;
   rating_summary: RatingSummaryDto[];
   reviews: {
-    data: ReviewsDto[];
-    total: number;
-    to: number;
     current_page: number;
+    data: ReviewsDto[];
+    next_page: number | null;
+    total_data: number;
+    total_page: number;
   };
   reviewed_by_me: ReviewByMeDto | null;
   summary: SummaryDto;
