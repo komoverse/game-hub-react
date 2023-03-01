@@ -39,8 +39,8 @@ const Reviews = () => {
   });
 
   const [pagination, setPagination] = React.useState({
-    total: 0,
-    to: 0,
+    total_page: 0,
+    total_data: 0,
   });
 
   const { data: reviews, isLoading } = useQuery<ListReviewsDto, ListReviewsDto>(
@@ -96,8 +96,8 @@ const Reviews = () => {
         }
 
         actionReviews.setReviews(data);
-        const { total, to } = data.reviews;
-        setPagination({ total, to });
+        const { total_data, total_page } = data.reviews;
+        setPagination({ total_data, total_page });
       },
     }
   );
@@ -206,7 +206,7 @@ const Reviews = () => {
               <>
                 <ListReviews />
 
-                {pagination.total > pagination.to && (
+                {pagination.total_data > pagination.total_page && (
                   <LoadingButton
                     loading={isLoading}
                     onClick={() =>
