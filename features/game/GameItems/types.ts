@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { IMarketCollection } from '@/types/game/market';
+import { IMarketCollection, IMarketItem } from '@/types/game/market';
 
 export interface IFilterOption {
   [key: string]: { values: Array<string>; isOpen?: boolean };
@@ -25,4 +25,10 @@ export interface ICollectionItemProps {
   name: string;
   volume: number;
   floor: number;
+}
+
+type TAttributes = Array<string>;
+
+export interface IMappedMarketItem extends IMarketItem {
+  attributes: TAttributes;
 }

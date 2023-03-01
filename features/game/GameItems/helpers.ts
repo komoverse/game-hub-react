@@ -2,13 +2,7 @@ import _intersection from 'lodash.intersection';
 
 import { IMarketItem } from '@/types/game/market';
 
-import { IFilterOption } from './types';
-
-type TAttributes = Array<string>;
-
-interface IMappedMarketItem extends IMarketItem {
-  attributes: TAttributes;
-}
+import { IFilterOption, IMappedMarketItem } from './types';
 
 export function mapFilters(data: IMarketItem[] | undefined) {
   if (!data) {
