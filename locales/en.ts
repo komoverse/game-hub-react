@@ -63,11 +63,14 @@ const lang = {
     komoverseWallet: 'Komoverse Wallet',
     komoverseSignInDescription:
       'Play in Komoverse tournaments and games live. Login with Google, Twitter or Discord. Work on mobile. No download required. Only you control the keys.',
+    forgotPassword: 'Forgot Password?',
+    register: 'Register',
   },
   utils: {
     currency: 'USD',
     format: 'en-US',
     errorMessage: 'Something went wrong. Please try again later.',
+    or: 'OR',
   },
   profile: {
     myAccount: 'My Account',
@@ -88,6 +91,10 @@ const lang = {
     shareEarned: 'Share Earned',
     previous: 'Previous',
     next: 'Next',
+  },
+  form: {
+    username: 'Username',
+    password: 'Password',
   },
 };
 export default lang;

@@ -62,11 +62,14 @@ const lang = {
     komoverseWallet: 'Dompet Komoverse',
     komoverseSignInDescription:
       'Bermain di turnamen dan permainan Komoverse secara langsung. Masuk dengan Google, Twitter atau Discord. Bekerja di ponsel. Tidak perlu mengunduh. Hanya Anda yang mengendalikan kunci.',
+    forgotPassword: 'Lupa Password?',
+    register: 'Daftar',
   },
   utils: {
     currency: 'IDR',
     format: 'id-ID',
     errorMessage: 'Terjadi kesalahan. Silakan coba lagi nanti.',
+    or: 'atau',
   },
   profile: {
     myAccount: 'Akun Saya',
@@ -87,6 +90,10 @@ const lang = {
     shareEarned: 'Bagi Hasil yang Diperoleh',
     previous: 'Sebelumnya',
     next: 'Berikutnya',
+  },
+  form: {
+    username: 'Nama Pengguna',
+    password: 'Kata Sandi',
   },
 };
 export default lang;

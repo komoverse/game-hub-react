@@ -60,11 +60,14 @@ const lang = {
     viewMoreWallet: '查看所有Solana钱包...',
     komoverseWallet: 'Komoverse钱包',
     komoverseSignInDescription: 'Komoverse钱包是Komoverse的官方钱包。它是',
+    forgotPassword: '忘记密码？',
+    register: '达夫塔尔',
   },
   utils: {
     currency: 'CNY',
     format: 'zh-CN',
     errorMessage: '错误信息',
+    or: '或',
   },
   profile: {
     myAccount: '我的帐户',
@@ -86,6 +89,10 @@ const lang = {
     shareEarned: '分享赚取',
     previous: '上一个',
     next: '下一个',
+  },
+  form: {
+    username: '用户名',
+    password: '密码',
   },
 };
 export default lang;

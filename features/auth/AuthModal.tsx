@@ -7,18 +7,34 @@ import actionModalAuth from '@/store/modalAuth/action';
 
 import LoginOption from './Login/LoginOption';
 import FormRegistrationAccount from './Register/FormRegistrationAccount';
+import ForgotPassword from './ForgotPassword';
 
 const AuthModal = () => {
   const { visible: isVisible, modalType } = useSelector(
     (state: ReduxState) => state.modalAuth
   );
-  const isLoginModal = modalType === 'LOGIN';
 
+  const renderModalAuth = () => {
+    switch (modalType) {
+      case 'LOGIN':
+        return <LoginOption />;
+      case 'REGISTER':
+        return <FormRegistrationAccount />;
+      default:
+        return null;
+    }
+    // if (modalType === 'FORGOT_PASSWORD') {
+    //   return <ForgotPassword />;
+    // }
+  };
   const handleClose = () => actionModalAuth.setModalAuth({ visible: false });
 
   return (
     <Dialog
       sx={{
+        '& .MuiDialogContent-root': {
+          backgroundColor: COLOR.baseBackgroundLogin,
+        },
         '& .MuiDialog-container': {
           height: '100vh',
           alignItems: 'flex-start',
@@ -34,7 +50,7 @@ const AuthModal = () => {
       onClose={handleClose}
     >
       <DialogContent sx={{ backgroundColor: COLOR.baseSemiBlack }}>
-        {isLoginModal ? <LoginOption /> : <FormRegistrationAccount />}
+        {renderModalAuth()}
       </DialogContent>
     </Dialog>
   );

@@ -62,11 +62,14 @@ const lang = {
     komoverseWallet: 'Komoverse वॉलेट',
     komoverseSignInDescription:
       'Komoverse वॉलेट Komoverse का आधिकारिक वॉलेट है। यह',
+    forgotPassword: 'पासवर्ड भूल गए?',
+    register: 'दफ्तर',
   },
   utils: {
     currency: 'INR',
     format: 'hi-IN',
     errorMessage: 'कुछ गलत हो गया। कृपया बाद में पुन: प्रयास करें।',
+    or: 'या',
   },
   profile: {
     myAccount: 'मेरा खाता',
@@ -87,6 +90,10 @@ const lang = {
     shareEarned: 'इनाम का शेयर',
     previous: 'पिछला',
     next: 'अगला',
+  },
+  form: {
+    username: 'उपयोगकर्ता नाम',
+    password: 'पासवर्ड',
   },
 };
 export default lang;

@@ -89,4 +89,5 @@ export enum MutationKey {
   DISLIKE_REVIEW = 'dislikeReview',
   SUBMIT_REVIEW = 'submitReview',
   LOGIN_SOCMED = 'loginSocmed',
+  WEB_LOGIN = 'webLogin',
 }

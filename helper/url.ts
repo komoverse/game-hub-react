@@ -24,3 +24,4 @@ export const ATTACH_WALLET = '/v2/wallet/solana/attach';
 export const CREATE_SEMI_CUSTODIAL_WALLET = '/v2/wallet/semi-custodial/create';
 export const GAME_TOURNAMENT = '/v2/tournament/game';
 export const GAME_TOURNAMENT_LEADERBOARD = '/v2/tournament/data';
+export const WEB_LOGIN = '/v2/web-login';
