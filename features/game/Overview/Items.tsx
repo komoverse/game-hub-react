@@ -15,7 +15,7 @@ import {
 import { dateFromNow } from '@/helper/date';
 import { Navigation } from 'swiper';
 import Image from 'next/image';
-import Solana from 'public/solana.svg';
+import Solana from 'public/solana-logo.png';
 import { CardImage, SectionTitle } from '@/components/index';
 import { QueryKey } from '@/types/general';
 

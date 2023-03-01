@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import { COLOR, KomoverseTag } from '@/utils/globalVariable';
-import Solana from 'public/solana.svg';
+import Solana from 'public/solana-logo.png';
 import MenuPopover from '@/components/MenuPopover';
 import SidebarFilterField from './SidebarFilterField';
 import useResponsive from '@/hooks/useResponsive';

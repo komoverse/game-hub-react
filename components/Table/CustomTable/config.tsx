@@ -1,12 +1,14 @@
-import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
+import Image from 'next/image';
+import { t } from 'i18next';
 import { Avatar, Box, Button, Typography } from '@mui/material';
 import { GridColumns, GridValidRowModel } from '@mui/x-data-grid';
-import { t } from 'i18next';
-import Leaderboard1 from 'public/leaderboard_rank1.svg';
-import Leaderboard2 from 'public/leaderboard_rank2.svg';
-import Leaderboard3 from 'public/leaderboard_rank3.svg';
-import Leaderboard4 from 'public/leaderboard_rank4.svg';
-import { ShardIcon } from '@/components/index';
+
+import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
+
+import Leaderboard1 from 'public/leaderboard-rank-1.png';
+import Leaderboard2 from 'public/leaderboard-rank-2.png';
+import Leaderboard3 from 'public/leaderboard-rank-3.png';
+import Leaderboard4 from 'public/leaderboard-rank-4.png';
 
 const styledRank = {
   color: COLOR.baseWhite,
@@ -89,7 +91,7 @@ export const columns: GridColumns<GridValidRowModel> = [
     align: 'right',
     renderCell: (params) => (
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <ShardIcon />
+        <Image src="/shard-icon.png" alt="shard-icon" width={45} height={30} />
         <Button
           size="small"
           sx={{

@@ -14,7 +14,7 @@ import {
 import { useQuery } from 'react-query';
 import { getListRecent, getMarketItemById } from 'services/homepage';
 import { ListRecentDto } from '@/types/home';
-import Solana from 'public/solana.svg';
+import Solana from 'public/solana-logo.png';
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import actionNft from '@/store/detailNft/action';

@@ -12,6 +12,5 @@ export { default as ViewIcon } from './ViewIcon';
 export { default as CustomTable } from './Table/CustomTable';
 export { default as EmptyData } from './EmptyData';
 export { default as Toast } from './Toast';
-export { default as ShardIcon } from './ShardIcon';
 export { default as TextFieldComponent } from './Form/TextField';
 export { default as FormProvider } from './Form/FormProvider';
