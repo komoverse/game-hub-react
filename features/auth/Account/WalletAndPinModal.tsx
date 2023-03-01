@@ -47,7 +47,7 @@ const WalletAndPinModal = () => {
         }}
       >
         <Image
-          src="/komoverse.webp"
+          src="/komoverse-logo-full.png"
           alt="komoverse-logo"
           height={66}
           width={138}

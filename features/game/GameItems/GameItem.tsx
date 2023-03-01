@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { dateFromNow } from '@/helper/date';
 import { ButtonCard, COLOR, KomoverseTag } from '@/utils/globalVariable';
 import { shortenTitleGame } from '@/utils/shorten';
-import Solana from 'public/solana.svg';
+import Solana from 'public/solana-logo.png';
 
 const GameItem = ({
   imageUrl,

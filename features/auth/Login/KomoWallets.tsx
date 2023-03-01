@@ -13,7 +13,7 @@ import Image from 'next/image';
 import { t } from 'i18next';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { COLOR, KomoverseTag } from '@/utils/globalVariable';
-import Logo from 'public/logo.svg';
+import Logo from 'public/komoverse-logo-compact.png';
 import FormLogin from './FormLogin';
 import LoginSocmed from './LoginSocmed';
 
@@ -49,7 +49,7 @@ const KomoWallets = () => (
         }}
       >
         <Image
-          src="/komoverse.webp"
+          src="/komoverse-logo-full.png"
           alt="komoverse-logo"
           height={60}
           width={100}
