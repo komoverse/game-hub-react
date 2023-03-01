@@ -1,14 +1,10 @@
 import _intersection from 'lodash.intersection';
 
-import { IFilterOption } from './types';
+import { IMarketItem } from '@/types/game/market';
 
-export function mapFilters(
-  data: Array<{
-    nft: {
-      attributes_array: Array<{ [key: string]: string }>;
-    };
-  }>
-) {
+import { IFilterOption, IMappedMarketItem } from './types';
+
+export function mapFilters(data: IMarketItem[] | undefined) {
   if (!data) {
     return {};
   }
@@ -32,12 +28,16 @@ export function mapFilters(
   return finalAttrs;
 }
 
-export function flattenMarketItemsAttributes(data: any) {
-  return data.map((item: any) => {
+export function flattenMarketItemsAttributes(data: IMarketItem[] | undefined) {
+  if (!data) {
+    return [];
+  }
+
+  return data.map((item: IMarketItem) => {
     const attrs = item.nft.attributes_array.flat();
     let finalAttrs: string[] = [];
 
-    attrs.forEach((el: any) => {
+    attrs.forEach((el) => {
       finalAttrs.push(el.value);
     });
 
@@ -48,10 +48,10 @@ export function flattenMarketItemsAttributes(data: any) {
   });
 }
 
-function sortByDate(data: any, sortKey: string) {
+function sortByDate(data: IMappedMarketItem[], sortKey: string) {
   switch (sortKey) {
     case 'DATE_DESC':
-      return data.sort(function (a: any, b: any) {
+      return data.sort(function (a, b) {
         var key1 = new Date(a.created_at);
         var key2 = new Date(b.created_at);
 
@@ -64,7 +64,7 @@ function sortByDate(data: any, sortKey: string) {
         }
       });
     case 'DATE_ASC':
-      return data.sort(function (a: any, b: any) {
+      return data.sort(function (a, b) {
         var key1 = new Date(a.created_at);
         var key2 = new Date(b.created_at);
 
@@ -77,33 +77,35 @@ function sortByDate(data: any, sortKey: string) {
         }
       });
     default:
-      break;
+      return [];
   }
 }
 
-function sortByPrice(data: any, sortKey: string) {
+function sortByPrice(data: IMappedMarketItem[], sortKey: string) {
   switch (sortKey) {
     case 'PRICE_DESC':
-      return data.sort((a: any, b: any) => b.price - a.price);
+      return data.sort((a, b) => b.price - a.price);
     case 'PRICE_ASC':
-      return data.sort((a: any, b: any) => a.price - b.price);
+      return data.sort((a, b) => a.price - b.price);
     default:
-      break;
+      return [];
   }
 }
 
 export function mapMarketItems(
-  data: any,
+  data: IMarketItem[] | undefined,
   selectedFilter: string[],
   searchKeyword: string,
   sortKey: string,
   isDisplayUserItems: boolean,
-  userWalletAddres: string
+  userWalletAddres: string,
+  semiCustodialWalletAddress: string
 ) {
-  let finalItems: any[] = [];
+  let finalItems: IMappedMarketItem[] = [];
   finalItems = flattenMarketItemsAttributes(data);
 
-  finalItems = finalItems.filter((item: any) => {
+  finalItems = finalItems.filter((item) => {
+    console.log('🚀 ~ finalItems=finalItems.filter ~ item:', item);
     const intersect = _intersection(selectedFilter, item.attributes);
 
     if (intersect.length !== 0 && selectedFilter !== undefined) {
@@ -127,9 +129,11 @@ export function mapMarketItems(
     finalItems = sortByDate(finalItems, sortKey);
   }
 
-  if (isDisplayUserItems && userWalletAddres) {
+  if (isDisplayUserItems && (userWalletAddres || semiCustodialWalletAddress)) {
     finalItems = finalItems.filter(
-      (item) => item.seller_address === userWalletAddres
+      (item) =>
+        item.seller_address === userWalletAddres ||
+        item.seller_address === semiCustodialWalletAddress
     );
   }
 
