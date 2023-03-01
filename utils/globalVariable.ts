@@ -26,6 +26,8 @@ export const COLOR = {
   baseLightTextGray: '#A5A5A5',
   baseEmptyBackground: '#202020',
   baseBackgroundReview: '#171717',
+  baseBackgroundLogin: '#0B0B0B',
+  baseColorDivider: '#4E4E4E',
 };
 
 export const GRADIENT = {
