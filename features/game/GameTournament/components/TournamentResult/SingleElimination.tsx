@@ -1,3 +1,4 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import {
   Bracket,
@@ -9,25 +10,11 @@ import {
   ISeedProps,
 } from 'react-brackets';
 
-import { COLOR } from '@/utils/globalVariable';
 import { Typography } from '@mui/material';
-import React from 'react';
-
-type ParticipantData = {
-  komo_username: string;
-  placeholder: 'Player Slot 1';
-  status: 'W' | 'L';
-};
-
-type SingleEliminationData = {
-  round_no: number;
-  match_no: string;
-  next_match_no: number;
-  participant: Array<ParticipantData>;
-};
+import { ITournamentSingleElimination } from '@/types/game/tournament';
 
 interface ISingleEliminationProps {
-  data: Array<SingleEliminationData>;
+  data?: Array<ITournamentSingleElimination>;
 }
 
 const CustomSeed = ({ seed, breakpoint }: IRenderSeedProps) => {
@@ -71,11 +58,11 @@ const CustomSeed = ({ seed, breakpoint }: IRenderSeedProps) => {
   );
 };
 
-const transformMatch = (inputArray: Array<SingleEliminationData>) => {
+const transformMatch = (inputArray?: Array<ITournamentSingleElimination>) => {
+  if (!inputArray) return [];
   const rounds: IRoundProps[] = [];
-  const matches: ISeedProps[] = [];
 
-  inputArray.forEach((item) => {
+  inputArray?.forEach((item) => {
     const match: ISeedProps = {
       id: item.match_no,
       round: item.round_no,
@@ -126,8 +113,9 @@ const SingleElimination = ({ data }: ISingleEliminationProps) => {
 
   return (
     <Bracket
+      bracketClassName="custom-bracket"
       rounds={transformedMatch}
-      roundTitleComponent={(title: React.ReactNode, roundIndex: number) => {
+      roundTitleComponent={(title: React.ReactNode) => {
         return (
           <Box
             sx={{

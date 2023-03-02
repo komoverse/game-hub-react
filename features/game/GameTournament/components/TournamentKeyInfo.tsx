@@ -12,7 +12,7 @@ const TournamentKeyInfo = ({
   endTime,
   description,
 }: {
-  prize: string;
+  prize?: string;
   startTime: string;
   endTime: string;
   description: string;
