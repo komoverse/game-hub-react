@@ -24,12 +24,33 @@ const TournamentPage = () => {
     getGameTournaments(gameId as string)
   );
 
+  // loading component with box
   if (isLoading) {
-    return <div>...loading</div>;
+    return (
+      <TournamentContentWrapper
+        sx={{
+          background: COLOR.backgroundTableStriped1,
+          padding: '16px',
+          height: '100%',
+        }}
+      >
+        Loading...
+      </TournamentContentWrapper>
+    );
   }
 
   if (isError) {
-    return <div>something went wrong</div>;
+    return (
+      <TournamentContentWrapper
+        sx={{
+          background: COLOR.backgroundTableStriped1,
+          padding: '16px',
+          height: '100%',
+        }}
+      >
+        Something wen wrong
+      </TournamentContentWrapper>
+    );
   }
 
   return (
@@ -39,7 +60,7 @@ const TournamentPage = () => {
       }}
     >
       <Box sx={{ p: '32px' }}>
-        {tournaments.map((item: any, i: number) => (
+        {tournaments?.map((item, i) => (
           <Grid key={i} container spacing={3} sx={{ mt: '8px' }}>
             <TournamnetImage bannerUrl={item.image_url} />
             <Grid item xs={12} md={8}>

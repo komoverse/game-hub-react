@@ -34,7 +34,7 @@ const PlaceholderImage = () => {
   );
 };
 
-const TournamnetImage = ({ bannerUrl }: { bannerUrl: string }) => {
+const TournamnetImage = ({ bannerUrl }: { bannerUrl?: string }) => {
   const isContentImage = (url: string) => {
     return regexImageFileValidation.test(url);
   };

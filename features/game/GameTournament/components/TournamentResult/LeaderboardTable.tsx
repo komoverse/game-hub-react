@@ -1,16 +1,32 @@
+import { GridColDef } from '@mui/x-data-grid';
+
 import { BasicTable } from '@/components/Table/BasicTable/style';
 import { COLOR } from '@/utils/globalVariable';
-import { leaderboardColumn } from '../../consts';
+import { ITournamentLeaderboard } from '@/types/game/tournament';
 
-interface ILeaderboardTableProps {
-  data: Array<any>;
+function generateColumns(data: Array<string>): GridColDef[] {
+  if (!data) {
+    return [];
+  }
+
+  return data.map((item, idx) => ({
+    field: item,
+    headerName: item,
+    flex: 1,
+    sortable: false,
+    headerAlign: idx === 0 ? 'left' : 'right',
+    align: idx === 0 ? 'left' : 'right',
+  }));
 }
 
-const LeaderboardTable = ({ data }: ILeaderboardTableProps) => {
+const LeaderboardTable = ({ data }: { data: ITournamentLeaderboard }) => {
+  const rows = data?.leaderboard_result;
+
+  const columns = generateColumns(data?.column_leaderboard);
   return (
     <BasicTable
-      rows={data}
-      columns={leaderboardColumn}
+      rows={rows}
+      columns={columns}
       pageSize={5}
       disableColumnSelector
       disableSelectionOnClick

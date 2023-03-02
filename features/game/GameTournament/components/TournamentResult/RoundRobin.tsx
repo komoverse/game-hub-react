@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 
 import { BasicTable } from '@/components/Table/BasicTable/style';
 import { COLOR } from '@/utils/globalVariable';
+import { ITournamentRoundRobin } from '@/types/game/tournament';
 
 function getWinner(winner: string, player: string): string {
   if (winner !== 'X' && winner !== 'x') {
@@ -55,7 +56,7 @@ export const roundRobinColumn: GridColDef[] = [
   },
 ];
 
-const RoundRobin = ({ data = [] }: { data: any }) => {
+const RoundRobin = ({ data }: { data: ITournamentRoundRobin }) => {
   return (
     <BasicTable
       rows={data?.schedule}
