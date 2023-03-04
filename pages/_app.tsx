@@ -29,7 +29,7 @@ const resources = {
 const i18n: any = i18next.use(initReactI18next);
 i18n.init({
   react: {
-    wait: true,
+    useSuspense: true,
   },
   resources,
   lng: 'en',
