@@ -82,6 +82,7 @@ export enum QueryKey {
   PORTFOLIO = 'portfolio',
   PROFILE = 'profile',
   SLIDESHOW = 'slideshow',
+  MARKET_ACTIVITY = 'gameMarketActivity',
 }
 
 export enum MutationKey {

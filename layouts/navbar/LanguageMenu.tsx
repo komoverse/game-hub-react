@@ -70,7 +70,7 @@ const LanguagePopover = () => {
     <>
       <IconButton
         ref={anchorRef}
-        onMouseOver={handleOpen}
+        onClick={handleOpen}
         sx={{
           m: 1,
           width: 44,

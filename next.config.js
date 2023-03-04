@@ -8,6 +8,7 @@ module.exports = {
   },
   images: {
     domains: [
+      'robohash.org',
       'localhost',
       'cdn.shyft.to',
       'www.arweave.net',

@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs, { UnitType } from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import _isBetween from 'dayjs/plugin/isBetween';
@@ -41,10 +41,14 @@ export function isAfter(date: string, endDate: string) {
   return resDate.isAfter(endDate);
 }
 
-export function getDiff(date: string, targetDate: string) {
+export function getDiff(
+  date: string,
+  targetDate: string,
+  unit: UnitType = 'day'
+) {
   const resDate = dayjs(date);
 
-  return resDate.diff(targetDate, 'day');
+  return resDate.diff(targetDate, unit);
 }
 
 export function dateFromNow(date: string) {
