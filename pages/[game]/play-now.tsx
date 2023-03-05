@@ -1,3 +1,5 @@
+import PlayNowPage from '@/features/game/PlayNow';
+
 export default function PlayNow() {
-  return <div>PlayNow</div>;
+  return <PlayNowPage />;
 }
