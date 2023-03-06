@@ -20,11 +20,13 @@ import { ProfileDto } from '@/types/home';
 import { useMutation, useQueryClient } from 'react-query';
 import { disLikeReview, likeReview } from '@/services/games/reviews';
 import isEmpty from 'lodash/isEmpty';
-import { MutationKey, QueryKey } from '@/types/general';
+import { ModalTProps, MutationKey, QueryKey } from '@/types/general';
 import actionModalAuth from '@/store/modalAuth/action';
 import actionToast from '@/store/toast/action';
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import { t } from 'i18next';
 
-const ListReviews = () => {
+const ListReviews = ({ open, setOpen }: ModalTProps) => {
   const queryClient = useQueryClient();
   const { reviews, profile } = useSelector((state: ReduxState) => ({
     reviews: state.reviews as ListReviewsDto,
@@ -69,7 +71,11 @@ const ListReviews = () => {
       : actionModalAuth.setModalAuth({ visible: true });
   };
 
+  const handleVisibleFormEdit = () => setOpen(true);
+
   const colorIconLikeDislike = { color: COLOR.baseWhite };
+  const canEdit =
+    !isEmpty(profile.komo_username) && !isEmpty(reviews.reviewed_by_me);
 
   return (
     <>
@@ -94,8 +100,25 @@ const ListReviews = () => {
                 src={review.reviewer_picture_url}
                 sx={{ marginRight: 2 }}
               />
-              <Box>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Typography variant="h6">{review.komo_username}</Typography>
+
+                {canEdit && review.id === reviews.reviewed_by_me?.id && (
+                  <Button
+                    size="small"
+                    onClick={handleVisibleFormEdit}
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      marginLeft: 1,
+                      color: COLOR.baseGreen,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <BorderColorOutlinedIcon fontSize="small" />
+                    <Typography>{t('game.edit')}</Typography>
+                  </Button>
+                )}
               </Box>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>

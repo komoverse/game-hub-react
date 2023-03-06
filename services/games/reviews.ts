@@ -1,6 +1,7 @@
 import komoverseAxiosIns from '@/helper/headers';
 import {
   DISLIKE_REVIEW,
+  EDIT_REVIEWS,
   LIKE_REVIEW,
   REVIEW_GAME,
   REVIEW_INSERT,
@@ -36,6 +37,19 @@ export const likeReview = async (id: number) => {
 export const disLikeReview = async (id: number) => {
   const { data } = await komoverseAxiosIns.post(
     DISLIKE_REVIEW.replace('{{game_review_id}}', id.toString())
+  );
+  return data.data;
+};
+
+export const updateReview = async (
+  query: ReviewFormDto,
+  game_review_id: number
+) => {
+  const params = `?rating=${query.rating}&comment=${query.comment}`;
+
+  const { data } = await komoverseAxiosIns.put(
+    EDIT_REVIEWS.replace('{{game_review_id}}', game_review_id.toString()) +
+      params
   );
   return data.data;
 };
