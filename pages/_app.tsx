@@ -14,7 +14,6 @@ import store from 'store/store';
 import 'styles/global.scss';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import Layout from '@/layouts/Layout';
-import { ToastContainer } from 'react-toastify';
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -30,7 +29,7 @@ const resources = {
 const i18n: any = i18next.use(initReactI18next);
 i18n.init({
   react: {
-    wait: true,
+    useSuspense: true,
   },
   resources,
   lng: 'en',
@@ -64,7 +63,6 @@ export default function MyApp(props: MyAppProps) {
 
             <Layout>
               <Component {...pageProps} />
-              <ToastContainer />
             </Layout>
           </QueryClientProvider>
         </I18nextProvider>

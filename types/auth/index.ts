@@ -17,3 +17,9 @@ export interface WalletsDto {
     ready: boolean;
   };
 }
+
+export interface LoginDto {
+  komo_username: string;
+  password: string;
+  otp?: number | string;
+}

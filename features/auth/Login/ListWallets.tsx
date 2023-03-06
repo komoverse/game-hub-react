@@ -79,7 +79,7 @@ export const Solana = ({ wallet }: any) => {
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <Image
-                src="/komoverse.webp"
+                src="/komoverse-logo-full.png"
                 alt="komoverse-logo"
                 height={40}
                 width={80}

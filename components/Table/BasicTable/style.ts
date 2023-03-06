@@ -23,7 +23,7 @@ export const BasicTable = styled(DataGrid)(({ theme }) => ({
     display: 'none',
   },
   [`& .${gridClasses.row}.even`]: {
-    backgroundColor: COLOR.backgroundTableStriped1,
+    backgroundColor: COLOR.backgroundTableStriped2,
     '&:hover, &.Mui-hovered': {
       backgroundColor: COLOR.backgroundTableHover,
       '@media (hover: none)': {
@@ -45,7 +45,7 @@ export const BasicTable = styled(DataGrid)(({ theme }) => ({
     },
   },
   [`& .${gridClasses.row}.odd`]: {
-    backgroundColor: COLOR.backgroundTableStriped2,
+    backgroundColor: COLOR.backgroundTableStriped1,
     '&:hover, &.Mui-hovered': {
       backgroundColor: COLOR.backgroundTableHover,
       '@media (hover: none)': {

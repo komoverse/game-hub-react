@@ -5,11 +5,12 @@ import { useQuery } from 'react-query';
 
 import { COLOR } from '@/utils/globalVariable';
 import { getGameTournaments } from '@/services/games/tournament';
+
 import { TournamentContentWrapper } from './styles';
 import TournamnetImage from './components/TournamentImage';
 import TournamentContentHeader from './components/TournamentContentHeader';
 import TournamentKeyInfo from './components/TournamentKeyInfo';
-import TournamentLeaderboardTable from './components/TournamentLeaderboardTable';
+import TournamentResult from './components/TournamentResult/TournamentResult';
 
 const TournamentPage = () => {
   const router = useRouter();
@@ -19,16 +20,37 @@ const TournamentPage = () => {
     data: tournaments,
     isError,
     isLoading,
-  } = useQuery(['getMarketCollections', gameId], () =>
+  } = useQuery(['getTournament', gameId], () =>
     getGameTournaments(gameId as string)
   );
 
+  // loading component with box
   if (isLoading) {
-    return <div>...loading</div>;
+    return (
+      <TournamentContentWrapper
+        sx={{
+          background: COLOR.backgroundTableStriped1,
+          padding: '16px',
+          height: '100%',
+        }}
+      >
+        Loading...
+      </TournamentContentWrapper>
+    );
   }
 
   if (isError) {
-    return <div>something went wrong</div>;
+    return (
+      <TournamentContentWrapper
+        sx={{
+          background: COLOR.backgroundTableStriped1,
+          padding: '16px',
+          height: '100%',
+        }}
+      >
+        Something wen wrong
+      </TournamentContentWrapper>
+    );
   }
 
   return (
@@ -38,24 +60,27 @@ const TournamentPage = () => {
       }}
     >
       <Box sx={{ p: '32px' }}>
-        {tournaments.map((item: any, i: number) => (
+        {tournaments?.map((item, i) => (
           <Grid key={i} container spacing={3} sx={{ mt: '8px' }}>
-            <TournamnetImage bannerUrl={item.tournament_banner_url} />
+            <TournamnetImage bannerUrl={item.image_url} />
             <Grid item xs={12} md={8}>
               <TournamentContentWrapper sx={{ padding: '32px' }}>
                 <TournamentContentHeader
                   title={item.tournament_name}
-                  startTime={item.tournament_start_date}
-                  endTime={item.tournament_end_date}
+                  startTime={item.start_time}
+                  endTime={item.end_time}
                 />
                 <TournamentKeyInfo
-                  startTime={item.tournament_start_date}
-                  endTime={item.tournament_end_date}
-                  prize={item.reward}
+                  startTime={item.start_time}
+                  endTime={item.end_time}
+                  prize={item.prize_pool}
                   description={item.description}
                 />
-                {item.leaderboard && (
-                  <TournamentLeaderboardTable rows={item.leaderboard} />
+                {item.tournament_id && (
+                  <TournamentResult
+                    tournamentId={item.tournament_id}
+                    tournamentType={item.tournament_type}
+                  />
                 )}
               </TournamentContentWrapper>
             </Grid>

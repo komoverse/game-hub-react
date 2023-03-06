@@ -16,7 +16,7 @@ export interface ReduxState {
   };
   modalAuth: {
     visible: boolean;
-    modalType: 'LOGIN' | 'REGISTER';
+    modalType: 'LOGIN' | 'REGISTER' | 'FORGOT_PASSWORD';
   };
   modalWallet: {
     display: boolean;

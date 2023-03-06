@@ -32,14 +32,16 @@ export type ReviewsMonthlyStatsDto = {
 export type ReviewsDto = {
   comment: string;
   created_at: string;
-  dislike_comment_count: number;
+  dislike_count: number | string;
   game_id: string;
   id: number;
   komo_username: string;
-  like_comment_count: number;
+  like_count: number | string;
   rating: number;
   review_comment_count: number;
   reviewer_picture_url: string;
+  like: boolean;
+  dislike: boolean;
 };
 
 export type SummaryDto = {
@@ -47,15 +49,61 @@ export type SummaryDto = {
   total_reviews: number;
 };
 
-export interface ListReviewsDto {
-  monthly_stats: ReviewsMonthlyStatsDto;
-  reviews: {
-    data: ReviewsDto[];
-    total: number;
-    to: number;
-    current_page: number;
+export type OverallSumaryDto = {
+  overall_rating: number;
+  total_reviews: number;
+};
+
+export type RatingSummaryDto = {
+  rating: number;
+  total_rating: number;
+};
+
+export type LikeDislikeByMeDto = {
+  id: number;
+  game_review_id: number;
+  komo_username: string;
+  like: number;
+  dislike: number;
+  created_at: string | null;
+  updated_at: string | null;
+  game_reviews: {
+    id: number;
+    komo_username: string;
+    game_id: number;
+    rating: number;
+    comment: string;
+    reviewer_picture_url: string;
+    created_at: string | string;
   };
-  reviewed_by_me: string | null;
+};
+
+export type ReviewByMeDto = {
+  id: number;
+  komo_username: string;
+  game_id: string;
+  rating: number;
+  comment: string;
+  reviewer_picture_url: string;
+  created_at: string;
+  like_comment_count: number;
+  dislike_comment_count: number;
+};
+
+export interface ListReviewsDto {
+  disliked_by_me: LikeDislikeByMeDto[] | null;
+  liked_by_me: LikeDislikeByMeDto[] | null;
+  monthly_stats: ReviewsMonthlyStatsDto;
+  overall_summary: OverallSumaryDto;
+  rating_summary: RatingSummaryDto[];
+  reviews: {
+    current_page: number;
+    data: ReviewsDto[];
+    next_page: number | null;
+    total_data: number;
+    total_page: number;
+  };
+  reviewed_by_me: ReviewByMeDto | null;
   summary: SummaryDto;
   length: number;
 }

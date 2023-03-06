@@ -10,24 +10,24 @@ import Image from 'next/image';
 // https://flagpedia.net/download/api
 const LANGS = [
   {
-    value: 'zh',
-    label: 'Chinese',
-    icon: 'https://flagcdn.com/cn.svg',
-  },
-  {
     value: 'en',
     label: 'English',
     icon: 'https://flagcdn.com/gb.svg',
   },
   {
-    value: 'hi',
-    label: 'Hindi',
-    icon: 'https://flagcdn.com/in.svg',
-  },
-  {
     value: 'id',
     label: 'Indonesian',
     icon: 'https://flagcdn.com/id.svg',
+  },
+  {
+    value: 'zh',
+    label: 'Chinese',
+    icon: 'https://flagcdn.com/cn.svg',
+  },
+  {
+    value: 'hi',
+    label: 'Hindi',
+    icon: 'https://flagcdn.com/in.svg',
   },
 ];
 

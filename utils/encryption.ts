@@ -1,6 +1,7 @@
+import { PASSPHRASE } from '@/helper/env';
 import CryptoJS from 'crypto-js';
 
-const passphrase = process.env.NEXT_PUBLIC_PASSPHRASE as string;
+const passphrase = PASSPHRASE as string;
 
 const encryption = {
   encryptWithMD5: (text: string) => {

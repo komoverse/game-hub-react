@@ -1,20 +1,23 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
-import { columns } from './config';
-import { CustomTable } from './style';
+import { t } from 'i18next';
+import { useSelector } from 'react-redux';
+import { ReduxState } from '@/types/redux';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import {
   GridCellParams,
   GridRowClassNameParams,
   GridValidRowModel,
 } from '@mui/x-data-grid';
+
 import {
   TopPlayersCellClassnames,
   TopPlayersRowClassnames,
 } from '@/types/general';
-import { useSelector } from 'react-redux';
-import { ReduxState } from '@/types/redux';
 import { COLOR } from '@/utils/globalVariable';
 import actionPagination from '@/store/pagination/action';
+import { columns } from './config';
+import { CustomTable } from './style';
 
 const KomoverseTableCustom = () => {
   const data = useSelector(
@@ -88,18 +91,23 @@ const CustomFooter = () => {
         sx={{
           color: defaultpage.page !== 1 ? COLOR.baseWhite : '',
           fontWeight: 500,
+          textTransform: 'uppercase',
         }}
         onClick={previousPage}
       >
-        PREVIOUS
+        {t('table.previous')}
       </Button>
       <Button
         size="large"
         variant="contained"
-        sx={{ color: COLOR.baseWhite, fontWeight: 500 }}
+        sx={{
+          color: COLOR.baseWhite,
+          fontWeight: 500,
+          textTransform: 'uppercase',
+        }}
         onClick={nextPage}
       >
-        NEXT
+        {t('table.next')}
       </Button>
     </Box>
   );

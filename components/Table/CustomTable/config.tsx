@@ -1,10 +1,14 @@
-import { COLOR, GRADIENT } from '@/utils/globalVariable';
+import Image from 'next/image';
+import { t } from 'i18next';
 import { Avatar, Box, Button, Typography } from '@mui/material';
 import { GridColumns, GridValidRowModel } from '@mui/x-data-grid';
-import Leaderboard1 from 'public/leaderboard_rank1.svg';
-import Leaderboard2 from 'public/leaderboard_rank2.svg';
-import Leaderboard3 from 'public/leaderboard_rank3.svg';
-import Leaderboard4 from 'public/leaderboard_rank4.svg';
+
+import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
+
+import Leaderboard1 from 'public/leaderboard-rank-1.png';
+import Leaderboard2 from 'public/leaderboard-rank-2.png';
+import Leaderboard3 from 'public/leaderboard-rank-3.png';
+import Leaderboard4 from 'public/leaderboard-rank-4.png';
 
 const styledRank = {
   color: COLOR.baseWhite,
@@ -18,8 +22,13 @@ const styledRank = {
 export const columns: GridColumns<GridValidRowModel> = [
   {
     field: 'market_cap_rank',
-    headerName: 'Rank',
+    renderHeader: () => (
+      <Typography variant="subtitle2" sx={{ p: 1.3 }}>
+        {t('table.rank')}
+      </Typography>
+    ),
     minWidth: 70,
+    headerClassName: 'rank',
     sortable: false,
     align: 'center',
     headerAlign: 'center',
@@ -44,12 +53,16 @@ export const columns: GridColumns<GridValidRowModel> = [
   },
   {
     field: 'player_name',
-    headerName: 'Players Name',
+    renderHeader: () => (
+      <Typography variant="subtitle2" sx={{ p: 1.3 }}>
+        {t('table.playersName')}
+      </Typography>
+    ),
     sortable: false,
     minWidth: 250,
     renderCell: (params) => (
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Avatar sx={{ width: 45, height: 45 }} src={params.row.image} />
+        <Avatar sx={{ width: 35, height: 35 }} src={params.row.image} />
         <Box sx={{ marginLeft: 2 }}>
           <Typography variant="body1" sx={{ fontWeight: 500 }}>
             {params.row.id}
@@ -66,22 +79,31 @@ export const columns: GridColumns<GridValidRowModel> = [
   },
   {
     field: 'score',
-    headerName: 'KomoChess Score',
+    renderHeader: () => (
+      <Typography variant="subtitle2" sx={{ p: 1.5 }}>
+        {t('table.shareEarned')}
+      </Typography>
+    ),
+    headerClassName: 'score',
     sortable: false,
     minWidth: 200,
     headerAlign: 'right',
     align: 'right',
     renderCell: (params) => (
-      <Button
-        size="small"
-        sx={{
-          background: GRADIENT.primary,
-          color: COLOR.baseWhite,
-          borderRadius: 50,
-        }}
-      >
-        {Math.floor(params.row.atl / 100)}
-      </Button>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Image src="/shard-icon.png" alt="shard-icon" width={45} height={30} />
+        <Button
+          size="small"
+          sx={{
+            background: GRADIENT.primary,
+            color: COLOR.baseWhite,
+            borderRadius: 50,
+            ml: 1,
+          }}
+        >
+          {Math.floor(params.row.atl / 100)}
+        </Button>
+      </Box>
     ),
   },
 ];
