@@ -27,7 +27,7 @@ const FormLogin = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const smDown = useResponsive('down', 'sm');
 
-  const { mutate, isLoading, data } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationKey: MutationKey.WEB_LOGIN,
     mutationFn: (data: LoginDto) => webLogin(data),
     onSuccess: (data) => {
