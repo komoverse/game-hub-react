@@ -1,6 +1,5 @@
 import komoverseAxiosIns from '@/helper/headers';
 import { GAME_MARKET_ACTIVITY } from '@/helper/url';
-import activityData from './activity.json';
 import { IMarketActivity } from '@/types/game/activity';
 
 export const getMarketActivity = async (gameId: string) => {
