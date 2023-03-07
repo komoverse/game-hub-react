@@ -28,6 +28,8 @@ export const COLOR = {
   baseBackgroundReview: '#171717',
   baseBackgroundLogin: '#0B0B0B',
   baseColorDivider: '#4E4E4E',
+  baseGrayPieChart: '#333333',
+  baseColorDanger: '#EB5757',
 };
 
 export const GRADIENT = {

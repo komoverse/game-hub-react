@@ -1,3 +1,5 @@
+import { InsightDto } from './game';
+
 export type ModalTProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -94,3 +96,22 @@ export enum MutationKey {
   WEB_LOGIN = 'webLogin',
   EDIT_REVIEW = 'editReview',
 }
+
+export type ChartProps = {
+  data: InsightDto | any;
+  source: string;
+};
+
+export enum Socmed {
+  DISCORD = 'discord',
+  TWITTER = 'twitter',
+  FACEBOOK = 'facebook',
+  INSTAGRAM = 'instagram',
+  TELEGRAM = 'telegram',
+}
+
+export type TooltipChartProps = {
+  active: boolean;
+  payload: any;
+  label: string;
+};
