@@ -1,5 +1,8 @@
 import { Box, IconButton, Slide } from '@mui/material';
-import { Iconify } from '@/components/index';
+
+import Iconify from '@/components/Iconify';
+import { COLOR } from '@/utils/globalVariable';
+
 import SearchField from './SearchField';
 import { APPBAR_MOBILE } from '../constants';
 
@@ -19,7 +22,7 @@ const SearchFieldPopOver = ({ isOpen, toggleOpen }: Props) => {
           width: '100%',
           position: 'absolute',
           alignItems: 'center',
-          bgcolor: '#111111',
+          backgroundColor: COLOR.backgroundRoot,
           left: 0,
           px: 1,
         }}
