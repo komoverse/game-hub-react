@@ -46,6 +46,7 @@ const lang = {
     reviewSummary: '评论摘要',
     review: '{{count}} 评论',
     reviewed: '您已经评论了这个游戏',
+    social: '社交',
     rules: '规则',
     gameReviewRules: '游戏评论规则',
     edit: '编辑',
@@ -63,6 +64,14 @@ const lang = {
     rules6: '評論不得包含任何褻瀆、仇恨言論或其他不當內容。',
     rules7:
       '通過遵循這些規則，我們希望為 Komoverse 生態系統上可用的遊戲提供公平和準確的遊戲評論，以幫助玩家做出是否玩遊戲的明智決定。',
+    twitterFollowers: '推特关注者',
+    followersCount: '关注者数量',
+    membersCount: '成员数量',
+    active: '活跃',
+    activeMembers: '活跃成员',
+    members: '成员',
+    discordMembers: 'Discord成员',
+    telegramMembers: 'Telegram成员',
   },
   auth: {
     signInGoogle: '用谷歌登录',

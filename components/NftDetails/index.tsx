@@ -260,7 +260,7 @@ const NftDetails = () => {
                   sx={{ fontWeight: 500, color: COLOR.baseWhite }}
                   variant="body1"
                 >
-                  {formatPercent(data?.nft?.royalty!, 'en-US')}
+                  {formatPercent(data?.nft?.royalty!, t('utils.format'))}
                 </Typography>
               </Grid>
             </Grid>

@@ -109,12 +109,12 @@ const Mints = () => {
                     {t('game.mintGuide')}
                   </Button>
                 </Box>
-                <Typography
+                {/* <Typography
                   variant="h5"
                   sx={{ mb: 2, color: COLOR.baseLightTextGray }}
                 >
                   {t('game.previousMint')}
-                </Typography>
+                </Typography> */}
                 {mint.phase.map((item: PhaseDto) => (
                   <div key={item.id}>
                     <CardContent sx={styleCardContent}>
@@ -167,7 +167,7 @@ const Mints = () => {
                         </Grid>
                       </Grid>
                       <Divider sx={{ my: 2 }} />
-                      <Box>
+                      <Box sx={{ overflowX: 'scroll' }}>
                         <Typography variant="h5">
                           {t('game.allowList')}
                         </Typography>

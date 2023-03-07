@@ -47,6 +47,7 @@ const lang = {
     reviewSummary: 'Ringkasan Review',
     review: '{{count}} Ulasan',
     reviewed: 'Anda telah mereview game ini',
+    social: 'Sosial',
     rules: 'Peraturan',
     gameReviewRules: 'Peraturan Review Game',
     edit: 'Edit',
@@ -67,6 +68,14 @@ const lang = {
       'Ulasan tidak boleh mengandung kata-kata kotor, ujaran kebencian, atau konten tidak pantas lainnya.',
     rules7:
       'Dengan mengikuti aturan ini, kami berharap dapat memberikan ulasan game yang adil dan akurat untuk game yang tersedia di ekosistem Komoverse yang akan membantu pemain membuat keputusan yang tepat tentang apakah akan memainkan game tersebut atau tidak.',
+    twitterFollowers: 'Pengikut Twitter',
+    followersCount: 'Jumlah Pengikut',
+    membersCount: 'Jumlah Anggota',
+    active: 'Aktif',
+    activeMembers: 'Anggota Aktif',
+    members: 'Anggota',
+    discordMembers: 'Anggota Discord',
+    telegramMembers: 'Anggota Telegram',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',
