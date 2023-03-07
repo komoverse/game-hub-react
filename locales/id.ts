@@ -47,6 +47,7 @@ const lang = {
     reviewSummary: 'Ringkasan Review',
     review: '{{count}} Ulasan',
     reviewed: 'Anda telah mereview game ini',
+    social: 'Sosial',
     rules: 'Peraturan',
     gameReviewRules: 'Peraturan Review Game',
     edit: 'Edit',

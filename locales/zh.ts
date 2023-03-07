@@ -46,6 +46,7 @@ const lang = {
     reviewSummary: '评论摘要',
     review: '{{count}} 评论',
     reviewed: '您已经评论了这个游戏',
+    social: '社交',
     rules: '规则',
     gameReviewRules: '游戏评论规则',
     edit: '编辑',
