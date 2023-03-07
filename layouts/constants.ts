@@ -4,19 +4,20 @@ export const APPBAR_MOBILE = '64px';
 export const APPBAR_DESKTOP = '70px';
 export const SIDEBAR_WIDTH = '280px';
 
+// TODO: change link for partnership and community
 export const komoverseSocialMedia = [
   {
     header: 'resource',
     list: [
+      // {
+      //   icon: 'ph:handshake-fill',
+      //   url: '/partnership',
+      //   title: 'Apply for partnership',
+      // },
       {
-        icon: 'ic:baseline-discord',
+        icon: 'ic:round-people',
         url: 'https://discord.com/invite/komoverse',
-        title: 'Join our community',
-      },
-      {
-        icon: 'ri:facebook-fill',
-        url: 'https://www.facebook.com/komoverse',
-        title: 'Follow us on Facebook',
+        title: 'Join our Community',
       },
       {
         icon: 'mdi:twitter',
@@ -24,24 +25,24 @@ export const komoverseSocialMedia = [
         title: 'Follow us on Twitter',
       },
       {
-        icon: 'mdi:instagram',
-        url: 'https://www.instagram.com/komoverse/',
-        title: 'Follow us on Instagram',
+        icon: 'simple-icons:gitbook',
+        url: 'https://wiki.komoverse.io/',
+        title: 'Check our komopedia',
       },
       {
-        icon: 'tabler:speakerphone',
+        icon: 'ion:newspaper',
         url: '/news',
         title: 'News',
-      },
-      {
-        icon: 'ph:handshake-fill',
-        url: '/partnership',
-        title: 'Partnership',
       },
       {
         icon: 'ic:outline-school',
         url: '/academy',
         title: 'Academy',
+      },
+      {
+        icon: 'ri:code-box-fill',
+        url: '/developers',
+        title: 'Developers',
       },
     ],
   },

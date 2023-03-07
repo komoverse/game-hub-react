@@ -1,5 +1,9 @@
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
+
+import useResponsive from '@/hooks/useResponsive';
+import { COLOR } from '@/utils/globalVariable';
+
 import {
   APPBAR_DESKTOP,
   APPBAR_MOBILE,
@@ -7,9 +11,7 @@ import {
   komoverseSocialMedia,
 } from '../constants';
 import SidebarMenuItem from './SidebarMenuItem';
-import useResponsive from '@/hooks/useResponsive';
 import { SidebarProps } from './types';
-import { COLOR } from '@/utils/globalVariable';
 
 export default function Sidebar({
   isOpen,
