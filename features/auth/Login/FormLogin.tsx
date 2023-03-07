@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormProvider, Iconify, TextFieldComponent } from '@/components/index';
 import { COLOR, RADIUS } from '@/utils/globalVariable';
 import { LoadingButton } from '@mui/lab';
 import {
@@ -106,9 +105,10 @@ const FormLogin = () => {
       <Stack
         direction="row"
         alignItems="center"
-        justifyContent="end"
+        justifyContent="space-between"
         sx={{ my: 1 }}
       >
+        <InputCheckBox name="remember_me" label="Remember me" />
         <Link
           variant="subtitle2"
           underline="hover"

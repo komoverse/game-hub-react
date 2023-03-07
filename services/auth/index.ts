@@ -20,7 +20,7 @@ export const loginWallet = async (value: WalletsDto) => {
 
 export const webLogin = async (value: LoginDto) => {
   const otp = !isEmpty(value.otp) ? `&otp=${value.otp}` : '';
-  const params = `?komo_username=${value.komo_username}&password=${value.password}${otp}`;
+  const params = `?komo_username=${value.komo_username}&password=${value.password}${otp}&remember_me=${value.remember_me}`;
   const { data } = await komoverseAxiosIns.post(WEB_LOGIN + params);
 
   return data;
