@@ -11,17 +11,27 @@ import {
   Stack,
 } from '@mui/material';
 import { t } from 'i18next';
-import useResponsive from '@/hooks/useResponsive';
 import { useMutation } from 'react-query';
-import { MutationKey } from '@/types/general';
-import { LoginDto } from '@/types/auth';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { logindDfaultValues, LoginSchema } from './schema';
+
+import useResponsive from '@/hooks/useResponsive';
+import { FormProvider, Iconify, TextFieldComponent } from '@/components/index';
+import { MutationKey } from '@/types/general';
+import { LoginDto } from '@/types/auth';
 import { webLogin } from '@/services/auth';
 import actionToast from '@/store/toast/action';
 import actionLogin from '@/store/auth/action';
 import actionModalAuth from '@/store/modalAuth/action';
+
+import { logindDfaultValues, LoginSchema } from './schema';
+import InputCheckBox from '@/components/Form/InputCheckBox';
+
+function getErrorMessage(error: any) {
+  const errorKey = Object.keys(error.response.data.messages)[0];
+
+  return error.response.data.messages[errorKey];
+}
 
 const FormLogin = () => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -34,12 +44,14 @@ const FormLogin = () => {
       actionLogin.setAuthLogin(data);
       actionModalAuth.clearModalAuth();
     },
-    onError: (error: any) =>
+    onError: (error: any) => {
+      const message = getErrorMessage(error);
       actionToast.setToast({
         display: true,
-        message: error.response.data.messages.incorrectPassword,
+        message: message,
         type: 'error',
-      }),
+      });
+    },
   });
 
   const methods = useForm({
@@ -49,7 +61,9 @@ const FormLogin = () => {
   });
 
   const { handleSubmit } = methods;
-  const handleLoginWeb = (data: LoginDto) => mutate(data);
+  const handleLoginWeb = (data: LoginDto) => {
+    mutate(data);
+  };
 
   const handleRegister = () =>
     actionModalAuth.setModalAuth({
