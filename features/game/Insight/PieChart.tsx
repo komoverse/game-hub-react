@@ -18,7 +18,9 @@ const PieChart = ({ data, source }: ChartProps) => {
   const smDown = useResponsive('down', 'sm');
 
   const title =
-    source === Socmed.DISCORD ? 'Discord Members' : 'Telegram Members';
+    source === Socmed.DISCORD
+      ? t('game.discordMembers')
+      : t('game.telegramMembers');
 
   const member =
     source === Socmed.DISCORD ? data?.discord_member : data?.telegram_member;
@@ -62,7 +64,7 @@ const PieChart = ({ data, source }: ChartProps) => {
         <Grid item lg={8} sm={12} xs={12} md={8}>
           <CardContent>
             <Typography variant="subtitle1" fontWeight={400}>
-              Members
+              {t('game.members')}
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Typography variant="h3">
@@ -84,7 +86,7 @@ const PieChart = ({ data, source }: ChartProps) => {
               </span>
             </Box>
             <Typography variant="subtitle1" fontWeight={400}>
-              Active Members
+              {t('game.activeMembers')}
             </Typography>
             <Typography variant="h3">
               {formatFollowerCount(activeMember)}
@@ -108,7 +110,7 @@ const PieChart = ({ data, source }: ChartProps) => {
                 {formatPercent(percentActive, t('utils.format'))}
               </Typography>
               <Typography variant="subtitle1" color={COLOR.baseGreen}>
-                Active
+                {t('game.active')}
               </Typography>
             </CircularProgressbarWithChildren>
           </Box>

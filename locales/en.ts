@@ -69,6 +69,14 @@ const lang = {
       'The review must not contain any profanity, hate speech, or other inappropriate content.',
     rules7:
       'By following these rules, we hope to provide fair and accurate game reviews for games that are available on the Komoverse ecosystem that will help players make informed decisions about whether or not to play the game.',
+    twitterFollowers: 'Twitter Followers',
+    followersCount: 'Followers Count',
+    membersCount: 'Members Count',
+    active: 'Active',
+    activeMembers: 'Active Members',
+    members: 'Members',
+    discordMembers: 'Discord Members',
+    telegramMembers: 'Telegram Members',
   },
   auth: {
     signInGoogle: 'Sign in with Google',

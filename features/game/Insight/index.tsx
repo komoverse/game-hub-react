@@ -74,7 +74,9 @@ const Insight = () => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Typography variant="body1">Twitter Followers</Typography>
+                  <Typography variant="body1">
+                    {t('game.twitterFollowers')}
+                  </Typography>
                   <TwitterIcon />
                 </Box>
                 <Divider sx={{ my: 2 }} />
