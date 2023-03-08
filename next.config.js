@@ -21,5 +21,5 @@ module.exports = {
       'komoverse-api-bucket.s3.ap-southeast-1.amazonaws.com',
     ],
   },
-  trailingSlash: true,
+  trailingSlash: false,
 };
