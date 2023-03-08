@@ -8,6 +8,7 @@ import actionModalAuth from '@/store/modalAuth/action';
 import LoginOption from './Login/LoginOption';
 import FormRegistrationAccount from './Register/FormRegistrationAccount';
 import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ForgotPassword/ResetPassword';
 
 const AuthModal = () => {
   const { visible: isVisible, modalType } = useSelector(
@@ -20,13 +21,15 @@ const AuthModal = () => {
         return <LoginOption />;
       case 'REGISTER':
         return <FormRegistrationAccount />;
+      case 'FORGOT_PASSWORD':
+        return <ForgotPassword />;
+      case 'RESET_PASSWORD':
+        return <ResetPassword />;
       default:
         return null;
     }
-    // if (modalType === 'FORGOT_PASSWORD') {
-    //   return <ForgotPassword />;
-    // }
   };
+
   const handleClose = () => actionModalAuth.setModalAuth({ visible: false });
 
   return (
@@ -47,7 +50,7 @@ const AuthModal = () => {
         },
       }}
       open={isVisible}
-      onClose={handleClose}
+      onClose={modalType !== 'RESET_PASSWORD' ? handleClose : undefined}
     >
       <DialogContent sx={{ backgroundColor: COLOR.baseSemiBlack }}>
         {renderModalAuth()}

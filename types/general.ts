@@ -95,6 +95,8 @@ export enum MutationKey {
   LOGIN_SOCMED = 'loginSocmed',
   WEB_LOGIN = 'webLogin',
   EDIT_REVIEW = 'editReview',
+  FORGOT_PASSWORD = 'forgotPassword',
+  RESET_PASSWORD = 'resetPassword',
 }
 
 export interface ISidebarMenuItem {

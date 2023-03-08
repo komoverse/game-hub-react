@@ -22,6 +22,8 @@ const lang = {
     send: 'Send',
     publish: 'Publish',
     cancel: 'Cancel',
+    continue: 'Continue',
+    submit: 'Submit',
   },
   time: {
     days: 'days',
@@ -95,6 +97,10 @@ const lang = {
       'Play in Komoverse tournaments and games live. Login with Google, Twitter or Discord. Work on mobile. No download required. Only you control the keys.',
     forgotPassword: 'Forgot Password?',
     register: 'Register',
+    forgotPasswordDescription:
+      'Please enter your email address. You will receive a link to create a new password via email.',
+    resetPassword: 'Reset Your Password',
+    confirmPassword: 'Confirm Password',
   },
   utils: {
     currency: 'USD',
@@ -125,6 +131,7 @@ const lang = {
   form: {
     username: 'Username',
     password: 'Password',
+    email: 'Email',
   },
 };
 export default lang;

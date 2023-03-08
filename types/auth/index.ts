@@ -23,3 +23,13 @@ export interface LoginDto {
   password: string;
   otp?: number | string;
 }
+
+export interface ForgotPasswordDto {
+  email: string;
+}
+
+export interface ResetPasswordDto {
+  password: string;
+  password_confirmation: string;
+  token?: string;
+}

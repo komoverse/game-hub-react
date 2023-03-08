@@ -21,6 +21,8 @@ const lang = {
     send: 'Kirim',
     publish: 'Publikasikan',
     cancel: 'Batal',
+    continue: 'Lanjutkan',
+    submit: 'Kirim',
   },
   time: {
     days: 'hari',
@@ -94,6 +96,10 @@ const lang = {
       'Bermain di turnamen dan permainan Komoverse secara langsung. Masuk dengan Google, Twitter atau Discord. Bekerja di ponsel. Tidak perlu mengunduh. Hanya Anda yang mengendalikan kunci.',
     forgotPassword: 'Lupa Password?',
     register: 'Daftar',
+    forgotPasswordDescription:
+      'Masukkan alamat email Anda. Anda akan menerima tautan untuk membuat kata sandi baru melalui email.',
+    resetPassword: 'Atur Ulang Kata Sandi',
+    confirmPassword: 'Konfirmasi Kata Sandi',
   },
   utils: {
     currency: 'IDR',
@@ -124,6 +130,7 @@ const lang = {
   form: {
     username: 'Nama Pengguna',
     password: 'Kata Sandi',
+    email: 'Email',
   },
 };
 export default lang;

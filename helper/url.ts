@@ -29,3 +29,5 @@ export const GAME_TOURNAMENT_LEADERBOARD = '/v2/tournament/data';
 export const WEB_LOGIN = '/v2/web-login';
 export const GAME_MARKET_ACTIVITY = '/v2/market/activity';
 export const EDIT_REVIEWS = '/v2/review/{{game_review_id}}/edit';
+export const FORGOT_PASSWORD = '/v2/forget-password';
+export const RESET_PASSWORD = '/v2/reset-password';

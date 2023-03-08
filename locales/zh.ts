@@ -21,6 +21,8 @@ const lang = {
     send: '发送',
     publish: '发布',
     cancel: '取消',
+    continue: '继续',
+    submit: '提交',
   },
   time: {
     days: '天',
@@ -89,6 +91,10 @@ const lang = {
     komoverseSignInDescription: 'Komoverse钱包是Komoverse的官方钱包。它是',
     forgotPassword: '忘记密码？',
     register: '达夫塔尔',
+    forgotPasswordDescription:
+      '请输入您的电子邮件地址。 您将通过电子邮件收到创建新密码的链接。',
+    resetPassword: '重设密码',
+    confirmPassword: '确认密码',
   },
   utils: {
     currency: 'CNY',
@@ -120,6 +126,7 @@ const lang = {
   form: {
     username: '用户名',
     password: '密码',
+    email: '电子邮件',
   },
 };
 export default lang;
