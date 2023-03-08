@@ -23,6 +23,7 @@ const lang = {
     cancel: '取消',
     continue: '继续',
     submit: '提交',
+    view: '视图',
   },
   time: {
     days: '天',
@@ -74,6 +75,7 @@ const lang = {
     members: '成员',
     discordMembers: 'Discord成员',
     telegramMembers: 'Telegram成员',
+    recentSales: '最近销售',
   },
   auth: {
     signInGoogle: '用谷歌登录',
@@ -122,6 +124,7 @@ const lang = {
     shareEarned: '分享赚取',
     previous: '上一个',
     next: '下一个',
+    transactionHistory: '交易历史',
   },
   form: {
     username: '用户名',

@@ -24,6 +24,7 @@ const lang = {
     cancel: 'रद्द करें',
     continue: 'जारी रखें',
     submit: 'प्रस्तुत करें',
+    view: 'देखें',
   },
   time: {
     days: 'दिन',
@@ -77,6 +78,7 @@ const lang = {
     members: 'सदस्य',
     discordMembers: 'Discord सदस्य',
     telegramMembers: 'टेलीग्राम सदस्य',
+    recentSales: 'हाल की बिक्री',
   },
   auth: {
     signInGoogle: 'Google के साथ साइन इन करें',
@@ -125,6 +127,7 @@ const lang = {
     shareEarned: 'इनाम का शेयर',
     previous: 'पिछला',
     next: 'अगला',
+    transactionHistory: 'लेन-देन इतिहास',
   },
   form: {
     username: 'उपयोगकर्ता नाम',

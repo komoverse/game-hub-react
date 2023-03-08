@@ -24,6 +24,7 @@ const lang = {
     cancel: 'Cancel',
     continue: 'Continue',
     submit: 'Submit',
+    view: 'View',
   },
   time: {
     days: 'days',
@@ -79,6 +80,7 @@ const lang = {
     members: 'Members',
     discordMembers: 'Discord Members',
     telegramMembers: 'Telegram Members',
+    recentSales: 'Recent Sales',
   },
   auth: {
     signInGoogle: 'Sign in with Google',
@@ -127,6 +129,7 @@ const lang = {
     shareEarned: 'Share Earned',
     previous: 'Previous',
     next: 'Next',
+    transactionHistory: 'Transaction History',
   },
   form: {
     username: 'Username',
