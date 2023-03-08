@@ -9,11 +9,11 @@ export const komoverseSocialMedia = [
   {
     header: 'resource',
     list: [
-      // {
-      //   icon: 'ph:handshake-fill',
-      //   url: '/partnership',
-      //   title: 'Apply for partnership',
-      // },
+      {
+        icon: 'ph:handshake-fill',
+        url: 'https://3utrf9byfh7.typeform.com/to/ZBvbAYNq',
+        title: 'Apply for partnership',
+      },
       {
         icon: 'ic:round-people',
         url: 'https://discord.com/invite/komoverse',
@@ -35,13 +35,13 @@ export const komoverseSocialMedia = [
         title: 'News',
       },
       {
-        icon: 'ic:outline-school',
+        icon: 'octicon:mortar-board',
         url: '/academy',
         title: 'Academy',
       },
       {
         icon: 'ri:code-box-fill',
-        url: '/developers',
+        url: 'http://docs.komoverse.io',
         title: 'Developers',
       },
     ],
