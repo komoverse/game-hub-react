@@ -2,7 +2,11 @@ import { AlertColor } from '@mui/material/Alert';
 import { WalletsDto } from './auth';
 import { ListReviewsDto } from './game';
 import { TypeAuthLogin } from './general';
-import { ProfileDto } from './home';
+import {
+  HistoryTransactionDto,
+  HistoryTransactionPaginationDto,
+  ProfileDto,
+} from './home';
 
 export interface ReduxState {
   market: { [key: string]: Array<string> };
@@ -10,7 +14,6 @@ export interface ReduxState {
     page: number;
   };
   detailNft: object;
-  transactionHistory: object;
   sidebar: {
     value: Array<{}>;
   };
@@ -30,5 +33,10 @@ export interface ReduxState {
     display: boolean;
     message: string;
     type: AlertColor;
+  };
+  transactionHistory: {
+    source: 'HISTORY_TRANSACTION' | 'ACTIVITY';
+    data: HistoryTransactionDto[];
+    pagination: HistoryTransactionPaginationDto;
   };
 }
