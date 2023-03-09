@@ -31,3 +31,5 @@ export const GAME_MARKET_ACTIVITY = '/v2/market/activity';
 export const EDIT_REVIEWS = '/v2/review/{{game_review_id}}/edit';
 export const FORGOT_PASSWORD = '/v2/forget-password';
 export const RESET_PASSWORD = '/v2/reset-password';
+export const HISTORY_TRANSACTION = '/v2/market/item/history';
+export const MARKET_ACTIVITY = '/v2/market/activity/{{game_id}}';

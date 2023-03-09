@@ -12,26 +12,36 @@ import {
   SectionWrapperCard,
 } from '@/utils/globalVariable';
 import { useQuery } from 'react-query';
-import { getListRecent, getMarketItemById } from 'services/homepage';
-import { ListRecentDto } from '@/types/home';
+import {
+  getHistoryTransaction,
+  getListRecent,
+  getMarketItemById,
+} from 'services/homepage';
+import {
+  HistoryTransactionDto,
+  HistoryTransactionListDto,
+  ListRecentDto,
+} from '@/types/home';
 import Solana from 'public/solana-logo.png';
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import actionNft from '@/store/detailNft/action';
-// import { useSelector } from 'react-redux';
 import { CardContent } from '@mui/material';
 import { shortenTitleGame } from '@/utils/shorten';
 import { dateFromNow } from '@/helper/date';
-// import { ReduxState } from '@/types/redux';
 import { QueryKey } from '@/types/general';
 import { Navigation } from 'swiper';
 import actionToast from '@/store/toast/action';
+import actionTransaction from '@/store/historyTransaction/action';
+import { useSelector } from 'react-redux';
+import { ReduxState } from '@/types/redux';
 
 const NewListings = () => {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState<boolean>(false);
   const [listingId, setListingId] = React.useState<string>('');
-  // const defaultpage = useSelector((state: ReduxState) => state.pagination);
+
+  const { page } = useSelector((state: ReduxState) => state.pagination);
 
   const { data: listNft } = useQuery({
     queryKey: [QueryKey.LIST_MARKET_RECENT],
@@ -40,7 +50,7 @@ const NewListings = () => {
     refetchOnMount: false,
   });
 
-  const { isFetching } = useQuery({
+  const { isSuccess: marketSuccess } = useQuery({
     queryKey: [QueryKey.GET_MARKET_ITEM_BY_ID, listingId],
     queryFn: () => getMarketItemById(listingId),
     staleTime: 3000,
@@ -56,14 +66,28 @@ const NewListings = () => {
     onSuccess: (data) => actionNft.setDetailNft(data),
   });
 
-  // useQuery(['getMarket', defaultpage.page], () => getMarket(defaultpage.page), {
-  //   staleTime: 3000,
-  //   onSuccess: (data) => actionTransaction.setHistoryTransaction(data),
-  // });
+  useQuery({
+    queryKey: [QueryKey.HISTORY_TRANSACTION, listingId, page],
+    queryFn: () => getHistoryTransaction(listingId, page),
+    staleTime: 3000,
+    cacheTime: 3000,
+    enabled: !!listingId,
+    onSuccess: (data: HistoryTransactionDto) => {
+      actionTransaction.setHistoryTransaction({
+        data: data?.data.map(
+          (item: HistoryTransactionListDto, idx: number) => ({
+            ...item,
+            id: idx,
+          })
+        ),
+        pagination: data.pagination,
+      });
+    },
+  });
 
-  const handleOpen = (listing_id: string) => {
+  const handleOpen = (listingId: string) => {
     setOpen(true);
-    setListingId(listing_id);
+    setListingId(listingId);
   };
 
   return (
@@ -135,7 +159,7 @@ const NewListings = () => {
         </Box>
       </SectionWrapperCard>
 
-      {!isFetching && <ModalNftDetails open={open} setOpen={setOpen} />}
+      {marketSuccess ? <ModalNftDetails open={open} setOpen={setOpen} /> : null}
     </SectionWrapper>
   );
 };
