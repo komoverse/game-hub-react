@@ -130,7 +130,10 @@ const SidebarMenuItem = ({ items, header }: ISidebarMenuItem) => {
 
         {header === 'random_play_now' && (
           <ListItem disablePadding>
-            <ListItemButton sx={{ p: '8px 16px 8px 24px' }}>
+            <ListItemButton
+              sx={{ p: '8px 16px 8px 24px' }}
+              onClick={() => onClickMenu('/discovery', '')}
+            >
               <ListItemIcon
                 sx={{
                   minWidth: '40px',

@@ -1,6 +1,6 @@
 import { FormEventHandler, ReactNode } from 'react';
 
-export interface TextFieldProps {
+export interface InputFormProps {
   name: string;
   label: string;
   type?: string;
