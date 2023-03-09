@@ -5,7 +5,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Stack,
 } from '@mui/material';
 import { ModalTProps } from 'types/general';
 import { t } from 'i18next';

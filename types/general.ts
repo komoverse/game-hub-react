@@ -86,6 +86,7 @@ export enum QueryKey {
   SLIDESHOW = 'slideshow',
   GAME_INSIGHT = 'gameInsight',
   MARKET_ACTIVITY = 'gameMarketActivity',
+  HISTORY_TRANSACTION = 'historyTransaction',
 }
 
 export enum MutationKey {
@@ -95,6 +96,8 @@ export enum MutationKey {
   LOGIN_SOCMED = 'loginSocmed',
   WEB_LOGIN = 'webLogin',
   EDIT_REVIEW = 'editReview',
+  FORGOT_PASSWORD = 'forgotPassword',
+  RESET_PASSWORD = 'resetPassword',
 }
 
 export interface ISidebarMenuItem {

@@ -22,6 +22,9 @@ const lang = {
     send: 'भेजें',
     publish: 'प्रकाशित करें',
     cancel: 'रद्द करें',
+    continue: 'जारी रखें',
+    submit: 'प्रस्तुत करें',
+    view: 'देखें',
   },
   time: {
     days: 'दिन',
@@ -75,6 +78,7 @@ const lang = {
     members: 'सदस्य',
     discordMembers: 'Discord सदस्य',
     telegramMembers: 'टेलीग्राम सदस्य',
+    recentSales: 'हाल की बिक्री',
   },
   auth: {
     signInGoogle: 'Google के साथ साइन इन करें',
@@ -93,6 +97,10 @@ const lang = {
       'Komoverse वॉलेट Komoverse का आधिकारिक वॉलेट है। यह',
     forgotPassword: 'पासवर्ड भूल गए?',
     register: 'दफ्तर',
+    forgotPasswordDescription:
+      'कृपया अपना ईमेल एड्रेस इंटर करें। आपको ईमेल द्वारा नया पासवर्ड बनाने के लिए एक लिंक प्राप्त होगा।',
+    resetPassword: 'पासवर्ड रीसेट करें',
+    confirmPassword: 'पासवर्ड की पुष्टि कीजिये',
   },
   utils: {
     currency: 'INR',
@@ -119,10 +127,12 @@ const lang = {
     shareEarned: 'इनाम का शेयर',
     previous: 'पिछला',
     next: 'अगला',
+    transactionHistory: 'लेन-देन इतिहास',
   },
   form: {
     username: 'उपयोगकर्ता नाम',
     password: 'पासवर्ड',
+    email: 'ईमेल',
   },
 };
 export default lang;

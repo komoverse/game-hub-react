@@ -1,6 +1,7 @@
 import komoverseAxiosIns from 'helper/headers';
 import {
   FEATURED,
+  HISTORY_TRANSACTION,
   MARKET_ITEM_ID,
   MARKET_RECENT,
   ME,
@@ -38,4 +39,13 @@ export const getPortfolio = async () => {
 export const getProfile = async () => {
   const { data } = await komoverseAxiosIns.get(ME);
   return data.data;
+};
+
+export const getHistoryTransaction = async (
+  listingId: string,
+  page: number
+) => {
+  const params = `?listing_id=${listingId}&page=${page}&per_page=10`;
+  const { data } = await komoverseAxiosIns.get(HISTORY_TRANSACTION + params);
+  return data;
 };

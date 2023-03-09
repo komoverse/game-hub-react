@@ -22,6 +22,9 @@ const lang = {
     send: 'Send',
     publish: 'Publish',
     cancel: 'Cancel',
+    continue: 'Continue',
+    submit: 'Submit',
+    view: 'View',
   },
   time: {
     days: 'days',
@@ -77,6 +80,7 @@ const lang = {
     members: 'Members',
     discordMembers: 'Discord Members',
     telegramMembers: 'Telegram Members',
+    recentSales: 'Recent Sales',
   },
   auth: {
     signInGoogle: 'Sign in with Google',
@@ -95,6 +99,10 @@ const lang = {
       'Play in Komoverse tournaments and games live. Login with Google, Twitter or Discord. Work on mobile. No download required. Only you control the keys.',
     forgotPassword: 'Forgot Password?',
     register: 'Register',
+    forgotPasswordDescription:
+      'Please enter your email address. You will receive a link to create a new password via email.',
+    resetPassword: 'Reset Your Password',
+    confirmPassword: 'Confirm Password',
   },
   utils: {
     currency: 'USD',
@@ -121,10 +129,12 @@ const lang = {
     shareEarned: 'Share Earned',
     previous: 'Previous',
     next: 'Next',
+    transactionHistory: 'Transaction History',
   },
   form: {
     username: 'Username',
     password: 'Password',
+    email: 'Email',
   },
 };
 export default lang;
