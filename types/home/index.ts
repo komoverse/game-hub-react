@@ -73,3 +73,34 @@ export interface ProfileDto {
   two_fa_active: boolean;
   wallet_pubkey: string;
 }
+
+export type HistoryTransactionDto = {
+  data: HistoryTransactionListDto[];
+  pagination?: HistoryTransactionPaginationDto;
+};
+
+export type HistoryTransactionListDto = {
+  data: {
+    buyer_username: string;
+    buyer_wallet: string;
+    collection_address: string;
+    explorer_url: string;
+    game_id: string;
+    nft_address: string;
+    nft_image_uri: string;
+    nft_name: string;
+    price: string;
+    seller_username: string;
+    seller_wallet: string;
+    time_ago: string;
+    tx_time: string;
+    tx_type: string;
+  };
+};
+
+export type HistoryTransactionPaginationDto = {
+  current_page: number;
+  have_next_page: boolean;
+  per_page: number;
+  total_data: number;
+};

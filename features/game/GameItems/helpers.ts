@@ -105,7 +105,6 @@ export function mapMarketItems(
   finalItems = flattenMarketItemsAttributes(data);
 
   finalItems = finalItems.filter((item) => {
-    console.log('🚀 ~ finalItems=finalItems.filter ~ item:', item);
     const intersect = _intersection(selectedFilter, item.attributes);
 
     if (intersect.length !== 0 && selectedFilter !== undefined) {

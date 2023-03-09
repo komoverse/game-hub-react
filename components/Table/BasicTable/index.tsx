@@ -17,14 +17,19 @@ import { useSelector } from 'react-redux';
 import actionPagination from '@/store/pagination/action';
 import { ReduxState } from '@/types/redux';
 import { GridRowClassNameParams, GridValidRowModel } from '@mui/x-data-grid';
+import { t } from 'i18next';
 
 const CustomFooter = () => {
-  const defaultpage = useSelector((state: ReduxState) => state.pagination);
+  const {
+    page: { page },
+    transactionHistory: { pagination },
+  } = useSelector((state: ReduxState) => ({
+    page: state.pagination,
+    transactionHistory: state.transactionHistory,
+  }));
 
-  const nextPage = () =>
-    actionPagination.setPagination({ page: defaultpage.page + 1 });
-  const previousPage = () =>
-    actionPagination.setPagination({ page: defaultpage.page - 1 });
+  const nextPage = () => actionPagination.setPagination({ page: page + 1 });
+  const previousPage = () => actionPagination.setPagination({ page: page - 1 });
 
   return (
     <Box
@@ -38,22 +43,23 @@ const CustomFooter = () => {
       <Button
         size="large"
         variant="contained"
-        disabled={defaultpage.page === 1 ? true : false}
+        disabled={page === 1 ? true : false}
         sx={{
-          color: defaultpage.page !== 1 ? COLOR.baseWhite : '',
+          color: page !== 1 ? COLOR.baseWhite : '',
           fontWeight: 500,
         }}
         onClick={previousPage}
       >
-        PREVIOUS
+        {t('table.previous')}
       </Button>
       <Button
         size="large"
         variant="contained"
         sx={{ color: COLOR.baseWhite, fontWeight: 500 }}
         onClick={nextPage}
+        disabled={pagination.have_next_page ? false : true}
       >
-        NEXT
+        {t('table.next')}
       </Button>
     </Box>
   );
@@ -65,11 +71,8 @@ const KomoverseTable = () => {
   const [expanded, setExpanded] = React.useState<string | false>(
     'historyTransaction'
   );
-  const data: GridValidRowModel[] = [];
-  // const data = useSelector(
-  //   (state: ReduxState) =>
-  //     state.transactionHistory as readonly GridValidRowModel[]
-  // );
+
+  const { data } = useSelector((state: ReduxState) => state.transactionHistory);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) =>
@@ -98,7 +101,7 @@ const KomoverseTable = () => {
               >
                 <NoteIcon />
                 <Typography variant="h6" sx={{ margin: '0px 0px 0px 8px' }}>
-                  Transaction History
+                  {t('table.transactionHistory')}
                 </Typography>
               </Box>
             </AccordionSummary>

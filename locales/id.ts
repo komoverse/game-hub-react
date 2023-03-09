@@ -23,6 +23,7 @@ const lang = {
     cancel: 'Batal',
     continue: 'Lanjutkan',
     submit: 'Kirim',
+    view: 'Lihat',
   },
   time: {
     days: 'hari',
@@ -78,6 +79,7 @@ const lang = {
     members: 'Anggota',
     discordMembers: 'Anggota Discord',
     telegramMembers: 'Anggota Telegram',
+    recentSales: 'Penjualan Terbaru',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',
@@ -126,6 +128,7 @@ const lang = {
     shareEarned: 'Bagi Hasil yang Diperoleh',
     previous: 'Sebelumnya',
     next: 'Berikutnya',
+    transactionHistory: 'Riwayat Transaksi',
   },
   form: {
     username: 'Nama Pengguna',

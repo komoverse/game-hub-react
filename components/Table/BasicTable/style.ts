@@ -22,6 +22,9 @@ export const BasicTable = styled(DataGrid)(({ theme }) => ({
   '& .MuiDataGrid-iconSeparator': {
     display: 'none',
   },
+  '& .MuiDataGrid-cell:focus': {
+    outline: ' none',
+  },
   [`& .${gridClasses.row}.even`]: {
     backgroundColor: COLOR.backgroundTableStriped2,
     '&:hover, &.Mui-hovered': {

@@ -1,9 +1,11 @@
 import React from 'react';
 import {
+  Box,
   Breadcrumbs,
   Dialog,
   DialogContent,
   DialogTitle,
+  IconButton,
   Typography,
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
@@ -15,6 +17,7 @@ import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
 import { MarketItemDto } from '@/types/detail';
 import { ModalTProps } from '@/types/general';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const Modal = ({ open, setOpen }: ModalTProps) => {
   const data = useSelector(
@@ -39,23 +42,33 @@ const Modal = ({ open, setOpen }: ModalTProps) => {
       }}
       maxWidth="xl"
       open={open}
-      onClose={handleClose}
     >
       <DialogTitle sx={{ backgroundColor: COLOR.baseSemiBlack }}>
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
         >
-          <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>
-            Komoverse
-          </Typography>
-          <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>
-            Item
-          </Typography>
-          <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>
-            {data.nft?.name}
-          </Typography>
-        </Breadcrumbs>
+          <Breadcrumbs
+            separator={<NavigateNextIcon fontSize="small" />}
+            aria-label="breadcrumb"
+          >
+            <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>
+              Komoverse
+            </Typography>
+            <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>
+              Item
+            </Typography>
+            <Typography sx={{ fontSize: 14, color: COLOR.baseWhite }}>
+              {data.nft?.name}
+            </Typography>
+          </Breadcrumbs>
+          <IconButton onClick={handleClose}>
+            <HighlightOffIcon sx={{ color: 'COLOR.baseLightTextGray' }} />
+          </IconButton>
+        </Box>
       </DialogTitle>
       <DialogContent sx={{ backgroundColor: COLOR.baseSemiBlack }}>
         <NftDetails />
