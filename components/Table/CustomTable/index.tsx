@@ -16,14 +16,12 @@ import {
 } from '@/types/general';
 import { COLOR } from '@/utils/globalVariable';
 import actionPagination from '@/store/pagination/action';
+
 import { columns } from './config';
 import { CustomTable } from './style';
 
 const KomoverseTableCustom = () => {
-  const data = useSelector(
-    (state: ReduxState) =>
-      state.transactionHistory as readonly GridValidRowModel[]
-  );
+  const data = useSelector((state: ReduxState) => state.transactionHistory);
 
   const handleRowClassnames = (idx: number) => {
     if (idx === 0) return TopPlayersRowClassnames.FIRST;
@@ -41,7 +39,7 @@ const KomoverseTableCustom = () => {
   return (
     <Box sx={{ flexGrow: 1, height: '750px' }}>
       <CustomTable
-        rows={data}
+        rows={data.data}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
