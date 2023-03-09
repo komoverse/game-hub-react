@@ -1,7 +1,11 @@
 import komoverseAxiosIns from '@/helper/headers';
-import { SSO_GENERATE, WALLET_LOGIN, WEB_LOGIN } from '@/helper/url';
+import {
+  REFRESH_TOKEN,
+  SSO_GENERATE,
+  WALLET_LOGIN,
+  WEB_LOGIN,
+} from '@/helper/url';
 import { LoginDto, WalletsDto } from '@/types/auth';
-import isEmpty from 'lodash/isEmpty';
 
 export const loginSocmed = async (provider: string) => {
   const { data } = await komoverseAxiosIns.get(
@@ -19,9 +23,20 @@ export const loginWallet = async (value: WalletsDto) => {
 };
 
 export const webLogin = async (value: LoginDto) => {
-  const otp = !isEmpty(value.otp) ? `&otp=${value.otp}` : '';
-  const params = `?komo_username=${value.komo_username}&password=${value.password}${otp}&remember_me=${value.remember_me}`;
-  const { data } = await komoverseAxiosIns.post(WEB_LOGIN + params);
+  const body = {
+    komo_username: value.komo_username,
+    password: value.password,
+    otp: value.otp,
+    remember_me: value.remember_me ? 1 : 0,
+  };
+
+  const { data } = await komoverseAxiosIns.post(WEB_LOGIN, body);
+
+  return data;
+};
+
+export const refreshAccessToken = async () => {
+  const { data } = await komoverseAxiosIns.post(REFRESH_TOKEN);
 
   return data;
 };
