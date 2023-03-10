@@ -2,10 +2,12 @@ import Avatar from '@mui/material/Avatar';
 import { GridColDef } from '@mui/x-data-grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { IconButton, Tooltip } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import isEmpty from 'lodash/isEmpty';
 
-import { getDiff } from '@/helper/date';
-import { COLOR } from '@/utils/globalVariable';
-import Iconify from '@/components/Iconify';
+import { COLOR, KomoverseTag } from '@/utils/globalVariable';
+import { shortenWalletAddress } from '@/utils/shorten';
 
 async function copyToClipboard(text: string) {
   if (!navigator?.clipboard) {
@@ -22,108 +24,99 @@ async function copyToClipboard(text: string) {
   }
 }
 
+const styleBox = {
+  display: 'flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+};
+
 export const columns: GridColDef[] = [
   {
-    field: 'item_name',
+    field: 'nft_name',
     headerName: 'ITEM',
     flex: 1,
+    minWidth: 300,
     sortable: false,
-    disableColumnMenu: true,
-    renderCell: (params) => {
-      return (
-        <Box display="flex" alignItems="center" justifyContent="center">
-          <Avatar
-            variant="rounded"
-            src={params.row.avatar}
-            alt={`item-${params.value}`}
-            style={{ width: 32, height: 32 }}
-          />
-          <Typography variant="body2" marginLeft={2}>
-            {params.value}
-          </Typography>
-        </Box>
-      );
-    },
+    renderCell: (data) => (
+      <Box sx={styleBox}>
+        <Avatar
+          variant="rounded"
+          src={data.row.nft_image_uri}
+          alt={KomoverseTag}
+          sx={{ height: 32, width: 32 }}
+        />
+        <Typography sx={{ ml: 1 }}>{data.value}</Typography>
+      </Box>
+    ),
   },
   {
-    field: 'buyer_address',
-    headerName: 'BUYER',
-    flex: 1,
-    sortable: false,
-    disableColumnMenu: true,
-    renderCell: (params) => {
-      const addrLength = params.value.length;
-      const obscured =
-        params.value.slice(0, 3) +
-        params.value.slice(addrLength - 6).replace(/.(?=...)/g, '.');
-
-      return (
-        <Box display="flex" alignItems="center" justifyContent="center" gap={1}>
-          <Typography variant="body2">{obscured}</Typography>
-          <Iconify
-            icon="ic:round-content-copy"
-            sx={{ cursor: 'pointer' }}
-            onClick={() => copyToClipboard(params.value)}
-          />
-        </Box>
-      );
-    },
-  },
-  {
-    field: 'seller_address',
+    field: 'seller_wallet',
     headerName: 'SELLER',
-    flex: 1,
-    disableColumnMenu: true,
     sortable: false,
-    renderCell: (params) => {
-      const addrLength = params.value.length;
-      const obscured =
-        params.value.slice(0, 3) +
-        params.value.slice(addrLength - 6).replace(/.(?=...)/g, '.');
-
-      return (
-        <Box display="flex" alignItems="center" justifyContent="center" gap={1}>
-          <Typography variant="body2">{obscured}</Typography>
-          <Iconify
-            icon="ic:round-content-copy"
-            sx={{ cursor: 'pointer' }}
-            onClick={() => copyToClipboard(params.value)}
-          />
-        </Box>
-      );
-    },
+    minWidth: 260,
+    renderCell: (data) => (
+      <Box sx={styleBox}>
+        <Tooltip
+          title="Copy to clipboard"
+          placement="top"
+          onClick={() => copyToClipboard(data.value)}
+        >
+          <Typography sx={{ ':hover': { textDecoration: 'underline' } }}>
+            {isEmpty(data.value) ? '-' : shortenWalletAddress(data.value)}
+          </Typography>
+        </Tooltip>
+        {!isEmpty(data.value) ? (
+          <IconButton
+            sx={{ ':hover': { background: 'none' } }}
+            onClick={() => copyToClipboard(data.value)}
+          >
+            <ContentCopyIcon fontSize="small" sx={{ ml: 1 }} />
+          </IconButton>
+        ) : null}
+      </Box>
+    ),
+  },
+  {
+    field: 'buyer_wallet',
+    headerName: 'BUYER',
+    sortable: false,
+    minWidth: 260,
+    renderCell: (data) => (
+      <Box sx={styleBox}>
+        <Tooltip
+          title="Copy to clipboard"
+          placement="top"
+          onClick={() => copyToClipboard(data.value)}
+        >
+          <Typography sx={{ ':hover': { textDecoration: 'underline' } }}>
+            {isEmpty(data.value) ? '-' : shortenWalletAddress(data.value)}
+          </Typography>
+        </Tooltip>
+        {!isEmpty(data.value) ? (
+          <IconButton
+            sx={{ ':hover': { background: 'none' } }}
+            onClick={() => copyToClipboard(data.value)}
+          >
+            <ContentCopyIcon fontSize="small" sx={{ ml: 1 }} />
+          </IconButton>
+        ) : null}
+      </Box>
+    ),
   },
   {
     field: 'price',
     headerName: 'PRICE',
-    flex: 1,
-    disableColumnMenu: true,
     sortable: false,
-    renderCell: (params) => `${params.value} SOL`,
+    minWidth: 166,
+    renderCell: (data) => <Typography>{data.value} SOL</Typography>,
   },
   {
-    field: 'created_at',
+    field: 'time_ago',
     headerName: 'TIME',
-    flex: 1,
-    disableColumnMenu: true,
     sortable: false,
-    renderCell: (params) => {
-      const now = new Date().toISOString();
-      let diff = '';
-
-      const diffInHours = getDiff(now, params.value, 'hours');
-
-      if (diffInHours < 24) {
-        diff = `${diffInHours} hours ago`;
-      } else {
-        const diffInDays = getDiff(now, params.value, 'days');
-        diff = `${diffInDays} days ago`;
-      }
-      return (
-        <Typography variant="body2" fontWeight={600} color={COLOR.baseGreen}>
-          {diff}
-        </Typography>
-      );
-    },
+    minWidth: 190,
+    renderCell: (data) => (
+      <Typography sx={{ color: COLOR.baseGreen }}>{data.value}</Typography>
+    ),
   },
 ];

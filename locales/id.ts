@@ -20,6 +20,10 @@ const lang = {
     live: 'Berlangsung',
     send: 'Kirim',
     publish: 'Publikasikan',
+    cancel: 'Batal',
+    continue: 'Lanjutkan',
+    submit: 'Kirim',
+    view: 'Lihat',
   },
   time: {
     days: 'hari',
@@ -46,6 +50,36 @@ const lang = {
     reviewSummary: 'Ringkasan Review',
     review: '{{count}} Ulasan',
     reviewed: 'Anda telah mereview game ini',
+    social: 'Sosial',
+    rules: 'Peraturan',
+    gameReviewRules: 'Peraturan Review Game',
+    edit: 'Edit',
+    updateReviewed: 'Anda telah memperbarui ulasan Anda untuk game ini',
+    rulesReviewDescription:
+      'Selamat datang di fase Alpha Testing sistem review game Komoverse! Kami sangat senang mengundang Anda menjadi salah satu orang pertama yang mencoba sistem baru ini dan memberikan kami umpan balik yang sangat berguna untuk memperbaikinya. Tujuan kami adalah untuk menciptakan sistem review game yang komprehensif dan dapat diandalkan yang akan membantu pemain membuat keputusan yang tepat tentang game mana yang akan dimainkan. Oleh karena itu, kami telah mengembangkan peraturan berikut untuk review game untuk memastikan penilaian yang adil dan akurat tentang game:',
+    rules1:
+      'Peninjauan harus mencakup semua aspek game, termasuk: gameplay, grafik, suara, antarmuka pengguna, sistem play-to-earn, dll',
+    rules2:
+      'Peninjau harus memberikan peringkat dari 1 hingga 5 (1 untuk yang terendah/buruk, 5 untuk yang terbaik/baik) dengan peringkat tambahan 0,5 poin, beserta penjelasan singkat tentang alasan mereka untuk peringkat tersebut.',
+    rules3:
+      'Tinjauan harus diserahkan dalam waktu 2 minggu setelah menyelesaikan persyaratan waktu bermain minimum.',
+    rules4:
+      'Setiap reviewer harus memainkan game minimal 3 jam sebelum menulis review mereka.',
+    rules5:
+      'Setiap peninjau dapat mengedit ulasannya, tetapi hadiah insentif Komoverse XP hanya akan diterapkan pada ulasan pertama setiap game. Poin XP akan dicairkan ke masing-masing akun reviewer selambat-lambatnya T+24 jam jika memenuhi S&K review',
+    rules6:
+      'Ulasan tidak boleh mengandung kata-kata kotor, ujaran kebencian, atau konten tidak pantas lainnya.',
+    rules7:
+      'Dengan mengikuti aturan ini, kami berharap dapat memberikan ulasan game yang adil dan akurat untuk game yang tersedia di ekosistem Komoverse yang akan membantu pemain membuat keputusan yang tepat tentang apakah akan memainkan game tersebut atau tidak.',
+    twitterFollowers: 'Pengikut Twitter',
+    followersCount: 'Jumlah Pengikut',
+    membersCount: 'Jumlah Anggota',
+    active: 'Aktif',
+    activeMembers: 'Anggota Aktif',
+    members: 'Anggota',
+    discordMembers: 'Anggota Discord',
+    telegramMembers: 'Anggota Telegram',
+    recentSales: 'Penjualan Terbaru',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',
@@ -64,6 +98,10 @@ const lang = {
       'Bermain di turnamen dan permainan Komoverse secara langsung. Masuk dengan Google, Twitter atau Discord. Bekerja di ponsel. Tidak perlu mengunduh. Hanya Anda yang mengendalikan kunci.',
     forgotPassword: 'Lupa Password?',
     register: 'Daftar',
+    forgotPasswordDescription:
+      'Masukkan alamat email Anda. Anda akan menerima tautan untuk membuat kata sandi baru melalui email.',
+    resetPassword: 'Atur Ulang Kata Sandi',
+    confirmPassword: 'Konfirmasi Kata Sandi',
   },
   utils: {
     currency: 'IDR',
@@ -90,10 +128,12 @@ const lang = {
     shareEarned: 'Bagi Hasil yang Diperoleh',
     previous: 'Sebelumnya',
     next: 'Berikutnya',
+    transactionHistory: 'Riwayat Transaksi',
   },
   form: {
     username: 'Nama Pengguna',
     password: 'Kata Sandi',
+    email: 'Email',
   },
 };
 export default lang;

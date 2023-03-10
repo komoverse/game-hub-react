@@ -1,65 +1,35 @@
 import { GridColDef } from '@mui/x-data-grid';
-import Typography from '@mui/material/Typography';
 
 import { BasicTable } from '@/components/Table/BasicTable/style';
 import { COLOR } from '@/utils/globalVariable';
 import { ITournamentRoundRobin } from '@/types/game/tournament';
 
-function getWinner(winner: string, player: string): string {
-  if (winner !== 'X' && winner !== 'x') {
-    if (winner === player) {
-      return 'green';
-    }
-    return 'red';
-  }
-
-  return 'white';
-}
-
 export const roundRobinColumn: GridColDef[] = [
-  { field: 'id', headerName: 'Match ID', flex: 1, sortable: false },
-  { field: 'round_no', headerName: 'Round', flex: 1, sortable: false },
-  { field: 'match_no', headerName: 'Match', flex: 1, sortable: false },
-  {
-    field: 'komo_username_A',
-    headerName: 'Player 1',
-    flex: 1,
-    sortable: false,
-    renderCell: (params) => {
-      return (
-        <Typography
-          sx={{
-            color: getWinner(params.row.match_winner, params.value),
-          }}
-        >
-          {params.value}
-        </Typography>
-      );
-    },
-  },
-  {
-    field: 'komo_username_B',
-    headerName: 'Player 2',
-    flex: 1,
-    sortable: false,
-    renderCell: (params) => {
-      return (
-        <Typography
-          sx={{
-            color: getWinner(params.row.match_winner, params.value),
-          }}
-        >
-          {params.value}
-        </Typography>
-      );
-    },
-  },
+  { field: 'player', headerName: 'Player name', flex: 1, sortable: false },
+  { field: 'win', headerName: 'Win', flex: 1, sortable: false },
+  { field: 'lose', headerName: 'Lost', flex: 1, sortable: false },
 ];
 
+function mapRows(data: ITournamentRoundRobin['standings']) {
+  if (!data) return [];
+
+  const rows = Object.keys(data).map((key) => {
+    const items = {
+      id: key,
+      player: key,
+      ...data[key],
+    };
+    return items;
+  });
+
+  return rows;
+}
+
 const RoundRobin = ({ data }: { data: ITournamentRoundRobin }) => {
+  const playersStanding = mapRows(data?.standings);
   return (
     <BasicTable
-      rows={data?.schedule}
+      rows={playersStanding}
       columns={roundRobinColumn}
       pageSize={5}
       disableColumnSelector

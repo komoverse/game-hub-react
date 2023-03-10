@@ -1,6 +1,6 @@
-import { SidebarMenuItem } from '@/layouts/sidebar/types';
+import { ISidebarMenuItem } from '@/types/general';
 
-export const dataTransformer = (data: any): SidebarMenuItem[] => {
+export const dataTransformer = (data: any): ISidebarMenuItem[] => {
   if (!data) {
     return [];
   }

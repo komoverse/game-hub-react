@@ -8,18 +8,18 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   Avatar,
-  styled,
 } from '@mui/material';
-import { Iconify } from '@/components/index';
-import { sidebarHeader } from '../constants';
-import { SidebarMenuItem } from './types';
-import { getDiff, isBefore, isBetween } from '@/helper/date';
-import { useRouter } from 'next/router';
 import { regexUrlValidation } from '@/utils/regex';
-import { COLOR, GRADIENT } from '@/utils/globalVariable';
-import LiveBadge from '@/components/LiveBadge';
+import { useRouter } from 'next/router';
 
-const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
+import Iconify from '@/components/Iconify';
+import LiveBadge from '@/components/LiveBadge';
+import { getDiff, isBefore, isBetween } from '@/helper/date';
+import { ISidebarMenuItem } from '@/types/general';
+
+import { sidebarHeader } from '../constants';
+
+const SidebarMenuItem = ({ items, header }: ISidebarMenuItem) => {
   const currDate = new Date().toISOString();
 
   const hasSecondaryText = (header: string) => {
@@ -130,7 +130,10 @@ const SidebarMenuItem = ({ items, header }: SidebarMenuItem) => {
 
         {header === 'random_play_now' && (
           <ListItem disablePadding>
-            <ListItemButton sx={{ p: '8px 16px 8px 24px' }}>
+            <ListItemButton
+              sx={{ p: '8px 16px 8px 24px' }}
+              onClick={() => onClickMenu('/discovery', '')}
+            >
               <ListItemIcon
                 sx={{
                   minWidth: '40px',

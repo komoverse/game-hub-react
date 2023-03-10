@@ -22,4 +22,15 @@ export interface LoginDto {
   komo_username: string;
   password: string;
   otp?: number | string;
+  remember_me?: boolean;
+}
+
+export interface ForgotPasswordDto {
+  email: string;
+}
+
+export interface ResetPasswordDto {
+  password: string;
+  password_confirmation: string;
+  token?: string;
 }

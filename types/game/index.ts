@@ -112,3 +112,37 @@ export interface ReviewFormDto {
   rating: number;
   comment: string;
 }
+
+export interface TwitterInsightDto {
+  month_year: string;
+  max_follower: number;
+}
+
+export interface DiscordInsightDto extends TwitterInsightDto {
+  max_member: number | null;
+  max_active: number | null;
+}
+
+export type TelegramInsightDto = DiscordInsightDto;
+
+export interface InsightDto {
+  data: {
+    game_id: string;
+    twitter_followers: number;
+    discord_member: number;
+    discord_active: number;
+    telegram_member: number;
+    telegram_active: number;
+    updated_at: string;
+    twitter_percent_changes: number;
+    discord_percent_changes: number;
+    discord_percent_active: number;
+    telegram_percent_changes: number;
+    telegram_percent_active: number;
+  };
+  graph: {
+    twitter: TwitterInsightDto[];
+    discord: DiscordInsightDto[];
+    telegram: TelegramInsightDto[];
+  };
+}

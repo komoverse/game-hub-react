@@ -1,3 +1,5 @@
+import { InsightDto } from './game';
+
 export type ModalTProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -82,8 +84,10 @@ export enum QueryKey {
   PORTFOLIO = 'portfolio',
   PROFILE = 'profile',
   SLIDESHOW = 'slideshow',
-  MARKET_ACTIVITY = 'MARKET_ACTIVITY',
-  PLAY_NOW = 'PLAY_NOW',
+  PLAY_NOW = 'gamePlayNow',
+  GAME_INSIGHT = 'gameInsight',
+  MARKET_ACTIVITY = 'gameMarketActivity',
+  HISTORY_TRANSACTION = 'historyTransaction',
 }
 
 export enum MutationKey {
@@ -92,4 +96,39 @@ export enum MutationKey {
   SUBMIT_REVIEW = 'submitReview',
   LOGIN_SOCMED = 'loginSocmed',
   WEB_LOGIN = 'webLogin',
+  EDIT_REVIEW = 'editReview',
+  FORGOT_PASSWORD = 'forgotPassword',
+  RESET_PASSWORD = 'resetPassword',
 }
+
+export interface ISidebarMenuItem {
+  items: {
+    title: string;
+    image?: string;
+    duration?: string;
+    icon?: string;
+    mint_start_date?: string;
+    mint_end_date?: string;
+    start_time?: string;
+    end_time?: string;
+  }[];
+  header: string;
+}
+export type ChartProps = {
+  data: InsightDto | any;
+  source: string;
+};
+
+export enum Socmed {
+  DISCORD = 'discord',
+  TWITTER = 'twitter',
+  FACEBOOK = 'facebook',
+  INSTAGRAM = 'instagram',
+  TELEGRAM = 'telegram',
+}
+
+export type TooltipChartProps = {
+  active: boolean;
+  payload: any;
+  label: string;
+};

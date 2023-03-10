@@ -27,6 +27,8 @@ import actionReviews from '@/store/reviews/action';
 import { LoadingButton } from '@mui/lab';
 import { t } from 'i18next';
 import { QueryKey } from '@/types/general';
+import DescriptionIcon from '@mui/icons-material/Description';
+import Rules from './Rules';
 
 const Reviews = () => {
   const router = useRouter();
@@ -42,6 +44,8 @@ const Reviews = () => {
     total_page: 0,
     total_data: 0,
   });
+  const [visibleRules, setVisibleRules] = React.useState<boolean>(false);
+  const [visibleReviews, setVisibleReviews] = React.useState<boolean>(false);
 
   const { data: reviews, isLoading } = useQuery<ListReviewsDto, ListReviewsDto>(
     {
@@ -106,6 +110,8 @@ const Reviews = () => {
     setParams({ ...params, sortBy: event.target.value as string });
   };
 
+  const handleVisibleRules = () => setVisibleRules(!visibleRules);
+
   const buttonFilter = [
     {
       id: 1,
@@ -149,7 +155,7 @@ const Reviews = () => {
         ) : (
           <Grid sx={{ width: 'auto', mt: 1 }} container spacing={3}>
             <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-              <Ratting />
+              <Ratting open={visibleReviews} setOpen={setVisibleReviews} />
             </Grid>
             <Grid item xl={8} lg={8} md={6} sm={12} xs={12}>
               {/* Filter */}
@@ -180,33 +186,63 @@ const Reviews = () => {
                   </Box>
                 </Grid>
               </Grid>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Typography variant="h5" color={COLOR.baseLightTextGray}>
-                  {t('filter.sortBy')}
-                </Typography>
-                <FormControl variant="standard" sx={{ ml: 2 }}>
-                  <Select
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <Typography variant="h5" color={COLOR.baseLightTextGray}>
+                    {t('filter.sortBy')}
+                  </Typography>
+                  <FormControl variant="standard" sx={{ ml: 2 }}>
+                    <Select
+                      sx={{
+                        minWidth: 140,
+                        height: '40px',
+                        color: COLOR.baseLightTextGray,
+                      }}
+                      value={params.sortBy}
+                      onChange={handleSortBy}
+                    >
+                      <MenuItem value="rating">{t('game.rating')}</MenuItem>
+                      <MenuItem value="created_at">
+                        {t('filter.mostRecent')}
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+                <Box
+                  onClick={handleVisibleRules}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <DescriptionIcon sx={{ color: COLOR.baseLightTextGray }} />
+                  <Typography
+                    variant="subtitle1"
                     sx={{
-                      minWidth: 140,
-                      height: '40px',
+                      textDecoration: 'underline',
                       color: COLOR.baseLightTextGray,
+                      fontWeight: 500,
                     }}
-                    value={params.sortBy}
-                    onChange={handleSortBy}
                   >
-                    <MenuItem value="rating">{t('game.rating')}</MenuItem>
-                    <MenuItem value="created_at">
-                      {t('filter.mostRecent')}
-                    </MenuItem>
-                  </Select>
-                </FormControl>
+                    {t('game.rules')}
+                  </Typography>
+                </Box>
               </Box>
               {/* End Filter */}
 
               <>
-                <ListReviews />
-
-                {pagination.total_data > pagination.total_page && (
+                <ListReviews
+                  open={visibleReviews}
+                  setOpen={setVisibleReviews}
+                />
+                {reviews?.reviews.data.length !== pagination.total_data && (
                   <LoadingButton
                     loading={isLoading}
                     onClick={() =>
@@ -227,6 +263,8 @@ const Reviews = () => {
             </Grid>
           </Grid>
         )}
+
+        <Rules open={visibleRules} setOpen={setVisibleRules} />
       </SectionWrapperCard>
     </SectionWrapper>
   );

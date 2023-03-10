@@ -21,6 +21,10 @@ const lang = {
     loadMore: 'Load More',
     send: 'Send',
     publish: 'Publish',
+    cancel: 'Cancel',
+    continue: 'Continue',
+    submit: 'Submit',
+    view: 'View',
   },
   time: {
     days: 'days',
@@ -46,7 +50,37 @@ const lang = {
     overallRating: 'Overall Rating',
     reviewSummary: 'Review Summary',
     review: '{{count}} Review',
-    reviewed: 'You have reviewed this game',
+    reviewed: 'You have reviewd this game',
+    social: 'Social',
+    rules: 'Rules',
+    gameReviewRules: 'Game Review Rules',
+    edit: 'Edit',
+    updateReviewed: 'You have updated your review for this game',
+    rulesReviewDescription:
+      'Welcome to the Alpha Testing phase of our game review system for Komoverse! We are excited to invite you to be one of the first people to try out this new system and provide us with valuable feedback to improve it. Our goal is to create a comprehensive and reliable game review system that will help players make informed decisions about which games to play. As such, we have developed the following rules for game reviews to ensure fair and accurate assessments of the game:',
+    rules1:
+      'The review should cover all aspects of the game, including: gameplay, graphics, sound, user interface, play-to-earn system, etc.',
+    rules2:
+      'The reviewer must provide a rating from 1 to 5 (1 being the lowest/bad, 5 being the best/good) with an incremental ratings of 0.5 points, along with a brief explanation of their reasoning for that rating.',
+    rules3:
+      'The review must be submitted within 2 weeks of completing the minimum playtime requirement.',
+    rules4:
+      'Each reviewer must play the game for a minimum of 3 hours before writing their review.',
+    rules5:
+      'Each reviewer can edit their review, but the Komoverse XP incentive reward will only be applied on the first review of every game. XP points will be disbursed to the respective reviewers account as late as T+24 hours if they comply to the review T&C',
+    rules6:
+      'The review must not contain any profanity, hate speech, or other inappropriate content.',
+    rules7:
+      'By following these rules, we hope to provide fair and accurate game reviews for games that are available on the Komoverse ecosystem that will help players make informed decisions about whether or not to play the game.',
+    twitterFollowers: 'Twitter Followers',
+    followersCount: 'Followers Count',
+    membersCount: 'Members Count',
+    active: 'Active',
+    activeMembers: 'Active Members',
+    members: 'Members',
+    discordMembers: 'Discord Members',
+    telegramMembers: 'Telegram Members',
+    recentSales: 'Recent Sales',
   },
   auth: {
     signInGoogle: 'Sign in with Google',
@@ -65,6 +99,10 @@ const lang = {
       'Play in Komoverse tournaments and games live. Login with Google, Twitter or Discord. Work on mobile. No download required. Only you control the keys.',
     forgotPassword: 'Forgot Password?',
     register: 'Register',
+    forgotPasswordDescription:
+      'Please enter your email address. You will receive a link to create a new password via email.',
+    resetPassword: 'Reset Your Password',
+    confirmPassword: 'Confirm Password',
   },
   utils: {
     currency: 'USD',
@@ -91,10 +129,12 @@ const lang = {
     shareEarned: 'Share Earned',
     previous: 'Previous',
     next: 'Next',
+    transactionHistory: 'Transaction History',
   },
   form: {
     username: 'Username',
     password: 'Password',
+    email: 'Email',
   },
 };
 export default lang;

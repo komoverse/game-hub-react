@@ -15,7 +15,7 @@ import { ReduxState } from '@/types/redux';
 import { getCollectionItems, getMarketCollections } from '@/services/games';
 import useDebounce from '@/hooks/useDebounce';
 import Iconify from '@/components/Iconify';
-import { getMarketItemById } from '@/services/homepage';
+import { getHistoryTransaction, getMarketItemById } from '@/services/homepage';
 import { ErrorResponseDto, QueryKey } from '@/types/general';
 import actionNft from '@/store/detailNft/action';
 import { ModalNftDetails } from '@/components/index';
@@ -24,6 +24,9 @@ import GameItem from './GameItem';
 import MarketSidebar from './SidebarFilter';
 import GameSearchField from './GameSearchField';
 import { mapFilters, mapMarketItems } from './helpers';
+import { HistoryTransactionDto, HistoryTransactionListDto } from '@/types/home';
+import actionTransaction from '@/store/historyTransaction/action';
+import actionToast from '@/store/toast/action';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -37,6 +40,8 @@ const GameMarket = () => {
   const router = useRouter();
   const { game: gameId } = router.query;
   const [currCollection, setCurrCollection] = useState<string>('');
+
+  const { page } = useSelector((state: ReduxState) => state.pagination);
 
   const { data: collections } = useQuery({
     queryKey: [QueryKey.MARKET_COLLECTION, gameId],
@@ -65,7 +70,28 @@ const GameMarket = () => {
     onSuccess: (data) => actionNft.setDetailNft(data),
   });
 
+  useQuery({
+    queryKey: [QueryKey.HISTORY_TRANSACTION, listingId, page],
+    queryFn: () => getHistoryTransaction(listingId, page),
+    staleTime: 3000,
+    cacheTime: 3000,
+    enabled: !!listingId,
+    onSuccess: (data: HistoryTransactionDto) => {
+      actionTransaction.setHistoryTransaction({
+        data: data?.data.map(
+          (item: HistoryTransactionListDto, idx: number) => ({
+            ...item,
+            id: idx,
+          })
+        ),
+        pagination: data.pagination,
+      });
+    },
+  });
+
   const onClickMarketItem = (listing_id: string) => {
+    console.log(listing_id);
+
     setOpenModalDetail(true);
     setListingId(listing_id);
   };

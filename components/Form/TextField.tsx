@@ -1,9 +1,9 @@
 import React from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
-import { TextFieldProps } from '@/types/form';
+import { InputFormProps } from '@/types/form';
 
-const TextFieldComponent = ({ name, ...other }: TextFieldProps) => {
+const TextFieldComponent = ({ name, ...other }: InputFormProps) => {
   const { control } = useFormContext();
 
   return (

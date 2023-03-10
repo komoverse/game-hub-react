@@ -1,30 +1,66 @@
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
+import { t } from 'i18next';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import CircularProgress from '@mui/material/CircularProgress';
 import { GridRowClassNameParams, GridValidRowModel } from '@mui/x-data-grid';
 
-import { getMarketActivity } from '@/services/games/activity';
-import { QueryKey } from '@/types/general';
 import { BasicTable } from '@/components/Table/BasicTable/style';
+import EmptyData from '@/components/EmptyData';
+import { QueryKey } from '@/types/general';
+import { getMarketActivity } from '@/services/games/activity';
+
 import { columns } from './constant';
-import { COLOR } from '@/utils/globalVariable';
+import { IMarketActivity } from '@/types/game/activity';
 
 const ActivityPage = () => {
   const router = useRouter();
   const { game: gameId } = router.query;
-  const { data, isError, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: [QueryKey.MARKET_ACTIVITY, gameId],
     queryFn: () => getMarketActivity(gameId as string),
+    staleTime: 3000,
+    cacheTime: 3000,
+    enabled: !!gameId,
   });
 
-  if (isError) {
-    return <div>Error</div>;
+  if (isLoading) {
+    return (
+      <Box sx={{ textAlign: 'center', p: 3 }}>
+        <CircularProgress size="2rem" color="success" />
+      </Box>
+    );
   }
 
-  if (isLoading) {
-    return <div>Loading</div>;
+  if (isError) {
+    return (
+      <Box sx={{ textAlign: 'center', p: 3 }}>
+        <Typography variant="h4" sx={{ fontWeight: 500 }}>
+          Something went wrong
+        </Typography>
+      </Box>
+    );
   }
+
+  if (!data?.length) {
+    return (
+      <EmptyData
+        title={t('game.commingSoon')}
+        message={t('game.commingSoonDescription')}
+      />
+    );
+  }
+
+  const mapRows = (data: IMarketActivity[] | undefined) => {
+    if (!data) return [];
+
+    return data.map((item, idx) => ({
+      ...item,
+      id: idx,
+    }));
+  };
 
   return (
     <Box
@@ -32,41 +68,28 @@ const ActivityPage = () => {
         padding: 2,
       }}
     >
-      <Typography variant="h3" sx={{ fontWeight: 500, textAlign: 'center' }}>
-        Recent Sales
+      <Typography
+        variant="h4"
+        sx={{ fontWeight: 500, textAlign: 'center', my: 2 }}
+      >
+        {t('game.recentSales')}
       </Typography>
-
-      <BasicTable
-        rows={data || []}
-        columns={columns}
-        pageSize={10}
-        disableColumnSelector
-        disableSelectionOnClick
-        disableColumnFilter
-        disableColumnMenu
-        autoHeight
-        getRowClassName={(params: GridRowClassNameParams<GridValidRowModel>) =>
-          params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
-        }
-        sx={{
-          marginTop: '16px',
-          border: '1px solid',
-          borderColor: 'divider',
-          '& .MuiDataGrid-columnHeaders': {
-            height: '50px',
-            borderBottom: 1,
-            borderColor: 'divider',
-            fontSize: 14,
-            background: COLOR.backgroundTableStriped1,
-          },
-          '& .MuiDataGrid-cell': {
-            borderBottom: 1,
-            borderColor: 'divider',
-            fontWeight: 500,
-            fontSize: '1rem',
-          },
-        }}
-      />
+      <Paper sx={{ height: '500px' }}>
+        <BasicTable
+          rows={mapRows(data)}
+          columns={columns}
+          disableSelectionOnClick
+          disableColumnMenu
+          disableColumnFilter
+          getRowClassName={(
+            params: GridRowClassNameParams<GridValidRowModel>
+          ) => (params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd')}
+          hideFooter
+          disableDensitySelector
+          disableColumnSelector
+          disableExtendRowFullWidth
+        />
+      </Paper>
     </Box>
   );
 };

@@ -1,5 +1,6 @@
 import Grid from '@mui/material/Grid';
 import { useQuery } from 'react-query';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { getGameTournamentLeaderboard } from '@/services/games/tournament';
 import { COLOR } from '@/utils/globalVariable';
@@ -42,7 +43,7 @@ const TournamentResult = ({
           alignItems: 'center',
         }}
       >
-        Loading...
+        <CircularProgress />
       </TournamentContentWrapper>
     );
   }
