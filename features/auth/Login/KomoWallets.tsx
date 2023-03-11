@@ -49,7 +49,7 @@ const KomoWallets = () => (
         }}
       >
         <Image
-          src="/komoverse-logo-full.png"
+          src="/logo.svg"
           alt="komoverse-logo"
           height={60}
           width={100}
