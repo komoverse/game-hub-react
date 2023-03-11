@@ -30,6 +30,11 @@ export const COLOR = {
   baseColorDivider: '#4E4E4E',
   baseGrayPieChart: '#333333',
   baseColorDanger: '#EB5757',
+  backgroundPaperResource: '#131313',
+  baseColorBorderResource: '#2C2C2C',
+  baseColorTextGrayResource: '#626262',
+  baseColorRead: '#272727',
+  baseColorOrange: '#FF7D04',
 };
 
 export const GRADIENT = {
@@ -37,6 +42,8 @@ export const GRADIENT = {
     'radial-gradient(292.31% 1418.72% at -18.64% -62.88%, #99EC13 0%, #088F2E 63.54%, #054D19 100%)',
   secondary:
     'linearGradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
+  tertiary:
+    'radial-gradient(126.27% 115.1% at 0% 100%, rgba(15, 210, 54, 0.54) 0%, rgba(0, 0, 0, 0.28) 100%)',
 };
 
 export const RADIUS = {

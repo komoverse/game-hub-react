@@ -87,6 +87,10 @@ export enum QueryKey {
   GAME_INSIGHT = 'gameInsight',
   MARKET_ACTIVITY = 'gameMarketActivity',
   HISTORY_TRANSACTION = 'historyTransaction',
+  ACADEMY = 'academy',
+  ACADEMY_DETAILS = 'academyDetails',
+  NEWS = 'news',
+  NEWS_DETAILS = 'newsDetails',
 }
 
 export enum MutationKey {
@@ -130,4 +134,8 @@ export type TooltipChartProps = {
   active: boolean;
   payload: any;
   label: string;
+};
+
+export type LayoutResourceProps = {
+  children: React.ReactNode;
 };

@@ -103,6 +103,9 @@ const lang = {
     format: 'zh-CN',
     errorMessage: '错误信息',
     or: '或',
+    published: '已发布',
+    notPublished: '未发布',
+    seeMore: '查看更多',
   },
   profile: {
     myAccount: '我的帐户',
@@ -130,6 +133,14 @@ const lang = {
     username: '用户名',
     password: '密码',
     email: '电子邮件',
+  },
+  resources: {
+    academy: '学院',
+    academyDescription:
+      '所有加密货币的一站式指南。 无论您是试图了解挖矿的初学者，还是希望投资 web3 市场的经验丰富的老手，我们都能满足您的需求',
+    news: '新闻',
+    newsDescription:
+      '跟踪有关 Komodo Metaverse 生态系统开发、合作伙伴关系等的最新消息。',
   },
 };
 export default lang;

@@ -1,3 +1,5 @@
-export default function News() {
-  return <div>Game News</div>;
+import News from '@/features/resources/News';
+
+export default function NewsPages() {
+  return <News />;
 }

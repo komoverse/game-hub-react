@@ -74,7 +74,7 @@ function Navbar({ toggleDrawer }: NavbarProps) {
               <Iconify icon="ic:baseline-menu" height={24} width={24} />
             </IconButton>
             <Image
-              src="/komoverse-logo-full.png"
+              src="/logo.svg"
               alt="komoverse-logo"
               height={40}
               width={84}

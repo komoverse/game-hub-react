@@ -34,3 +34,7 @@ export const FORGOT_PASSWORD = '/v2/forget-password';
 export const RESET_PASSWORD = '/v2/reset-password';
 export const HISTORY_TRANSACTION = '/v2/market/item/history';
 export const MARKET_ACTIVITY = '/v2/market/activity/{{game_id}}';
+export const ACADEMY = '/v2/academy';
+export const ACADEMY_DETAIL = '/v2/academy/{{lang}}/{{slug}}';
+export const NEWS = '/v2/news';
+export const NEWS_DETAIL = '/v2/news/{{lang}}/{{slug}}';

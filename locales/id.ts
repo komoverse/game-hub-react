@@ -108,6 +108,9 @@ const lang = {
     format: 'id-ID',
     errorMessage: 'Terjadi kesalahan. Silakan coba lagi nanti.',
     or: 'atau',
+    published: 'Diterbitkan',
+    notPublished: 'Tidak Diterbitkan',
+    seeMore: 'Lihat Lebih Banyak',
   },
   profile: {
     myAccount: 'Akun Saya',
@@ -134,6 +137,14 @@ const lang = {
     username: 'Nama Pengguna',
     password: 'Kata Sandi',
     email: 'Email',
+  },
+  resources: {
+    academy: 'Akademi',
+    academyDescription:
+      'Panduan sempurna Anda untuk semua hal di Crypto. Apakah Anda seorang pemula yang mencoba memahami penambangan atau seorang veteran yang ingin berinvestasi di pasar Web3, kami siap membantu Anda',
+    news: 'Berita',
+    newsDescription:
+      'Lacak terus berita terbaru tentang pengembangan ekosistem Komodo Metaverse, kemitraan, dan seterusnya',
   },
 };
 export default lang;

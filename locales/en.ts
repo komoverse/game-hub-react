@@ -109,6 +109,9 @@ const lang = {
     format: 'en-US',
     errorMessage: 'Something went wrong. Please try again later.',
     or: 'OR',
+    published: 'Published',
+    notPublished: 'Not Published',
+    seeMore: 'See More',
   },
   profile: {
     myAccount: 'My Account',
@@ -135,6 +138,14 @@ const lang = {
     username: 'Username',
     password: 'Password',
     email: 'Email',
+  },
+  resources: {
+    academy: 'Academy',
+    academyDescription:
+      'Your perfect guidance to all things in Crypto. Whether youre a beginner trying to understand mining or a veteran looking to invest in Web3 marketplace, weve got you covered.',
+    news: 'News',
+    newsDescription:
+      'Keep track of the latest news on Komodo Metaverse ecosystem development, partnership and beyond.',
   },
 };
 export default lang;
