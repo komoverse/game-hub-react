@@ -34,7 +34,7 @@ const FormRegistrationAccount = () => {
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
       <Image
-        src="/komoverse-logo-full.png"
+        src="/logo.svg"
         alt="komoverse-logo"
         height={66}
         width={138}
