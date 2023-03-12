@@ -47,7 +47,7 @@ const CardResources = ({
             objectFit: 'cover',
           }}
           sizes="100vw"
-          loading="lazy"
+          priority={true}
         />
       </CardContent>
       <CardActions>
@@ -101,8 +101,11 @@ const CardResources = ({
             {t('utils.seeMore')}
           </Button>
           <Typography color={COLOR.baseColorTextGrayResource} variant="body1">
-            {data?.visibility === 1 ? t('utils.published') : null}{' '}
-            {formatDate(data?.updated_at!, 'DD / MM / YYYY')}
+            {data?.visibility === 1
+              ? t('utils.published')
+              : t('utlis.notPublished')}{' '}
+            {data.updated_at !== null &&
+              formatDate(data?.updated_at!, 'DD / MM / YYYY')}
           </Typography>
         </Stack>
       </CardActions>

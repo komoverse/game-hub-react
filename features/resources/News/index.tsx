@@ -15,9 +15,10 @@ import {
 } from '@/features/resources/Components';
 import { t } from 'i18next';
 import useResponsive from '@/hooks/useResponsive';
+import secureLocalStorage from '@/utils/secureLocalStorage';
 
 const News = () => {
-  const { pathname, locale } = useRouter();
+  const { pathname, locale, push } = useRouter();
   const smDown = useResponsive('down', 'sm');
 
   const { data, isLoading } = useQuery<NewsDto[]>({
@@ -31,8 +32,9 @@ const News = () => {
     [data]
   );
 
-  const onClickDetail = (academy: AcademyDto) => {
-    Router.push(`/news/${academy.id}/${academy.slug}`);
+  const onClickDetail = (slug: string) => {
+    push(`/news/${slug}`);
+    secureLocalStorage.setItem('slug', JSON.stringify(slug));
   };
 
   React.useEffect(() => {
@@ -63,7 +65,7 @@ const News = () => {
               <MainCard
                 key={academy.id}
                 data={academy}
-                onClick={() => onClickDetail(academy)}
+                onClick={() => onClickDetail(academy.slug)}
               />
             ))}
 
@@ -83,7 +85,7 @@ const News = () => {
                     <Grid item>
                       <CardResources
                         data={academy}
-                        onClick={() => onClickDetail(academy)}
+                        onClick={() => onClickDetail(academy.slug)}
                       />
                     </Grid>
                   </Grid>

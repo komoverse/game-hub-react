@@ -146,6 +146,7 @@ const lang = {
     news: 'News',
     newsDescription:
       'Keep track of the latest news on Komodo Metaverse ecosystem development, partnership and beyond.',
+    shareVia: 'Share via',
   },
 };
 export default lang;

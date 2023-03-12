@@ -141,6 +141,7 @@ const lang = {
     news: '新闻',
     newsDescription:
       '跟踪有关 Komodo Metaverse 生态系统开发、合作伙伴关系等的最新消息。',
+    shareVia: '分享',
   },
 };
 export default lang;

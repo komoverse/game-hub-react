@@ -1,4 +1,4 @@
-import { getNewsDetail } from '@/services/resources';
+import { getAcademyDetail } from '@/services/resources';
 import React from 'react';
 import { QueryKey } from '@/types/general';
 import { useQuery } from 'react-query';
@@ -17,15 +17,15 @@ const Detail = ({ url }: { url: string }) => {
   const smDown = useResponsive('down', 'sm');
 
   const { data, isLoading } = useQuery({
-    queryKey: QueryKey.NEWS_DETAILS,
-    queryFn: () => getNewsDetail(router.locale as string, params),
+    queryKey: QueryKey.ACADEMY_DETAILS,
+    queryFn: () => getAcademyDetail(router.locale as string, params),
     staleTime: 3000,
     cacheTime: 3000,
     enabled: !!params,
   });
 
   React.useEffect(() => {
-    getNewsDetail(router.locale as string, params);
+    getAcademyDetail(router.locale as string, params);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.locale]);
 

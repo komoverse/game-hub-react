@@ -3,7 +3,7 @@ import useResponsive from '@/hooks/useResponsive';
 import { COLOR, KomoverseTag } from '@/utils/globalVariable';
 import { Button, CardContent, Typography, Box } from '@mui/material';
 import Image from 'next/image';
-import { AcademyDto, AcademyLevel } from '@/types/resources';
+import { AcademyDto } from '@/types/resources';
 import { t } from 'i18next';
 import { formatDate } from '@/helper/date';
 import { colorLevel } from './constant';
@@ -39,7 +39,7 @@ const MainCard = ({
           objectFit: 'cover',
         }}
         sizes="100vw"
-        loading="lazy"
+        priority={true}
       />
       <Typography
         variant="body1"
@@ -96,7 +96,8 @@ const MainCard = ({
           </Button>
           <Typography color={COLOR.baseColorTextGrayResource} variant="body1">
             {data?.visibility === 1 ? t('utils.published') : null}{' '}
-            {formatDate(data?.updated_at!, 'DD / MM / YYYY')}
+            {data.updated_at !== null &&
+              formatDate(data?.updated_at!, 'DD / MM / YYYY')}
           </Typography>
         </>
       ) : (
@@ -138,7 +139,8 @@ const MainCard = ({
             {data?.visibility === 1
               ? t('utils.published')
               : t('utlis.notPublished')}{' '}
-            {formatDate(data?.updated_at!, 'DD / MM / YYYY')}
+            {data.updated_at !== null &&
+              formatDate(data?.updated_at!, 'DD / MM / YYYY')}
           </Typography>
         </Box>
       )}

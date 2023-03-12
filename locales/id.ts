@@ -145,6 +145,7 @@ const lang = {
     news: 'Berita',
     newsDescription:
       'Lacak terus berita terbaru tentang pengembangan ekosistem Komodo Metaverse, kemitraan, dan seterusnya',
+    shareVia: 'Bagikan melalui',
   },
 };
 export default lang;

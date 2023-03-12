@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutResourceProps) => {
     },
     {
       name: 'facebook',
-      link: 'https://www.facebook.com/komoverse/',
+      link: 'https://www.instagram.com/komoverse/',
       icon: 'gg:facebook',
     },
     {
@@ -35,12 +35,12 @@ const Layout = ({ children }: LayoutResourceProps) => {
     },
     {
       name: 'youtube',
-      link: 'https://www.youtube.com/channel/UCZ1Z2Z3Z4Z5Z6Z7Z8Z9Z10',
+      link: 'https://www.youtube.com/c/komoverse',
       icon: 'mdi:youtube',
     },
     {
       name: 'discord',
-      link: 'https://discord.gg/2Z3Z4Z5Z6Z7Z8Z9Z10',
+      link: 'https://discord.com/invite/komoverse',
       icon: 'ic:baseline-discord',
     },
   ];
@@ -58,7 +58,7 @@ const Layout = ({ children }: LayoutResourceProps) => {
             priority={true}
             style={{ cursor: 'pointer', margin: 'auto', marginTop: '3rem' }}
           />
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Stack direction="row" justifyContent="center">
             {socmed.map((item, idx: number) => (
               <Iconify
                 key={idx}
@@ -69,7 +69,7 @@ const Layout = ({ children }: LayoutResourceProps) => {
                 onClick={() => window.open(item.link, '_blank')}
               />
             ))}
-          </Box>
+          </Stack>
           <Typography variant="body2">©{new Date().getFullYear()}</Typography>
         </Stack>
       </Footer>
