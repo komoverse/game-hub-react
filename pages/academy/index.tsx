@@ -1,9 +1,5 @@
-function Academy() {
-  return (
-    <div>
-      <h1>Academy</h1>
-    </div>
-  );
-}
+import Academy from '@/features/resources/Academy';
 
-export default Academy;
+export default function AcademyPages() {
+  return <Academy />;
+}
