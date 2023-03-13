@@ -12,6 +12,7 @@ import { Navigation } from 'swiper';
 import { SectionWrapperCard } from '@/utils/globalVariable';
 import useResponsive from '@/hooks/useResponsive';
 import { QueryKey } from '@/types/general';
+import { useRouter } from 'next/router';
 
 const PopupVidio = ({
   videoId,
@@ -33,6 +34,7 @@ const PopupVidio = ({
 const MemoizedPopup = React.memo(PopupVidio);
 
 const Featured = () => {
+  const { pathname } = useRouter();
   const { t } = useTranslation();
   const [activeVideo, setActiveVideo] = React.useState<string | null>(null);
   const [isOpen, setOpen] = React.useState(false);
@@ -45,6 +47,7 @@ const Featured = () => {
     queryFn: () => getListFeatured(),
     staleTime: 3000,
     refetchOnMount: false,
+    enabled: pathname === '/',
   });
 
   const onMouseLeave = () => setActiveVideo(null);

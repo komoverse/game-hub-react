@@ -6,11 +6,16 @@ import Featured from './FeaturedContent';
 import NewListings from './NewListing';
 import Events from './Event';
 import { QueryKey } from '@/types/general';
+import { useRouter } from 'next/router';
 
 const MainPage = () => {
+  const { pathname } = useRouter();
   const { data: slideshowData, isSuccess } = useQuery({
     queryKey: QueryKey.SLIDESHOW,
     queryFn: () => getSlideshow(),
+    staleTime: 3000,
+    refetchOnMount: false,
+    enabled: pathname === '/',
   });
 
   return (

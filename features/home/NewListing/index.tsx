@@ -35,8 +35,10 @@ import actionToast from '@/store/toast/action';
 import actionTransaction from '@/store/historyTransaction/action';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
+import { useRouter } from 'next/router';
 
 const NewListings = () => {
+  const { pathname } = useRouter();
   const { t } = useTranslation();
   const [open, setOpen] = React.useState<boolean>(false);
   const [listingId, setListingId] = React.useState<string>('');
@@ -48,6 +50,7 @@ const NewListings = () => {
     queryFn: () => getListRecent(),
     staleTime: 3000,
     refetchOnMount: false,
+    enabled: pathname === '/',
   });
 
   const { isSuccess: marketSuccess } = useQuery({
