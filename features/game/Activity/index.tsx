@@ -23,7 +23,7 @@ const ActivityPage = () => {
     queryFn: () => getMarketActivity(gameId as string),
     staleTime: 3000,
     cacheTime: 3000,
-    enabled: !!gameId,
+    enabled: router.pathname === '/game/[game]/activity',
   });
 
   if (isLoading) {

@@ -37,7 +37,7 @@ const Mints = () => {
     queryFn: () => getGameMintPhase(gameId as string),
     staleTime: 3000,
     cacheTime: 3000,
-    enabled: !!gameId,
+    enabled: router.pathname !== '/game/[game]/mint' && !!gameId,
     onError: (error: ErrorResponseDto) => error,
   });
 

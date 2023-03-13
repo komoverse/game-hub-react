@@ -20,8 +20,12 @@ const TournamentPage = () => {
     data: tournaments,
     isError,
     isLoading,
-  } = useQuery(['getTournament', gameId], () =>
-    getGameTournaments(gameId as string)
+  } = useQuery(
+    ['getTournament', gameId],
+    () => getGameTournaments(gameId as string),
+    {
+      enabled: router.pathname !== '/game/[game]/tournament' && !!gameId,
+    }
   );
 
   // loading component with box

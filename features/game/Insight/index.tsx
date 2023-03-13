@@ -35,7 +35,7 @@ const Insight = () => {
   const { data, isLoading } = useQuery<InsightDto | null>({
     queryKey: QueryKey.GAME_INSIGHT,
     queryFn: () => getInsight(gameId as string),
-    enabled: !!gameId,
+    enabled: router.pathname !== '/game/[game]/insight' && !!gameId,
     onSuccess: (data: InsightDto | null) => data,
     onError: (error: any) => {
       actionToast.setToast({
