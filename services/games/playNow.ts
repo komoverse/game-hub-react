@@ -1,7 +1,11 @@
 import komoverseAxiosIns from '@/helper/headers';
-import { PLAY_NOW } from '@/helper/url';
+import { GAME_PLAY_NOW } from '@/helper/url';
+import { IPlayNow } from '@/types/game/playNow';
 
-export const getPlayNow = async (gameId: string) => {
-  const { data } = await komoverseAxiosIns.get(`${PLAY_NOW}/${gameId}`);
+export const getGamePlayableFiles = async (
+  gameId: string
+): Promise<IPlayNow[]> => {
+  const { data } = await komoverseAxiosIns.get(`${GAME_PLAY_NOW}/${gameId}`);
+
   return data.data;
 };

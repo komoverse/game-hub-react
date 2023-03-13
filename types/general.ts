@@ -84,6 +84,7 @@ export enum QueryKey {
   PORTFOLIO = 'portfolio',
   PROFILE = 'profile',
   SLIDESHOW = 'slideshow',
+  PLAY_NOW = 'gamePlayNow',
   GAME_INSIGHT = 'gameInsight',
   MARKET_ACTIVITY = 'gameMarketActivity',
   HISTORY_TRANSACTION = 'historyTransaction',
