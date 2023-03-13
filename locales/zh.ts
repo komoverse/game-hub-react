@@ -92,6 +92,17 @@ const lang = {
     downloadGame: '下载 {{gameName}}',
     downloadGameDescription: '你已经下载了这个游戏。 祝你好运，玩得开心！',
   },
+  marketItems: {
+    filters: '过滤器',
+    search: '搜索',
+    showMyItems: '显示我的项目',
+    sortDateAsc: '日期: 新到旧',
+    sortDateDesc: '日期: 旧到新',
+    sortPriceAsc: '价格: 低到高',
+    sortPriceDesc: '价格: 高到低',
+    volume: '{{volume}} 交易量',
+    floor: '{{floor}} 地板',
+  },
   auth: {
     signInGoogle: '用谷歌登录',
     signInTwitter: '用Twitter登录',

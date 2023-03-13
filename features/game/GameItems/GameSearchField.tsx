@@ -9,6 +9,7 @@ import {
   SelectChangeEvent,
   TextField,
 } from '@mui/material';
+import { t } from 'i18next';
 
 const GameSearchField = ({
   sortKey,
@@ -32,7 +33,7 @@ const GameSearchField = ({
     >
       <TextField
         onChange={(event) => setKeyword(event.target.value)}
-        placeholder="Search..."
+        placeholder={`${t('marketItems.search')}...`}
         sx={{
           flexGrow: 1,
           '& .MuiOutlinedInput-root': {
@@ -60,10 +61,12 @@ const GameSearchField = ({
             />
           }
         >
-          <MenuItem value="DATE_ASC">Date: New to Old</MenuItem>
-          <MenuItem value="DATE_DESC">Date: Old to New</MenuItem>
-          <MenuItem value="PRICE_ASC">Price: Low to High</MenuItem>
-          <MenuItem value="PRICE_DESC">Price: High to Low</MenuItem>
+          <MenuItem value="DATE_ASC">{t('marketItems.sortDateAsc')}</MenuItem>
+          <MenuItem value="DATE_DESC">{t('marketItems.sortDateDesc')}</MenuItem>
+          <MenuItem value="PRICE_ASC">{t('marketItems.sortPriceAsc')}</MenuItem>
+          <MenuItem value="PRICE_DESC">
+            {t('marketItems.sortPriceAsc')}
+          </MenuItem>
         </Select>
       </FormControl>
     </Box>

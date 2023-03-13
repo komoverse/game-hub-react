@@ -101,6 +101,17 @@ const lang = {
     downloadGameDescription:
       'आपने इस गेम को डाउनलोड कर लिया है। गुड लक मजे करो!',
   },
+  marketItems: {
+    filters: 'फ़िल्टर',
+    search: 'खोज',
+    showMyItems: 'मेरी आइटम दिखाएं',
+    sortDateAsc: 'दिनांक: नया से पुराना',
+    sortDateDesc: 'दिनांक: पुराना से नया',
+    sortPriceAsc: 'कीमतों का उतार - चढ़ाव',
+    sortPriceDesc: 'मूल्य: उच्च से निम्न',
+    volume: '{{volume}} आयतन',
+    floor: '{{floor}} फ्लोर',
+  },
   auth: {
     signInGoogle: 'Google के साथ साइन इन करें',
     signInTwitter: 'Twitter के साथ साइन इन करें',

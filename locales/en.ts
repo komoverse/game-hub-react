@@ -103,6 +103,17 @@ const lang = {
     downloadGameDescription:
       'You have download this game. Good Luck & Have Fun!',
   },
+  marketItems: {
+    filters: 'Filters',
+    search: 'Search',
+    showMyItems: 'Show only your items',
+    sortDateAsc: 'Date: New to Old',
+    sortDateDesc: 'Date: Old to New',
+    sortPriceAsc: 'Price: Low to High',
+    sortPriceDesc: 'Price: High to Low',
+    volume: '{{volume}} volume',
+    floor: '{{floor}} floor',
+  },
   auth: {
     signInGoogle: 'Sign in with Google',
     signInTwitter: 'Sign in with Twitter',

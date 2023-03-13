@@ -11,6 +11,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { useSelector } from 'react-redux';
 import { ReduxState } from '@/types/redux';
+import { t } from 'i18next';
 
 import { getCollectionItems, getMarketCollections } from '@/services/games';
 import useDebounce from '@/hooks/useDebounce';
@@ -26,15 +27,6 @@ import GameSearchField from './GameSearchField';
 import { mapFilters, mapMarketItems } from './helpers';
 import { HistoryTransactionDto, HistoryTransactionListDto } from '@/types/home';
 import actionTransaction from '@/store/historyTransaction/action';
-import actionToast from '@/store/toast/action';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 
 const GameMarket = () => {
   const router = useRouter();
@@ -176,7 +168,7 @@ const GameMarket = () => {
                 onChange={onDisplayUserItems}
               />
             }
-            label="Show only your items"
+            label={t('marketItems.showMyItems')}
           />
         </Box>
 

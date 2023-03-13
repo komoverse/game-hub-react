@@ -102,6 +102,17 @@ const lang = {
     downloadGameDescription:
       'Anda telah mengunduh game ini. Semoga Sukses & Bersenang-senang!',
   },
+  marketItems: {
+    filters: 'Filter',
+    search: 'Cari',
+    showMyItems: 'Tampilkan Item Saya',
+    sortDateAsc: 'Tanggal: Baru ke Lama',
+    sortDateDesc: 'Tanggal: Lama ke Baru',
+    sortPriceAsc: 'Harga: Rendah ke Tinggi',
+    sortPriceDesc: 'Harga: Tinggi ke Rendah',
+    volume: '{{volume}} volume',
+    floor: '{{floor}} lantai',
+  },
   auth: {
     signInGoogle: 'Masuk dengan Google',
     signInTwitter: 'Masuk dengan Twitter',
