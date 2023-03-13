@@ -1,5 +1,5 @@
-import PlayNowPage from '@/features/game/PlayNow';
+import PlayNow from '@/features/game/Playnow';
 
-export default function PlayNow() {
-  return <PlayNowPage />;
+export default function PlayNowPages() {
+  return <PlayNow />;
 }

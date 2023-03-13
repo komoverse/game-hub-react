@@ -92,6 +92,8 @@ export enum QueryKey {
   ACADEMY_DETAILS = 'academyDetails',
   NEWS = 'news',
   NEWS_DETAILS = 'newsDetails',
+  PLAY_NOW = 'playNow',
+  GAMES = 'games',
 }
 
 export enum MutationKey {
@@ -140,3 +142,12 @@ export type TooltipChartProps = {
 export type LayoutResourceProps = {
   children: React.ReactNode;
 };
+
+export enum Extenstion {
+  PNG = 'png',
+  JPG = 'jpg',
+  JPEG = 'jpeg',
+  SVG = 'svg',
+  WEBP = 'webp',
+  MP4 = 'mp4',
+}

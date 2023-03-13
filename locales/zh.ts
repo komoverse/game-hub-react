@@ -76,6 +76,11 @@ const lang = {
     discordMembers: 'Discord成员',
     telegramMembers: 'Telegram成员',
     recentSales: '最近销售',
+    exploreAllgames: '探索所有游戏',
+    exploreGameDescription: '发现热门的 NFT 游戏和内容',
+    download: '下载',
+    downloadGame: '下载 {{gameName}}',
+    downloadGameDescription: '你已经下载了这个游戏。 祝你好运，玩得开心！',
   },
   auth: {
     signInGoogle: '用谷歌登录',

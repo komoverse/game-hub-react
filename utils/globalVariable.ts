@@ -35,6 +35,8 @@ export const COLOR = {
   baseColorTextGrayResource: '#626262',
   baseColorRead: '#272727',
   baseColorOrange: '#FF7D04',
+  baseBorderGray: '#2E2E2E',
+  baseColorDownload: '#CFCFCF',
 };
 
 export const GRADIENT = {

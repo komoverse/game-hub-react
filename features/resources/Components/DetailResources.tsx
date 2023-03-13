@@ -23,7 +23,7 @@ const DetailResources = ({ data, url }: { data: NewsDto; url: string }) => {
   const socmed: { icon: JSX.Element }[] = [
     {
       icon: (
-        <FacebookShareButton url={url} quote={data.title}>
+        <FacebookShareButton url={url} quote={data?.title}>
           <Iconify
             icon="gg:facebook"
             height={24}
@@ -35,7 +35,7 @@ const DetailResources = ({ data, url }: { data: NewsDto; url: string }) => {
     },
     {
       icon: (
-        <TwitterShareButton url={url} title={data.title} via="komoverse">
+        <TwitterShareButton url={url} title={data?.title} via="komoverse">
           <Iconify
             icon="mdi:twitter"
             height={24}
@@ -47,7 +47,7 @@ const DetailResources = ({ data, url }: { data: NewsDto; url: string }) => {
     },
     {
       icon: (
-        <RedditShareButton url={url} title={data.title}>
+        <RedditShareButton url={url} title={data?.title}>
           <Iconify
             icon="basil:reddit-solid"
             height={24}
@@ -59,7 +59,7 @@ const DetailResources = ({ data, url }: { data: NewsDto; url: string }) => {
     },
     {
       icon: (
-        <LinkedinShareButton url={url} title={data.title}>
+        <LinkedinShareButton url={url} title={data?.title}>
           <Iconify
             icon="ri:linkedin-fill"
             height={24}
@@ -71,7 +71,7 @@ const DetailResources = ({ data, url }: { data: NewsDto; url: string }) => {
     },
     {
       icon: (
-        <WhatsappShareButton url={url} title={data.title}>
+        <WhatsappShareButton url={url} title={data?.title}>
           <Iconify
             icon="ic:baseline-whatsapp"
             height={24}

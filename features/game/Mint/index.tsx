@@ -54,7 +54,7 @@ const Mints = () => {
 
   if (isLoading) {
     return (
-      <Box sx={{ p: 5 }}>
+      <Box sx={{ p: 5, textAlign: 'center' }}>
         <CircularProgress size="2rem" color="success" />
       </Box>
     );

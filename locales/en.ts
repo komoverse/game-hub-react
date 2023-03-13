@@ -81,6 +81,12 @@ const lang = {
     discordMembers: 'Discord Members',
     telegramMembers: 'Telegram Members',
     recentSales: 'Recent Sales',
+    exploreAllgames: 'Explore all Games',
+    exploreGameDescription: 'Discover trending games and NFT content',
+    download: 'Download',
+    downloadGame: 'Download {{gameName}}',
+    downloadGameDescription:
+      'You have download this game. Good Luck & Have Fun!',
   },
   auth: {
     signInGoogle: 'Sign in with Google',

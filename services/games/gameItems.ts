@@ -1,6 +1,10 @@
 import { IMarketCollection, IMarketItem } from '@/types/game/market';
 import komoverseAxiosIns from 'helper/headers';
-import { GAME_MARKET_COLLECTIONS, GAME_COLLECTION_ITEMS } from 'helper/url';
+import {
+  GAME_MARKET_COLLECTIONS,
+  GAME_COLLECTION_ITEMS,
+  GAME_DETAILS,
+} from 'helper/url';
 
 export const getMarketCollections = async (gameId: string) => {
   const { data } = await komoverseAxiosIns.get(
@@ -19,4 +23,9 @@ export const getCollectionItems = async (collectionId: string) => {
   );
 
   return data.data as IMarketItem[];
+};
+
+export const getAllGames = async () => {
+  const { data } = await komoverseAxiosIns.get(GAME_DETAILS);
+  return data.data;
 };
