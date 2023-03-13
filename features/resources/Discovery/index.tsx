@@ -145,7 +145,7 @@ const Discovery = () => {
                             variant="h6"
                             sx={{ fontWeight: 500, mr: 1 }}
                           >
-                            3
+                            {game.review_rating}
                           </Typography>
                           <Rating value={1} max={1} readOnly />
                         </Box>
