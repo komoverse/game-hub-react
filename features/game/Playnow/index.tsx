@@ -1,131 +1,148 @@
-import React from 'react';
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CircularProgress,
-  Grid,
-  Stack,
-  Typography,
-} from '@mui/material';
-import { COLOR, RADIUS } from '@/utils/globalVariable';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
-import Iconify from '@/components/Iconify';
-import FileDownloadSharpIcon from '@mui/icons-material/FileDownloadSharp';
-import { t } from 'i18next';
 import { useQuery } from 'react-query';
-import { QueryKey } from '@/types/general';
-import { getPlayNow } from '@/services/games';
-import { GameDto, GameType } from '@/types/game';
 
-const PlayNow = () => {
+import { getGamePlayableFiles } from '@/services/games/playNow';
+import { QueryKey } from '@/types/general';
+import Iconify from '@/components/Iconify';
+import { IPlayNow } from '@/types/game/playNow';
+import { CircularProgress } from '@mui/material';
+
+function generateDownloadThumbnail(data: IPlayNow) {
+  const { type } = data;
+  const lable = {
+    icon: 'mdi:windows',
+    label: 'Windows',
+  };
+  switch (true) {
+    case type.includes('mac'):
+      return {
+        icon: 'mdi:apple',
+        label: 'MacOs',
+      };
+    case type.includes('linux'):
+      return {
+        icon: 'mdi:linux',
+        label: 'Linux',
+      };
+    case type.includes('android'):
+      return {
+        icon: 'mdi:android',
+        label: 'Android',
+      };
+    case type.includes('app_store'):
+      return {
+        icon: 'mdi:apple',
+        label: 'App Store',
+      };
+    case type.includes('google_play'):
+      return {
+        icon: 'mdi:google-play',
+        label: 'Google Play',
+      };
+    default:
+      return lable;
+  }
+}
+
+const PlayNowPage = () => {
   const router = useRouter();
   const { game: gameId } = router.query;
-
-  const { data, isLoading } = useQuery<GameDto[]>({
-    queryKey: QueryKey.PLAY_NOW,
-    queryFn: () => getPlayNow(gameId as string),
-    staleTime: 3000,
-    cacheTime: 3000,
-    enabled: !!gameId,
+  const { data, isError, isLoading } = useQuery({
+    queryKey: [QueryKey.PLAY_NOW, gameId],
+    queryFn: () => getGamePlayableFiles(gameId as string),
   });
+
+  if (isError) {
+    return <div>Error</div>;
+  }
 
   if (isLoading) {
     return (
-      <Box sx={{ p: 5, textAlign: 'center' }}>
-        <CircularProgress size="2rem" color="success" />
+      <Box
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <CircularProgress />
       </Box>
     );
   }
 
-  const isGameIcon = (gameType: string) => {
-    switch (gameType) {
-      case GameType.WINDOWS:
-        return 'ri:windows-fill';
-      case GameType.WEBGL:
-        return 'simple-icons:webgl';
-      case GameType.GOOGLE_PLAY_STORE:
-        return 'mdi:google-play';
-      default:
-        return '';
-    }
-  };
+  const mappedData = data?.map((item) => ({
+    ...item,
+    ...generateDownloadThumbnail(item),
+  }));
 
   return (
-    <Box sx={{ my: 10 }}>
-      <Grid container justifyContent="center">
-        <Grid item xl={5} lg={5} md={8} sm={11} xs={11}>
-          <CardContent
-            sx={{
-              backgroundColor: COLOR.backgroundCardSemiBlack,
-              borderRadius: RADIUS.medium,
-            }}
-          >
-            <Stack spacing={4}>
-              <Box>
-                <Typography variant="h4" sx={{ textAlign: 'center' }}>
-                  {t('game.downloadGame', {
-                    gameName: gameId?.toString().toUpperCase(),
-                  })}
-                </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{ textAlign: 'center', fontWeight: 400 }}
-                >
-                  {t('game.downloadGameDescription')}
-                </Typography>
-              </Box>
-            </Stack>
-            <Grid container spacing={2} justifyContent="center" sx={{ mt: 4 }}>
-              {data?.map((game) => {
-                const isGameName =
-                  game.type === GameType.WINDOWS ? 'Windows' : 'Google Play';
+    <Container sx={{ margin: '64px auto' }} maxWidth="sm">
+      <Paper
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '2rem',
+        }}
+      >
+        <Box sx={{ width: '450px', textAlign: 'center' }}>
+          <Typography variant="h3">Download KomoChess</Typography>
+          <Typography variant="h5" fontWeight={400}>
+            You have download this game. Good Luck & Have Fun!
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            marginTop: '4rem',
+            gap: '24px',
+          }}
+        >
+          {mappedData?.map((item, i) => (
+            <Box
+              key={i}
+              sx={{
+                border: '1px solid #2E2E2E',
+                padding: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '8px',
+              }}
+            >
+              <Iconify icon={item.icon} height={64} width={64} />
+              <Typography variant="h6">{item.label}</Typography>
+              <Button
+                variant="outlined"
+                sx={{
+                  marginTop: '12px',
+                  border: '1px solid #CFCFCF',
+                  borderRadius: '20px',
+                  color: '#CFCFCF',
 
-                return (
-                  <Grid item key={game.id} xl={4} lg={4} md={4} sm={11} xs={11}>
-                    <CardContent
-                      sx={{
-                        boxShadow: 'none',
-                        border: `1px solid ${COLOR.baseBorderGray}`,
-                        borderRadius: RADIUS.medium,
-                      }}
-                    >
-                      <Stack spacing={3}>
-                        <Box>
-                          <Iconify
-                            icon={isGameIcon(game.type)}
-                            width={70}
-                            height={70}
-                            sx={{ margin: 'auto', display: 'block' }}
-                          />
-                          <Typography variant="subtitle1" textAlign="center">
-                            {isGameName}
-                          </Typography>
-                        </Box>
-                        <Button
-                          endIcon={<FileDownloadSharpIcon />}
-                          sx={{
-                            border: `1px solid ${COLOR.baseColorDownload}`,
-                            color: COLOR.baseWhite,
-                            textTransform: 'uppercase',
-                            borderRadius: 50,
-                          }}
-                          onClick={() => window.open(game.value, '_blank')}
-                        >
-                          {t('game.download')}
-                        </Button>
-                      </Stack>
-                    </CardContent>
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </CardContent>
-        </Grid>
-      </Grid>
-    </Box>
+                  '&:hover': {
+                    border: '1px solid #CFCFCF',
+                    color: '#CFCFCF',
+                    backgroundColor: '#2E2E2E',
+                  },
+                }}
+                endIcon={<Iconify icon="ic:twotone-download-for-offline" />}
+                onClick={() => window.open(item.value, '_blank')}
+              >
+                Download
+              </Button>
+            </Box>
+          ))}
+        </Box>
+      </Paper>
+    </Container>
   );
 };
 
-export default PlayNow;
+export default PlayNowPage;
