@@ -104,6 +104,7 @@ const lang = {
     komoverseSignInDescription:
       'Play in Komoverse tournaments and games live. Login with Google, Twitter or Discord. Work on mobile. No download required. Only you control the keys.',
     forgotPassword: 'Forgot Password?',
+    rememberMe: 'Remember Me',
     register: 'Register',
     forgotPasswordDescription:
       'Please enter your email address. You will receive a link to create a new password via email.',

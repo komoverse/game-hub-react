@@ -97,6 +97,7 @@ const lang = {
     komoverseWallet: 'Komoverse钱包',
     komoverseSignInDescription: 'Komoverse钱包是Komoverse的官方钱包。它是',
     forgotPassword: '忘记密码？',
+    rememberMe: '记住账号',
     register: '达夫塔尔',
     forgotPasswordDescription:
       '请输入您的电子邮件地址。 您将通过电子邮件收到创建新密码的链接。',

@@ -102,6 +102,7 @@ const lang = {
     komoverseSignInDescription:
       'Komoverse वॉलेट Komoverse का आधिकारिक वॉलेट है। यह',
     forgotPassword: 'पासवर्ड भूल गए?',
+    rememberMe: 'पहचाना की नहीं',
     register: 'दफ्तर',
     forgotPasswordDescription:
       'कृपया अपना ईमेल एड्रेस इंटर करें। आपको ईमेल द्वारा नया पासवर्ड बनाने के लिए एक लिंक प्राप्त होगा।',

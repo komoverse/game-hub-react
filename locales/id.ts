@@ -103,6 +103,7 @@ const lang = {
     komoverseSignInDescription:
       'Bermain di turnamen dan permainan Komoverse secara langsung. Masuk dengan Google, Twitter atau Discord. Bekerja di ponsel. Tidak perlu mengunduh. Hanya Anda yang mengendalikan kunci.',
     forgotPassword: 'Lupa Password?',
+    rememberMe: 'Ingat Saya',
     register: 'Daftar',
     forgotPasswordDescription:
       'Masukkan alamat email Anda. Anda akan menerima tautan untuk membuat kata sandi baru melalui email.',
