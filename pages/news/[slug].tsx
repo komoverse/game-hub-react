@@ -1,12 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
-import dynamic from 'next/dynamic';
-
-const DetailDynamic = dynamic(
-  () => import('@/features/resources/News/Detail'),
-  {
-    ssr: false,
-  }
-);
+import DetailDynamic from '@/features/resources/Academy/Detail';
 
 const NewsPagesDetail = ({ fullUrl }: { fullUrl: string }) => {
   return <DetailDynamic url={fullUrl} />;
