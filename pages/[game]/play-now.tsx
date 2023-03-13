@@ -1,3 +1,5 @@
-export default function PlayNow() {
-  return <div>PlayNow</div>;
+import PlayNow from '@/features/game/Playnow';
+
+export default function PlayNowPages() {
+  return <PlayNow />;
 }

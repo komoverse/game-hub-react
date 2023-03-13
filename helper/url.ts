@@ -37,3 +37,4 @@ export const MARKET_ACTIVITY = '/v2/market/activity/{{game_id}}';
 export const ACADEMY = '/v2/academy';
 export const ACADEMY_DETAIL = '/v2/academy/{{lang}}/{{slug}}';
 export const NEWS = '/v2/news';
+export const PLAY_NOW = '/v2/play/game';
