@@ -92,8 +92,8 @@ export enum QueryKey {
   ACADEMY_DETAILS = 'academyDetails',
   NEWS = 'news',
   NEWS_DETAILS = 'newsDetails',
-  PLAY_NOW = 'playNow',
   GAMES = 'games',
+  OVERVIEW = 'overview',
 }
 
 export enum MutationKey {
