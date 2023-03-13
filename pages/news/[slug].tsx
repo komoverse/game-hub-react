@@ -1,8 +1,12 @@
 import { GetServerSidePropsContext } from 'next';
-import DetailDynamic from '@/features/resources/Academy/Detail';
+import dynamic from 'next/dynamic';
+
+const Detail = dynamic(() => import('@/features/resources/News/Detail'), {
+  ssr: false,
+});
 
 const NewsPagesDetail = ({ fullUrl }: { fullUrl: string }) => {
-  return <DetailDynamic url={fullUrl} />;
+  return <Detail url={fullUrl} />;
 };
 
 export default NewsPagesDetail;

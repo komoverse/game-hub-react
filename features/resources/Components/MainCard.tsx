@@ -96,7 +96,7 @@ const MainCard = ({
           </Button>
           <Typography color={COLOR.baseColorTextGrayResource} variant="body1">
             {data?.visibility === 1 ? t('utils.published') : null}{' '}
-            {data.updated_at !== null &&
+            {data?.updated_at !== null &&
               formatDate(data?.updated_at!, 'DD / MM / YYYY')}
           </Typography>
         </>
@@ -139,7 +139,7 @@ const MainCard = ({
             {data?.visibility === 1
               ? t('utils.published')
               : t('utlis.notPublished')}{' '}
-            {data.updated_at !== null &&
+            {data?.updated_at !== null &&
               formatDate(data?.updated_at!, 'DD / MM / YYYY')}
           </Typography>
         </Box>

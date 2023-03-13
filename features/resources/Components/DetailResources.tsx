@@ -123,7 +123,7 @@ const DetailResources = ({ data, url }: { data: NewsDto; url: string }) => {
           {data?.visibility === 1
             ? t('utils.published')
             : t('utlis.notPublished')}{' '}
-          {data.updated_at !== null &&
+          {data?.updated_at !== null &&
             formatDate(data?.updated_at!, 'DD / MM / YYYY')}
         </Typography>
         <p
