@@ -80,6 +80,12 @@ const lang = {
     discordMembers: 'Anggota Discord',
     telegramMembers: 'Anggota Telegram',
     recentSales: 'Penjualan Terbaru',
+    exploreAllgames: 'Jelajahi semua Game',
+    exploreGameDescription: 'Temukan game dan konten NFT yang sedang tren',
+    download: 'Unduh',
+    downloadGame: 'Unduh {{gameName}}',
+    downloadGameDescription:
+      'Anda telah mengunduh game ini. Semoga Sukses & Bersenang-senang!',
   },
   auth: {
     signInGoogle: 'Masuk dengan Google',

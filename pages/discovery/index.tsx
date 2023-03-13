@@ -1,9 +1,7 @@
+import Discovery from '@/features/resources/Discovery';
+
 const GameDiscovery = () => {
-  return (
-    <div>
-      <h1>Game Discovery</h1>
-    </div>
-  );
+  return <Discovery />;
 };
 
 export default GameDiscovery;

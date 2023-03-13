@@ -79,6 +79,12 @@ const lang = {
     discordMembers: 'Discord सदस्य',
     telegramMembers: 'टेलीग्राम सदस्य',
     recentSales: 'हाल की बिक्री',
+    exploreAllgames: 'सभी गेम खोजें',
+    exploreGameDescription: 'ट्रेंडिंग गेम और एनएफटी सामग्री खोजें',
+    download: 'डाउनलोड करें',
+    downloadGame: 'डाउनलोड करना {{gameName}}',
+    downloadGameDescription:
+      'आपने इस गेम को डाउनलोड कर लिया है। गुड लक मजे करो!',
   },
   auth: {
     signInGoogle: 'Google के साथ साइन इन करें',

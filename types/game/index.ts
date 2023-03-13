@@ -146,3 +146,50 @@ export interface InsightDto {
     telegram: TelegramInsightDto[];
   };
 }
+
+export type GameDto = {
+  id: number;
+  game_id: string;
+  type: string;
+  value: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export enum GameType {
+  WEBGL = 'webGL',
+  WINDOWS_X86 = 'windows_x86',
+  WINDOWS_X64 = 'windows_x64',
+  WINDOWS = 'windows_any',
+  LINUX_DEB = 'linux_deb',
+  LINUX_RPM = 'linux_rpm',
+  LINUX_SOURCE = 'linux_source',
+  MACOS = 'macOS',
+  ANDROID_APK = 'android_apk',
+  GOOGLE_PLAY_STORE = 'google_play_store',
+  APPLE_APP_STORE = 'apple_app_store',
+  XBOX_GAME_STORE = 'xbox_game_store',
+  PLAYSTATION_STORE = 'playstation_store',
+  NINTENDO_STORE = 'nintendo_store',
+  EXTERNAL_URL = 'external_url',
+}
+
+export type GameListDto = {
+  game_id: string;
+  game_name: string;
+  genre: string;
+  description: string;
+  logo_image_url: string;
+  hero_banner_url: string;
+  developer_name: string;
+  web_url: string;
+  twitter_url: string;
+  discord_url: string;
+  telegram_url: string;
+  facebook_url: string;
+  instagram_url: string;
+  youtube_url: string;
+  trailer_url: string;
+  created_at: string;
+  review_rating: number | null;
+};
