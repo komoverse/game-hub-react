@@ -3,6 +3,16 @@ const lang = {
     login: '連接錢包',
     search: '搜索',
   },
+  sidebar: {
+    partnership: '申請合作',
+    community: '加入社區',
+    twitter: '跟着我们 Twitter',
+    komopedia: '查看我们的 komopedia',
+    news: '新聞',
+    academy: '学院',
+    developers: '開發人員',
+    discovery: '探索所有遊戲',
+  },
   home: {
     featured: '优势',
     viewAll: '查看全部',
