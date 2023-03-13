@@ -1,47 +1,20 @@
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { EmotionCache } from '@emotion/react';
-import i18next from 'i18next';
-import { initReactI18next, I18nextProvider } from 'react-i18next';
-import enTranslations from 'locales/en';
-import idTranslations from 'locales/id';
-import zhTranslations from 'locales/zh';
-import hiTranslations from 'locales/hi';
+import { I18nextProvider } from 'react-i18next';
 import ThemeProvider from '@/theme/ThemeProvider';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 import store from 'store/store';
 import 'styles/global.scss';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import Layout from '@/layouts/Layout';
+import i18n from '@/helper/i18n';
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
-
-const resources = {
-  en: { messages: enTranslations },
-  id: { messages: idTranslations },
-  zh: { messages: zhTranslations },
-  hi: { messages: hiTranslations },
-};
-
-const i18n: any = i18next.use(initReactI18next);
-i18n.init({
-  react: {
-    useSuspense: true,
-  },
-  resources,
-  lng: 'en',
-  fallbackLng: 'en',
-  keySeparator: '.',
-  interpolation: {
-    escapeValue: false,
-  },
-  ns: ['messages'],
-  defaultNS: 'messages',
-  fallbackNS: [],
-});
 
 const queryClient = new QueryClient();
 
