@@ -11,6 +11,7 @@ import { QueryKey } from '@/types/general';
 import Iconify from '@/components/Iconify';
 import { IPlayNow } from '@/types/game/playNow';
 import { CircularProgress } from '@mui/material';
+import { t } from 'i18next';
 
 function generateDownloadThumbnail(data: IPlayNow) {
   const { type } = data;
@@ -88,9 +89,13 @@ const PlayNowPage = () => {
         }}
       >
         <Box sx={{ width: '450px', textAlign: 'center' }}>
-          <Typography variant="h3">Download KomoChess</Typography>
+          <Typography variant="h3">
+            {t('game.downloadGame', {
+              gameName: gameId?.toString().toUpperCase(),
+            })}
+          </Typography>
           <Typography variant="h5" fontWeight={400}>
-            You have download this game. Good Luck & Have Fun!
+            {t('game.downloadGameDescription')}
           </Typography>
         </Box>
         <Box
@@ -135,7 +140,7 @@ const PlayNowPage = () => {
                 endIcon={<Iconify icon="ic:twotone-download-for-offline" />}
                 onClick={() => window.open(item.value, '_blank')}
               >
-                Download
+                {t('game.download')}
               </Button>
             </Box>
           ))}
