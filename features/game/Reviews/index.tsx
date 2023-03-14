@@ -29,6 +29,7 @@ import { t } from 'i18next';
 import { QueryKey } from '@/types/general';
 import DescriptionIcon from '@mui/icons-material/Description';
 import Rules from './Rules';
+import { Stack } from '@mui/system';
 
 const Reviews = () => {
   const router = useRouter();
@@ -105,8 +106,25 @@ const Reviews = () => {
   };
 
   const handleVisibleRules = () => setVisibleRules(!visibleRules);
-  const isPaginate =
-    reviews?.reviews.current_page !== reviews?.reviews.total_page;
+
+  const isNextButton = {
+    background:
+      reviews?.reviews.current_page !== reviews?.reviews.total_page
+        ? GRADIENT.primary
+        : COLOR.baseSemiTextGray,
+    color: COLOR.baseWhite,
+    width: 'auto',
+    textTransform: 'uppercase',
+    mt: 2,
+  };
+
+  const isPrevButton = {
+    background: params.page !== 1 ? GRADIENT.primary : COLOR.baseSemiTextGray,
+    color: COLOR.baseWhite,
+    width: 'auto',
+    textTransform: 'uppercase',
+    mt: 2,
+  };
 
   const buttonFilter = [
     {
@@ -233,12 +251,33 @@ const Reviews = () => {
               </Box>
               {/* End Filter */}
 
-              <>
-                <ListReviews
-                  open={visibleReviews}
-                  setOpen={setVisibleReviews}
-                />
-                {isPaginate ? (
+              <ListReviews open={visibleReviews} setOpen={setVisibleReviews} />
+              <Stack direction="row" justifyContent="space-between">
+                <LoadingButton
+                  disabled={params.page === 1}
+                  loading={isLoading}
+                  onClick={() =>
+                    setParams({ ...params, page: params.page - 1 })
+                  }
+                  sx={isPrevButton}
+                >
+                  {t('table.previous')}
+                </LoadingButton>
+                <LoadingButton
+                  loading={isLoading}
+                  disabled={
+                    reviews?.reviews.current_page ===
+                    reviews?.reviews.total_page
+                  }
+                  onClick={() =>
+                    setParams({ ...params, page: params.page + 1 })
+                  }
+                  sx={isNextButton}
+                >
+                  {t('table.next')}
+                </LoadingButton>
+              </Stack>
+              {/* {isPaginate ? (
                   <LoadingButton
                     loading={isLoading}
                     onClick={() =>
@@ -254,8 +293,7 @@ const Reviews = () => {
                   >
                     {t('button.loadMore')}
                   </LoadingButton>
-                ) : null}
-              </>
+                ) : null} */}
             </Grid>
           </Grid>
         )}
