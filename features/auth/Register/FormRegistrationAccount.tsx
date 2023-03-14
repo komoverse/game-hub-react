@@ -12,6 +12,8 @@ import useRegistrationAccount from './hooks/useRegistrationAccount';
 import { RegistrationCustomInput } from './InputForm/styles';
 import RegistrationInput from './InputForm/RegistrationInput';
 import RegistrationSelect from './InputForm/RegistrationSelect';
+import { t } from 'i18next';
+import { Trans } from 'react-i18next';
 
 const FormRegistrationAccount = () => {
   const {
@@ -40,26 +42,35 @@ const FormRegistrationAccount = () => {
         width={138}
         priority={true}
       />
-      <Typography variant="h4" fontSize={28} fontWeight={500}>
-        REGISTER
+      <Typography
+        variant="h4"
+        fontSize={28}
+        fontWeight={500}
+        textTransform="uppercase"
+      >
+        {t('auth.register')}
       </Typography>
 
       <form onSubmit={submit}>
         <RegistrationInput
           id="komo_username"
-          label="Username"
-          helper="6-30 characters. Accept only alphanumeric, dot (.), underscore (_)"
+          label={t('form.username')}
+          helper={t('form.usernameHelper')}
           error={errors['komo_username']}
         >
           <RegistrationCustomInput {...register('komo_username')} />
         </RegistrationInput>
-        <RegistrationInput id="email" label="Email" error={errors['email']}>
+        <RegistrationInput
+          id="email"
+          label={t('form.email')}
+          error={errors['email']}
+        >
           <RegistrationCustomInput {...register('email')} />
         </RegistrationInput>
 
         <RegistrationInput
           id="password"
-          label="Password"
+          label={t('form.password')}
           error={errors['password']}
         >
           <RegistrationCustomInput type="password" {...register('password')} />
@@ -67,7 +78,7 @@ const FormRegistrationAccount = () => {
 
         <RegistrationInput
           id="confirm_password"
-          label="Confirm Password"
+          label={t('form.confirmPassword')}
           error={errors['confirm_password']}
         >
           <RegistrationCustomInput
@@ -78,7 +89,7 @@ const FormRegistrationAccount = () => {
 
         <RegistrationInput
           id="country_code"
-          label="Country"
+          label={t('form.country')}
           error={errors['country_code']}
         >
           <RegistrationSelect
@@ -97,26 +108,44 @@ const FormRegistrationAccount = () => {
         <Box>
           <FormControlLabel
             id="is_agree_to_policy"
-            control={<Checkbox {...register('is_agree_to_policy')} />}
+            control={
+              <Checkbox
+                sx={{ flexShrink: 0 }}
+                {...register('is_agree_to_policy')}
+              />
+            }
             label={
               <Typography variant="body2" fontSize={12}>
-                I agree to Privacy{' '}
-                <Link href="/term-of-use" target="_blank">
-                  Policy
-                </Link>{' '}
-                and{' '}
-                <Link href="/policy" target="_blank">
-                  Terms of Use
-                </Link>
+                <Trans
+                  i18nKey="form.privacyPolicy"
+                  components={{
+                    link1: (
+                      <Link href="/policy" target="_blank">
+                        Policy
+                      </Link>
+                    ),
+                    link2: (
+                      <Link href="/term-of-use" target="_blank">
+                        term of use
+                      </Link>
+                    ),
+                  }}
+                />
               </Typography>
             }
           />
+
           <FormControlLabel
             id="game_newsletter_subscribe"
-            control={<Checkbox {...register('game_newsletter_subscribe')} />}
+            control={
+              <Checkbox
+                sx={{ flexShrink: 0 }}
+                {...register('game_newsletter_subscribe')}
+              />
+            }
             label={
               <Typography variant="body2" fontSize={12}>
-                Subscribe to Game Patch and Announcement Mailing List
+                {t('form.subscribeNewsletter')}
               </Typography>
             }
           />
@@ -136,7 +165,7 @@ const FormRegistrationAccount = () => {
             borderRadius: 2,
           }}
         >
-          Register
+          {t('auth.register')}
         </LoadingButton>
       </form>
     </Box>

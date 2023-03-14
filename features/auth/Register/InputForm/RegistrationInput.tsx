@@ -13,8 +13,8 @@ const RegistrationInput = ({
   required = true,
 }: {
   id: string;
-  label?: string;
-  helper?: string;
+  label?: string | null;
+  helper?: string | null;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   children: ReactNode;
   required?: boolean;

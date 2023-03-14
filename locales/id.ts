@@ -135,6 +135,13 @@ const lang = {
       'Masukkan alamat email Anda. Anda akan menerima tautan untuk membuat kata sandi baru melalui email.',
     resetPassword: 'Atur Ulang Kata Sandi',
     confirmPassword: 'Konfirmasi Kata Sandi',
+
+    createPin: 'Buat Kata Sandi Keamanan',
+    createPinTitle: 'Masukan 6 digit PIN jangan sampai hilang',
+    connectWallet: 'Hubungkan Dompet Solana',
+    connectWalletTitle: 'Solana Wallet membuat kunci publik',
+    or: 'atau',
+    continue: 'Lanjutkan',
   },
   utils: {
     currency: 'IDR',
@@ -170,6 +177,13 @@ const lang = {
     username: 'Nama Pengguna',
     password: 'Kata Sandi',
     email: 'Email',
+    confirmPassword: 'Konfirmasi Kata Sandi',
+    country: 'Negara',
+    subscribeNewsletter: 'Berlangganan newsletter',
+    privacyPolicy:
+      'Saya setuju dengan <link1>Kebijakan privasi</link1> and <link2>Ketentuan Penggunaan</link2>',
+    usernameHelper:
+      '6-30 karakter. Hanya terima alfanumerik, titik (.), garis bawah (_)',
   },
   resources: {
     academy: 'Akademi',

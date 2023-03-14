@@ -124,6 +124,13 @@ const lang = {
       '请输入您的电子邮件地址。 您将通过电子邮件收到创建新密码的链接。',
     resetPassword: '重设密码',
     confirmPassword: '确认密码',
+
+    createPin: '创建安全密码',
+    createPinTitle: '输入6位密码不要输',
+    connectWallet: '连接Solana钱包',
+    connectWalletTitle: 'Solana 钱包创建公钥',
+    or: '或',
+    continue: '继续',
   },
   utils: {
     currency: 'CNY',
@@ -160,6 +167,11 @@ const lang = {
     username: '用户名',
     password: '密码',
     email: '电子邮件',
+    confrimPassword: '确认密码',
+    country: '国家',
+    subscribeNewsletter: '订阅新闻',
+    privacyPolicy: '我同意 <link1>隐私政策</link1> 和 <link2>使用条款</link2>',
+    usernameHelper: '6-30 个字符。 仅接受字母数字、点 (.)、下划线 (_)',
   },
   resources: {
     academy: '学院',

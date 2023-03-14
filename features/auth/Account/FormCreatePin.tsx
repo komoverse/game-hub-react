@@ -13,6 +13,7 @@ import actionToast from '@/store/toast/action';
 import RegistrationInput from '../Register/InputForm/RegistrationInput';
 import { RegistrationCustomInput } from '../Register/InputForm/styles';
 import { StyledForm } from './styles';
+import { t } from 'i18next';
 
 const FormCreatePin = () => {
   const validationSchema = Yup.object().shape({
@@ -68,7 +69,7 @@ const FormCreatePin = () => {
       }}
     >
       <StyledForm onSubmit={submit}>
-        <Typography variant="body2">Input 6 digit PIN do not lose</Typography>
+        <Typography variant="body2">{t('auth.createPinTitle')}</Typography>
 
         <RegistrationInput
           id="sc_wallet_pin"

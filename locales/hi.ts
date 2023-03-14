@@ -134,6 +134,13 @@ const lang = {
       'कृपया अपना ईमेल एड्रेस इंटर करें। आपको ईमेल द्वारा नया पासवर्ड बनाने के लिए एक लिंक प्राप्त होगा।',
     resetPassword: 'पासवर्ड रीसेट करें',
     confirmPassword: 'पासवर्ड की पुष्टि कीजिये',
+
+    createPin: 'सुरक्षा प्रश्न बनाएं',
+    createPinTitle: 'इनपुट 6 अंकों का पिन खोना नहीं है',
+    connectWallet: 'Solana वॉलेट कनेक्ट करें',
+    connectWalletTitle: 'Solana वॉलेट जनरेट की गई सार्वजनिक कुंजी',
+    or: 'या',
+    continue: 'जारी रखें',
   },
   utils: {
     currency: 'INR',
@@ -169,6 +176,13 @@ const lang = {
     username: 'उपयोगकर्ता नाम',
     password: 'पासवर्ड',
     email: 'ईमेल',
+    confirmPassword: 'पासवर्ड की पुष्टि कीजिये',
+    country: 'देश',
+    subscribeNewsletter: 'समाचार पत्र से सदस्यता लें',
+    privacyPolicy:
+      'मैं करने के लिए सहमत हूं <link1>गोपनीयता नीति</link1> और <link2>उपयोग की शर्त</link2>',
+    usernameHelper:
+      '6-30 अक्षर। केवल अक्षरांकीय, बिंदु (.), अंडरस्कोर (_) स्वीकार करें',
   },
   resources: {
     academy: 'एकेडमी',

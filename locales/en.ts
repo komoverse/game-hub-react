@@ -136,6 +136,13 @@ const lang = {
       'Please enter your email address. You will receive a link to create a new password via email.',
     resetPassword: 'Reset Your Password',
     confirmPassword: 'Confirm Password',
+
+    createPin: 'Create Security pin',
+    createPinTitle: 'Input 6 digit PIN do not lose',
+    connectWallet: 'Connect Solana Wallet',
+    connectWalletTitle: 'Solana Wallet created public key',
+    or: 'OR',
+    continue: 'Continue',
   },
   utils: {
     currency: 'USD',
@@ -171,6 +178,14 @@ const lang = {
     username: 'Username',
     password: 'Password',
     email: 'Email',
+    confirmPassword: 'Confirm Password',
+    country: 'Country',
+    subscribeNewsletter:
+      'Subscribe to Game Patch and Announcement Mailing List',
+    privacyPolicy:
+      'I agree to the <link1>Privacy Policy</link1> and <link2>Term of use</link2>',
+    usernameHelper:
+      '6-30 characters. Accept only alphanumeric, dot (.), underscore (_)',
   },
   resources: {
     academy: 'Academy',
