@@ -24,6 +24,7 @@ const lang = {
     continue: '继续',
     submit: '提交',
     view: '视图',
+    viewAll: '查看全部',
   },
   time: {
     days: '天',

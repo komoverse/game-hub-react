@@ -56,7 +56,7 @@ export const CustomTable = styled(DataGrid)(() => ({
     },
   },
   [`& .${gridClasses.row}.${TopPlayersRowClassnames.FIRST}`]: {
-    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.PLAYER_NAME}`]: {
+    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.KOMO_USERNAME}`]: {
       ...RadiusLeft,
       backgroundColor: '#1F1F1F',
     },
@@ -66,7 +66,7 @@ export const CustomTable = styled(DataGrid)(() => ({
     },
   },
   [`& .${gridClasses.row}.${TopPlayersRowClassnames.SECOND}`]: {
-    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.PLAYER_NAME}`]: {
+    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.KOMO_USERNAME}`]: {
       ...RadiusLeft,
       backgroundColor: '#171717',
     },
@@ -76,7 +76,7 @@ export const CustomTable = styled(DataGrid)(() => ({
     },
   },
   [`& .${gridClasses.row}.${TopPlayersRowClassnames.THIRD}`]: {
-    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.PLAYER_NAME}`]: {
+    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.KOMO_USERNAME}`]: {
       ...RadiusLeft,
       backgroundColor: '#141414',
     },
@@ -86,7 +86,7 @@ export const CustomTable = styled(DataGrid)(() => ({
     },
   },
   [`& .${gridClasses.row}.${TopPlayersRowClassnames.FOURTH}`]: {
-    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.PLAYER_NAME}`]: {
+    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.KOMO_USERNAME}`]: {
       ...RadiusLeft,
       backgroundColor: '#131313',
     },
@@ -96,7 +96,7 @@ export const CustomTable = styled(DataGrid)(() => ({
     },
   },
   [`& .${gridClasses.row}.${TopPlayersRowClassnames.MORE_THAN_FOUR}`]: {
-    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.PLAYER_NAME}`]: {
+    [`& .${gridClasses.cell}.${TopPlayersCellClassnames.KOMO_USERNAME}`]: {
       ...RadiusLeft,
       backgroundColor: '#111111',
     },

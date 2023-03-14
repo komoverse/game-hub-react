@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import { t } from 'i18next';
-import { Avatar, Box, Button, Typography } from '@mui/material';
+import { Avatar, Box, Button, Stack, Typography } from '@mui/material';
 import { GridColumns, GridValidRowModel } from '@mui/x-data-grid';
 
 import { COLOR, GRADIENT, KomoverseTag } from '@/utils/globalVariable';
 
-import Leaderboard1 from 'public/leaderboard-rank-1.png';
-import Leaderboard2 from 'public/leaderboard-rank-2.png';
-import Leaderboard3 from 'public/leaderboard-rank-3.png';
-import Leaderboard4 from 'public/leaderboard-rank-4.png';
+import Leaderboard1 from 'public/leaderboard-rank-1.svg';
+import Leaderboard2 from 'public/leaderboard-rank-2.svg';
+import Leaderboard3 from 'public/leaderboard-rank-3.svg';
+import Leaderboard4 from 'public/leaderboard-rank-4.svg';
 
 const styledRank = {
   color: COLOR.baseWhite,
@@ -21,7 +21,7 @@ const styledRank = {
 
 export const columns: GridColumns<GridValidRowModel> = [
   {
-    field: 'market_cap_rank',
+    field: 'shard',
     renderHeader: () => (
       <Typography variant="subtitle2" sx={{ p: 1.3 }}>
         {t('table.rank')}
@@ -33,7 +33,7 @@ export const columns: GridColumns<GridValidRowModel> = [
     align: 'center',
     headerAlign: 'center',
     renderCell: (params) => {
-      const rank = params.row.market_cap_rank;
+      const rank = params.row.id;
       let src = '';
       if (rank === 1) src = Leaderboard1.src;
       if (rank === 2) src = Leaderboard2.src;
@@ -52,7 +52,7 @@ export const columns: GridColumns<GridValidRowModel> = [
     },
   },
   {
-    field: 'player_name',
+    field: 'komo_username',
     renderHeader: () => (
       <Typography variant="subtitle2" sx={{ p: 1.3 }}>
         {t('table.playersName')}
@@ -61,20 +61,17 @@ export const columns: GridColumns<GridValidRowModel> = [
     sortable: false,
     minWidth: 250,
     renderCell: (params) => (
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Avatar sx={{ width: 35, height: 35 }} src={params.row.image} />
+      <Stack direction="row">
+        <Avatar
+          sx={{ width: 35, height: 35 }}
+          src={params.row.profile_picture_url}
+        />
         <Box sx={{ marginLeft: 2 }}>
           <Typography variant="body1" sx={{ fontWeight: 500 }}>
-            {params.row.id}
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{ fontWeight: 500, color: COLOR.baseGray }}
-          >
-            {params.row.symbol}
+            {params.value}
           </Typography>
         </Box>
-      </Box>
+      </Stack>
     ),
   },
   {
@@ -84,14 +81,19 @@ export const columns: GridColumns<GridValidRowModel> = [
         {t('table.shareEarned')}
       </Typography>
     ),
-    headerClassName: 'score',
+    headerClassName: 'shard',
     sortable: false,
     minWidth: 200,
     headerAlign: 'right',
     align: 'right',
     renderCell: (params) => (
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Image src="/shard-icon.png" alt="shard-icon" width={45} height={30} />
+        <Image
+          src="/shard-icon.png"
+          alt={KomoverseTag}
+          width={45}
+          height={30}
+        />
         <Button
           size="small"
           sx={{
@@ -101,7 +103,7 @@ export const columns: GridColumns<GridValidRowModel> = [
             ml: 1,
           }}
         >
-          {Math.floor(params.row.atl / 100)}
+          {params.row.shard}
         </Button>
       </Box>
     ),

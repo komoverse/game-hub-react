@@ -1,8 +1,4 @@
 import React from 'react';
-import { t } from 'i18next';
-import { useSelector } from 'react-redux';
-import { ReduxState } from '@/types/redux';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import {
   GridCellParams,
@@ -14,15 +10,12 @@ import {
   TopPlayersCellClassnames,
   TopPlayersRowClassnames,
 } from '@/types/general';
-import { COLOR } from '@/utils/globalVariable';
-import actionPagination from '@/store/pagination/action';
 
 import { columns } from './config';
 import { CustomTable } from './style';
+import { TopEarnersDto } from '@/types/game';
 
-const KomoverseTableCustom = () => {
-  const data = useSelector((state: ReduxState) => state.transactionHistory);
-
+const KomoverseTableCustom = ({ data }: { data: TopEarnersDto[] }) => {
   const handleRowClassnames = (idx: number) => {
     if (idx === 0) return TopPlayersRowClassnames.FIRST;
     if (idx === 1) return TopPlayersRowClassnames.SECOND;
@@ -32,14 +25,16 @@ const KomoverseTableCustom = () => {
   };
 
   const handleCellClassnames = (field: string) => {
-    if (field === 'player_name') return TopPlayersCellClassnames.PLAYER_NAME;
-    if (field === 'score') return TopPlayersCellClassnames.SCORE;
+    if (field === TopPlayersCellClassnames.KOMO_USERNAME)
+      return TopPlayersCellClassnames.KOMO_USERNAME;
+    if (field === TopPlayersCellClassnames.SCORE)
+      return TopPlayersCellClassnames.SCORE;
   };
 
   return (
-    <Box sx={{ flexGrow: 1, height: '750px' }}>
+    <Box sx={{ flexGrow: 1, height: '700px' }}>
       <CustomTable
-        rows={data.data}
+        rows={data}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
@@ -52,63 +47,10 @@ const KomoverseTableCustom = () => {
         getCellClassName={(
           params: GridCellParams<any, GridValidRowModel, any>
         ) => handleCellClassnames(params.field)!}
-        components={{
-          Footer() {
-            return <MemoizedCustomFooter />;
-          },
-        }}
-        pagination
+        hideFooter
       />
     </Box>
   );
 };
 
 export default React.memo(KomoverseTableCustom);
-
-const CustomFooter = () => {
-  const defaultpage = useSelector((state: ReduxState) => state.pagination);
-
-  const nextPage = () =>
-    actionPagination.setPagination({ page: defaultpage.page + 1 });
-  const previousPage = () =>
-    actionPagination.setPagination({ page: defaultpage.page - 1 });
-
-  return (
-    <Box
-      sx={{
-        m: 2,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}
-    >
-      <Button
-        size="large"
-        variant="contained"
-        disabled={defaultpage.page === 1 ? true : false}
-        sx={{
-          color: defaultpage.page !== 1 ? COLOR.baseWhite : '',
-          fontWeight: 500,
-          textTransform: 'uppercase',
-        }}
-        onClick={previousPage}
-      >
-        {t('table.previous')}
-      </Button>
-      <Button
-        size="large"
-        variant="contained"
-        sx={{
-          color: COLOR.baseWhite,
-          fontWeight: 500,
-          textTransform: 'uppercase',
-        }}
-        onClick={nextPage}
-      >
-        {t('table.next')}
-      </Button>
-    </Box>
-  );
-};
-
-const MemoizedCustomFooter = React.memo(CustomFooter);

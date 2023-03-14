@@ -22,7 +22,7 @@ const SectionTitle = ({ title, navigation }: SectionTitleProps) => (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Typography
         variant="subtitle2"
-        sx={{ color: '#989898 ', fontWeight: 500 }}
+        sx={{ color: '#989898', fontWeight: 500 }}
       >
         {navigation}
       </Typography>

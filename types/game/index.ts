@@ -1,3 +1,5 @@
+import { IMarketItem } from './market';
+
 export interface PhaseDto {
   allowlist: string;
   candy_machine_id: string;
@@ -192,4 +194,24 @@ export type GameListDto = {
   trailer_url: string;
   created_at: string;
   review_rating: number | null;
+};
+
+export type TopEarnersDto = {
+  country: string;
+  in_game_display_name: string;
+  komo_username: string;
+  profile_picture_url: string | null;
+  shard: number;
+};
+
+export type OverviewDto = {
+  recent_listing: IMarketItem[];
+  review: {
+    overall_summary: SummaryDto;
+    rating_summary: RatingSummaryDto[];
+    reviews: {
+      data: ReviewsDto[];
+    };
+  };
+  top_player: TopEarnersDto[];
 };

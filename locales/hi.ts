@@ -25,6 +25,7 @@ const lang = {
     continue: 'जारी रखें',
     submit: 'प्रस्तुत करें',
     view: 'देखें',
+    viewAll: 'सभी देखें',
   },
   time: {
     days: 'दिन',
