@@ -1,0 +1,3 @@
+export const SET_OVERVIEW = 'SET_OVERVIEW';
+export const CLEAR_OVERVIEW = 'CLEAR_OVERVIEW';
+export const UPDATE_OVERVIEW = 'UPDATE_OVERVIEW';

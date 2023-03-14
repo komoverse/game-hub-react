@@ -44,7 +44,7 @@ export enum TopPlayersRowClassnames {
 
 export enum TopPlayersCellClassnames {
   RANK = 'rank',
-  PLAYER_NAME = 'player-name',
+  KOMO_USERNAME = 'komo_username',
   SCORE = 'score',
 }
 

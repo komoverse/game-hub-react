@@ -1,6 +1,6 @@
 import { AlertColor } from '@mui/material/Alert';
 import { WalletsDto } from './auth';
-import { ListReviewsDto } from './game';
+import { ListReviewsDto, OverviewDto } from './game';
 import { TypeAuthLogin } from './general';
 import {
   HistoryTransactionDto,
@@ -39,4 +39,5 @@ export interface ReduxState {
     data: HistoryTransactionDto[];
     pagination: HistoryTransactionPaginationDto;
   };
+  overview: OverviewDto;
 }

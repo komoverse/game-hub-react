@@ -24,6 +24,7 @@ const lang = {
     continue: 'Lanjutkan',
     submit: 'Kirim',
     view: 'Lihat',
+    viewAll: 'Lihat Semua',
   },
   time: {
     days: 'hari',

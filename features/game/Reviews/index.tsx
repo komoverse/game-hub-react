@@ -40,10 +40,6 @@ const Reviews = () => {
     page: 1,
   });
 
-  const [pagination, setPagination] = React.useState({
-    total_page: 0,
-    total_data: 0,
-  });
   const [visibleRules, setVisibleRules] = React.useState<boolean>(false);
   const [visibleReviews, setVisibleReviews] = React.useState<boolean>(false);
 
@@ -65,7 +61,7 @@ const Reviews = () => {
         ),
       keepPreviousData: true,
       staleTime: 2000,
-      enabled: !!gameId,
+      enabled: router.pathname !== '/game/[game]/review' && !!gameId,
       onSuccess: (data) => {
         const { disliked_by_me, liked_by_me, reviews } = data;
 
@@ -100,8 +96,6 @@ const Reviews = () => {
         }
 
         actionReviews.setReviews(data);
-        const { total_data, total_page } = data.reviews;
-        setPagination({ total_data, total_page });
       },
     }
   );
@@ -111,6 +105,8 @@ const Reviews = () => {
   };
 
   const handleVisibleRules = () => setVisibleRules(!visibleRules);
+  const isPaginate =
+    reviews?.reviews.current_page !== reviews?.reviews.total_page;
 
   const buttonFilter = [
     {
@@ -242,7 +238,7 @@ const Reviews = () => {
                   open={visibleReviews}
                   setOpen={setVisibleReviews}
                 />
-                {reviews?.reviews.data.length !== pagination.total_data && (
+                {isPaginate ? (
                   <LoadingButton
                     loading={isLoading}
                     onClick={() =>
@@ -258,7 +254,7 @@ const Reviews = () => {
                   >
                     {t('button.loadMore')}
                   </LoadingButton>
-                )}
+                ) : null}
               </>
             </Grid>
           </Grid>

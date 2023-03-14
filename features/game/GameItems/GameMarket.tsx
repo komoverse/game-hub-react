@@ -90,8 +90,6 @@ const GameMarket = () => {
   });
 
   const onClickMarketItem = (listing_id: string) => {
-    console.log(listing_id);
-
     setOpenModalDetail(true);
     setListingId(listing_id);
   };

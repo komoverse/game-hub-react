@@ -56,6 +56,7 @@ const PlayNowPage = () => {
   const { data, isError, isLoading } = useQuery({
     queryKey: [QueryKey.PLAY_NOW, gameId],
     queryFn: () => getGamePlayableFiles(gameId as string),
+    enabled: router.pathname !== '/game/[game]/play-now' && !!gameId,
   });
 
   if (isError) {
@@ -64,10 +65,8 @@ const PlayNowPage = () => {
 
   if (isLoading) {
     return (
-      <Box
-        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-      >
-        <CircularProgress />
+      <Box sx={{ p: 5, textAlign: 'center' }}>
+        <CircularProgress size="2rem" color="success" />
       </Box>
     );
   }

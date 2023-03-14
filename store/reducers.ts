@@ -11,6 +11,7 @@ import profile from './profile/reducer';
 import reviews from './reviews/reducer';
 import modalWallet from './modalWallet/reducer';
 import toast from './toast/reducer';
+import overview from './overview/reducer';
 
 const reducers = {
   lang,
@@ -26,6 +27,7 @@ const reducers = {
   reviews,
   modalWallet,
   toast,
+  overview,
 };
 
 export default reducers;

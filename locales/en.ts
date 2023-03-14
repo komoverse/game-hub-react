@@ -25,6 +25,7 @@ const lang = {
     continue: 'Continue',
     submit: 'Submit',
     view: 'View',
+    viewAll: 'View All',
   },
   time: {
     days: 'days',

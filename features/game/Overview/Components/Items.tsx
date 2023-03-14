@@ -1,9 +1,7 @@
-import { Box, CardContent, Grid, Typography } from '@mui/material';
+import React from 'react';
+import { Box, CardContent, Grid, Stack, Typography } from '@mui/material';
 import { t } from 'i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useQuery } from 'react-query';
-import { getListRecent } from '@/services/homepage';
-import { ListRecentDto } from '@/types/home';
 import { shortenTitleGame } from '@/utils/shorten';
 import {
   ButtonCard,
@@ -17,15 +15,14 @@ import { Navigation } from 'swiper';
 import Image from 'next/image';
 import Solana from 'public/solana-logo.png';
 import { CardImage, SectionTitle } from '@/components/index';
-import { QueryKey } from '@/types/general';
+import { useSelector } from 'react-redux';
+import { ReduxState } from '@/types/redux';
+import { IMarketItem } from '@/types/game/market';
 
 const Overview = () => {
-  const { data: listNft } = useQuery({
-    queryKey: QueryKey.LIST_MARKET_RECENT,
-    queryFn: () => getListRecent(),
-    staleTime: 3000,
-    refetchOnMount: false,
-  });
+  const { recent_listing } = useSelector(
+    (state: ReduxState) => state?.overview
+  );
 
   return (
     <SectionWrapper>
@@ -47,11 +44,11 @@ const Overview = () => {
             allowTouchMove={false}
             className="events-swipper"
           >
-            {listNft?.map((list: ListRecentDto) => (
-              <SwiperSlide key={list.listing_id}>
+            {recent_listing?.map((list: IMarketItem, idx: number) => (
+              <SwiperSlide key={idx}>
                 <Grid container>
                   <Grid item>
-                    <CardImage image_url={list.image_url}>
+                    <CardImage image_url={list.nft.cached_image_uri}>
                       <CardContent
                         sx={{
                           display: 'flex',
@@ -61,7 +58,7 @@ const Overview = () => {
                         }}
                       >
                         <Typography variant="h6" sx={{ fontWeight: 400 }}>
-                          {shortenTitleGame(list.name)}
+                          {shortenTitleGame(list.nft.name)}
                         </Typography>
                         <Typography
                           variant="subtitle2"
@@ -81,7 +78,7 @@ const Overview = () => {
                           variant="subtitle2"
                           sx={{ fontWeight: 700, marginLeft: 1 }}
                         >
-                          {list.listing_price} {list.listing_currency}
+                          {list.price} {list.currency_symbol}
                         </Typography>
                       </ButtonCard>
                     </CardImage>
@@ -96,4 +93,4 @@ const Overview = () => {
   );
 };
 
-export default Overview;
+export default React.memo(Overview);
