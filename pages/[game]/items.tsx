@@ -1,12 +1,5 @@
-import dynamic from 'next/dynamic';
-
-const GameItems = dynamic(
-  () => import('@/features/game/GameItems/GameMarket'),
-  {
-    ssr: false,
-  }
-);
+import GameMarket from '@/features/game/GameItems/GameMarket';
 
 export default function Items() {
-  return <GameItems />;
+  return <GameMarket />;
 }
