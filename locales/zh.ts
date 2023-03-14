@@ -167,11 +167,17 @@ const lang = {
     username: '用户名',
     password: '密码',
     email: '电子邮件',
-    confrimPassword: '确认密码',
+    confirmPassword: '确认密码',
     country: '国家',
     subscribeNewsletter: '订阅新闻',
     privacyPolicy: '我同意 <link1>隐私政策</link1> 和 <link2>使用条款</link2>',
     usernameHelper: '6-30 个字符。 仅接受字母数字、点 (.)、下划线 (_)',
+
+    required: '{{ field }} 是必填项',
+    invalid: '请输入一个有效的 {{ field }}',
+    notMatch: '{{ field }} 不匹配',
+    wallet: '钱包地址',
+    pin: '安全密码',
   },
   resources: {
     academy: '学院',

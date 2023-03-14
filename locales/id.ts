@@ -184,6 +184,12 @@ const lang = {
       'Saya setuju dengan <link1>Kebijakan privasi</link1> and <link2>Ketentuan Penggunaan</link2>',
     usernameHelper:
       '6-30 karakter. Hanya terima alfanumerik, titik (.), garis bawah (_)',
+
+    required: '{{ field }} diperlukan',
+    invalid: 'Tolong masukkan {{ field }} yang valid',
+    notMatch: '{{ field }} tidak cocok',
+    wallet: 'Alamat Dompet',
+    pin: 'PIN',
   },
   resources: {
     academy: 'Akademi',

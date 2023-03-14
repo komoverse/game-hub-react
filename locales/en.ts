@@ -186,6 +186,13 @@ const lang = {
       'I agree to the <link1>Privacy Policy</link1> and <link2>Term of use</link2>',
     usernameHelper:
       '6-30 characters. Accept only alphanumeric, dot (.), underscore (_)',
+
+    // rules
+    required: '{{ field }} is required',
+    invalid: 'Please input a valid {{ field }}',
+    notMatch: '{{ field }} does not match',
+    wallet: 'wallet address',
+    pin: 'pin',
   },
   resources: {
     academy: 'Academy',

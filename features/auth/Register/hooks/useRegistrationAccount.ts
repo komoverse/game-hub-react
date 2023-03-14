@@ -11,6 +11,7 @@ import actionLogin from '@/store/auth/action';
 import actionModalAuth from '@/store/modalAuth/action';
 import actionModalWallet from '@/store/modalWallet/action';
 import actionToast from '@/store/toast/action';
+import { t } from 'i18next';
 
 function useRegistrationAccount() {
   const recaptchaRef = useRef<any>(null);
@@ -38,31 +39,43 @@ function useRegistrationAccount() {
   const validationSchema = Yup.object()
     .shape({
       komo_username: Yup.string()
-        .required('Username is required')
+        .required(t('form.required', { field: t('form.username') }) as string)
         .matches(
           komoAccountUsernameValidation,
-          'Please input a valid username'
+          t('form.invalid', { field: t('form.username') }) as string
         ),
       email: Yup.string()
-        .required('Password is required')
-        .matches(emailValidation, 'Please input a valid email address'),
-      password: Yup.string().required('Password is required'),
+        .required(t('form.required', { field: t('form.email') }) as string)
+        .matches(
+          emailValidation,
+          t('form.invalid', { field: t('form.email') }) as string
+        ),
+      password: Yup.string().required(
+        t('form.required', { field: t('form.password') }) as string
+      ),
       confirm_password: Yup.string()
-        .required('password is required')
+        .required(
+          t('form.required', { field: t('form.confirmPassword') }) as string
+        )
         .when('password', (password, schema, confirm_password) => {
           if (!password || !confirm_password.value) {
             return schema.required();
           }
           return schema.test(
             'password confirm',
-            'your password did not match',
+            t('form.notMatch', { field: t('form.password') }) as string,
             (value) => {
               return value === password[0];
             }
           );
         }),
-      country_code: Yup.string().required('Country is required'),
-      is_agree_to_policy: Yup.bool().oneOf([true], 'Field must be checked'),
+      country_code: Yup.string().required(
+        t('form.required', { field: t('form.country') }) as string
+      ),
+      is_agree_to_policy: Yup.bool().oneOf(
+        [true],
+        t('form.required', { field: 'This Field' }) as string
+      ),
       game_newsletter_subscribe: Yup.bool(),
     })
     .required();

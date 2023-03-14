@@ -21,7 +21,6 @@ const FormRegistrationAccount = () => {
     register,
     isSubmitting,
     errors,
-    getValues,
     isValid,
     recaptchaRef,
     isRecaptchaValid,

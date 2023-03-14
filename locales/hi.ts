@@ -183,6 +183,13 @@ const lang = {
       'मैं करने के लिए सहमत हूं <link1>गोपनीयता नीति</link1> और <link2>उपयोग की शर्त</link2>',
     usernameHelper:
       '6-30 अक्षर। केवल अक्षरांकीय, बिंदु (.), अंडरस्कोर (_) स्वीकार करें',
+
+    // rules
+    required: '{{ field }} आवश्यक है',
+    invalid: 'कृपया कोई मान्य दर्ज करें {{ field }}',
+    notMatch: '{{ field }} मेल नहीं खाता',
+    wallet: 'बटुआ पता',
+    pin: 'पिन',
   },
   resources: {
     academy: 'एकेडमी',

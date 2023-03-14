@@ -2,5 +2,6 @@
   "editor.tabSize": 2,
   "prettier.endOfLine": "auto",
   "eslint.run": "onSave",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "i18n-ally.localesPaths": ["locales", "public/locales", "store/language"]
 }
