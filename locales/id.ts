@@ -3,6 +3,21 @@ const lang = {
     login: 'masuk',
     search: 'Cari',
   },
+  sidebar: {
+    partnership: 'Ajukan untuk menjadi mitra',
+    community: 'Gabung dengan komunitas kami',
+    twitter: 'Ikuti kami di Twitter',
+    komopedia: 'Cek komopedia',
+    news: 'Berita',
+    academy: 'Akademi',
+    developers: 'Pengembang',
+    discovery: 'Jelajahi semua permainan',
+    mints: 'Mints',
+    tournaments: 'Turnamen',
+    trending: 'Trending',
+    playNow: 'Bermain Sekarang',
+    resource: 'Sumber Daya',
+  },
   home: {
     featured: 'Keunggulan',
     viewAll: 'Lihat Semua',
@@ -88,6 +103,17 @@ const lang = {
     downloadGameDescription:
       'Anda telah mengunduh game ini. Semoga Sukses & Bersenang-senang!',
   },
+  marketItems: {
+    filters: 'Filter',
+    search: 'Cari',
+    showMyItems: 'Tampilkan Item Saya',
+    sortDateAsc: 'Tanggal: Baru ke Lama',
+    sortDateDesc: 'Tanggal: Lama ke Baru',
+    sortPriceAsc: 'Harga: Rendah ke Tinggi',
+    sortPriceDesc: 'Harga: Tinggi ke Rendah',
+    volume: '{{volume}} volume',
+    floor: '{{floor}} lantai',
+  },
   auth: {
     signInGoogle: 'Masuk dengan Google',
     signInTwitter: 'Masuk dengan Twitter',
@@ -104,11 +130,19 @@ const lang = {
     komoverseSignInDescription:
       'Bermain di turnamen dan permainan Komoverse secara langsung. Masuk dengan Google, Twitter atau Discord. Bekerja di ponsel. Tidak perlu mengunduh. Hanya Anda yang mengendalikan kunci.',
     forgotPassword: 'Lupa Password?',
+    rememberMe: 'Ingat Saya',
     register: 'Daftar',
     forgotPasswordDescription:
       'Masukkan alamat email Anda. Anda akan menerima tautan untuk membuat kata sandi baru melalui email.',
     resetPassword: 'Atur Ulang Kata Sandi',
     confirmPassword: 'Konfirmasi Kata Sandi',
+
+    createPin: 'Buat Kata Sandi Keamanan',
+    createPinTitle: 'Masukan 6 digit PIN jangan sampai hilang',
+    connectWallet: 'Hubungkan Dompet Solana',
+    connectWalletTitle: 'Solana Wallet membuat kunci publik',
+    or: 'atau',
+    continue: 'Lanjutkan',
   },
   utils: {
     currency: 'IDR',
@@ -144,6 +178,19 @@ const lang = {
     username: 'Nama Pengguna',
     password: 'Kata Sandi',
     email: 'Email',
+    confirmPassword: 'Konfirmasi Kata Sandi',
+    country: 'Negara',
+    subscribeNewsletter: 'Berlangganan newsletter',
+    privacyPolicy:
+      'Saya setuju dengan <link1>Kebijakan privasi</link1> and <link2>Ketentuan Penggunaan</link2>',
+    usernameHelper:
+      '6-30 karakter. Hanya terima alfanumerik, titik (.), garis bawah (_)',
+
+    required: '{{ field }} diperlukan',
+    invalid: 'Tolong masukkan {{ field }} yang valid',
+    notMatch: '{{ field }} tidak cocok',
+    wallet: 'Alamat Dompet',
+    pin: 'PIN',
   },
   resources: {
     academy: 'Akademi',

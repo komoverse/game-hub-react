@@ -3,6 +3,21 @@ const lang = {
     login: 'Vāliṭa nāla juṛō',
     search: 'Khōja',
   },
+  sidebar: {
+    partnership: 'साझेदारी के लिए आवेदन करें',
+    community: 'हमारी संस्था से जुड़े',
+    twitter: 'ट्पर हमें का पालन करें Twitter',
+    komopedia: 'हमारी जाँच करें komopedia',
+    news: 'समाचार',
+    academy: 'एकादमी',
+    developers: 'डेवलपर्स',
+    discovery: 'सभी खेलों का अन्वेषण करें',
+    mints: 'मिन्ट',
+    tournaments: 'टूर्नामेंट',
+    trending: 'ट्रेंडिंग',
+    playNow: 'अभी खेलें',
+    resource: 'संसाधन',
+  },
   home: {
     featured: 'श्रेष्ठता',
     viewAll: 'सभी देखें',
@@ -87,6 +102,17 @@ const lang = {
     downloadGameDescription:
       'आपने इस गेम को डाउनलोड कर लिया है। गुड लक मजे करो!',
   },
+  marketItems: {
+    filters: 'फ़िल्टर',
+    search: 'खोज',
+    showMyItems: 'मेरी आइटम दिखाएं',
+    sortDateAsc: 'दिनांक: नया से पुराना',
+    sortDateDesc: 'दिनांक: पुराना से नया',
+    sortPriceAsc: 'कीमतों का उतार - चढ़ाव',
+    sortPriceDesc: 'मूल्य: उच्च से निम्न',
+    volume: '{{volume}} आयतन',
+    floor: '{{floor}} फ्लोर',
+  },
   auth: {
     signInGoogle: 'Google के साथ साइन इन करें',
     signInTwitter: 'Twitter के साथ साइन इन करें',
@@ -103,11 +129,19 @@ const lang = {
     komoverseSignInDescription:
       'Komoverse वॉलेट Komoverse का आधिकारिक वॉलेट है। यह',
     forgotPassword: 'पासवर्ड भूल गए?',
+    rememberMe: 'पहचाना की नहीं',
     register: 'दफ्तर',
     forgotPasswordDescription:
       'कृपया अपना ईमेल एड्रेस इंटर करें। आपको ईमेल द्वारा नया पासवर्ड बनाने के लिए एक लिंक प्राप्त होगा।',
     resetPassword: 'पासवर्ड रीसेट करें',
     confirmPassword: 'पासवर्ड की पुष्टि कीजिये',
+
+    createPin: 'सुरक्षा प्रश्न बनाएं',
+    createPinTitle: 'इनपुट 6 अंकों का पिन खोना नहीं है',
+    connectWallet: 'Solana वॉलेट कनेक्ट करें',
+    connectWalletTitle: 'Solana वॉलेट जनरेट की गई सार्वजनिक कुंजी',
+    or: 'या',
+    continue: 'जारी रखें',
   },
   utils: {
     currency: 'INR',
@@ -143,6 +177,20 @@ const lang = {
     username: 'उपयोगकर्ता नाम',
     password: 'पासवर्ड',
     email: 'ईमेल',
+    confirmPassword: 'पासवर्ड की पुष्टि कीजिये',
+    country: 'देश',
+    subscribeNewsletter: 'समाचार पत्र से सदस्यता लें',
+    privacyPolicy:
+      'मैं करने के लिए सहमत हूं <link1>गोपनीयता नीति</link1> और <link2>उपयोग की शर्त</link2>',
+    usernameHelper:
+      '6-30 अक्षर। केवल अक्षरांकीय, बिंदु (.), अंडरस्कोर (_) स्वीकार करें',
+
+    // rules
+    required: '{{ field }} आवश्यक है',
+    invalid: 'कृपया कोई मान्य दर्ज करें {{ field }}',
+    notMatch: '{{ field }} मेल नहीं खाता',
+    wallet: 'बटुआ पता',
+    pin: 'पिन',
   },
   resources: {
     academy: 'एकेडमी',

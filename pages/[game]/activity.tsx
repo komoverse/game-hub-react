@@ -1,9 +1,5 @@
 import { NextPage } from 'next';
-import dynamic from 'next/dynamic';
-
-const ActivityPage = dynamic(() => import('@/features/game/Activity'), {
-  ssr: false,
-});
+import ActivityPage from '@/features/game/Activity';
 
 const Activty: NextPage = () => {
   return <ActivityPage />;

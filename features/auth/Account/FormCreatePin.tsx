@@ -13,19 +13,26 @@ import actionToast from '@/store/toast/action';
 import RegistrationInput from '../Register/InputForm/RegistrationInput';
 import { RegistrationCustomInput } from '../Register/InputForm/styles';
 import { StyledForm } from './styles';
+import { t } from 'i18next';
 
 const FormCreatePin = () => {
   const validationSchema = Yup.object().shape({
-    sc_wallet_pin: Yup.string().required('Wallet address required'),
+    sc_wallet_pin: Yup.string().required(
+      t('form.required', { field: t('form.pin') }) as string
+    ),
     sc_wallet_pin_confirm: Yup.string()
-      .required('Wallet address required')
+      .required(t('form.required', { field: t('form.pin') }) as string)
       .when('sc_wallet_pin', (sc_wallet_pin, schema, sc_wallet_pin_confirm) => {
         if (!sc_wallet_pin || !sc_wallet_pin_confirm.value) {
           return schema.required();
         }
-        return schema.test('pin confirm', 'your pin did not match', (value) => {
-          return value === sc_wallet_pin[0];
-        });
+        return schema.test(
+          'pin confirm',
+          t('form.notMatch', { field: t('form.pin') }) as string,
+          (value) => {
+            return value === sc_wallet_pin[0];
+          }
+        );
       }),
   });
 
@@ -68,7 +75,7 @@ const FormCreatePin = () => {
       }}
     >
       <StyledForm onSubmit={submit}>
-        <Typography variant="body2">Input 6 digit PIN do not lose</Typography>
+        <Typography variant="body2">{t('auth.createPinTitle')}</Typography>
 
         <RegistrationInput
           id="sc_wallet_pin"
@@ -100,7 +107,7 @@ const FormCreatePin = () => {
             borderRadius: 1,
           }}
         >
-          Continue
+          {t('auth.continue')}
         </LoadingButton>
       </StyledForm>
     </Box>

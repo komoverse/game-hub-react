@@ -3,6 +3,21 @@ const lang = {
     login: 'Login',
     search: 'Search',
   },
+  sidebar: {
+    partnership: 'Apply for Partnership',
+    community: 'Join our community',
+    twitter: 'Follow us on Twitter',
+    komopedia: 'Check our komopedia',
+    news: 'News',
+    academy: 'Academy',
+    developers: 'Developers',
+    discovery: 'Explore all games',
+    mints: 'Mints',
+    tournaments: 'Tournaments',
+    trending: 'Trending',
+    playNow: 'Play Now',
+    resource: 'Resource',
+  },
   home: {
     featured: 'Featured',
     viewAll: 'See All',
@@ -89,6 +104,17 @@ const lang = {
     downloadGameDescription:
       'You have download this game. Good Luck & Have Fun!',
   },
+  marketItems: {
+    filters: 'Filters',
+    search: 'Search',
+    showMyItems: 'Show only your items',
+    sortDateAsc: 'Date: New to Old',
+    sortDateDesc: 'Date: Old to New',
+    sortPriceAsc: 'Price: Low to High',
+    sortPriceDesc: 'Price: High to Low',
+    volume: '{{volume}} volume',
+    floor: '{{floor}} floor',
+  },
   auth: {
     signInGoogle: 'Sign in with Google',
     signInTwitter: 'Sign in with Twitter',
@@ -105,11 +131,19 @@ const lang = {
     komoverseSignInDescription:
       'Play in Komoverse tournaments and games live. Login with Google, Twitter or Discord. Work on mobile. No download required. Only you control the keys.',
     forgotPassword: 'Forgot Password?',
+    rememberMe: 'Remember Me',
     register: 'Register',
     forgotPasswordDescription:
       'Please enter your email address. You will receive a link to create a new password via email.',
     resetPassword: 'Reset Your Password',
     confirmPassword: 'Confirm Password',
+
+    createPin: 'Create Security pin',
+    createPinTitle: 'Input 6 digit PIN do not lose',
+    connectWallet: 'Connect Solana Wallet',
+    connectWalletTitle: 'Solana Wallet created public key',
+    or: 'OR',
+    continue: 'Continue',
   },
   utils: {
     currency: 'USD',
@@ -145,6 +179,21 @@ const lang = {
     username: 'Username',
     password: 'Password',
     email: 'Email',
+    confirmPassword: 'Confirm Password',
+    country: 'Country',
+    subscribeNewsletter:
+      'Subscribe to Game Patch and Announcement Mailing List',
+    privacyPolicy:
+      'I agree to the <link1>Privacy Policy</link1> and <link2>Term of use</link2>',
+    usernameHelper:
+      '6-30 characters. Accept only alphanumeric, dot (.), underscore (_)',
+
+    // rules
+    required: '{{ field }} is required',
+    invalid: 'Please input a valid {{ field }}',
+    notMatch: '{{ field }} does not match',
+    wallet: 'wallet address',
+    pin: 'pin',
   },
   resources: {
     academy: 'Academy',

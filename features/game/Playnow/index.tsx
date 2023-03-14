@@ -5,13 +5,13 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
+import { t } from 'i18next';
 
 import { getGamePlayableFiles } from '@/services/games/playNow';
 import { QueryKey } from '@/types/general';
 import Iconify from '@/components/Iconify';
 import { IPlayNow } from '@/types/game/playNow';
 import { CircularProgress } from '@mui/material';
-import { t } from 'i18next';
 
 function generateDownloadThumbnail(data: IPlayNow) {
   const { type } = data;
@@ -44,6 +44,21 @@ function generateDownloadThumbnail(data: IPlayNow) {
       return {
         icon: 'mdi:google-play',
         label: 'Google Play',
+      };
+    case type.includes('xbox'):
+      return {
+        icon: 'mdi:xbox',
+        label: 'Xbox',
+      };
+    case type.includes('playstation'):
+      return {
+        icon: 'mdi:playstation',
+        label: 'Playstation',
+      };
+    case type.includes('nintendo'):
+      return {
+        icon: 'mdi:nintendo-switch',
+        label: 'Nintendo',
       };
     default:
       return lable;
@@ -87,7 +102,7 @@ const PlayNowPage = () => {
           padding: '2rem',
         }}
       >
-        <Box sx={{ width: '450px', textAlign: 'center' }}>
+        <Box sx={{ textAlign: 'center' }}>
           <Typography variant="h3">
             {t('game.downloadGame', {
               gameName: gameId?.toString().toUpperCase(),
@@ -102,6 +117,7 @@ const PlayNowPage = () => {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
+            justifyContent: 'center',
             flexWrap: 'wrap',
             marginTop: '4rem',
             gap: '24px',

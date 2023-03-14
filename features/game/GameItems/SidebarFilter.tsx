@@ -16,6 +16,7 @@ import MenuPopover from '@/components/MenuPopover';
 import SidebarFilterField from './SidebarFilterField';
 import useResponsive from '@/hooks/useResponsive';
 import { ICollectionItemProps, ISidebarFilterProps } from './types';
+import { t } from 'i18next';
 
 const CollectionItem = ({
   image,
@@ -37,13 +38,13 @@ const CollectionItem = ({
           <Box display="flex" alignItems="center" gap={1}>
             <Image src={Solana} width={15} height={15} alt={KomoverseTag} />
             <Typography variant="subtitle2" fontWeight={500}>
-              {floor} floor
+              {t('marketItems.floor', { floor })}
             </Typography>
           </Box>
           <Box display="flex" alignItems="center" gap={1}>
             <Image src={Solana} width={15} height={15} alt={KomoverseTag} />
             <Typography variant="subtitle2" fontWeight={500}>
-              {volume} volume
+              {t('marketItems.volume', { volume })}
             </Typography>
           </Box>
         </Box>
@@ -98,7 +99,9 @@ const MarketSidebar = ({
         bgcolor={COLOR.backgroundRoot}
         color={COLOR.baseGray}
       >
-        {isExpand && <Typography variant="overline">filters</Typography>}
+        {isExpand && (
+          <Typography variant="overline">{t('marketItems.filters')}</Typography>
+        )}
         {!isNotDesktop && (
           <Iconify
             onClick={() => setIsExpand(!isExpand)}

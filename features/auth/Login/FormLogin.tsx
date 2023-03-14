@@ -108,7 +108,7 @@ const FormLogin = () => {
         justifyContent="space-between"
         sx={{ my: 1 }}
       >
-        <InputCheckBox name="remember_me" label="Remember me" />
+        <InputCheckBox name="remember_me" label={t('auth.rememberMe')} />
         <Link
           variant="subtitle2"
           underline="hover"

@@ -12,6 +12,7 @@ import actionModalWallet from '@/store/modalWallet/action';
 import FormConnectWallet from './FormConnectWallet';
 import { StyledDivider, styleButton } from './styles';
 import FormCreatePin from './FormCreatePin';
+import { t } from 'i18next';
 
 const WalletAndPinModal = () => {
   const { display: isDisplay, modalType } = useSelector(
@@ -61,16 +62,16 @@ const WalletAndPinModal = () => {
               sx={styleButton}
               fullWidth
             >
-              Connect Solana Wallet
+              {t('auth.connectWallet')}
             </Button>
-            <StyledDivider>Or</StyledDivider>
+            <StyledDivider>{t('auth.or')}</StyledDivider>
             <Button
               onClick={() => changeModal('PIN')}
               size="large"
               sx={styleButton}
               fullWidth
             >
-              Create Security pin
+              {t('auth.createPin')}
             </Button>
           </Box>
         )}

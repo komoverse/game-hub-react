@@ -14,10 +14,13 @@ import actionToast from '@/store/toast/action';
 import RegistrationInput from '../Register/InputForm/RegistrationInput';
 import { RegistrationCustomInput } from '../Register/InputForm/styles';
 import { StyledForm } from './styles';
+import { t } from 'i18next';
 
 const FormConnectWallet = () => {
   const validationSchema = Yup.object().shape({
-    wallet_pubkey: Yup.string().required('Wallet address required'),
+    wallet_pubkey: Yup.string().required(
+      t('form.required', { field: t('form.wallet') }) as string
+    ),
   });
 
   const {
@@ -60,7 +63,10 @@ const FormConnectWallet = () => {
     if (!isValidAddr) {
       setError(
         'wallet_pubkey',
-        { type: 'focus', message: 'Invalid wallet address' },
+        {
+          type: 'focus',
+          message: t('form.invalid', { field: t('form.wallet') }) as string,
+        },
         { shouldFocus: true }
       );
       return;
@@ -81,9 +87,7 @@ const FormConnectWallet = () => {
       }}
     >
       <StyledForm onSubmit={submit}>
-        <Typography variant="body2">
-          Solana Wallet created public key
-        </Typography>
+        <Typography variant="body2">{t('auth.connectWalletTitle')}</Typography>
 
         <RegistrationInput
           id="wallet_pubkey"
@@ -107,7 +111,7 @@ const FormConnectWallet = () => {
             borderRadius: 1,
           }}
         >
-          Continue
+          {t('auth.continue')}
         </LoadingButton>
       </StyledForm>
     </Box>
